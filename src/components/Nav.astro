@@ -1,0 +1,117 @@
+---
+import Logo from './Logo.astro';
+import Button from './Button.astro';
+import { NAV, SITE } from '../lib/site';
+---
+
+<header
+  id="site-nav"
+  class="sticky top-0 z-50 w-full backdrop-blur-md transition-all duration-300"
+  data-nav
+>
+  <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
+    <Logo variant="dark" />
+
+    <nav aria-label="Navegación principal" class="hidden md:block">
+      <ul class="flex items-center gap-1">
+        {
+          NAV.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="inline-flex h-10 items-center rounded-full px-4 text-sm font-medium text-ink-soft transition-colors hover:text-terracota"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="hidden md:block">
+      <Button href={SITE.agendaUrl} variant="primary" size="sm">Reservar →</Button>
+    </div>
+
+    <button
+      type="button"
+      class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded-full text-ink"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      data-menu-toggle
+    >
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Mobile menu drawer -->
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-hairline bg-crema"
+    data-mobile-menu
+  >
+    <ul class="flex flex-col gap-1 px-5 py-4">
+      {
+        NAV.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              class="block rounded-lg px-3 py-3 text-base font-medium text-ink hover:bg-terracota-tint hover:text-terracota"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-3">
+        <a
+          href={SITE.agendaUrl}
+          class="block w-full rounded-full bg-terracota px-6 py-3 text-center text-base font-medium text-white"
+        >
+          Reservar →
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<style>
+  [data-nav] {
+    background: rgba(248, 247, 245, 0.85);
+    border-bottom: 1px solid transparent;
+  }
+  [data-nav].is-scrolled {
+    background: rgba(248, 247, 245, 0.96);
+    border-bottom-color: var(--color-hairline);
+  }
+</style>
+
+<script>
+  // Toggle mobile menu
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLDivElement>('[data-mobile-menu]');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    if (isOpen) {
+      menu?.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      menu?.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // Borde fino sólo al scrollear — el header pasa de "flotando" a "anclado"
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const onScroll = () => {
+    if (!nav) return;
+    if (window.scrollY > 12) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

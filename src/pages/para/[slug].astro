@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import Button from '../../components/Button.astro';
+import EspacioCard from '../../components/EspacioCard.astro';
+import { NICHOS_CONTENT } from '../../lib/nichos';
+import { ESPACIOS, SITE, CONTACT } from '../../lib/site';
+
+export async function getStaticPaths() {
+  return Object.values(NICHOS_CONTENT).map((nicho) => ({
+    params: { slug: nicho.slug },
+    props: { nicho },
+  }));
+}
+
+const { nicho } = Astro.props;
+
+// Buscamos los espacios recomendados en el array global.
+const espaciosDelNicho = nicho.espaciosRecomendados
+  .map((id) => ESPACIOS.find((e) => e.id === id))
+  .filter((e): e is NonNullable<typeof e> => Boolean(e))
+  .slice(0, 4);
+
+// Schema.org Service — qué servicio ofrecemos para este nicho.
+const schemaService = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: nicho.label,
+  provider: { '@type': 'LocalBusiness', name: 'Espacio 1010' },
+  areaServed: { '@type': 'City', name: 'Montevideo' },
+  description: nicho.intro,
+  url: `${SITE.url}/para/${nicho.slug}`,
+};
+
+const schemaFAQ = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: nicho.faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<BaseLayout title={nicho.label} description={nicho.meta}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaService)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="pt-16 pb-16 sm:pt-24 sm:pb-20">
+    <Container>
+      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        Para profesionales
+      </p>
+      <h1 class="text-balance">{nicho.label}</h1>
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
+        {nicho.intro}
+      </p>
+
+      <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+        <Button href={SITE.agendaUrl} variant="primary" size="lg">
+          Crear cuenta gratis
+        </Button>
+        <Button href="/los-espacios" variant="ghost" size="lg">
+          Ver los espacios
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Pain points + solución -->
+  <section class="py-20 bg-crema-warm/30">
+    <Container>
+      <div class="grid gap-12 md:grid-cols-2 md:items-start">
+        <div>
+          <h2 class="font-display text-3xl text-ink">Lo que probablemente te suene.</h2>
+          <ul class="mt-8 space-y-4">
+            {
+              nicho.painPoints.map((p) => (
+                <li class="flex items-start gap-3 text-base leading-relaxed text-ink-soft">
+                  <span class="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-terracota"></span>
+                  {p}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div>
+          <h2 class="font-display text-3xl text-ink">Cómo lo resolvemos.</h2>
+          <p class="mt-8 text-base leading-relaxed text-ink-soft text-pretty">{nicho.solucion}</p>
+          <div class="mt-8">
+            <Button href="/como-funciona" variant="outline" size="md">
+              Ver cómo funciona
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Espacios recomendados -->
+  <section class="py-24">
+    <Container size="wide">
+      <h2 class="font-display text-3xl text-ink">Espacios pensados para tu práctica.</h2>
+      <p class="mt-3 max-w-xl text-ink-soft">
+        Estos son los que mejor se ajustan a la forma de trabajo de quien hace lo tuyo.
+      </p>
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {espaciosDelNicho.map((e) => <EspacioCard espacio={e} />)}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Testimonial -->
+  <section class="py-20 bg-ink text-crema">
+    <Container size="narrow">
+      <svg class="mb-6 text-terracota-light" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M7 7c-2 0-3.5 1.5-3.5 3.5S5 14 7 14c0 2-1.5 3.5-3.5 3.5v2C7 19.5 9 17 9 13V8c0-.5-.5-1-1-1zm9 0c-2 0-3.5 1.5-3.5 3.5s1.5 3.5 3.5 3.5c0 2-1.5 3.5-3.5 3.5v2c3.5 0 5.5-2.5 5.5-6.5V8c0-.5-.5-1-1-1z" />
+      </svg>
+      <blockquote class="font-display text-3xl leading-tight text-crema sm:text-4xl">
+        "{nicho.testimonial.texto}"
+      </blockquote>
+      <footer class="mt-6 text-sm text-crema/70">
+        — {nicho.testimonial.autor}, {nicho.testimonial.rol}
+      </footer>
+    </Container>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-24">
+    <Container size="narrow">
+      <h2 class="font-display text-3xl text-ink">Preguntas frecuentes en tu profesión.</h2>
+      <div class="mt-10 space-y-3">
+        {
+          nicho.faq.map((item) => (
+            <details class="group rounded-2xl border border-hairline bg-crema p-6 transition-colors duration-300 hover:border-terracota/30">
+              <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-medium text-ink">
+                {item.q}
+                <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-terracota-tint text-terracota transition-transform duration-300 group-open:rotate-45">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+                  </svg>
+                </span>
+              </summary>
+              <p class="mt-4 text-base leading-relaxed text-ink-soft">{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA final -->
+  <section class="py-24">
+    <Container>
+      <div class="rounded-[var(--radius-xl)] bg-gradient-to-br from-terracota via-terracota-dark to-ink p-12 text-center text-crema sm:p-20">
+        <h2 class="text-balance text-crema">¿Probamos?</h2>
+        <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-crema/85">
+          Crear cuenta es gratis. Después ves la disponibilidad real y reservás cuando quieras.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-crema text-terracota hover:bg-white">
+            Crear mi cuenta
+          </Button>
+          <Button
+            href={CONTACT.whatsappLink(`Hola, soy ${nicho.label.toLowerCase().replace('espacios para ', '').replace('consultorios para ', '').replace('salones para ', '').replace('sala para ', '')} y quería más info.`)}
+            variant="ghost"
+            size="lg"
+            class="text-crema hover:bg-crema/10"
+            target="_blank"
+          >
+            Hablar por WhatsApp
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,40 @@
+---
+/**
+ * Logo "ESPACIO 1010" — versión simplificada en SVG, inspirada en el brandboard.
+ * Vertical no — para nav horizontal usamos versión horizontal compacta.
+ * El SVG real diseñado se reemplaza acá cuando Rafa pase los archivos finales.
+ */
+interface Props {
+  variant?: 'dark' | 'light' | 'terracota';
+  class?: string;
+}
+
+const { variant = 'dark', class: className = '' } = Astro.props;
+
+const palette = {
+  dark: { tag: '#1a1518', tagText: '#ffffff', number: '#1a1518' },
+  light: { tag: '#ffffff', tagText: '#1a1518', number: '#ffffff' },
+  terracota: { tag: '#9e4e42', tagText: '#ffffff', number: '#1a1518' },
+};
+
+const c = palette[variant];
+---
+
+<a
+  href="/"
+  class={`inline-flex items-center gap-2 group ${className}`}
+  aria-label="Espacio 1010 — inicio"
+>
+  <span
+    class="inline-flex items-center px-1.5 py-0.5 text-[10px] font-bold tracking-[0.18em] uppercase"
+    style={`background:${c.tag}; color:${c.tagText};`}
+  >
+    Espacio
+  </span>
+  <span
+    class="font-display text-2xl font-medium leading-none"
+    style={`color:${c.number};`}
+  >
+    1010
+  </span>
+</a>

@@ -1,0 +1,235 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import { ADDRESS, AMENITIES, SITE } from '../lib/site';
+---
+
+<BaseLayout
+  title="El lugar"
+  description="Edificio centenario de Cordón, Montevideo, totalmente reciclado para alojar 12 espacios de trabajo profesional. Conocé la historia, los amenities y la ubicación de Espacio 1010."
+>
+  <!-- Hero -->
+  <section class="pt-16 pb-16 sm:pt-24 sm:pb-20">
+    <Container>
+      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        El lugar
+      </p>
+      <h1 class="text-balance">
+        Una casa con
+        <span class="italic text-terracota">100 años</span>,
+        puesta a punto para los próximos 100.
+      </h1>
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
+        Compramos una casa de Cordón llena de historia y la reciclamos a cero
+        sin perder lo que la hacía única. Cada piso, cada moldura, cada
+        carpintería original que se podía rescatar, se rescató. Lo nuevo se
+        sumó con respeto.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Visual del edificio -->
+  <section class="pb-24">
+    <Container size="wide">
+      <div class="relative aspect-[16/9] overflow-hidden rounded-[var(--radius-xl)] bg-gradient-to-br from-crema-warm via-terracota-tint to-terracota/40 shadow-[var(--shadow-md)]">
+        <div class="absolute inset-0" aria-hidden="true">
+          <svg viewBox="0 0 1200 675" class="h-full w-full" preserveAspectRatio="xMidYMid slice">
+            <rect x="200" y="100" width="800" height="500" fill="#9e4e42" opacity="0.18" />
+            <!-- Ventanas grilla 4x3 -->
+            {Array.from({ length: 12 }).map((_, i) => {
+              const col = i % 4;
+              const row = Math.floor(i / 4);
+              return (
+                <rect
+                  x={260 + col * 180}
+                  y={180 + row * 130}
+                  width="100"
+                  height="90"
+                  fill="#1a1518"
+                  opacity="0.22"
+                />
+              );
+            })}
+            <rect x="200" y="100" width="800" height="30" fill="#1a1518" opacity="0.35" />
+            <rect x="540" y="540" width="120" height="60" fill="#1a1518" opacity="0.30" />
+            <text x="600" y="80" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="36" fill="#1a1518" opacity="0.50" font-weight="500">
+              GABOTO 1010
+            </text>
+          </svg>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Historia + filosofía -->
+  <section class="py-20">
+    <Container size="narrow">
+      <h2 class="font-display text-3xl text-ink">Reciclar sin tapar.</h2>
+      <div class="mt-8 space-y-6 text-lg leading-relaxed text-ink-soft text-pretty">
+        <p>
+          La casa de Gaboto 1010 estuvo abandonada durante años. Cuando la
+          encontramos, faltaba estructura y sobraba humedad — pero las
+          aberturas, los pisos calcáreos y la altura de los techos pedían
+          una segunda oportunidad. Decidimos dársela.
+        </p>
+        <p>
+          La obra fue lenta a propósito. Donde había madera buena, la
+          recuperamos. Donde había revoque sano, lo dejamos. Donde no, sumamos
+          piezas contemporáneas sin imitar a las viejas. El resultado es un
+          edificio que no esconde su historia, pero tampoco la usa de
+          escenografía.
+        </p>
+        <p>
+          Adentro, la tecnología es invisible. Domótica para climatización y
+          luces, wifi de fibra repartido por planta, música ambiente que suma
+          privacidad entre espacios. La idea es que cuando entres, lo único
+          en lo que pienses sea tu paciente.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Amenities completos -->
+  <section class="py-20 bg-crema-warm/30">
+    <Container>
+      <h2 class="font-display text-3xl text-ink">Todo lo que viene incluido.</h2>
+      <p class="mt-3 max-w-xl text-ink-soft">
+        Sin extras escondidos. Sin "items facturables aparte". Tu reserva
+        incluye el espacio y todo el edificio que lo rodea.
+      </p>
+
+      <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          AMENITIES.map((a) => (
+            <div class="flex items-start gap-4 rounded-2xl border border-hairline bg-crema p-5">
+              <div class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-terracota-tint text-terracota">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </div>
+              <p class="text-base leading-snug text-ink">{a.label}</p>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Ubicación -->
+  <section class="py-20">
+    <Container size="wide">
+      <div class="grid gap-10 md:grid-cols-12 md:items-center">
+        <div class="md:col-span-5">
+          <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+            Ubicación
+          </p>
+          <h2 class="font-display text-4xl text-ink">
+            En pleno {ADDRESS.neighborhood},<br />
+            <span class="italic">a un paso de todo</span>.
+          </h2>
+          <address class="mt-6 not-italic">
+            <p class="font-display text-2xl text-ink">{ADDRESS.street}</p>
+            <p class="text-base text-ink-soft">{ADDRESS.betweenStreets}</p>
+            <p class="mt-1 text-base text-ink-soft">{ADDRESS.city}, {ADDRESS.country}</p>
+          </address>
+
+          <ul class="mt-8 space-y-3 text-base text-ink-soft">
+            <li class="flex items-start gap-3">
+              <svg class="mt-1 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
+                <circle cx="12" cy="10" r="3" />
+                <path d="M12 2C8 2 5 5 5 9c0 5.5 7 13 7 13s7-7.5 7-13c0-4-3-7-7-7z" />
+              </svg>
+              Cordón sur, a 5 cuadras de 18 de Julio
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="mt-1 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
+                <rect x="3" y="6" width="18" height="12" rx="2" />
+                <path d="M3 12h18" />
+              </svg>
+              A 2 cuadras de líneas troncales de transporte público
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="mt-1 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v8M8 12h8" stroke-linecap="round" />
+              </svg>
+              Estacionamiento gratuito fácil en la zona (no tarifado)
+            </li>
+          </ul>
+
+          <div class="mt-10 flex flex-wrap gap-3">
+            <Button href={ADDRESS.mapsUrl} variant="primary" size="md" target="_blank">
+              Abrir en Google Maps
+            </Button>
+            <Button href="/contacto" variant="ghost" size="md">
+              Cómo llegar
+            </Button>
+          </div>
+        </div>
+
+        <div class="md:col-span-7">
+          <!-- Placeholder de mapa estilo editorial — reemplazable por embed real -->
+          <div class="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-xl)] border border-hairline bg-crema-warm/40">
+            <iframe
+              title="Mapa de Espacio 1010 en Gaboto 1010, Montevideo"
+              src={`https://www.openstreetmap.org/export/embed.html?bbox=${ADDRESS.lng - 0.005}%2C${ADDRESS.lat - 0.003}%2C${ADDRESS.lng + 0.005}%2C${ADDRESS.lat + 0.003}&layer=mapnik&marker=${ADDRESS.lat}%2C${ADDRESS.lng}`}
+              loading="lazy"
+              class="h-full w-full"
+              style="border: 0;"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Accesibilidad — honestidad como diferencial -->
+  <section class="py-20 bg-crema-warm/30">
+    <Container size="narrow">
+      <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        Accesibilidad
+      </p>
+      <h2 class="font-display text-3xl text-ink">
+        Lo que sí, y lo que coordinamos juntos.
+      </h2>
+      <div class="mt-8 space-y-5 text-lg leading-relaxed text-ink-soft text-pretty">
+        <p>
+          Planta baja con baño totalmente accesible y dimensiones de pasillos
+          aptas para silla de ruedas dentro del edificio.
+        </p>
+        <p>
+          El acceso desde la calle tiene <strong class="text-ink">dos
+          escalones</strong>. Si vos o tu paciente necesitan asistencia,
+          coordinamos por WhatsApp y los recibimos en la puerta — sin
+          improvisaciones.
+        </p>
+        <p>
+          Es algo que decidimos contarte explícitamente: preferimos eso a que
+          te enteres llegando.
+        </p>
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24 sm:py-32">
+    <Container>
+      <div class="rounded-[var(--radius-xl)] bg-ink p-12 text-center text-crema sm:p-20">
+        <h2 class="text-balance text-crema">Venite a conocerlo.</h2>
+        <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-crema/80">
+          Coordiná una visita guiada por WhatsApp o creá tu cuenta y empezá
+          a reservar online.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-crema text-terracota hover:bg-white">
+            Crear cuenta
+          </Button>
+          <Button href="/contacto" variant="ghost" size="lg" class="text-crema hover:bg-crema/10">
+            Coordinar visita
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

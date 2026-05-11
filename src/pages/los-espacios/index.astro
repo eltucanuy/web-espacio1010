@@ -1,0 +1,130 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import EspacioCard from '../../components/EspacioCard.astro';
+import Button from '../../components/Button.astro';
+import { ESPACIOS, SITE } from '../../lib/site';
+
+// Agrupamos por tipo para que el grid cuente una historia, no sólo enumere.
+const consultas = ESPACIOS.filter((e) => e.id.startsWith('consulta'));
+const estudios = ESPACIOS.filter((e) => e.id.startsWith('estudio'));
+const salones = ESPACIOS.filter((e) => e.id.startsWith('salon'));
+const subsuelo = ESPACIOS.filter((e) => e.id === 'sala-subsuelo');
+---
+
+<BaseLayout
+  title="Los 12 espacios"
+  description="Conocé los 12 espacios de Espacio 1010: consultas íntimas amobladas, estudios premium, salones versátiles y la sala subsuelo para hasta 30 personas. Todo en pleno Cordón, Montevideo."
+>
+  <!-- Header de página -->
+  <section class="pt-16 pb-12 sm:pt-24 sm:pb-16">
+    <Container>
+      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        Los espacios
+      </p>
+      <h1 class="text-balance text-ink">
+        12 ambientes,
+        <span class="italic text-terracota">una sola filosofía</span>.
+      </h1>
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
+        Desde consultas íntimas para sesiones individuales hasta una sala
+        subsuelo de 60 m² para grupos. Cada uno fue pensado para una forma
+        distinta de trabajar — y todos comparten el mismo estándar de detalle.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Filtros / leyenda -->
+  <section class="pb-8">
+    <Container>
+      <div class="flex flex-wrap gap-6 border-y border-hairline py-5 text-sm text-ink-soft">
+        <span class="inline-flex items-center gap-2">
+          <span class="h-2.5 w-2.5 rounded-full bg-terracota"></span>
+          <strong class="font-semibold text-ink">Amueblado completo</strong> — sillón terapia, escritorio, sillas
+        </span>
+        <span class="inline-flex items-center gap-2">
+          <span class="h-2.5 w-2.5 rounded-full bg-ink-soft"></span>
+          <strong class="font-semibold text-ink">Mixto</strong> — base de mobiliario + materiales móviles
+        </span>
+        <span class="inline-flex items-center gap-2">
+          <span class="h-2.5 w-2.5 rounded-full bg-crema-warm border border-hairline"></span>
+          <strong class="font-semibold text-ink">Versátil</strong> — sillas apilables, colchonetas, configurás vos
+        </span>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Sala subsuelo destacada arriba -->
+  <section class="py-12">
+    <Container>
+      <h2 class="mb-8 font-display text-3xl text-ink">La gran sala</h2>
+      <div class="grid gap-6 lg:grid-cols-3">
+        {subsuelo.map((e) => <div class="lg:col-span-1"><EspacioCard espacio={e} featured /></div>)}
+        <div class="lg:col-span-2 flex flex-col justify-center rounded-[var(--radius-lg)] border border-hairline bg-crema-warm/40 p-10">
+          <h3 class="font-display text-2xl text-ink">Para cuando 30 personas se juntan a aprender, meditar o sanar.</h3>
+          <p class="mt-4 text-base leading-relaxed text-ink-soft">
+            Sin columnas, mobiliario versátil, acústica trabajada. Ideal para
+            talleres de fin de semana, formaciones, prácticas grupales o
+            presentaciones. Reservala por bloques de 2 hs o por día completo.
+          </p>
+          <div class="mt-6">
+            <Button href="/los-espacios/sala-subsuelo" variant="outline" size="md">
+              Ver la sala
+            </Button>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Estudios -->
+  <section class="py-12">
+    <Container>
+      <h2 class="mb-8 font-display text-3xl text-ink">Estudios premium</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {estudios.map((e) => <EspacioCard espacio={e} />)}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Consultas -->
+  <section class="py-12">
+    <Container>
+      <h2 class="mb-8 font-display text-3xl text-ink">Consultas individuales</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {consultas.map((e) => <EspacioCard espacio={e} />)}
+      </div>
+    </Container>
+  </section>
+
+  <!-- Salones grupales -->
+  <section class="py-12">
+    <Container>
+      <h2 class="mb-8 font-display text-3xl text-ink">Salones grupales</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {salones.map((e) => <EspacioCard espacio={e} />)}
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA al final -->
+  <section class="py-24 sm:py-32">
+    <Container>
+      <div class="rounded-[var(--radius-xl)] bg-crema-warm/40 p-12 text-center sm:p-20">
+        <h2 class="text-balance text-ink">¿Listo para reservar?</h2>
+        <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-soft">
+          Creá tu cuenta gratis y entrá a ver la disponibilidad real de los 12
+          espacios para los próximos días.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button href={SITE.agendaUrl} variant="primary" size="lg">
+            Crear cuenta y reservar
+          </Button>
+          <Button href="/contacto" variant="ghost" size="lg">
+            Tengo una consulta
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

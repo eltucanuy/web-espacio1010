@@ -1,0 +1,137 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Analytics from '../components/Analytics.astro';
+import { SITE, ADDRESS, CONTACT } from '../lib/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Imagen OG (URL absoluta o ruta /og-default.png en /public) */
+  image?: string;
+  /** Si la página es noindex (ej: landings de campañas pagas) */
+  noindex?: boolean;
+  /** Si querés override del canonical (raro) */
+  canonical?: string;
+}
+
+const {
+  title,
+  description = SITE.description,
+  // SVG funciona en la mayoría de scrapers modernos. Si querés cobertura
+  // completa (Twitter, LinkedIn legacy), exportá og-default.png 1200x630 a /public.
+  image = '/og-default.svg',
+  noindex = false,
+  canonical,
+} = Astro.props;
+
+const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
+const imageUrl = image.startsWith('http') ? image : new URL(image, SITE.url).toString();
+
+// Schema.org LocalBusiness — se renderiza una sola vez en el head global.
+const schemaBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${SITE.url}/#business`,
+  name: SITE.name,
+  description: SITE.description,
+  url: SITE.url,
+  telephone: CONTACT.whatsappLeads,
+  email: CONTACT.email,
+  image: imageUrl,
+  priceRange: '$$',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: ADDRESS.street,
+    addressLocality: ADDRESS.city,
+    addressRegion: ADDRESS.neighborhood,
+    postalCode: ADDRESS.postalCode,
+    addressCountry: 'UY',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: ADDRESS.lat,
+    longitude: ADDRESS.lng,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+    opens: '00:00',
+    closes: '23:59',
+  },
+  areaServed: { '@type': 'City', name: ADDRESS.city },
+};
+---
+
+<!doctype html>
+<html lang="es-UY">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <!-- OpenGraph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_UY" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <!-- Color de marca para chrome móvil -->
+    <meta name="theme-color" content="#9e4e42" />
+
+    <!-- Favicons (placeholders — generar set completo antes del launch) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Fuentes — preconnect + carga selectiva.
+         Belgiano Serif es licencia paga; usamos Cormorant Garamond hasta licenciar. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+    />
+
+    <!-- Schema.org -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBusiness)} />
+
+    <!-- Analytics: Plausible + GTM stub (sólo en prod, env-driven) -->
+    <Analytics />
+
+    <!-- Slot para metadata extra por página (ej: schema.org Service / FAQPage / Product) -->
+    <slot name="head" />
+  </head>
+
+  <body class="min-h-dvh flex flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-terracota focus:px-4 focus:py-2 focus:text-white"
+    >
+      Saltar al contenido
+    </a>
+
+    <Nav />
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <Footer />
+  </body>
+</html>

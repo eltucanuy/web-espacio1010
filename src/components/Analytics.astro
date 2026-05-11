@@ -1,0 +1,49 @@
+---
+/**
+ * Componente Analytics — se renderiza en producción y con env vars seteadas.
+ *
+ * Soporta:
+ *   - PUBLIC_PLAUSIBLE_DOMAIN: dominio configurado en Plausible (ej "espacio1010.uy")
+ *   - PUBLIC_GTM_ID: container de Google Tag Manager (ej "GTM-XXXX")
+ *
+ * GTM es el contenedor que la agencia de ads va a usar para inyectar GA4 y
+ * Meta Pixel desde su interfaz — no metemos esos scripts a mano para no
+ * acoplar el código a sus decisiones.
+ *
+ * Por qué no cookie banner: Plausible no usa cookies (privacy-first).
+ * Si la agencia inyecta GA4 desde GTM con configuración por default (con
+ * cookies), tocaría meter banner. Coordinarlo cuando se active GTM.
+ */
+
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN as string | undefined;
+const gtmId = import.meta.env.PUBLIC_GTM_ID as string | undefined;
+const isProd = import.meta.env.PROD;
+---
+
+{
+  isProd && plausibleDomain && (
+    <script
+      is:inline
+      defer
+      data-domain={plausibleDomain}
+      src="https://plausible.io/js/script.js"
+    />
+  )
+}
+
+{
+  isProd && gtmId && (
+    <Fragment>
+      {/* Google Tag Manager — head */}
+      <script is:inline define:vars={{ gtmId }}>
+        {`
+          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+          })(window,document,'script','dataLayer','${gtmId}');
+        `}
+      </script>
+    </Fragment>
+  )
+}

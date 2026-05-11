@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /campanas/
+
+Sitemap: https://www.espacio1010.uy/sitemap-index.xml

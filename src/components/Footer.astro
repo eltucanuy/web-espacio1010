@@ -1,0 +1,104 @@
+---
+import Logo from './Logo.astro';
+import { NAV, SITE, ADDRESS, CONTACT, SOCIAL, NICHOS } from '../lib/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="mt-32 bg-ink text-crema/85">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8 py-16">
+    <div class="grid gap-12 md:grid-cols-12">
+      <div class="md:col-span-4">
+        <Logo variant="light" />
+        <p class="mt-5 max-w-sm text-sm leading-relaxed text-crema/65">
+          {SITE.description}
+        </p>
+      </div>
+
+      <div class="md:col-span-2">
+        <h4 class="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-crema/55">
+          Sitio
+        </h4>
+        <ul class="space-y-2 text-sm">
+          {
+            NAV.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-crema/80 transition-colors hover:text-terracota-light"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="md:col-span-3">
+        <h4 class="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-crema/55">
+          Para profesionales
+        </h4>
+        <ul class="space-y-2 text-sm">
+          {
+            NICHOS.map((n) => (
+              <li>
+                <a
+                  href={`/para/${n.slug}`}
+                  class="text-crema/80 transition-colors hover:text-terracota-light"
+                >
+                  {n.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="md:col-span-3">
+        <h4 class="mb-4 text-[11px] font-semibold uppercase tracking-[0.18em] text-crema/55">
+          Visitanos
+        </h4>
+        <address class="not-italic text-sm leading-relaxed text-crema/80">
+          {ADDRESS.street}<br />
+          {ADDRESS.betweenStreets}<br />
+          {ADDRESS.neighborhood}, {ADDRESS.city}
+        </address>
+
+        <div class="mt-5 space-y-2 text-sm">
+          <a
+            href={CONTACT.whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block text-crema/80 hover:text-terracota-light"
+          >
+            WhatsApp {CONTACT.whatsappLeadsDisplay}
+          </a>
+          <a
+            href={`mailto:${CONTACT.email}`}
+            class="block text-crema/80 hover:text-terracota-light"
+          >
+            {CONTACT.email}
+          </a>
+          <a
+            href={SOCIAL.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="block text-crema/80 hover:text-terracota-light"
+          >
+            Instagram {SOCIAL.instagramHandle}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col gap-4 border-t border-crema/10 pt-8 md:flex-row md:items-center md:justify-between">
+      <p class="text-xs text-crema/50">
+        © {year} {SITE.name}. Todos los derechos reservados.
+      </p>
+      <p class="text-xs text-crema/50">
+        Hecho con cuidado en Montevideo.
+      </p>
+    </div>
+  </div>
+</footer>

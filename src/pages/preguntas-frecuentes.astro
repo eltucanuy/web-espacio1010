@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import { SITE } from '../lib/site';
+
+const faqs = [
+  {
+    categoria: 'Reservas y agenda',
+    items: [
+      {
+        q: '¿Necesito registrarme antes de reservar?',
+        a: 'Sí. Es gratis y toma 30 segundos. Aprobamos cuentas el mismo día — siempre revisado por una persona, no por un bot.',
+      },
+      {
+        q: '¿Puedo reservar para hoy mismo?',
+        a: 'Sí, siempre que haya disponibilidad. La agenda se actualiza en tiempo real y aceptamos reservas hasta minutos antes del horario, sujeto a disponibilidad.',
+      },
+      {
+        q: '¿Hay un mínimo de horas?',
+        a: 'No. Reservás desde 1 hora suelta. Si querés algo recurrente, podés armar una serie fija con día y hora garantizados.',
+      },
+      {
+        q: '¿Puedo cambiar de espacio entre sesiones?',
+        a: 'Sí. Cada reserva es independiente. Si en la próxima necesitás un espacio más grande o con otro mobiliario, lo elegís sin trámite.',
+      },
+      {
+        q: '¿Qué pasa si llego tarde a mi reserva?',
+        a: 'Tu código sigue funcionando hasta el final de la hora reservada. Si necesitás extender, depende de la disponibilidad del siguiente turno.',
+      },
+    ],
+  },
+  {
+    categoria: 'Cancelaciones y pagos',
+    items: [
+      {
+        q: '¿Cuál es la política de cancelaciones?',
+        a: 'Si cancelás con 24 hs o más de aviso, no pagás nada. Entre 24 y 1 hora antes, se cobra el 50%. Con menos de 1 hora, no se puede cancelar.',
+      },
+      {
+        q: '¿Las series fijas también tienen cancelaciones gratis?',
+        a: 'Sí, dentro de un tope mensual proporcional a tu plan. La idea es ser flexible sin que se vuelva injusto para quien espera ese slot.',
+      },
+      {
+        q: '¿Cómo pago las reservas?',
+        a: 'Mes a mes, contra una liquidación que generamos automáticamente el día 1. Vence el día 10. Sin tarjeta en cada reserva ni cobros automáticos.',
+      },
+      {
+        q: '¿Qué pasa si no pago a tiempo?',
+        a: 'Después del día 10 la liquidación queda "vencida" y se suspende la posibilidad de hacer reservas nuevas hasta regularizar.',
+      },
+    ],
+  },
+  {
+    categoria: 'Acceso y uso del lugar',
+    items: [
+      {
+        q: '¿Cómo accedo al edificio?',
+        a: 'Con un código personal que recibís al crear tu cuenta. El código abre la puerta de calle y el espacio que reservaste, dentro de tu franja horaria.',
+      },
+      {
+        q: '¿Cómo accede mi paciente?',
+        a: 'Toca timbre y vos le abrís remoto desde la app, o lo recibís personalmente. La sala de espera común es cómoda y privada.',
+      },
+      {
+        q: '¿Puedo dejar materiales en el espacio?',
+        a: 'En los espacios versátiles no, son compartidos. En consultas amobladas con uso fijo, hay opción de armario reservado — consultá por WhatsApp.',
+      },
+      {
+        q: '¿Hay limpieza entre reservas?',
+        a: 'Sí, todos los espacios se ventilan y revisan entre uso y uso. La limpieza profunda es diaria, generalmente al cierre.',
+      },
+      {
+        q: '¿Puedo usar la sala de cowork sin reserva?',
+        a: 'Sí, mientras tengas al menos una reserva ese día. Llegás antes, te quedás después o aprovechás un hueco entre pacientes sin pagar extra.',
+      },
+    ],
+  },
+  {
+    categoria: 'El edificio',
+    items: [
+      {
+        q: '¿Dónde está ubicado?',
+        a: 'Gaboto 1010, entre Isla de Flores y San Salvador, Cordón sur, Montevideo.',
+      },
+      {
+        q: '¿Hay estacionamiento?',
+        a: 'No tenemos cochera propia, pero la zona no es tarifada y casi siempre hay lugar en la calle. Las cuadras alrededor son tranquilas.',
+      },
+      {
+        q: '¿Es accesible para personas con movilidad reducida?',
+        a: 'La planta baja tiene baño accesible. El acceso desde la calle tiene 2 escalones — si necesitás asistencia, coordinamos por WhatsApp para recibirte.',
+      },
+      {
+        q: '¿Hay wifi en todo el edificio?',
+        a: 'Sí, fibra óptica con repetidores por planta. Funciona también en la sala de espera y la cocina.',
+      },
+      {
+        q: '¿Cómo es la privacidad acústica entre espacios?',
+        a: 'Trabajamos especialmente la insonorización. Además, hay música ambiente suave en pasillos para sumar enmascaramiento — es muy difícil escuchar de un espacio a otro.',
+      },
+    ],
+  },
+];
+
+const schemaFAQ = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.flatMap((cat) =>
+    cat.items.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    }))
+  ),
+};
+---
+
+<BaseLayout
+  title="Preguntas frecuentes"
+  description="Respuestas a las dudas más comunes sobre Espacio 1010: reservas, cancelaciones, acceso, precios y uso del edificio. Si tu pregunta no está, escribinos por WhatsApp."
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
+  </Fragment>
+
+  <section class="pt-16 pb-16 sm:pt-24 sm:pb-20">
+    <Container>
+      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        Preguntas frecuentes
+      </p>
+      <h1 class="text-balance">
+        Todo lo que
+        <span class="italic text-terracota">te queda por preguntar</span>.
+      </h1>
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
+        Si tu pregunta no está acá, escribinos por WhatsApp y te respondemos
+        en minutos. Vamos sumando más preguntas a medida que llegan.
+      </p>
+    </Container>
+  </section>
+
+  <section class="pb-20">
+    <Container size="narrow">
+      <div class="space-y-16">
+        {
+          faqs.map((cat) => (
+            <div>
+              <h2 class="font-display text-2xl text-terracota">{cat.categoria}</h2>
+              <div class="mt-6 space-y-3">
+                {cat.items.map((item) => (
+                  <details class="group rounded-2xl border border-hairline bg-crema p-6 transition-colors duration-300 hover:border-terracota/30">
+                    <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-medium text-ink">
+                      {item.q}
+                      <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-terracota-tint text-terracota transition-transform duration-300 group-open:rotate-45">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                          <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+                        </svg>
+                      </span>
+                    </summary>
+                    <p class="mt-4 text-base leading-relaxed text-ink-soft">{item.a}</p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <section class="py-24 bg-crema-warm/30">
+    <Container size="narrow">
+      <div class="rounded-[var(--radius-lg)] border border-hairline bg-crema p-10 text-center">
+        <h2 class="font-display text-3xl text-ink">¿Te quedó alguna duda?</h2>
+        <p class="mt-3 text-ink-soft">
+          WhatsApp es lo más rápido. Si preferís ver el lugar antes, también
+          coordinamos visita.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button href="/contacto" variant="primary" size="md">
+            Escribirnos
+          </Button>
+          <Button href={SITE.agendaUrl} variant="ghost" size="md">
+            Crear cuenta
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

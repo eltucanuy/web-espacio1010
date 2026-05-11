@@ -1,0 +1,32 @@
+---
+import Container from '../Container.astro';
+import SectionHeader from '../SectionHeader.astro';
+import EspacioCard from '../EspacioCard.astro';
+import Button from '../Button.astro';
+import { ESPACIOS } from '../../lib/site';
+
+// Mostramos sólo los destacados + algunos completados al azar para no saturar.
+const destacados = ESPACIOS.filter((e) => e.destacado);
+const otros = ESPACIOS.filter((e) => !e.destacado).slice(0, 3);
+const preview = [...destacados, ...otros];
+---
+
+<section class="py-24 sm:py-32 bg-crema-warm/40">
+  <Container size="wide">
+    <div class="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+      <SectionHeader
+        eyebrow="Los espacios"
+        title="12 ambientes únicos, todos a punto."
+        subtitle="Desde consultas íntimas amobladas hasta una sala para 30 personas en el subsuelo. Elegís el espacio que se adapta a tu sesión, no al revés."
+        align="left"
+      />
+      <Button href="/los-espacios" variant="outline" size="md">
+        Ver los 12 espacios
+      </Button>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {preview.map((e) => <EspacioCard espacio={e} />)}
+    </div>
+  </Container>
+</section>

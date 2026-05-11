@@ -1,0 +1,33 @@
+---
+/**
+ * Encabezado de sección estandarizado: eyebrow + título display + subtítulo.
+ * Da ritmo tipográfico consistente entre todas las secciones del sitio.
+ */
+interface Props {
+  eyebrow?: string;
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  class?: string;
+}
+
+const { eyebrow, title, subtitle, align = 'center', class: className = '' } = Astro.props;
+
+const alignClass = align === 'center' ? 'text-center mx-auto' : 'text-left';
+---
+
+<header class={`max-w-2xl ${alignClass} ${className}`}>
+  {
+    eyebrow && (
+      <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        {eyebrow}
+      </p>
+    )
+  }
+  <h2 class="text-balance text-ink">{title}</h2>
+  {
+    subtitle && (
+      <p class="mt-5 text-lg leading-relaxed text-ink-soft text-pretty">{subtitle}</p>
+    )
+  }
+</header>

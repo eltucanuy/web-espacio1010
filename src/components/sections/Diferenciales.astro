@@ -1,0 +1,29 @@
+---
+import Container from '../Container.astro';
+import SectionHeader from '../SectionHeader.astro';
+import { DIFERENCIALES } from '../../lib/site';
+---
+
+<section class="py-24 sm:py-32">
+  <Container>
+    <SectionHeader
+      eyebrow="Por qué Espacio 1010"
+      title="Pensado por profesionales, para profesionales."
+      subtitle="Nada de idas y vueltas para reservar. Nada de horarios rígidos. Nada de extras escondidos. Acá la tecnología desaparece y vos te dedicás a lo que importa."
+    />
+
+    <div class="mt-16 grid gap-px overflow-hidden rounded-[var(--radius-lg)] border border-hairline bg-hairline sm:grid-cols-2 lg:grid-cols-5">
+      {
+        DIFERENCIALES.map((d, i) => (
+          <article class="group relative flex flex-col gap-3 bg-crema p-8 transition-colors duration-300 hover:bg-terracota-tint/40">
+            <span class="font-display text-5xl leading-none text-terracota/30 transition-colors group-hover:text-terracota/50">
+              0{i + 1}
+            </span>
+            <h3 class="font-display text-xl text-ink">{d.titulo}</h3>
+            <p class="text-sm leading-relaxed text-ink-soft">{d.descripcion}</p>
+          </article>
+        ))
+      }
+    </div>
+  </Container>
+</section>

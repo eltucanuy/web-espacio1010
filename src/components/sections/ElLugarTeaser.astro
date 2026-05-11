@@ -1,0 +1,77 @@
+---
+import Container from '../Container.astro';
+import Button from '../Button.astro';
+import { ADDRESS, AMENITIES } from '../../lib/site';
+---
+
+<section class="py-24 sm:py-32">
+  <Container size="wide">
+    <div class="grid gap-12 md:grid-cols-12 md:items-center">
+      <!-- Visual del edificio (placeholder editorial) -->
+      <div class="md:col-span-6">
+        <div class="relative aspect-[5/6] overflow-hidden rounded-[var(--radius-xl)] bg-gradient-to-br from-crema-warm via-terracota-tint to-terracota/40 shadow-[var(--shadow-md)]">
+          <!-- Elementos arquitectónicos abstractos -->
+          <div class="absolute inset-0" aria-hidden="true">
+            <svg viewBox="0 0 400 480" class="h-full w-full" preserveAspectRatio="xMidYMid slice">
+              <!-- Fachada estilizada del edificio -->
+              <rect x="60" y="100" width="280" height="340" fill="#9e4e42" opacity="0.15" />
+              <rect x="100" y="160" width="60" height="80" fill="#1a1518" opacity="0.20" />
+              <rect x="180" y="160" width="60" height="80" fill="#1a1518" opacity="0.20" />
+              <rect x="260" y="160" width="60" height="80" fill="#1a1518" opacity="0.20" />
+              <rect x="100" y="280" width="60" height="80" fill="#1a1518" opacity="0.20" />
+              <rect x="180" y="280" width="60" height="80" fill="#1a1518" opacity="0.20" />
+              <rect x="260" y="280" width="60" height="80" fill="#1a1518" opacity="0.20" />
+              <rect x="60" y="100" width="280" height="20" fill="#1a1518" opacity="0.30" />
+              <text x="200" y="430" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="48" fill="#1a1518" opacity="0.40" font-weight="500">
+                1010
+              </text>
+            </svg>
+          </div>
+
+          <div class="absolute bottom-6 left-6 right-6 rounded-2xl bg-crema/95 p-5 backdrop-blur-sm">
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-terracota">
+              {ADDRESS.neighborhood}, {ADDRESS.city}
+            </p>
+            <p class="mt-2 font-display text-xl text-ink">
+              {ADDRESS.street}, {ADDRESS.betweenStreets}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="md:col-span-6">
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+          El edificio
+        </p>
+        <h2 class="text-balance text-ink">
+          Cien años de historia,
+          <span class="italic">reciclados a nuevo</span>.
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed text-ink-soft text-pretty">
+          Una casa de Cordón restaurada con respeto por la huella original
+          y los materiales nobles que la hicieron en su momento. Cada
+          intervención suma confort sin tapar lo que ya estaba bien.
+        </p>
+
+        <ul class="mt-10 grid gap-3 sm:grid-cols-2">
+          {
+            AMENITIES.slice(0, 8).map((a) => (
+              <li class="flex items-start gap-3 text-sm text-ink-soft">
+                <svg class="mt-0.5 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
+                  <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                {a.label}
+              </li>
+            ))
+          }
+        </ul>
+
+        <div class="mt-10">
+          <Button href="/el-lugar" variant="outline" size="md">
+            Conocer el edificio
+          </Button>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

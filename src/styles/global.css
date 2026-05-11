@@ -1,0 +1,141 @@
+/* ──────────────────────────────────────────────────────────────────
+   Espacio 1010 — Sistema de diseño del sitio institucional
+   Brandboard: terracota #9e4e42 / crema #f8f7f5 / gris #565153
+   Tipografías: Josefin Sans (sans) + Belgiano Serif (display, paga)
+   → Cormorant Garamond como stand-in libre hasta licenciar Belgiano.
+   ────────────────────────────────────────────────────────────────── */
+
+@import 'tailwindcss';
+
+/* ─── Tokens del brandboard expuestos como design tokens de Tailwind v4 ─── */
+@theme {
+  /* Paleta */
+  --color-terracota: #9e4e42;
+  --color-terracota-dark: #7a3a30;
+  --color-terracota-light: #c4756a;
+  --color-terracota-tint: #f3e6e3;
+
+  --color-crema: #f8f7f5;
+  --color-crema-warm: #efece6;
+
+  --color-ink: #1a1518;
+  --color-ink-soft: #565153;
+  --color-ink-muted: #8a8487;
+  --color-hairline: #e5e1dc;
+
+  /* Tipografías */
+  --font-sans: 'Josefin Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Cormorant Garamond', 'Belgiano Serif', Georgia, 'Times New Roman', serif;
+
+  /* Radios — más generosos que la PWA (sitio = más editorial) */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  /* Sombras suaves */
+  --shadow-sm: 0 1px 2px rgba(26, 21, 24, 0.04);
+  --shadow-md: 0 8px 24px -8px rgba(26, 21, 24, 0.10);
+  --shadow-lg: 0 24px 60px -16px rgba(26, 21, 24, 0.18);
+  --shadow-hero: 0 40px 100px -24px rgba(158, 78, 66, 0.25);
+
+  /* Easing premium */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+/* ─── Reset / base ─── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--color-crema);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: 'kern', 'liga', 'calt';
+  line-height: 1.5;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-terracota);
+  color: white;
+}
+
+/* Tipografía editorial — display siempre con serif premium */
+h1, h2, h3, .display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 6vw + 1rem, 5.5rem);
+  font-weight: 500;
+}
+
+h2 {
+  font-size: clamp(2rem, 3.5vw + 1rem, 3.5rem);
+}
+
+h3 {
+  font-size: clamp(1.5rem, 1.5vw + 1rem, 2rem);
+  line-height: 1.2;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+/* ─── Focus visible accesible ─── */
+:focus-visible {
+  outline: 2px solid var(--color-terracota);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ─── Scrollbar minimal ─── */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--color-hairline);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-ink-muted); }
+
+/* ─── Animaciones reutilizables ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.fade-up {
+  animation: fadeUp 0.8s var(--ease-out-soft) both;
+}
+
+.fade-in {
+  animation: fadeIn 0.6s var(--ease-out-soft) both;
+}
+
+/* ─── Respeta preferencias de movimiento del usuario ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

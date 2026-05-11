@@ -1,0 +1,64 @@
+---
+import Container from '../Container.astro';
+import SectionHeader from '../SectionHeader.astro';
+import Button from '../Button.astro';
+import { SITE } from '../../lib/site';
+
+const pasos = [
+  {
+    n: '01',
+    titulo: 'Te registrás en 30 segundos',
+    descripcion:
+      'Datos básicos, profesión y un email. Aprobamos tu cuenta el mismo día — siempre por una persona, no un bot.',
+  },
+  {
+    n: '02',
+    titulo: 'Buscás disponibilidad real',
+    descripcion:
+      'Ves los 12 espacios con sus horarios libres en tiempo real. Filtrás por día, por tamaño o por equipamiento.',
+  },
+  {
+    n: '03',
+    titulo: 'Reservás en un click',
+    descripcion:
+      'Hora suelta o serie fija con día y espacio garantizado. Confirmación inmediata por mail y en tu panel.',
+  },
+  {
+    n: '04',
+    titulo: 'Entrás con tu código personal',
+    descripcion:
+      '24/7, sin coordinar con nadie. Tu paciente te espera en la sala de espera; vos llegás unos minutos antes y te instalás.',
+  },
+];
+---
+
+<section class="py-24 sm:py-32">
+  <Container>
+    <SectionHeader
+      eyebrow="Cómo funciona"
+      title="Cuatro pasos. El resto es atender."
+      subtitle="Construimos esto para que dejes de pelearte con planillas, mensajes y llamados. Es lo más cerca que vas a estar de tener consultorio propio sin pagarlo."
+    />
+
+    <ol class="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        pasos.map((p) => (
+          <li class="relative flex flex-col gap-4 rounded-[var(--radius-lg)] border border-hairline bg-crema p-7 transition-all duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
+            <span class="font-display text-4xl leading-none text-terracota">{p.n}</span>
+            <h3 class="font-display text-xl text-ink">{p.titulo}</h3>
+            <p class="text-sm leading-relaxed text-ink-soft">{p.descripcion}</p>
+          </li>
+        ))
+      }
+    </ol>
+
+    <div class="mt-14 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+      <Button href={SITE.agendaUrl} variant="primary" size="lg">
+        Crear mi cuenta
+      </Button>
+      <Button href="/como-funciona" variant="ghost" size="lg">
+        Ver el detalle completo
+      </Button>
+    </div>
+  </Container>
+</section>

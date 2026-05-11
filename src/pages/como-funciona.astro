@@ -1,0 +1,246 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import { SITE } from '../lib/site';
+
+const pasos = [
+  {
+    n: '01',
+    titulo: 'Te registrás',
+    bajada: 'En 30 segundos. Email, profesión, datos básicos.',
+    detalle:
+      'Tu cuenta queda en revisión y la aprobamos el mismo día — siempre por una persona, no un bot. Eso nos permite cuidar quién entra al edificio y que la comunidad de profesionales se mantenga curada.',
+    bullets: [
+      'Validamos cédula y matrícula profesional cuando aplica',
+      'Te contactamos si necesitamos algún dato adicional',
+      'Apenas aprobamos, recibís el código de acceso por mail',
+    ],
+  },
+  {
+    n: '02',
+    titulo: 'Buscás disponibilidad',
+    bajada: 'Ves los 12 espacios con sus horarios libres en tiempo real.',
+    detalle:
+      'La agenda muestra exactamente lo que está libre cuando vos entrás. Filtrás por día, por tamaño de espacio o por tipo de equipamiento. Si querés algo recurrente, podés bloquear un mismo día y hora de la semana.',
+    bullets: [
+      'Reserva eventual: hora suelta cuando la necesitás',
+      'Reserva fija: día y hora garantizados todas las semanas',
+      'Filtros por capacidad, mobiliario y profesional',
+    ],
+  },
+  {
+    n: '03',
+    titulo: 'Reservás en un click',
+    bajada: 'Confirmás y listo. Cero idas y vueltas con humanos.',
+    detalle:
+      'No hay aprobación intermedia, no hay "te confirmo mañana". Apenas hacés click la reserva queda firme y aparece en tu panel. Si cambian tus planes, cancelar con 24 horas no tiene costo.',
+    bullets: [
+      'Confirmación inmediata por mail',
+      'Aparece en tu panel y en tu calendario',
+      'Cancelación gratuita con 24 hs de aviso',
+    ],
+  },
+  {
+    n: '04',
+    titulo: 'Entrás cuando querés',
+    bajada: '24/7, con tu código personal. Sin coordinar con nadie.',
+    detalle:
+      'Tu código abre la puerta de calle y el espacio que reservaste. Llegás antes, esperás en la sala de cowork sin pagar extra. Tus pacientes esperan en la sala de espera común, cómoda y con privacidad.',
+    bullets: [
+      'Código personal que cambia con cada reserva',
+      'Sala de cowork gratis mientras esperás',
+      'Tu paciente espera en una sala pensada para eso',
+    ],
+  },
+];
+
+const schemaHowTo = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: 'Cómo reservar consultorio en Espacio 1010',
+  description:
+    'Pasos para registrarte, buscar disponibilidad, reservar y acceder a tu espacio en Espacio 1010.',
+  step: pasos.map((p, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: p.titulo,
+    text: p.detalle,
+  })),
+};
+---
+
+<BaseLayout
+  title="Cómo funciona"
+  description="Cómo reservar consultorio en Espacio 1010 en 4 pasos: registrate, buscá disponibilidad real, reservá online y entrá 24/7 con tu código personal."
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaHowTo)} />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="pt-16 pb-16 sm:pt-24 sm:pb-20">
+    <Container>
+      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        Cómo funciona
+      </p>
+      <h1 class="text-balance">
+        Cuatro pasos.
+        <span class="italic text-terracota">El resto es atender.</span>
+      </h1>
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
+        Construimos Espacio 1010 con la convicción de que la tecnología tiene
+        que desaparecer. Vos no tendrías que pelearte con planillas, mensajes
+        o llamados para conseguir un lugar donde trabajar. Acá es así.
+      </p>
+    </Container>
+  </section>
+
+  <!-- Pasos en detalle -->
+  <section class="pb-24">
+    <Container>
+      <ol class="space-y-4">
+        {
+          pasos.map((p) => (
+            <li class="overflow-hidden rounded-[var(--radius-lg)] border border-hairline bg-crema">
+              <div class="grid gap-10 p-8 md:grid-cols-12 md:p-12">
+                <div class="md:col-span-4">
+                  <span class="font-display text-7xl leading-none text-terracota">{p.n}</span>
+                  <h2 class="mt-4 font-display text-3xl text-ink">{p.titulo}</h2>
+                  <p class="mt-3 text-base text-ink-soft">{p.bajada}</p>
+                </div>
+                <div class="md:col-span-8">
+                  <p class="text-lg leading-relaxed text-ink-soft text-pretty">{p.detalle}</p>
+                  <ul class="mt-6 space-y-2.5">
+                    {p.bullets.map((b) => (
+                      <li class="flex items-start gap-3 text-base text-ink">
+                        <svg class="mt-1 flex-shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
+                          <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </Container>
+  </section>
+
+  <!-- Política de cancelación destacada (diferencial fuerte) -->
+  <section class="py-20 bg-crema-warm/30">
+    <Container size="narrow">
+      <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        Política de cancelaciones
+      </p>
+      <h2 class="font-display text-4xl text-ink">
+        La más favorable del mercado.
+      </h2>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2">
+        <div class="rounded-2xl border-2 border-terracota/30 bg-crema p-7">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-terracota">
+            Acá
+          </p>
+          <h3 class="mt-3 font-display text-2xl text-ink">Cancelás con 24 hs, no pagás.</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+            Si avisás con un día de anticipación, la reserva se libera sin
+            costo. Entre 24 y 1 hora antes, pagás solo el 50%.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-hairline bg-crema/50 p-7 opacity-80">
+          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-ink-muted">
+            En otros lados
+          </p>
+          <h3 class="mt-3 font-display text-2xl text-ink-soft line-through">
+            Cancelás con 48 hs, igual pagás el 50%.
+          </h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-muted">
+            Casi siempre te bloquean cancelaciones, o cobran completo aunque
+            avises con días. No es el caso acá.
+          </p>
+        </div>
+      </div>
+
+      <p class="mt-8 text-sm text-ink-muted">
+        Las reservas fijas tienen un tope mensual de cancelaciones gratis
+        para mantener la equidad con quienes esperan slot. Lo vemos en el
+        detalle de tu plan.
+      </p>
+    </Container>
+  </section>
+
+  <!-- FAQ rápida -->
+  <section class="py-20">
+    <Container size="narrow">
+      <h2 class="font-display text-3xl text-ink">Preguntas que nos hacen seguido.</h2>
+
+      <div class="mt-10 space-y-4">
+        {[
+          {
+            q: '¿Puedo probar el espacio antes de reservar?',
+            a: 'Sí. Coordinamos visita guiada sin compromiso por WhatsApp. Te mostramos los 12 espacios y respondemos cualquier duda.',
+          },
+          {
+            q: '¿Tengo que firmar contrato anual?',
+            a: 'No. Reservás por hora, las veces que quieras, sin contrato. Las series fijas son mes a mes — si querés cortar, lo hacés desde tu panel.',
+          },
+          {
+            q: '¿Cómo accede mi paciente?',
+            a: 'Te avisa por timbre o le abrís remoto desde la app. Pasa a la sala de espera común y vos lo recibís cuando estás listo.',
+          },
+          {
+            q: '¿Qué pasa si llego tarde?',
+            a: 'Tu código sigue funcionando — la reserva es tuya hasta que se cumpla la hora completa. Si necesitás extender, depende de la disponibilidad del siguiente turno.',
+          },
+          {
+            q: '¿Puedo dejar materiales en el espacio?',
+            a: 'En los espacios versátiles no, son compartidos. En estudios y consultas amobladas hay opción de pack mensual con armario reservado — preguntá por WhatsApp.',
+          },
+        ].map((item) => (
+          <details class="group rounded-2xl border border-hairline bg-crema p-6 transition-all duration-300 hover:border-terracota/30">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg text-ink">
+              {item.q}
+              <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-terracota-tint text-terracota transition-transform duration-300 group-open:rotate-45">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+                </svg>
+              </span>
+            </summary>
+            <p class="mt-4 text-base leading-relaxed text-ink-soft">{item.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <div class="mt-10 text-center">
+        <Button href="/preguntas-frecuentes" variant="ghost" size="md">
+          Ver todas las preguntas
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24">
+    <Container>
+      <div class="rounded-[var(--radius-xl)] bg-terracota p-12 text-center text-crema sm:p-20">
+        <h2 class="text-balance text-crema">¿Probamos?</h2>
+        <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-crema/85">
+          Crear tu cuenta es gratis y toma 30 segundos. Después ves la
+          disponibilidad real y reservás cuando quieras.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-crema text-terracota hover:bg-white">
+            Crear mi cuenta
+          </Button>
+          <Button href="/precios" variant="ghost" size="lg" class="text-crema hover:bg-crema/10">
+            Ver precios
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

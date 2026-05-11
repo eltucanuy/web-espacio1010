@@ -1,0 +1,62 @@
+---
+/**
+ * Botón / link con apariencia consistente. Polimórfico — si recibe `href`
+ * renderiza <a>, si no <button>. Mantiene los mismos estilos para ambos.
+ */
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'ghost' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  target?: string;
+  rel?: string;
+  type?: 'button' | 'submit';
+  class?: string;
+  ariaLabel?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  target,
+  rel,
+  type = 'button',
+  class: className = '',
+  ariaLabel,
+} = Astro.props;
+
+const base =
+  'inline-flex items-center justify-center gap-2 font-medium tracking-wide transition-all duration-300 ease-[var(--ease-out-soft)] rounded-full focus-visible:outline-2 focus-visible:outline-offset-3';
+
+const variants = {
+  primary:
+    'bg-terracota text-white hover:bg-terracota-dark hover:shadow-[0_12px_32px_-8px_rgba(158,78,66,0.45)] hover:-translate-y-0.5',
+  ghost:
+    'bg-transparent text-ink hover:bg-ink/5',
+  outline:
+    'bg-transparent text-ink border border-ink/15 hover:border-terracota hover:text-terracota',
+};
+
+const sizes = {
+  sm: 'h-10 px-5 text-sm',
+  md: 'h-12 px-7 text-[15px]',
+  lg: 'h-14 px-9 text-base',
+};
+
+const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`;
+
+// Si es link externo, agregamos rel por seguridad.
+const safeRel = href && target === '_blank' ? `noopener noreferrer ${rel ?? ''}`.trim() : rel;
+---
+
+{
+  href ? (
+    <a href={href} target={target} rel={safeRel} class={classes} aria-label={ariaLabel}>
+      <slot />
+    </a>
+  ) : (
+    <button type={type} class={classes} aria-label={ariaLabel}>
+      <slot />
+    </button>
+  )
+}

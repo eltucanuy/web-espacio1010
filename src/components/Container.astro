@@ -1,0 +1,28 @@
+---
+/**
+ * Container de ancho controlado. Tres variantes:
+ *   - `narrow` (max-w-3xl) para texto editorial largo
+ *   - `default` (max-w-6xl) para la mayoría de secciones
+ *   - `wide` (max-w-7xl) para hero y grids con muchas cards
+ */
+type Size = 'narrow' | 'default' | 'wide';
+
+interface Props {
+  size?: Size;
+  class?: string;
+  as?: keyof HTMLElementTagNameMap;
+}
+
+const { size = 'default', class: className = '', as: Tag = 'div' } = Astro.props as Props;
+
+const widths: Record<Size, string> = {
+  narrow: 'max-w-3xl',
+  default: 'max-w-6xl',
+  wide: 'max-w-7xl',
+};
+const maxW = widths[size as Size];
+---
+
+<Tag class={`mx-auto w-full px-5 sm:px-8 ${maxW} ${className}`}>
+  <slot />
+</Tag>

@@ -1,0 +1,94 @@
+---
+import Container from '../Container.astro';
+import Button from '../Button.astro';
+import { SITE } from '../../lib/site';
+---
+
+<!--
+  Idea estratégica: en vez de "descuento" comunicamos "Tarifa Fundadores".
+  Es escasa (cupo), temporal y carga la marca de comunidad — no devalúa premium.
+-->
+<section class="py-24 sm:py-32">
+  <Container>
+    <div class="relative overflow-hidden rounded-[var(--radius-xl)] bg-ink p-10 text-crema sm:p-16">
+      <!-- Acento decorativo terracota -->
+      <div
+        class="absolute -right-32 -top-32 h-96 w-96 rounded-full opacity-40 blur-3xl"
+        style="background: radial-gradient(circle, #9e4e42 0%, transparent 70%);"
+        aria-hidden="true"
+      ></div>
+
+      <div class="relative grid gap-10 md:grid-cols-12 md:items-center">
+        <div class="md:col-span-7">
+          <p class="mb-4 inline-flex items-center gap-2 rounded-full border border-terracota-light/40 bg-terracota/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota-light">
+            Apertura · cupo limitado
+          </p>
+          <h2 class="text-balance text-crema">
+            <span class="italic">Tarifa Fundadores</span>
+            — para los primeros que confíen.
+          </h2>
+          <p class="mt-6 max-w-xl text-lg leading-relaxed text-crema/80">
+            Las primeras 50 cuentas acceden a condiciones que no se van a repetir.
+            Sin descuentos truchos: tarifa especial, primer mes de fija sin cargo,
+            y prioridad de slots cuando abrimos la agenda.
+          </p>
+
+          <ul class="mt-8 space-y-3">
+            <li class="flex items-start gap-3 text-sm text-crema/85">
+              <svg class="mt-0.5 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c4756a" stroke-width="2">
+                <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Tarifa de inauguración congelada por 6 meses
+            </li>
+            <li class="flex items-start gap-3 text-sm text-crema/85">
+              <svg class="mt-0.5 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c4756a" stroke-width="2">
+                <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Primer mes de tu reserva fija sin cargo
+            </li>
+            <li class="flex items-start gap-3 text-sm text-crema/85">
+              <svg class="mt-0.5 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c4756a" stroke-width="2">
+                <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Prioridad de elección de día y espacio fijo
+            </li>
+            <li class="flex items-start gap-3 text-sm text-crema/85">
+              <svg class="mt-0.5 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c4756a" stroke-width="2">
+                <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Acceso temprano a la app antes de la apertura pública
+            </li>
+          </ul>
+
+          <div class="mt-10 flex flex-col gap-3 sm:flex-row">
+            <Button href={SITE.agendaUrl} variant="primary" size="lg">
+              Reservar mi cupo Fundador
+            </Button>
+            <Button href="/precios" variant="ghost" size="lg" class="text-crema hover:bg-crema/10">
+              Ver precios
+            </Button>
+          </div>
+        </div>
+
+        <div class="md:col-span-5">
+          <div class="relative mx-auto max-w-xs rounded-[var(--radius-lg)] border border-crema/15 bg-gradient-to-br from-terracota/30 to-ink/60 p-8 backdrop-blur-sm">
+            <p class="text-[11px] uppercase tracking-[0.22em] text-crema/60">
+              Cupos disponibles
+            </p>
+            <p class="mt-3 font-display text-7xl leading-none text-crema">
+              50
+            </p>
+            <p class="mt-2 text-sm text-crema/70">cuentas Fundadoras</p>
+
+            <div class="mt-6 h-1.5 overflow-hidden rounded-full bg-crema/10">
+              <div class="h-full w-[18%] rounded-full bg-terracota-light"></div>
+            </div>
+            <p class="mt-3 text-xs text-crema/55">
+              Quedan 41 cupos · actualizado en tiempo real
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

@@ -1,8 +1,12 @@
 # web_espacio1010
 
-Sitio institucional de **Espacio 1010** — `www.espacio1010.uy`.
+Sitio institucional de **Espacio 1010** — [www.espacio1010.uy](https://www.espacio1010.uy).
 
 Edificio centenario reciclado a nuevo en Gaboto 1010 (Cordón sur, Montevideo) con 12 espacios boutique por hora para profesionales de la salud y el bienestar. Este repo es la landing pública. La PWA de reservas vive aparte en [`espacio1010`](../espacio1010) y se publica en `agenda.espacio1010.uy`.
+
+> **Lectura obligatoria antes de tocar código:**
+> 1. [`docs/HANDOFF_2026_05_10.md`](./docs/HANDOFF_2026_05_10.md) — qué se hizo hoy, decisiones y estado actual.
+> 2. [`docs/BACKLOG.md`](./docs/BACKLOG.md) — sección 🔥 al inicio con lo que toca charlar primero.
 
 ## Stack
 

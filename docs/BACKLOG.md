@@ -4,6 +4,70 @@ Mejoras propuestas durante el sprint inicial (2026-05-10) que **no** entraron en
 
 ---
 
+## 🔥 Para charlar próxima sesión — diferenciales fuertes sin comunicar
+
+Rafa los mencionó después del sprint A+B+C. No están en ninguna parte del sitio actual y son ENORMES como argumento de venta. Hay que discutir cómo incorporarlos para que respiren con el posicionamiento premium + confianza.
+
+### 1. Cuenta corriente desde el primer día — "te fiamos, confiamos en vos"
+
+**Lo que es**:
+- Pagás a mes vencido (no por adelantado, no pedimos tarjeta)
+- Liquidación mensual generada día 1, vence día 10
+- Esto **ya existe** en la PWA (tablas `liquidaciones` + `pagos_liquidacion` en Supabase) pero el sitio no lo cuenta como diferencial
+
+**Por qué es enorme**:
+- La competencia típicamente cobra por adelantado, retiene tarjeta o exige seña.
+- "Te fiamos desde día 1" es un statement de confianza inusual en B2B y carga la marca de premium + comunidad.
+- Encaja perfecto con "Tarifa Fundadores" — refuerza el mensaje "elegimos a las personas, no a su tarjeta".
+
+**Cómo encajarlo (ideas a discutir)**:
+- **Diferencial dedicado** en la sección Diferenciales de la landing: "Cuenta corriente desde el día uno". Hoy son 5, sería el 6º o reemplazar uno.
+- **Microcopy en `/precios`**: arriba de la grilla de planes, banner tipo "Pagás a mes vencido. Sin tarjeta. Sin adelanto. Te fiamos porque confiamos en vos."
+- **Sección propia** en `/como-funciona` después del paso 4: "Y al final de mes te liquidamos lo usado. Pagás cuando podés cobrar."
+- **Microcopy en `/contacto`** y formularios: refuerzo que no se pide info de pago en el registro.
+
+**Cuidado / refutación posible**:
+- Si abusamos del mensaje "te fiamos" suena a regalo. Mejor enmarcarlo como **"confianza profesional mutua"**, no como "regalo".
+- Sugerencia de copy: "Profesionales serios. Reglas serias. Sin trámites de tarjeta para empezar."
+
+### 2. Política de cancelación de fijas — "1 de cada 5, gratis. Como hacés vos."
+
+**Lo que es**:
+- 20% de tope mensual de cancelaciones gratis en reservas fijas (existe en config `tope_cancelaciones_fijas_pct = 20`).
+- Es decir: si tenés serie fija de 4 reservas/mes, cancelás 1 sin cargo. Si tenés 10, cancelás 2. Si tenés 20, cancelás 4.
+
+**El insight que lo hace memorable** (Rafa lo bajó):
+> "Es **lo mismo que tus pacientes te hacen a vos**: cancelan a último momento y vos no les cobrás todas las veces. Acá te devolvemos esa flexibilidad."
+
+Este framing es ORO. Reframes una métrica fría (20% tope) en un emocional ("entendemos cómo funciona tu profesión").
+
+**Cómo encajarlo (ideas a discutir)**:
+- **En la sección Diferenciales**: reemplazar o complementar "Cancelaciones flexibles" con copy específico:
+  > "**1 de cada 5 fijas, gratis.** Tus pacientes te cancelan a último momento. Nosotros tampoco te cobramos la primera de cada cinco."
+- **En `/como-funciona`**, sección política de cancelaciones: agregar el bloque comparativo "para fijas".
+- **En `/precios`**, plan "Fija mensual": destacar como bullet visible "1 de cada 5 sesiones cancelable sin cargo".
+- **Posible micropieza copy en hero**: "Te cancelan los pacientes. A vos también te dejamos cancelar."
+
+**Cuidado / refutación posible**:
+- Verificar que el tope sea realmente **proporcional 1-de-cada-5** y no un cap absoluto (ej: máximo 4 cancelaciones gratis al mes sin importar el volumen). Si es cap fijo, el copy "1 de cada 5" puede ser engañoso para quien tiene más fijas.
+- **Acción pendiente**: confirmar con Rafa la fórmula exacta antes de publicar.
+
+---
+
+## Síntesis: por qué estos dos diferenciales cambian el juego
+
+El posicionamiento actual del sitio gira en **autogestión + ubicación + diseño**. Sumar estos dos sube el eje a **confianza + entender al profesional**:
+
+| Eje | Mensaje actual | Mensaje con los nuevos |
+|---|---|---|
+| Funcional | "Reservás online, 24/7" | (igual) |
+| Económico | "Cancelás 24h sin cargo" | "Y además 1 de cada 5 fijas. Y pagás a mes vencido." |
+| Emocional | "Pensado para profesionales" | "Confiamos en vos. Sabemos cómo funciona tu profesión." |
+
+Hay que discutirlo antes de meterlo en código porque toca el balance del messaging — si lo metemos sin cuidado se sobrecarga el hero. Lo ideal: redistribuir mensajes existentes para hacerle lugar a estos dos sin diluir lo que ya funciona.
+
+---
+
 ## A · Polish visual "alucinante" (sin necesitar fotos)
 
 - [ ] **Motion + scroll animations** — fade-in con stagger en grids, parallax sutil en hero, números que se animan al entrar viewport, reveal por sección con IntersectionObserver. Eleva la sensación premium fuerte sin tocar contenido.

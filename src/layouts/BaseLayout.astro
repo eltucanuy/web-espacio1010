@@ -1,15 +1,21 @@
 ---
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import Analytics from '../components/Analytics.astro';
-import { SITE, ADDRESS, CONTACT } from '../lib/site';
+import Enhancements from '../components/Enhancements.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { SITE } from '../lib/site';
+import { localBusinessSchema } from '../lib/schema';
 
 interface Props {
   title?: string;
   description?: string;
-  /** Imagen OG (URL absoluta o ruta /og-default.png en /public) */
+  /** Imagen OG explícita (URL absoluta o ruta en /public) */
   image?: string;
+  /** Slug para usar la OG generada dinámica: /og/<slug>.png (ver src/pages/og/[slug].png.ts) */
+  ogSlug?: string;
   /** Si la página es noindex (ej: landings de campañas pagas) */
   noindex?: boolean;
   /** Si querés override del canonical (raro) */
@@ -19,50 +25,23 @@ interface Props {
 const {
   title,
   description = SITE.description,
-  // SVG funciona en la mayoría de scrapers modernos. Si querés cobertura
-  // completa (Twitter, LinkedIn legacy), exportá og-default.png 1200x630 a /public.
-  image = '/og-default.svg',
+  image,
+  ogSlug,
   noindex = false,
   canonical,
 } = Astro.props;
 
+// Prioridad: image explícita > ogSlug generado > fallback SVG.
+const resolvedImage = image ?? (ogSlug ? `/og/${ogSlug}.png` : '/og-default.svg');
+
 const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
 const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
-const imageUrl = image.startsWith('http') ? image : new URL(image, SITE.url).toString();
+const imageUrl = resolvedImage.startsWith('http')
+  ? resolvedImage
+  : new URL(resolvedImage, SITE.url).toString();
 
-// Schema.org LocalBusiness — se renderiza una sola vez en el head global.
-const schemaBusiness = {
-  '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
-  '@id': `${SITE.url}/#business`,
-  name: SITE.name,
-  description: SITE.description,
-  url: SITE.url,
-  telephone: CONTACT.whatsappLeads,
-  email: CONTACT.email,
-  image: imageUrl,
-  priceRange: '$$',
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: ADDRESS.street,
-    addressLocality: ADDRESS.city,
-    addressRegion: ADDRESS.neighborhood,
-    postalCode: ADDRESS.postalCode,
-    addressCountry: 'UY',
-  },
-  geo: {
-    '@type': 'GeoCoordinates',
-    latitude: ADDRESS.lat,
-    longitude: ADDRESS.lng,
-  },
-  openingHoursSpecification: {
-    '@type': 'OpeningHoursSpecification',
-    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-    opens: '00:00',
-    closes: '23:59',
-  },
-  areaServed: { '@type': 'City', name: ADDRESS.city },
-};
+// Schema.org LocalBusiness — refinado con horarios duales y datos completos.
+const schemaBusiness = localBusinessSchema(imageUrl);
 ---
 
 <!doctype html>
@@ -99,13 +78,20 @@ const schemaBusiness = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Fuentes — preconnect + carga selectiva.
-         Belgiano Serif es licencia paga; usamos Cormorant Garamond hasta licenciar. -->
+    <!-- Fuentes — preconnect + preload de weights críticas + carga full.
+         Belgiano Serif es licencia paga; usamos Cormorant Garamond hasta licenciar.
+         Preload de los weights que se usan above-the-fold para evitar FOIT. -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Preload del CSS principal de fonts (high priority) -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;600&family=Cormorant+Garamond:wght@500;600&display=swap&subset=latin,latin-ext"
+    />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap&subset=latin,latin-ext"
     />
 
     <!-- Schema.org -->
@@ -116,6 +102,9 @@ const schemaBusiness = {
 
     <!-- Slot para metadata extra por página (ej: schema.org Service / FAQPage / Product) -->
     <slot name="head" />
+
+    <!-- View Transitions API — navegación entre páginas tipo app (Astro nativo). -->
+    <ClientRouter />
   </head>
 
   <body class="min-h-dvh flex flex-col">
@@ -133,5 +122,11 @@ const schemaBusiness = {
     </main>
 
     <Footer />
+
+    <!-- Floating WhatsApp aparece después de scroll inicial -->
+    <FloatingWhatsApp />
+
+    <!-- Animations + scroll + magnetic hover (vanilla, opt-in via data-*) -->
+    <Enhancements />
   </body>
 </html>

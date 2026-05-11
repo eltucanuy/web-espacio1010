@@ -71,20 +71,20 @@ import { SITE } from '../../lib/site';
         </div>
 
         <div class="md:col-span-5">
-          <div class="relative mx-auto max-w-xs rounded-[var(--radius-lg)] border border-crema/15 bg-gradient-to-br from-terracota/30 to-ink/60 p-8 backdrop-blur-sm">
+          <div data-reveal="scale" class="relative mx-auto max-w-xs rounded-[var(--radius-lg)] border border-crema/15 bg-gradient-to-br from-terracota/30 to-ink/60 p-8 backdrop-blur-sm">
             <p class="text-[11px] uppercase tracking-[0.22em] text-crema/60">
               Cupos disponibles
             </p>
             <p class="mt-3 font-display text-7xl leading-none text-crema">
-              50
+              <span data-counter="41" data-counter-duration="1600">0</span>
             </p>
-            <p class="mt-2 text-sm text-crema/70">cuentas Fundadoras</p>
+            <p class="mt-2 text-sm text-crema/70">de 50 cuentas Fundadoras</p>
 
             <div class="mt-6 h-1.5 overflow-hidden rounded-full bg-crema/10">
-              <div class="h-full w-[18%] rounded-full bg-terracota-light"></div>
+              <div class="h-full w-0 rounded-full bg-terracota-light transition-[width] duration-[1800ms] ease-[var(--ease-out-soft)] data-[reveal-bar=true]:w-[18%]" data-reveal-bar="true"></div>
             </div>
             <p class="mt-3 text-xs text-crema/55">
-              Quedan 41 cupos · actualizado en tiempo real
+              41 cupos restantes · actualizado en tiempo real
             </p>
           </div>
         </div>

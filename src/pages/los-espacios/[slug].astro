@@ -4,6 +4,7 @@ import Container from '../../components/Container.astro';
 import Button from '../../components/Button.astro';
 import EspacioCard from '../../components/EspacioCard.astro';
 import { ESPACIOS, SITE } from '../../lib/site';
+import { breadcrumbSchema } from '../../lib/schema';
 
 export async function getStaticPaths() {
   return ESPACIOS.map((espacio) => ({
@@ -14,6 +15,12 @@ export async function getStaticPaths() {
 
 const { espacio } = Astro.props;
 const otros = ESPACIOS.filter((e) => e.id !== espacio.id).slice(0, 3);
+
+const schemaBreadcrumb = breadcrumbSchema([
+  { name: 'Inicio', url: '/' },
+  { name: 'Los espacios', url: '/los-espacios' },
+  { name: espacio.nombre, url: `/los-espacios/${espacio.id}` },
+]);
 
 // Schema.org Product para que Google entienda cada espacio como una "oferta".
 const schemaProduct = {
@@ -44,9 +51,11 @@ const amuebladoLabel = {
 <BaseLayout
   title={espacio.nombre}
   description={`${espacio.nombre} en Espacio 1010 — ${espacio.resumen} Capacidad: ${espacio.capacidad}. Reservá por hora online, 24/7, en Gaboto 1010, Cordón.`}
+  ogSlug={`espacio-${espacio.id}`}
 >
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaProduct)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
   </Fragment>
 
   <!-- Hero del espacio -->

@@ -1,0 +1,20 @@
+---
+import Container from '../Container.astro';
+import SectionHeader from '../SectionHeader.astro';
+import BuscadorDemo from '../BuscadorDemo.tsx';
+import { SITE } from '../../lib/site';
+---
+
+<section class="py-24 sm:py-32 bg-crema-warm/30">
+  <Container>
+    <SectionHeader
+      eyebrow="Cómo se ve"
+      title="Esto es lo que ves cuando entrás."
+      subtitle="Mirá la agenda como cualquier usuario registrado. Datos de ejemplo, mismo flujo que la app real."
+    />
+
+    <div class="mt-12">
+      <BuscadorDemo client:visible agendaUrl={SITE.agendaUrl} />
+    </div>
+  </Container>
+</section>

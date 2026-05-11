@@ -32,6 +32,12 @@ export interface NichoContent {
   faq: { q: string; a: string }[];
   /** Keywords para meta description */
   meta: string;
+  /**
+   * Variaciones de búsqueda long-tail que también aplican.
+   * Renderizadas como chips "También conocido como" — sin diluir URLs,
+   * pero sumando keywords relevantes a la página para SEO.
+   */
+  variantesBusqueda: string[];
 }
 
 export const NICHOS_CONTENT: Record<string, NichoContent> = {
@@ -75,6 +81,14 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     ],
     meta:
       'Alquilá consultorio por hora para psicólogos en Cordón, Montevideo. 12 espacios premium, reservas online, cancelación flexible. Para sesiones individuales, pareja o grupales.',
+    variantesBusqueda: [
+      'consultorio psicología por hora',
+      'alquiler espacio psicólogo Montevideo',
+      'consultorio psicoanálisis Cordón',
+      'sala terapia individual',
+      'consultorio para terapia de pareja',
+      'espacio profesional psicología',
+    ],
   },
 
   psiquiatras: {
@@ -113,6 +127,13 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     ],
     meta:
       'Consultorio para psiquiatra en alquiler por hora en Montevideo. Espacios sobrios y profesionales en Cordón, agenda online flexible, sin contrato anual.',
+    variantesBusqueda: [
+      'consultorio psiquiátrico Montevideo',
+      'alquiler consulta clínica',
+      'sala médica privada',
+      'consultorio para consulta privada',
+      'espacio para psiquiatría',
+    ],
   },
 
   psicopedagogos: {
@@ -151,6 +172,13 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     ],
     meta:
       'Espacios para psicopedagogía en Montevideo. Consultorios versátiles con material para juego y trabajo, ideales para sesiones con niños y adolescentes.',
+    variantesBusqueda: [
+      'consultorio psicopedagogía',
+      'espacio terapia infantil',
+      'sala para sesiones con niños',
+      'consultorio para fonoaudiología',
+      'espacio para terapia ocupacional',
+    ],
   },
 
   nutricionistas: {
@@ -185,6 +213,13 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     ],
     meta:
       'Consultorio para nutricionista en Montevideo, alquiler por hora en Cordón. Espacios cómodos para consulta individual y de pareja, agenda online flexible.',
+    variantesBusqueda: [
+      'consultorio nutrición Montevideo',
+      'alquiler sala nutricionista',
+      'consultorio dietista',
+      'espacio para consulta deportiva',
+      'sala para asesoramiento alimentario',
+    ],
   },
 
   'meditacion-yoga': {
@@ -223,6 +258,14 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     ],
     meta:
       'Salones para clases de yoga y meditación en Montevideo, Cordón. Espacios versátiles con colchonetas, alquiler por hora o día, sin contrato.',
+    variantesBusqueda: [
+      'salón yoga alquiler hora',
+      'sala meditación grupal',
+      'espacio para clase de yoga',
+      'sala mindfulness Montevideo',
+      'espacio para práctica corporal',
+      'estudio yoga reducido',
+    ],
   },
 
   'talleres-grupos': {
@@ -265,6 +308,15 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     ],
     meta:
       'Sala para talleres, formaciones y grupos en Montevideo. 60 m² sin columnas en Cordón, hasta 30 personas, reservás por bloques o día completo.',
+    variantesBusqueda: [
+      'sala talleres Montevideo',
+      'espacio para formación profesional',
+      'sala constelaciones familiares',
+      'sala para grupo terapéutico',
+      'salón para presentación de libro',
+      'sala alquiler por día',
+      'espacio para retiro corto',
+    ],
   },
 };
 

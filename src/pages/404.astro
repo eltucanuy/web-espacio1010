@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import { NAV, NICHOS } from '../lib/site';
+---
+
+<BaseLayout
+  title="Página no encontrada"
+  description="La página que buscás no está. Pero hay 12 espacios esperándote. Volvé al inicio o explorá las secciones principales del sitio."
+  noindex={true}
+>
+  <section class="flex min-h-[70vh] flex-col items-center justify-center py-20 sm:py-32">
+    <Container>
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="font-display text-[10rem] leading-none text-terracota/30 sm:text-[14rem]">
+          404
+        </p>
+        <p class="-mt-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+          Página no encontrada
+        </p>
+        <h1 class="mt-6 text-balance">
+          Esta puerta
+          <span class="italic text-terracota">no abre</span>.
+        </h1>
+        <p class="mt-6 text-lg leading-relaxed text-ink-soft text-pretty">
+          La página que buscás se mudó, cambió de nombre o nunca existió.
+          Pero hay 12 espacios esperándote a la vuelta de la esquina.
+        </p>
+
+        <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button href="/" variant="primary" size="lg">
+            Volver al inicio
+          </Button>
+          <Button href="/los-espacios" variant="ghost" size="lg">
+            Ver los espacios
+          </Button>
+        </div>
+
+        <!-- Sugerencias rápidas -->
+        <div class="mt-16">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-muted">
+            Quizás buscabas
+          </p>
+          <ul class="mt-5 flex flex-wrap justify-center gap-2">
+            {
+              [...NAV, ...NICHOS.map((n) => ({ href: `/para/${n.slug}`, label: n.label }))].slice(0, 8).map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="inline-flex items-center rounded-full border border-hairline bg-crema px-4 py-2 text-sm text-ink-soft transition-colors hover:border-terracota hover:text-terracota"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

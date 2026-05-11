@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Container from '../components/Container.astro';
+import Button from '../components/Button.astro';
+import EspacioCard from '../components/EspacioCard.astro';
+import { ESPACIOS, NICHOS, SITE, ADDRESS } from '../lib/site';
+import { breadcrumbSchema } from '../lib/schema';
+
+const destacados = ESPACIOS.filter((e) => e.destacado);
+
+const schemaBreadcrumb = breadcrumbSchema([
+  { name: 'Inicio', url: '/' },
+  { name: 'Alquiler de consultorio en Montevideo', url: '/alquiler-consultorio-montevideo' },
+]);
+
+// Schema Service específico para esta página geo
+const schemaService = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  serviceType: 'Alquiler de consultorio por hora',
+  provider: { '@type': 'LocalBusiness', name: 'Espacio 1010' },
+  areaServed: [
+    { '@type': 'City', name: 'Montevideo' },
+    { '@type': 'Place', name: 'Cordón' },
+    { '@type': 'Place', name: 'Centro de Montevideo' },
+    { '@type': 'Place', name: 'Palermo' },
+  ],
+  description:
+    'Alquiler de consultorios y espacios profesionales por hora en Montevideo. 12 espacios premium en Cordón, autogestión 24/7, sin contrato anual.',
+  url: `${SITE.url}/alquiler-consultorio-montevideo`,
+};
+---
+
+<BaseLayout
+  title="Alquiler de consultorio por hora en Montevideo"
+  description="Alquilá consultorio por hora en Montevideo. 12 espacios boutique en pleno Cordón, a 5 cuadras de 18 de Julio. Para psicólogos, psiquiatras, nutricionistas y profesionales del bienestar. Reservás online 24/7."
+  ogSlug="alquiler-consultorio-montevideo"
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaService)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+  </Fragment>
+
+  <!-- Hero -->
+  <section class="pt-16 pb-16 sm:pt-24 sm:pb-20">
+    <Container>
+      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        Montevideo · Cordón
+      </p>
+      <h1 class="text-balance">
+        Alquiler de consultorio
+        <span class="italic text-terracota">por hora</span>
+        en Montevideo.
+      </h1>
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
+        12 espacios premium en {ADDRESS.street}, a 5 cuadras de 18 de Julio.
+        Reservás online, accedés 24/7 con código personal, cancelás con 24 hs
+        sin pagar. Para profesionales de la salud, el bienestar y la educación.
+      </p>
+
+      <div data-reveal data-reveal-delay="200" class="mt-10 flex flex-col gap-3 sm:flex-row">
+        <Button href={SITE.agendaUrl} variant="primary" size="lg" class="btn-primary-glow">
+          Reservá tu primera hora
+        </Button>
+        <Button href="/los-espacios" variant="ghost" size="lg">
+          Ver los 12 espacios
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Por qué Montevideo / Cordón -->
+  <section class="py-20 bg-crema-warm/30">
+    <Container>
+      <div class="grid gap-12 md:grid-cols-2 md:items-center">
+        <div>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+            Ubicación
+          </p>
+          <h2 class="mt-3 font-display text-3xl text-ink">
+            En el corazón del barrio profesional.
+          </h2>
+          <p class="mt-5 text-lg leading-relaxed text-ink-soft text-pretty">
+            Cordón es históricamente el barrio de los consultorios de
+            Montevideo. Comparte zona con clínicas, hospitales privados y la
+            facultad de medicina. Tus pacientes ya saben dónde es, y si no,
+            llegan fácil en bus, en auto o caminando desde el centro.
+          </p>
+
+          <ul class="mt-8 space-y-3 text-base text-ink-soft">
+            <li class="flex items-start gap-3">
+              <svg class="mt-1 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
+                <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              A 5 cuadras de 18 de Julio
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="mt-1 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
+                <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              A 2 cuadras de líneas troncales (101, 103, CA1)
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="mt-1 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
+                <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Estacionamiento gratuito fácil (zona no tarifada)
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="mt-1 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
+                <path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              Cuadra tranquila, ideal para consulta profesional
+            </li>
+          </ul>
+        </div>
+
+        <div class="relative aspect-[5/6] overflow-hidden rounded-[var(--radius-xl)] bg-gradient-to-br from-crema-warm via-terracota-tint to-terracota/40 shadow-[var(--shadow-md)]">
+          <div class="absolute inset-0 flex flex-col items-center justify-center text-center" aria-hidden="true">
+            <p class="font-display text-2xl text-terracota/60">Gaboto 1010</p>
+            <p class="mt-2 text-sm uppercase tracking-[0.18em] text-ink/50">Cordón sur · Montevideo</p>
+            <div class="mt-6 h-px w-12 bg-terracota/40"></div>
+            <p class="mt-6 max-w-xs px-6 text-base italic text-ink/60">
+              "El barrio donde se atendía siempre. Donde vuelve a atenderse ahora."
+            </p>
+          </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Espacios destacados -->
+  <section class="py-20">
+    <Container size="wide">
+      <h2 class="font-display text-3xl text-ink">Espacios más elegidos en Montevideo.</h2>
+      <p class="mt-3 max-w-xl text-ink-soft">
+        Variedad para que elijas según tu disciplina y la cantidad de personas que recibís.
+      </p>
+
+      <div data-reveal-group="80" class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {destacados.map((e) => <EspacioCard espacio={e} />)}
+      </div>
+
+      <div class="mt-12 text-center">
+        <Button href="/los-espacios" variant="outline" size="md">
+          Ver los 12 espacios
+        </Button>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Para quién -->
+  <section class="py-20 bg-crema-warm/30">
+    <Container>
+      <h2 class="font-display text-3xl text-ink">Para profesionales en Montevideo.</h2>
+      <p class="mt-3 max-w-2xl text-ink-soft">
+        Si trabajás en alguna de estas disciplinas, tenemos espacio pensado para tu práctica.
+      </p>
+
+      <div class="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          NICHOS.map((n) => (
+            <a
+              href={`/para/${n.slug}`}
+              class="group flex items-center justify-between rounded-2xl border border-hairline bg-crema p-5 transition-all duration-300 hover:-translate-y-0.5 hover:border-terracota/40 hover:shadow-sm"
+            >
+              <span class="font-display text-lg text-ink">{n.label}</span>
+              <svg class="text-ink-muted transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-terracota" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <!-- Long-tail keywords -->
+  <section class="py-16">
+    <Container size="narrow">
+      <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        También buscan por
+      </p>
+      <h2 class="mt-3 font-display text-2xl text-ink">
+        Si llegaste buscando alguna de estas, estás en el lugar correcto.
+      </h2>
+      <ul class="mt-6 flex flex-wrap gap-2">
+        {
+          [
+            'alquiler consultorio Montevideo',
+            'consultorio por hora Cordón',
+            'sala terapia Montevideo',
+            'consultorio para psicología centro',
+            'espacio profesional Cordón',
+            'alquilar consulta por hora',
+            'consultorio premium Montevideo',
+            'espacio boutique profesionales salud',
+            'sala alquiler hora terapia',
+            'consultorio compartido Cordón',
+          ].map((v) => (
+            <li class="inline-flex items-center rounded-full border border-hairline bg-crema px-4 py-2 text-sm text-ink-soft">
+              {v}
+            </li>
+          ))
+        }
+      </ul>
+    </Container>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24">
+    <Container>
+      <div class="rounded-[var(--radius-xl)] bg-gradient-to-br from-terracota via-terracota-dark to-ink p-12 text-center text-crema sm:p-20">
+        <h2 class="text-balance text-crema">¿Probamos?</h2>
+        <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-crema/85">
+          Crear cuenta es gratis. Después ves la agenda real de Montevideo y reservás cuando quieras.
+        </p>
+        <div class="mt-8">
+          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-crema text-terracota hover:bg-white">
+            Crear mi cuenta
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

@@ -1,0 +1,79 @@
+---
+import Container from '../Container.astro';
+import SectionHeader from '../SectionHeader.astro';
+
+// Timeline editorial del edificio — sin foto, sólo tipografía + dates.
+// Hook narrativo fuerte: cuenta la historia premium del edificio.
+const hitos = [
+  {
+    fecha: '1925',
+    titulo: 'Una casa nueva en el Cordón',
+    detalle:
+      'Se levanta una casa de altos techos, pisos calcáreos y carpinterías nobles. Vivienda familiar, una época en que el barrio se consolidaba como zona residencial de prestigio.',
+  },
+  {
+    fecha: '1960 – 2018',
+    titulo: 'Décadas como casa de familia',
+    detalle:
+      'Sucesivas generaciones la habitan. Aberturas originales, ladrillo a la vista en patios interiores, escaleras de madera que aguantan el paso del tiempo.',
+  },
+  {
+    fecha: '2018',
+    titulo: 'El abandono',
+    detalle:
+      'Queda sin habitar. Humedad, revoque flojo, instalaciones obsoletas. Pero la estructura — sólida — sigue intacta. Como ella, el barrio espera.',
+  },
+  {
+    fecha: '2024 – 2025',
+    titulo: 'La obra, lenta a propósito',
+    detalle:
+      'Compramos la casa. Rescatamos lo que se podía rescatar: pisos, aberturas, molduras. Lo nuevo se sumó sin disfrazarse: domótica, climatización, fibra óptica. El resultado: una casa que no esconde su historia, pero tampoco la usa de escenografía.',
+  },
+  {
+    fecha: '2026',
+    titulo: 'La reapertura',
+    detalle:
+      '12 espacios listos para profesionales que quieran trabajar bien. Tecnología invisible. Sala de espera con luz natural. Cocina común. Acceso 24/7. Y un barrio que vuelve a encenderse.',
+  },
+];
+---
+
+<section class="py-24 sm:py-32">
+  <Container>
+    <SectionHeader
+      eyebrow="Cien años de historia"
+      title="Cien años en una casa. Diez décadas para volver a empezar."
+      subtitle="No abrimos un consultorio nuevo. Reabrimos una casa que estaba esperando."
+    />
+
+    <ol class="relative mx-auto mt-20 max-w-3xl">
+      <!-- Línea vertical decorativa -->
+      <div
+        class="absolute left-[14px] top-2 bottom-2 w-px bg-gradient-to-b from-transparent via-terracota/40 to-transparent sm:left-[18px]"
+        aria-hidden="true"
+      ></div>
+
+      <div data-reveal-group="180">
+        {
+          hitos.map((h) => (
+            <li class="relative pl-14 pb-14 last:pb-0 sm:pl-20">
+              <!-- Punto decorativo en la línea -->
+              <span
+                class="absolute left-0 top-2 flex h-7 w-7 items-center justify-center rounded-full border-2 border-terracota bg-crema sm:h-9 sm:w-9"
+                aria-hidden="true"
+              >
+                <span class="h-2 w-2 rounded-full bg-terracota sm:h-2.5 sm:w-2.5"></span>
+              </span>
+
+              <p class="font-display text-3xl text-terracota sm:text-4xl">{h.fecha}</p>
+              <h3 class="mt-2 font-display text-2xl text-ink">{h.titulo}</h3>
+              <p class="mt-3 max-w-2xl text-base leading-relaxed text-ink-soft text-pretty">
+                {h.detalle}
+              </p>
+            </li>
+          ))
+        }
+      </div>
+    </ol>
+  </Container>
+</section>

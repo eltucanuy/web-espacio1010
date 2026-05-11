@@ -1,0 +1,76 @@
+---
+/**
+ * Form pre-launch "Avisame cuando abran".
+ * Variante super-simple del ContactForm: solo nombre + email, abre WA con
+ * mensaje "Quiero estar entre los primeros cuando abran" pre-rellenado.
+ *
+ * La idea es capturar el lead frío que no quiere conversar todavía pero
+ * marca interés. Si después se conecta a Supabase, persisten sin pasar
+ * por WhatsApp.
+ */
+import Container from '../Container.astro';
+import { CONTACT } from '../../lib/site';
+
+const waNumber = CONTACT.whatsappLeads.replace(/[^0-9]/g, '');
+---
+
+<section class="py-24 sm:py-32 bg-crema-warm/40">
+  <Container size="narrow">
+    <div class="overflow-hidden rounded-[var(--radius-xl)] border border-hairline bg-crema p-8 text-center sm:p-12">
+      <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        Lista pre-apertura
+      </p>
+      <h2 class="font-display text-3xl text-ink sm:text-4xl">
+        Quiero estar
+        <span class="italic text-terracota">entre los primeros</span>.
+      </h2>
+      <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-ink-soft">
+        Dejanos tu nombre y te avisamos por WhatsApp en cuanto abramos. Sin spam, sin compromiso.
+      </p>
+
+      <form
+        id="avisame-form"
+        data-wa-number={waNumber}
+        class="mx-auto mt-8 flex max-w-xl flex-col gap-3 sm:flex-row"
+        onsubmit="
+          event.preventDefault();
+          const f = event.currentTarget;
+          const nombre = f.querySelector('input[name=nombre]').value.trim();
+          const profesion = f.querySelector('input[name=profesion]').value.trim();
+          if (!nombre) return;
+          const wa = f.dataset.waNumber;
+          const txt = `Hola, soy ${nombre}${profesion ? ' (' + profesion + ')' : ''}. Quiero estar entre los primeros cuando abran Espacio 1010.`;
+          window.open(`https://wa.me/${wa}?text=${encodeURIComponent(txt)}`, '_blank', 'noopener,noreferrer');
+        "
+      >
+        <input
+          name="nombre"
+          type="text"
+          required
+          placeholder="Tu nombre"
+          autocomplete="name"
+          class="h-12 flex-1 rounded-full border border-hairline bg-crema px-5 text-base text-ink outline-none transition-colors focus:border-terracota"
+        />
+        <input
+          name="profesion"
+          type="text"
+          placeholder="Profesión (opcional)"
+          class="h-12 flex-1 rounded-full border border-hairline bg-crema px-5 text-base text-ink outline-none transition-colors focus:border-terracota"
+        />
+        <button
+          type="submit"
+          class="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terracota px-6 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-terracota-dark hover:shadow-md"
+        >
+          Avisame
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+      </form>
+
+      <p class="mt-5 text-xs text-ink-muted">
+        Inauguración mediados/fines de mayo 2026.
+      </p>
+    </div>
+  </Container>
+</section>

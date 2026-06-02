@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
+
+# No indexar: página de privacidad y landings de campañas.
+Disallow: /privacidad
 Disallow: /campanas/
 
 Sitemap: https://www.espacio1010.uy/sitemap-index.xml

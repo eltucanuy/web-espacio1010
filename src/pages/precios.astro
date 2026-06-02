@@ -4,18 +4,20 @@ import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
 import { SITE } from '../lib/site';
 
-// TBD — precios reales pendientes de confirmación con Rafa.
-// Marcados como `TBD` deliberadamente para que sea visible en el sitio
-// hasta que se confirmen. Editar en un solo lugar acá.
+// Precios reales — fuente de verdad para el sitio institucional.
+// Consultorios: $350/h. Sala Arcos (subsuelo): $700/h.
+const PRECIO_HORA = 350;
+const PRECIO_ARCOS = 700;
+
 const planes = [
   {
     nombre: 'Hora suelta',
     bajada: 'Reservás cuando la necesitás.',
-    precio: 'TBD',
+    precio: `$${PRECIO_HORA}`,
     unidad: 'por hora',
     destacado: false,
     incluye: [
-      'Cualquier espacio disponible',
+      'Cualquier consultorio disponible',
       'Sin compromiso ni contrato',
       'Cancelás con 24 hs, no pagás',
       'Cowork gratis incluido',
@@ -25,25 +27,25 @@ const planes = [
   {
     nombre: 'Pack de horas',
     bajada: 'Comprás un bloque y lo usás cuando quieras.',
-    precio: 'TBD',
-    unidad: 'pack de 10 hs',
+    precio: `$${PRECIO_HORA}`,
+    unidad: 'por hora · descuento por volumen',
     destacado: true,
     incluye: [
-      'Hasta 15% menos que hora suelta',
-      'Válido por 60 días',
-      'Combinás distintos espacios',
-      'Prioridad sobre hora suelta',
+      'Mejor tarifa cuanto más reservás',
+      'Las horas no se vencen mientras tengas cuenta',
+      'Combinás distintos consultorios',
+      'Prioridad sobre la hora suelta',
     ],
     cta: { label: 'Comprar pack', variant: 'primary' as const },
   },
   {
     nombre: 'Fija mensual',
     bajada: 'Día y espacio garantizados, todas las semanas.',
-    precio: 'TBD',
-    unidad: 'por mes',
+    precio: `$${PRECIO_HORA}`,
+    unidad: 'por hora · tarifa fija',
     destacado: false,
     incluye: [
-      'Hasta 25% menos que hora suelta',
+      'La mejor tarifa por volumen mensual',
       'Tu día y hora reservados sin trámite',
       'Cancelaciones flexibles dentro del tope mensual',
       'Bonificación si cancelás con tiempo',
@@ -61,7 +63,7 @@ const schemaFAQ = {
       name: '¿Cuánto cuesta alquilar consultorio por hora en Espacio 1010?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Los precios se publican al confirmar los planes definitivos. Hay tres modalidades: hora suelta, pack de horas (~15% off) y serie fija mensual (~25% off). Coordiná por WhatsApp para conocer el tarifario actual.',
+        text: 'Los consultorios cuestan $350 por hora, precio único para todos. La Sala Arcos (subsuelo, hasta 30 personas) cuesta $700 por hora. Hay tres modalidades: hora suelta, pack de horas y serie fija mensual, con mejor tarifa cuanto más reservás por mes.',
       },
     },
     {
@@ -101,7 +103,7 @@ const schemaFAQ = {
       </p>
       <h1 class="text-balance">
         Sin letra chica.
-        <span class="italic text-terracota">Sin sorpresas.</span>
+        <span class="text-terracota">Sin sorpresas.</span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
         Tres formas de usar el espacio. Elegís la que mejor se adapta a cómo
@@ -144,8 +146,8 @@ const schemaFAQ = {
             <article
               class={`relative flex flex-col rounded-[var(--radius-lg)] p-8 transition-all duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 ${
                 p.destacado
-                  ? 'border-2 border-terracota bg-crema shadow-[var(--shadow-md)]'
-                  : 'border border-hairline bg-crema hover:border-terracota/30 hover:shadow-[var(--shadow-md)]'
+                  ? 'border-2 border-terracota bg-white shadow-[var(--shadow-md)]'
+                  : 'border border-hairline bg-white hover:border-terracota/30 hover:shadow-[var(--shadow-md)]'
               }`}
             >
               {p.destacado && (
@@ -161,11 +163,6 @@ const schemaFAQ = {
                 <span class="font-display text-5xl text-ink">{p.precio}</span>
                 <span class="text-sm text-ink-muted">{p.unidad}</span>
               </div>
-              {p.precio === 'TBD' && (
-                <p class="mt-2 text-xs text-terracota">
-                  Precios definitivos pre-launch · consultá por WhatsApp
-                </p>
-              )}
 
               <ul class="mt-8 space-y-3 flex-1">
                 {p.incluye.map((i) => (
@@ -188,14 +185,22 @@ const schemaFAQ = {
         }
       </div>
 
-      <p class="mt-10 text-center text-sm text-ink-muted">
-        Precios en pesos uruguayos, IVA incluido. La sala subsuelo tiene tarifa diferenciada por bloque/día.
+      <div class="mt-10 rounded-2xl border border-hairline bg-[#f8f9fa] p-6 text-center sm:flex sm:items-center sm:justify-center sm:gap-3 sm:text-left">
+        <p class="text-base text-ink">
+          <span class="font-display text-2xl text-terracota">${PRECIO_ARCOS}/h</span>
+          <span class="ml-2 font-medium">Sala Arcos</span>
+          <span class="text-ink-soft"> — la gran sala del subsuelo, hasta 30 personas, sin columnas.</span>
+        </p>
+      </div>
+
+      <p class="mt-6 text-center text-sm text-ink-muted">
+        Precios en pesos uruguayos. Todos los consultorios: ${PRECIO_HORA} la hora, precio único.
       </p>
     </Container>
   </section>
 
   <!-- Descuentos por volumen -->
-  <section class="py-20 bg-crema-warm/30">
+  <section class="py-20 bg-[#f8f9fa]">
     <Container size="narrow">
       <h2 class="font-display text-4xl text-ink">Cuanto más reservás, menos pagás.</h2>
       <p class="mt-5 text-lg leading-relaxed text-ink-soft">
@@ -203,34 +208,36 @@ const schemaFAQ = {
         mensual. Sin trámites ni promociones que tenés que pedir.
       </p>
 
-      <div class="mt-10 overflow-hidden rounded-2xl border border-hairline bg-crema">
-        <table class="w-full text-left text-sm">
-          <thead class="bg-crema-warm/40">
-            <tr>
-              <th class="px-6 py-4 font-semibold text-ink">Horas mensuales</th>
-              <th class="px-6 py-4 font-semibold text-ink">Descuento</th>
-              <th class="px-6 py-4 font-semibold text-ink">Para quién</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-hairline">
-            <tr>
-              <td class="px-6 py-4 text-ink">10 – 19 hs</td>
-              <td class="px-6 py-4 font-display text-lg text-terracota">5% off</td>
-              <td class="px-6 py-4 text-ink-soft">Profesional empezando</td>
-            </tr>
-            <tr>
-              <td class="px-6 py-4 text-ink">20 – 39 hs</td>
-              <td class="px-6 py-4 font-display text-lg text-terracota">10% off</td>
-              <td class="px-6 py-4 text-ink-soft">Práctica estable</td>
-            </tr>
-            <tr>
-              <td class="px-6 py-4 text-ink">40+ hs</td>
-              <td class="px-6 py-4 font-display text-lg text-terracota">15% off</td>
-              <td class="px-6 py-4 text-ink-soft">Práctica intensiva</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="mt-10 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">Empezando</p>
+          <h3 class="mt-3 font-display text-xl text-ink">Pocas horas al mes</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+            Pagás la tarifa estándar de $350 la hora. Ideal para arrancar tu
+            práctica sin asumir ningún costo fijo.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">Práctica estable</p>
+          <h3 class="mt-3 font-display text-xl text-ink">Varias horas por semana</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+            Al superar cierto volumen mensual, tu tarifa por hora baja
+            automáticamente. Lo ves reflejado en tu liquidación.
+          </p>
+        </div>
+        <div class="rounded-2xl border-2 border-terracota bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-md)]">
+          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">Práctica intensiva</p>
+          <h3 class="mt-3 font-display text-xl text-ink">Muchas horas o fija mensual</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+            La mejor tarifa del esquema. Cuantas más horas reservás por mes,
+            menos pagás cada una. Sin trámites ni promociones que pedir.
+          </p>
+        </div>
       </div>
+
+      <p class="mt-6 text-sm text-ink-muted">
+        Los tramos exactos y el ahorro por hora los coordinás al crear tu cuenta — se calculan solos sobre tu uso real.
+      </p>
     </Container>
   </section>
 
@@ -270,14 +277,14 @@ const schemaFAQ = {
       <div class="rounded-[var(--radius-xl)] bg-ink p-12 text-center text-crema sm:p-20">
         <h2 class="text-balance text-crema">
           Crear cuenta es gratis.
-          <span class="italic">Reservar después.</span>
+          <span class="text-terracota">Reservar después.</span>
         </h2>
         <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-crema/80">
           Mirá la agenda real antes de comprometerte. Si te convence, reservás.
           Si no, no hiciste nada.
         </p>
         <div class="mt-8">
-          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-crema text-terracota hover:bg-white">
+          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-white text-terracota hover:bg-[#f8f9fa]">
             Empezar gratis
           </Button>
         </div>

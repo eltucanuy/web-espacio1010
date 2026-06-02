@@ -1,5 +1,22 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-06-02 — leer primero
+> El sitio cambió fuerte esta sesión (ver [`HANDOFF_2026_06_02.md`](./HANDOFF_2026_06_02.md)). La home es ahora una **landing de conversión** con form que guarda leads en Supabase y manda al registro de la PWA con el cupón `BIENVENIDA1010`.
+>
+> **Ya resuelto (no estaba en v1):**
+> - ✅ Precios reales ($350/h · $700 Sala Arcos) en todo el sitio.
+> - ✅ WhatsApp real (099 001 303) e Instagram real (`@espacio1010.uy`).
+> - ✅ Form → backend: la home postea leads a Supabase (`pre_registros`).
+> - ✅ Design system migrado a Inter + blanco/gris (se cerró el tema Belgiano/Cormorant).
+> - ✅ Barrio corregido: "Cordón" → "entre Palermo y Parque Rodó".
+> - ✅ Los dos diferenciales fuertes ya aparecen en el sitio (cuenta corriente / "1 de cada 5 fijas") — queda explotarlos más en la home (ver abajo).
+>
+> **Pendiente real ahora:** tags dentro de GTM (Meta Pixel + Google Ads sobre `lead_preregistro`), fotos profesionales de los espacios, confirmar 9 vs 12 espacios, coordenadas/postal exactos. Detalle en el handoff §7.
+>
+> Lo de abajo es el backlog histórico del sprint inicial (2026-05-10), se mantiene como contexto.
+
+---
+
 Mejoras propuestas durante el sprint inicial (2026-05-10) que **no** entraron en v1. Ordenadas por categoría. La idea es ir comiéndolas en sprints cortos después del soft launch, no apurarlas antes de tener tráfico real.
 
 ---

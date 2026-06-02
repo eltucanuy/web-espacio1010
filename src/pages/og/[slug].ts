@@ -7,7 +7,7 @@ import { NICHOS_CONTENT } from '../../lib/nichos';
  *
  * Cada URL importante tiene su PNG dedicado con título + acento marca.
  * El layout es consistente: fondo crema, número 1010 grande terracota,
- * título principal en serif, subtítulo en sans, tag "Espacio 1010 · Cordón".
+ * título principal en serif, subtítulo en sans, tag "Espacio 1010 · Parque Rodó".
  */
 
 interface OgPage {
@@ -19,7 +19,7 @@ const pages: Record<string, OgPage> = {
   // Landing principal
   home: {
     title: 'Tu consultorio,\nsin complicaciones.',
-    description: 'Espacios boutique por hora para profesionales · Cordón, Montevideo',
+    description: 'Espacios boutique por hora para profesionales · Parque Rodó, Montevideo',
   },
   // Páginas core
   'los-espacios': {
@@ -28,7 +28,7 @@ const pages: Record<string, OgPage> = {
   },
   'el-lugar': {
     title: 'Cien años de historia,\nreciclados a nuevo.',
-    description: 'Gaboto 1010 · Cordón · Montevideo',
+    description: 'Gaboto 1010 · Parque Rodó · Montevideo',
   },
   'como-funciona': {
     title: 'Cuatro pasos.\nEl resto es atender.',
@@ -48,7 +48,7 @@ const pages: Record<string, OgPage> = {
   },
   'alquiler-consultorio-montevideo': {
     title: 'Alquiler de consultorio\npor hora en Montevideo.',
-    description: '12 espacios en Cordón · A 5 cuadras de 18 de Julio',
+    description: '12 espacios en Parque Rodó · A 5 cuadras de 18 de Julio',
   },
 
   // Auto-generadas para cada espacio
@@ -70,7 +70,7 @@ const pages: Record<string, OgPage> = {
         `nicho-${n.slug}`,
         {
           title: content?.label ?? n.label,
-          description: 'Espacio 1010 · Cordón · Montevideo',
+          description: 'Espacio 1010 · Parque Rodó · Montevideo',
         } satisfies OgPage,
       ];
     })

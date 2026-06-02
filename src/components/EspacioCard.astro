@@ -3,108 +3,44 @@ import type { Espacio } from '../lib/site';
 
 interface Props {
   espacio: Espacio;
-  /** Si true, hace la card más alta para destacarla en grids */
+  /** Si true, resalta la card (borde terracota). */
   featured?: boolean;
 }
 
 const { espacio, featured = false } = Astro.props;
 
-// Mientras no haya fotos reales: fondo decorativo terracota tinted con número del espacio.
-// Cada card recibe una variación de tono según su id, así no se ve uniforme.
-const accentByAmueblado = {
-  completo: 'from-terracota-tint via-crema to-crema-warm',
-  versatil: 'from-crema-warm via-crema to-terracota-tint/60',
-  mixto: 'from-terracota-tint/70 via-crema to-crema-warm/80',
-};
+const amuebladoLabel =
+  espacio.amueblado === 'completo' ? 'Amueblado'
+  : espacio.amueblado === 'versatil' ? 'Versátil'
+  : 'Mixto';
 
-const gradient = accentByAmueblado[espacio.amueblado];
+const PRECIO_ARCOS = 700;
+const precio = espacio.id === 'sala-subsuelo' ? PRECIO_ARCOS : 350;
 ---
 
 <a
   href={`/los-espacios/${espacio.id}`}
-  class={`group relative flex flex-col overflow-hidden rounded-[var(--radius-lg)] border border-hairline bg-crema transition-[border-color,box-shadow] duration-500 ease-[var(--ease-out-soft)] hover:shadow-[var(--shadow-md)] hover:border-terracota/30 ${featured ? 'md:row-span-2' : ''}`}
-  data-magnetic="0.08"
+  class={`group flex flex-col rounded-2xl border bg-white p-6 transition-all duration-500 ease-[var(--ease-out-soft)] hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)] ${featured ? 'border-terracota/40' : 'border-hairline'}`}
 >
-  <!-- Visual placeholder hasta que haya fotos reales -->
-  <div
-    class={`relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br ${gradient} ${featured ? 'md:aspect-[4/5]' : ''}`}
-  >
-    <!-- Capa de grano editorial -->
-    <svg class="absolute inset-0 h-full w-full opacity-[0.06]" aria-hidden="true">
-      <filter id={`g-${espacio.id}`}>
-        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" />
-        <feColorMatrix type="saturate" values="0" />
-      </filter>
-      <rect width="100%" height="100%" filter={`url(#g-${espacio.id})`} />
-    </svg>
-
-    <!-- Patrón decorativo sutil -->
-    <div class="absolute inset-0 opacity-[0.08]" aria-hidden="true">
-      <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <pattern id={`p-${espacio.id}`} x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-            <circle cx="20" cy="20" r="1.2" fill="#1a1518" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill={`url(#p-${espacio.id})`} />
-      </svg>
-    </div>
-
-    <!-- Línea decorativa esquina superior izq -->
-    <svg class="absolute left-5 top-5 text-terracota/30" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-      <path d="M2 14V2h12" stroke-linecap="square" />
-    </svg>
-
-    <!-- Línea decorativa esquina inferior derecha -->
-    <svg class="absolute bottom-5 right-5 text-terracota/30" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-      <path d="M34 22v12H22" stroke-linecap="square" />
-    </svg>
-
-    <!-- Número grande tipográfico como protagonista -->
-    <div class="absolute inset-0 flex items-center justify-center">
-      <div class="text-center">
-        <span class="block font-display text-[7rem] leading-[0.85] text-terracota/30 transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105 group-hover:text-terracota/45">
-          {espacio.metros}
-          <span class="text-2xl align-top font-medium">m²</span>
-        </span>
-        <span class="mt-3 block text-[10px] uppercase tracking-[0.28em] text-ink/40">
-          Espacio · {espacio.id.split('-')[0]}
-        </span>
-      </div>
-    </div>
-
-    {
-      espacio.destacado && (
-        <span class="absolute left-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-ink px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-crema">
-          <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4-6.2-4.6-6.2 4.6 2.4-7.4L2 9.4h7.6z"/></svg>
-          Destacado
-        </span>
-      )
-    }
-
-    <span class="absolute right-4 top-4 inline-flex items-center rounded-full bg-crema/95 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-soft backdrop-blur-sm">
-      {
-        espacio.amueblado === 'completo'
-          ? 'Amueblado'
-          : espacio.amueblado === 'versatil'
-            ? 'Versátil'
-            : 'Mixto'
-      }
+  <div class="flex items-start justify-between gap-3">
+    <span class="text-4xl font-bold leading-none text-terracota/20 transition-colors duration-500 group-hover:text-terracota/40">
+      {espacio.metros}<span class="align-top text-base font-semibold">m²</span>
+    </span>
+    <span class="inline-flex items-center rounded-full border border-hairline bg-[#f8f9fa] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft">
+      {amuebladoLabel}
     </span>
   </div>
 
-  <div class="flex flex-1 flex-col gap-3 p-6">
-    <h3 class="font-display text-2xl text-ink">{espacio.nombre}</h3>
-    <p class="text-sm leading-relaxed text-ink-soft">{espacio.resumen}</p>
+  <h3 class="mt-5 text-lg text-ink">{espacio.nombre}</h3>
+  <p class="mt-1.5 flex-1 text-sm leading-relaxed text-ink-soft">{espacio.resumen}</p>
 
-    <div class="mt-auto flex items-center justify-between pt-4 text-xs text-ink-muted">
-      <span>{espacio.capacidad}</span>
-      <span class="inline-flex items-center gap-1 font-medium text-terracota transition-transform duration-300 group-hover:translate-x-0.5">
-        Ver detalles
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-      </span>
-    </div>
+  <div class="mt-5 flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
+    <span>{espacio.capacidad} · <span class="font-semibold text-terracota">${precio}/h</span></span>
+    <span class="inline-flex items-center gap-1 font-medium text-terracota transition-transform duration-300 group-hover:translate-x-0.5">
+      Ver detalles
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
   </div>
 </a>

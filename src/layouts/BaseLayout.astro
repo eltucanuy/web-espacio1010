@@ -1,4 +1,8 @@
 ---
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
 import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import Nav from '../components/Nav.astro';
@@ -78,21 +82,8 @@ const schemaBusiness = localBusinessSchema(imageUrl);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Fuentes — preconnect + preload de weights críticas + carga full.
-         Belgiano Serif es licencia paga; usamos Cormorant Garamond hasta licenciar.
-         Preload de los weights que se usan above-the-fold para evitar FOIT. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <!-- Preload del CSS principal de fonts (high priority) -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;600&family=Cormorant+Garamond:wght@500;600&display=swap&subset=latin,latin-ext"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap&subset=latin,latin-ext"
-    />
+    <!-- Fuentes — Inter self-host vía @fontsource (importado en el frontmatter).
+         Sin dependencia de Google Fonts: mejor privacidad y performance. -->
 
     <!-- Schema.org -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBusiness)} />

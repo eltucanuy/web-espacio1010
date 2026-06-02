@@ -59,7 +59,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       texto:
         'Tener la agenda abierta cuando atiendo me cambió la semana. Reservo el lunes y el jueves a las 6, y si una vez no puedo, cancelo desde el celular. Listo.',
       autor: 'Profesional fundadora',
-      rol: 'Psicóloga clínica, Cordón',
+      rol: 'Psicóloga clínica, Parque Rodó',
     },
     faq: [
       {
@@ -80,11 +80,11 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
     ],
     meta:
-      'Alquilá consultorio por hora para psicólogos en Cordón, Montevideo. 12 espacios premium, reservas online, cancelación flexible. Para sesiones individuales, pareja o grupales.',
+      'Alquilá consultorio por hora para psicólogos en Parque Rodó, Montevideo. 12 espacios premium, reservas online, cancelación flexible. Para sesiones individuales, pareja o grupales.',
     variantesBusqueda: [
       'consultorio psicología por hora',
       'alquiler espacio psicólogo Montevideo',
-      'consultorio psicoanálisis Cordón',
+      'consultorio psicoanálisis Parque Rodó',
       'sala terapia individual',
       'consultorio para terapia de pareja',
       'espacio profesional psicología',
@@ -126,7 +126,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
     ],
     meta:
-      'Consultorio para psiquiatra en alquiler por hora en Montevideo. Espacios sobrios y profesionales en Cordón, agenda online flexible, sin contrato anual.',
+      'Consultorio para psiquiatra en alquiler por hora en Montevideo. Espacios sobrios y profesionales en Parque Rodó, agenda online flexible, sin contrato anual.',
     variantesBusqueda: [
       'consultorio psiquiátrico Montevideo',
       'alquiler consulta clínica',
@@ -154,7 +154,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       texto:
         'Atender psicopedagogía es atender un montón de cosas al mismo tiempo. Acá puedo armar el espacio como lo necesito para cada paciente.',
       autor: 'Profesional fundadora',
-      rol: 'Psicopedagoga, Cordón',
+      rol: 'Psicopedagoga, Parque Rodó',
     },
     faq: [
       {
@@ -199,7 +199,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       texto:
         'Mis pacientes vienen relajados. El edificio se siente como un consultorio premium pero la conversación fluye porque no es un hospital.',
       autor: 'Profesional fundador',
-      rol: 'Nutricionista, Cordón',
+      rol: 'Nutricionista, Parque Rodó',
     },
     faq: [
       {
@@ -212,7 +212,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
     ],
     meta:
-      'Consultorio para nutricionista en Montevideo, alquiler por hora en Cordón. Espacios cómodos para consulta individual y de pareja, agenda online flexible.',
+      'Consultorio para nutricionista en Montevideo, alquiler por hora en Parque Rodó. Espacios cómodos para consulta individual y de pareja, agenda online flexible.',
     variantesBusqueda: [
       'consultorio nutrición Montevideo',
       'alquiler sala nutricionista',
@@ -240,7 +240,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       texto:
         'Probé varios espacios antes de quedarme acá. La diferencia se nota cuando los alumnos entran y se quedan en silencio sin que se los pidas.',
       autor: 'Profesional fundadora',
-      rol: 'Instructora de yoga, Cordón',
+      rol: 'Instructora de yoga, Parque Rodó',
     },
     faq: [
       {
@@ -257,7 +257,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
     ],
     meta:
-      'Salones para clases de yoga y meditación en Montevideo, Cordón. Espacios versátiles con colchonetas, alquiler por hora o día, sin contrato.',
+      'Salones para clases de yoga y meditación en Montevideo, Parque Rodó. Espacios versátiles con colchonetas, alquiler por hora o día, sin contrato.',
     variantesBusqueda: [
       'salón yoga alquiler hora',
       'sala meditación grupal',
@@ -286,7 +286,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       texto:
         'Hago constelaciones cada dos meses. Tener la sala lista, sin tener que armar y desarmar, vale oro. Llego y empiezo.',
       autor: 'Profesional fundadora',
-      rol: 'Consteladora familiar, Cordón',
+      rol: 'Consteladora familiar, Parque Rodó',
     },
     faq: [
       {
@@ -307,7 +307,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
     ],
     meta:
-      'Sala para talleres, formaciones y grupos en Montevideo. 60 m² sin columnas en Cordón, hasta 30 personas, reservás por bloques o día completo.',
+      'Sala para talleres, formaciones y grupos en Montevideo. 60 m² sin columnas en Parque Rodó, hasta 30 personas, reservás por bloques o día completo.',
     variantesBusqueda: [
       'sala talleres Montevideo',
       'espacio para formación profesional',

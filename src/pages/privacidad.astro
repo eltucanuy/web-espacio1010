@@ -1,0 +1,47 @@
+---
+/**
+ * Política de privacidad — requerida por la captura de datos del pre-registro
+ * (nombre, apellido, WhatsApp). Ley uruguaya de Protección de Datos Personales (18.331).
+ * Usa LandingLayout para mantener estilo y no exponer el menú todavía.
+ */
+import LandingLayout from '../layouts/LandingLayout.astro';
+import Container from '../components/Container.astro';
+import { CONTACT, ADDRESS } from '../lib/site';
+---
+
+<LandingLayout
+  title="Política de privacidad"
+  description="Cómo Espacio 1010 trata los datos personales que dejás en el pre-registro."
+  noindex={true}
+>
+  <section class="py-16 sm:py-20">
+    <Container size="narrow">
+      <a href="/" class="text-sm font-medium text-terracota hover:underline">← Volver</a>
+      <h1 class="mt-6 text-3xl text-ink sm:text-4xl">Política de privacidad</h1>
+      <p class="mt-3 text-sm text-ink-muted">Última actualización: junio 2026</p>
+
+      <div class="mt-8 space-y-6 text-base leading-relaxed text-ink-soft">
+        <div>
+          <h2 class="text-xl text-ink">Qué datos recogemos</h2>
+          <p class="mt-2">Cuando te pre-registrás en este sitio te pedimos <strong>nombre, apellido y número de WhatsApp</strong>. Nada más.</p>
+        </div>
+        <div>
+          <h2 class="text-xl text-ink">Para qué los usamos</h2>
+          <p class="mt-2">Únicamente para contactarte respecto de tu pre-registro en Espacio 1010, ayudarte a completar tu cuenta y coordinar el beneficio de tu primera hora gratis. No vendemos ni cedemos tus datos a terceros.</p>
+        </div>
+        <div>
+          <h2 class="text-xl text-ink">Por cuánto tiempo</h2>
+          <p class="mt-2">Conservamos tus datos mientras dure el proceso de pre-registro y hasta que uses (o caduque) el beneficio. Podés pedir que los borremos en cualquier momento.</p>
+        </div>
+        <div>
+          <h2 class="text-xl text-ink">Tus derechos</h2>
+          <p class="mt-2">Podés acceder, rectificar o eliminar tus datos escribiéndonos por WhatsApp al <a href={CONTACT.whatsappLink('Hola, quiero gestionar mis datos personales.')} class="text-terracota underline-offset-2 hover:underline">{CONTACT.whatsappLeadsDisplay}</a> o por email a <a href={`mailto:${CONTACT.email}`} class="text-terracota underline-offset-2 hover:underline">{CONTACT.email}</a>. Tratamos tus datos según la Ley N° 18.331 de Protección de Datos Personales de Uruguay.</p>
+        </div>
+        <div>
+          <h2 class="text-xl text-ink">Responsable</h2>
+          <p class="mt-2">Espacio 1010 — {ADDRESS.street}, entre Palermo y {ADDRESS.neighborhood}, {ADDRESS.city}, {ADDRESS.country}.</p>
+        </div>
+      </div>
+    </Container>
+  </section>
+</LandingLayout>

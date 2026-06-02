@@ -34,11 +34,11 @@ const pasos = [
     titulo: 'Reservás en un click',
     bajada: 'Confirmás y listo. Cero idas y vueltas con humanos.',
     detalle:
-      'No hay aprobación intermedia, no hay "te confirmo mañana". Apenas hacés click la reserva queda firme y aparece en tu panel. Si cambian tus planes, cancelar con 24 horas no tiene costo.',
+      'No hay aprobación intermedia, no hay "te confirmo mañana". Apenas hacés click la reserva queda firme y aparece en tu panel. $350 la hora en todos los consultorios; $700 la hora la Sala Arcos del subsuelo. Si cambian tus planes, cancelar una eventual con 24 horas no tiene costo.',
     bullets: [
       'Confirmación inmediata por mail',
       'Aparece en tu panel y en tu calendario',
-      'Cancelación gratuita con 24 hs de aviso',
+      '$350/h consultorios · $700/h Sala Arcos',
     ],
   },
   {
@@ -80,14 +80,14 @@ const schemaHowTo = {
   </Fragment>
 
   <!-- Hero -->
-  <section class="pt-16 pb-16 sm:pt-24 sm:pb-20">
+  <section class="bg-white pt-16 pb-16 sm:pt-24 sm:pb-20">
     <Container>
       <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
         Cómo funciona
       </p>
       <h1 class="text-balance">
         Cuatro pasos.
-        <span class="italic text-terracota">El resto es atender.</span>
+        <span class="text-terracota">El resto es atender.</span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
         Construimos Espacio 1010 con la convicción de que la tecnología tiene
@@ -98,16 +98,16 @@ const schemaHowTo = {
   </section>
 
   <!-- Pasos en detalle -->
-  <section class="pb-24">
+  <section class="bg-white pb-20 sm:pb-24">
     <Container>
       <ol class="space-y-4">
         {
           pasos.map((p) => (
-            <li class="overflow-hidden rounded-[var(--radius-lg)] border border-hairline bg-crema">
+            <li class="overflow-hidden rounded-[var(--radius-lg)] border border-hairline bg-[#f8f9fa] transition-all duration-500 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
               <div class="grid gap-10 p-8 md:grid-cols-12 md:p-12">
                 <div class="md:col-span-4">
-                  <span class="font-display text-7xl leading-none text-terracota">{p.n}</span>
-                  <h2 class="mt-4 font-display text-3xl text-ink">{p.titulo}</h2>
+                  <span class="text-7xl font-bold leading-none text-terracota/20">{p.n}</span>
+                  <h2 class="mt-4 text-2xl text-ink sm:text-3xl">{p.titulo}</h2>
                   <p class="mt-3 text-base text-ink-soft">{p.bajada}</p>
                 </div>
                 <div class="md:col-span-8">
@@ -132,52 +132,69 @@ const schemaHowTo = {
   </section>
 
   <!-- Política de cancelación destacada (diferencial fuerte) -->
-  <section class="py-20 bg-crema-warm/30">
+  <section class="bg-[#f8f9fa] py-16 sm:py-24">
     <Container size="narrow">
       <p class="mb-3 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
         Política de cancelaciones
       </p>
-      <h2 class="font-display text-4xl text-ink">
+      <h2 class="text-3xl text-ink sm:text-4xl">
         La más favorable del mercado.
       </h2>
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft text-pretty">
+        Pensada para que la flexibilidad que vos das a tus pacientes la tengas
+        también con nosotros. Sin letra chica.
+      </p>
 
-      <div class="mt-12 grid gap-6 sm:grid-cols-2">
-        <div class="rounded-2xl border-2 border-terracota/30 bg-crema p-7">
-          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-terracota">
-            Acá
-          </p>
-          <h3 class="mt-3 font-display text-2xl text-ink">Cancelás con 24 hs, no pagás.</h3>
-          <p class="mt-3 text-sm leading-relaxed text-ink-soft">
-            Si avisás con un día de anticipación, la reserva se libera sin
-            costo. Entre 24 y 1 hora antes, pagás solo el 50%.
+      <div class="mt-12 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-md)]">
+          <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+          </span>
+          <h3 class="mt-5 text-lg text-ink">Reservas fijas</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            Podés cancelar <strong class="text-ink">1 de cada 5</strong> reservas
+            de tu serie fija sin ningún cargo. Así mantenemos la equidad con
+            quienes esperan ese mismo slot.
           </p>
         </div>
-        <div class="rounded-2xl border border-hairline bg-crema/50 p-7 opacity-80">
-          <p class="text-xs font-semibold uppercase tracking-[0.18em] text-ink-muted">
-            En otros lados
+
+        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-md)]">
+          <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          </span>
+          <h3 class="mt-5 text-lg text-ink">Eventuales con 24 h</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            Si avisás con <strong class="text-ink">24 horas o más</strong> de
+            anticipación, la reserva se libera <strong class="text-ink">sin
+            costo</strong>. Cero penalización.
           </p>
-          <h3 class="mt-3 font-display text-2xl text-ink-soft line-through">
-            Cancelás con 48 hs, igual pagás el 50%.
-          </h3>
-          <p class="mt-3 text-sm leading-relaxed text-ink-muted">
-            Casi siempre te bloquean cancelaciones, o cobran completo aunque
-            avises con días. No es el caso acá.
+        </div>
+
+        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-md)]">
+          <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+          </span>
+          <h3 class="mt-5 text-lg text-ink">Dentro de las 24 h</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            Si cancelás con menos de 24 horas, te
+            <strong class="text-ink">bonificamos el 50%</strong>: pagás solo la
+            mitad de esa hora.
           </p>
         </div>
       </div>
 
       <p class="mt-8 text-sm text-ink-muted">
-        Las reservas fijas tienen un tope mensual de cancelaciones gratis
-        para mantener la equidad con quienes esperan slot. Lo vemos en el
-        detalle de tu plan.
+        Resumen: 1 de cada 5 fijas sin cargo · eventuales con 24 h sin cargo ·
+        dentro de las 24 h, 50% bonificado. Todo el detalle queda visible en tu
+        panel al momento de cancelar.
       </p>
     </Container>
   </section>
 
   <!-- FAQ rápida -->
-  <section class="py-20">
+  <section class="bg-white py-16 sm:py-24">
     <Container size="narrow">
-      <h2 class="font-display text-3xl text-ink">Preguntas que nos hacen seguido.</h2>
+      <h2 class="text-3xl text-ink sm:text-4xl">Preguntas que nos hacen seguido.</h2>
 
       <div class="mt-10 space-y-4">
         {[
@@ -188,6 +205,10 @@ const schemaHowTo = {
           {
             q: '¿Tengo que firmar contrato anual?',
             a: 'No. Reservás por hora, las veces que quieras, sin contrato. Las series fijas son mes a mes — si querés cortar, lo hacés desde tu panel.',
+          },
+          {
+            q: '¿Cuánto cuesta la hora?',
+            a: '$350 la hora en todos los consultorios. La Sala Arcos, la gran sala del subsuelo para grupos y talleres, sale $700 la hora. Sin costos de gestión escondidos.',
           },
           {
             q: '¿Cómo accede mi paciente?',
@@ -202,8 +223,8 @@ const schemaHowTo = {
             a: 'En los espacios versátiles no, son compartidos. En estudios y consultas amobladas hay opción de pack mensual con armario reservado — preguntá por WhatsApp.',
           },
         ].map((item) => (
-          <details class="group rounded-2xl border border-hairline bg-crema p-6 transition-all duration-300 hover:border-terracota/30">
-            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg text-ink">
+          <details class="group rounded-2xl border border-hairline bg-[#f8f9fa] p-6 transition-all duration-300 hover:border-terracota/30">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-medium text-ink">
               {item.q}
               <span class="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full bg-terracota-tint text-terracota transition-transform duration-300 group-open:rotate-45">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
@@ -225,19 +246,19 @@ const schemaHowTo = {
   </section>
 
   <!-- CTA -->
-  <section class="py-24">
+  <section class="bg-white py-20 sm:py-28">
     <Container>
-      <div class="rounded-[var(--radius-xl)] bg-terracota p-12 text-center text-crema sm:p-20">
-        <h2 class="text-balance text-crema">¿Probamos?</h2>
-        <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-crema/85">
+      <div class="rounded-[var(--radius-xl)] bg-terracota p-12 text-center text-white sm:p-20">
+        <h2 class="text-balance text-white">¿Probamos?</h2>
+        <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/85">
           Crear tu cuenta es gratis y toma 30 segundos. Después ves la
           disponibilidad real y reservás cuando quieras.
         </p>
         <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-crema text-terracota hover:bg-white">
+          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
             Crear mi cuenta
           </Button>
-          <Button href="/precios" variant="ghost" size="lg" class="text-crema hover:bg-crema/10">
+          <Button href="/precios" variant="ghost" size="lg" class="text-white hover:bg-white/10">
             Ver precios
           </Button>
         </div>

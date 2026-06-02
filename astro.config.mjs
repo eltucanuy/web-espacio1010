@@ -14,8 +14,12 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap({
-      // Excluir landings de ads del sitemap (se sirven solo desde campañas pagas).
-      filter: (page) => !page.includes('/campanas/'),
+      // Sitio completo en sitemap, excepto: mockups (lp*, /mockups), privacidad (noindex)
+      // y landings de campañas pagas (/campanas/).
+      filter: (page) =>
+        !page.includes('/campanas/') &&
+        !page.endsWith('/privacidad/') &&
+        !/\/(lp[0-9]?|mockups)\/$/.test(page),
     }),
   ],
   build: {

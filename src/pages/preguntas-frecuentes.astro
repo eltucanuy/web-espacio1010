@@ -35,11 +35,15 @@ const faqs = [
     items: [
       {
         q: '¿Cuál es la política de cancelaciones?',
-        a: 'Si cancelás con 24 hs o más de aviso, no pagás nada. Entre 24 y 1 hora antes, se cobra el 50%. Con menos de 1 hora, no se puede cancelar.',
+        a: 'En reservas eventuales: si cancelás con 24 horas o más de aviso, no pagás nada; dentro de las 24 horas te bonificamos el 50% (pagás solo la mitad). En reservas fijas podés cancelar 1 de cada 5 sin cargo.',
       },
       {
         q: '¿Las series fijas también tienen cancelaciones gratis?',
-        a: 'Sí, dentro de un tope mensual proporcional a tu plan. La idea es ser flexible sin que se vuelva injusto para quien espera ese slot.',
+        a: 'Sí: podés cancelar 1 de cada 5 reservas de tu serie fija sin ningún cargo. La idea es ser flexible sin que se vuelva injusto para quien espera ese slot.',
+      },
+      {
+        q: '¿Cuánto cuesta la hora?',
+        a: '$350 la hora en todos los consultorios. La Sala Arcos, la gran sala del subsuelo para grupos y talleres, sale $700 la hora. Sin costos de gestión escondidos.',
       },
       {
         q: '¿Cómo pago las reservas?',
@@ -81,7 +85,7 @@ const faqs = [
     items: [
       {
         q: '¿Dónde está ubicado?',
-        a: 'Gaboto 1010, entre Isla de Flores y San Salvador, Cordón sur, Montevideo.',
+        a: 'Gaboto 1010, entre Isla de Flores y San Salvador, entre Palermo y Parque Rodó, Montevideo.',
       },
       {
         q: '¿Hay estacionamiento?',
@@ -125,14 +129,14 @@ const schemaFAQ = {
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
   </Fragment>
 
-  <section class="pt-16 pb-16 sm:pt-24 sm:pb-20">
+  <section class="bg-white pt-16 pb-16 sm:pt-24 sm:pb-20">
     <Container>
       <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
         Preguntas frecuentes
       </p>
       <h1 class="text-balance">
         Todo lo que
-        <span class="italic text-terracota">te queda por preguntar</span>.
+        <span class="text-terracota">te queda por preguntar</span>.
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
         Si tu pregunta no está acá, escribinos por WhatsApp y te respondemos
@@ -141,16 +145,16 @@ const schemaFAQ = {
     </Container>
   </section>
 
-  <section class="pb-20">
+  <section class="bg-white pb-20 sm:pb-24">
     <Container size="narrow">
       <div class="space-y-16">
         {
           faqs.map((cat) => (
             <div>
-              <h2 class="font-display text-2xl text-terracota">{cat.categoria}</h2>
+              <h2 class="text-2xl text-terracota">{cat.categoria}</h2>
               <div class="mt-6 space-y-3">
                 {cat.items.map((item) => (
-                  <details class="group rounded-2xl border border-hairline bg-crema p-6 transition-colors duration-300 hover:border-terracota/30">
+                  <details class="group rounded-2xl border border-hairline bg-[#f8f9fa] p-6 transition-colors duration-300 hover:border-terracota/30">
                     <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-medium text-ink">
                       {item.q}
                       <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-terracota-tint text-terracota transition-transform duration-300 group-open:rotate-45">
@@ -170,10 +174,10 @@ const schemaFAQ = {
     </Container>
   </section>
 
-  <section class="py-24 bg-crema-warm/30">
+  <section class="bg-[#f8f9fa] py-20 sm:py-24">
     <Container size="narrow">
-      <div class="rounded-[var(--radius-lg)] border border-hairline bg-crema p-10 text-center">
-        <h2 class="font-display text-3xl text-ink">¿Te quedó alguna duda?</h2>
+      <div class="rounded-[var(--radius-lg)] border border-hairline bg-white p-10 text-center shadow-[var(--shadow-md)]">
+        <h2 class="text-3xl text-ink">¿Te quedó alguna duda?</h2>
         <p class="mt-3 text-ink-soft">
           WhatsApp es lo más rápido. Si preferís ver el lugar antes, también
           coordinamos visita.

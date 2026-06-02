@@ -1,8 +1,7 @@
 /* ──────────────────────────────────────────────────────────────────
    Espacio 1010 — Sistema de diseño del sitio institucional
-   Brandboard: terracota #9e4e42 / crema #f8f7f5 / gris #565153
-   Tipografías: Josefin Sans (sans) + Belgiano Serif (display, paga)
-   → Cormorant Garamond como stand-in libre hasta licenciar Belgiano.
+   Brandboard: terracota #9e4e42 / blanco #ffffff / gris frío #f8f9fa / ink #1a1518
+   Tipografía: Inter (sans + display), self-host vía @fontsource.
    ────────────────────────────────────────────────────────────────── */
 
 @import 'tailwindcss';
@@ -15,8 +14,8 @@
   --color-terracota-light: #c4756a;
   --color-terracota-tint: #f3e6e3;
 
-  --color-crema: #f8f7f5;
-  --color-crema-warm: #efece6;
+  --color-crema: #ffffff;
+  --color-crema-warm: #f8f9fa;
 
   --color-ink: #1a1518;
   --color-ink-soft: #565153;
@@ -24,8 +23,8 @@
   --color-hairline: #e5e1dc;
 
   /* Tipografías */
-  --font-sans: 'Josefin Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --font-display: 'Cormorant Garamond', 'Belgiano Serif', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   /* Radios — más generosos que la PWA (sitio = más editorial) */
   --radius-xs: 4px;
@@ -68,17 +67,18 @@ body {
   color: white;
 }
 
-/* Tipografía editorial — display siempre con serif premium */
+/* Tipografía — display con Inter (sans), sin look serif/itálico */
 h1, h2, h3, .display {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  font-style: normal;
+  letter-spacing: -0.022em;
   line-height: 1.1;
 }
 
 h1 {
   font-size: clamp(2.5rem, 6vw + 1rem, 5.5rem);
-  font-weight: 500;
+  font-weight: 700;
 }
 
 h2 {

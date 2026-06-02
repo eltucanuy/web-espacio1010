@@ -11,7 +11,7 @@ export const SITE = {
   url: 'https://www.espacio1010.uy',
   tagline: 'Tu consultorio sin complicaciones',
   description:
-    'Espacios boutique por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo en pleno Cordón, Montevideo. Reservá online, autogestión total, 24/7.',
+    'Espacios boutique por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo entre Palermo y Parque Rodó, Montevideo. Reservá online, autogestión total, 24/7.',
   locale: 'es_UY',
   // Subdominio operativo de la PWA de reservas — el "Reservar ahora" apunta acá.
   agendaUrl: 'https://agenda.espacio1010.uy',
@@ -20,10 +20,10 @@ export const SITE = {
 export const ADDRESS = {
   street: 'Gaboto 1010',
   betweenStreets: 'entre Isla de Flores y San Salvador',
-  neighborhood: 'Cordón',
+  neighborhood: 'Parque Rodó',
   city: 'Montevideo',
   country: 'Uruguay',
-  postalCode: '11200', // Cordón sur aprox — confirmar con Rafa
+  postalCode: '11200', // límite Palermo / Parque Rodó aprox — confirmar con Rafa
   // Coordenadas aproximadas Gaboto 1010 — verificar con Google Maps real antes del launch.
   lat: -34.9094,
   lng: -56.1834,
@@ -31,21 +31,19 @@ export const ADDRESS = {
 } as const;
 
 export const CONTACT = {
-  // TBD — cuando Rafa confirme las dos líneas de WhatsApp (atención humana + Twilio).
-  // Por ahora apunta a un placeholder. NO publicar hasta tener el real.
-  whatsappLeads: '+59891000000',
-  whatsappLeadsDisplay: '091 000 000',
+  // WhatsApp real de atención / leads.
+  whatsappLeads: '+59899001303',
+  whatsappLeadsDisplay: '099 001 303',
   // Email de contacto general.
   email: 'hola@espacio1010.uy',
   // Pre-construido el link wa.me — sumamos texto base.
   whatsappLink: (msg = 'Hola, quiero saber más sobre Espacio 1010.') =>
-    `https://wa.me/59891000000?text=${encodeURIComponent(msg)}`,
+    `https://wa.me/59899001303?text=${encodeURIComponent(msg)}`,
 } as const;
 
 export const SOCIAL = {
-  // TBD — confirmar handle real de Instagram cuando exista.
-  instagram: 'https://instagram.com/espacio1010',
-  instagramHandle: '@espacio1010',
+  instagram: 'https://www.instagram.com/espacio1010.uy/',
+  instagramHandle: '@espacio1010.uy',
 } as const;
 
 export const HOURS = {
@@ -193,8 +191,8 @@ export const ESPACIOS: Espacio[] = [
   },
   {
     id: 'sala-subsuelo',
-    nombre: 'Sala Subsuelo',
-    resumen: 'La gran sala del edificio. Sin columnas, configuración libre.',
+    nombre: 'Sala Arcos',
+    resumen: 'La gran sala del edificio, en el subsuelo. Sin columnas, configuración libre.',
     capacidad: '20 a 30 personas',
     amueblado: 'versatil',
     metros: 60,

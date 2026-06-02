@@ -1,0 +1,139 @@
+---
+/**
+ * LandingLayout — layout de la landing de producción (home).
+ *
+ * Diferencias con BaseLayout:
+ *  - SIN menú de navegación (las páginas internas no se exponen todavía).
+ *  - Tipografía Inter self-host (@fontsource), alineada a la app agenda.espacio1010.uy.
+ *  - Superficies blanco/gris (override de tokens solo en páginas con este layout).
+ *  - Footer mínimo (sin links internos), botón flotante de WhatsApp, GTM + Plausible.
+ *
+ * Cuando reconstruyamos las páginas internas (Fase D) promovemos estos tokens a global.
+ */
+import '@fontsource/inter/400.css';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import '@fontsource/inter/700.css';
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import Analytics from '../components/Analytics.astro';
+import Enhancements from '../components/Enhancements.astro';
+import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import { SITE, CONTACT, SOCIAL } from '../lib/site';
+import { localBusinessSchema } from '../lib/schema';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  ogSlug?: string;
+  noindex?: boolean;
+  canonical?: string;
+}
+
+const {
+  title,
+  description = SITE.description,
+  image,
+  ogSlug,
+  noindex = false,
+  canonical,
+} = Astro.props;
+
+const resolvedImage = image ?? (ogSlug ? `/og/${ogSlug}.png` : '/og-image.png');
+const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
+const imageUrl = resolvedImage.startsWith('http')
+  ? resolvedImage
+  : new URL(resolvedImage, SITE.url).toString();
+const schemaBusiness = localBusinessSchema(imageUrl);
+const gtmId = import.meta.env.PUBLIC_GTM_ID as string | undefined;
+const year = 2026;
+---
+
+<!doctype html>
+<html lang="es-UY">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_UY" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={imageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+
+    <meta name="theme-color" content="#111111" />
+    <link rel="icon" type="image/svg+xml" href="/isotipo.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBusiness)} />
+
+    <Analytics />
+    <slot name="head" />
+    <ClientRouter />
+
+    <!-- Tema de la landing: Inter + superficies claras (solo en páginas con este layout). -->
+    <style is:global>
+      :root {
+        --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+        --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      }
+      body { background: #ffffff; }
+      h1, h2, h3 { font-weight: 600; letter-spacing: -0.022em; font-style: normal; }
+      h1 { font-weight: 700; line-height: 1.08; }
+    </style>
+  </head>
+
+  <body class="min-h-dvh flex flex-col">
+    {gtmId && (
+      <noscript>
+        <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style="display:none;visibility:hidden"></iframe>
+      </noscript>
+    )}
+
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:rounded focus:bg-terracota focus:px-4 focus:py-2 focus:text-white">
+      Saltar al contenido
+    </a>
+
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Footer mínimo: sin links internos mientras promocionamos solo con la landing. -->
+    <footer class="border-t border-hairline bg-white">
+      <div class="mx-auto flex w-full max-w-6xl flex-col items-center gap-3 px-5 py-10 text-center sm:flex-row sm:justify-between sm:text-left">
+        <div>
+          <img src="/logo.svg" alt="Espacio 1010" width="150" height="57" class="mx-auto h-9 w-auto sm:mx-0" />
+          <p class="mt-2 text-sm text-ink-muted">Gaboto 1010, entre Palermo y Parque Rodó · Montevideo</p>
+        </div>
+        <div class="flex flex-col items-center gap-1.5 text-sm sm:items-end">
+          <a href={CONTACT.whatsappLink()} target="_blank" rel="noopener noreferrer" class="font-medium text-terracota hover:underline">
+            WhatsApp {CONTACT.whatsappLeadsDisplay}
+          </a>
+          <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" class="text-ink-soft hover:text-ink hover:underline">
+            Instagram {SOCIAL.instagramHandle}
+          </a>
+          <a href="/privacidad" class="text-ink-muted hover:text-ink hover:underline">Política de privacidad</a>
+          <p class="mt-1 text-xs text-ink-muted">© {year} Espacio 1010</p>
+        </div>
+      </div>
+    </footer>
+
+    <FloatingWhatsApp />
+    <Enhancements />
+  </body>
+</html>

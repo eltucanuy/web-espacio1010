@@ -35,13 +35,32 @@ const pasos = [
   { n: '04', t: 'Entrás con tu código', d: 'Tu código personal abre las puertas 24/7. Llegás y atendés, con todo a punto.' },
 ];
 
+// Diferenciales de mayor peso → banda destacada (contraste oscuro, jerarquía visual).
+const destacados = [
+  { t: 'Confiamos en vos desde el día 1', d: 'Empezás sin poner plata: probás el espacio y pagás recién a mes vencido, sin tarjeta. Te abrimos cuenta corriente apenas creás tu cuenta.', icon: 'wallet' },
+  { t: 'Acceso 24/7', d: 'Tu código personal abre las puertas cualquier día, a cualquier hora. Vos manejás tus tiempos.', icon: 'lock' },
+  { t: 'Precio único y claro', d: `$${PRECIO_HORA} la hora, todos los consultorios. Sin letra chica ni costos de gestión escondidos.`, icon: 'tag' },
+];
+
+// Beneficios secundarios → cards livianas.
 const valores = [
   { t: 'Agenda en tu celular', d: 'Disponibilidad real de los 12 espacios. Reservás en menos de un minuto, sin esperar respuesta de nadie.', icon: 'calendar' },
-  { t: 'Acceso 24/7', d: 'Tu código personal abre las puertas cualquier día, a cualquier hora. Vos manejás tus tiempos.', icon: 'lock' },
-  { t: 'Te fiamos desde el día 1', d: 'Pagás a mes vencido, sin tarjeta. Te damos cuenta corriente apenas creás tu cuenta.', icon: 'wallet' },
-  { t: 'Cancelaciones flexibles', d: 'Con 24 h no pagás nada; dentro de las 24 h te bonificamos el 50%. La misma flexibilidad que tus pacientes tienen con vos.', icon: 'shield' },
   { t: 'Descuentos por volumen', d: 'A más horas por mes, mejor tarifa. Se ajusta solo y lo ves en tu liquidación.', icon: 'trend' },
-  { t: 'Precio único y claro', d: `$${PRECIO_HORA} la hora, todos los consultorios. Sin letra chica ni costos de gestión escondidos.`, icon: 'tag' },
+];
+
+// Política de cancelación → solo los dos tramos en positivo (no comunicamos el cobro de última hora).
+const cancelacion = [
+  { cuando: 'Hasta 24 h antes', que: 'Cancelás gratis', detalle: 'No pagás nada. Tu hora vuelve a quedar disponible.', destacado: true },
+  { cuando: 'Hasta 1 h antes', que: 'Pagás solo el 50%', detalle: 'Tu día cambió sobre la hora: cubrís la mitad, no la hora entera.', destacado: false },
+];
+
+// Seguridad — solo lo confirmado. El framing convierte la libertad 24/7 en tranquilidad.
+const seguridad = [
+  { t: 'Edificio siempre cerrado', d: 'La puerta cierra y traba sola. Solo entra quien tiene código: nadie circula sin acceso.', icon: 'lock' },
+  { t: 'Tu código es solo tuyo', d: 'Acceso personal con registro de cada entrada y horario. Queda claro quién entra y cuándo.', icon: 'shield' },
+  { t: 'Vos controlás quién entra a tu sesión', d: 'Tus pacientes tocan timbre y vos les abrís por videoportero. Nadie pasa sin que vos lo recibas.', icon: 'bell' },
+  { t: 'Cámaras en accesos y pasillos', d: 'La entrada y los pasillos tienen cámaras de seguridad. Las zonas comunes están vigiladas.', icon: 'camera' },
+  { t: 'Entrada y cuadra iluminadas', d: 'Llegás y te vas con buena iluminación, en el acceso y en la cuadra, también de noche.', icon: 'bulb' },
 ];
 
 const espacios = [
@@ -62,6 +81,9 @@ const iconPaths: Record<string, string> = {
   desk: '<path d="M3 7h18M5 7v13M19 7v13M4 12h7"/><rect x="13" y="11" width="7" height="5" rx="1"/>',
   chair: '<path d="M6 4v8h12V4M5 12h14M8 19l1-7M16 19l-1-7"/>',
   group: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20a6 6 0 0 1 12 0M15 20a5 5 0 0 1 6-3.5"/>',
+  bell: '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/>',
+  camera: '<path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>',
+  bulb: '<path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1V18h6v-1.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/>',
 };
 ---
 
@@ -70,7 +92,7 @@ const iconPaths: Record<string, string> = {
   description="Espacio 1010: 12 consultorios y salas boutique que alquilás por hora, entre Palermo y Parque Rodó, Montevideo. Pre-registrate ahora y asegurá tu primera hora gratis para usar durante todo 2026."
 >
   <!-- ════════════════════ HERO ════════════════════ -->
-  <section class="relative overflow-hidden text-white">
+  <section id="hero" class="relative overflow-hidden text-white">
     <img src="/fotos/fachada.jpg" alt="Fachada del edificio de Espacio 1010, entre Palermo y Parque Rodó" class="absolute inset-0 -z-20 h-full w-full object-cover" fetchpriority="high" decoding="async" />
     <div class="absolute inset-0 -z-10 bg-gradient-to-br from-ink/92 via-ink/85 to-ink/70"></div>
     <div class="absolute -right-32 -top-24 -z-10 h-[420px] w-[420px] rounded-full opacity-40 blur-3xl" style="background: radial-gradient(circle, #9e4e42 0%, transparent 70%);" aria-hidden="true"></div>
@@ -94,9 +116,15 @@ const iconPaths: Record<string, string> = {
           </p>
 
           <h1 class="mt-7 text-balance text-white">
-            Tu agenda en el celular.
+            Alquilá tu consultorio por hora, sin costos fijos.
             <span class="block text-terracota-light">Tu primera hora, gratis.</span>
           </h1>
+
+          <ul class="mt-5 flex flex-wrap gap-2" aria-label="Para quién es Espacio 1010">
+            {['Psicología', 'Psiquiatría', 'Psicopedagogía', 'Nutrición', 'Yoga y meditación', 'Talleres'].map((n) => (
+              <li class="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/85 backdrop-blur-sm">{n}</li>
+            ))}
+          </ul>
 
           <p class="mt-5 max-w-xl text-base leading-relaxed text-white/80 text-pretty">
             <strong class="font-semibold text-white">Registrate ahora</strong> y tu primera hora queda
@@ -109,6 +137,7 @@ const iconPaths: Record<string, string> = {
               Quiero mi primera hora gratis
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </a>
+            <p class="mt-3 text-xs text-white/70">Sin tarjeta · sin permanencia · no pagás nada hasta reservar</p>
           </div>
         </div>
 
@@ -150,6 +179,12 @@ const iconPaths: Record<string, string> = {
           </div>
         ))}
       </div>
+      <div class="mt-12 text-center">
+        <a href="#registro" class="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terracota px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-terracota-light">
+          Quiero mi primera hora gratis
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </Container>
   </section>
 
@@ -161,7 +196,21 @@ const iconPaths: Record<string, string> = {
         <h2 class="text-3xl text-ink sm:text-4xl">Pensado para que digas que sí.</h2>
         <p class="mt-5 text-lg leading-relaxed text-ink-soft text-pretty">Nada de idas y vueltas, ni horarios rígidos, ni extras escondidos. La tecnología desaparece y vos te dedicás a lo que importa.</p>
       </div>
-      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+      <!-- Banda destacada: los 3 diferenciales de mayor peso, con contraste oscuro -->
+      <div class="mt-12 grid overflow-hidden rounded-3xl bg-ink text-white shadow-[var(--shadow-md)] divide-y divide-white/10 sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
+        {destacados.map((d) => (
+          <div class="flex flex-col gap-3 p-7 sm:p-8">
+            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-terracota/25 text-terracota-light">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[d.icon]} />
+            </span>
+            <h3 class="text-lg text-white">{d.t}</h3>
+            <p class="text-sm leading-relaxed text-white/70">{d.d}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="mx-auto mt-4 grid max-w-3xl gap-4 sm:grid-cols-2">
         {valores.map((v) => (
           <div class="rounded-2xl border border-hairline bg-white p-6 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-md)]">
             <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
@@ -172,6 +221,57 @@ const iconPaths: Record<string, string> = {
           </div>
         ))}
       </div>
+      <div class="mt-12 text-center">
+        <a href="#registro" class="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terracota px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-terracota-light">
+          Quiero mi primera hora gratis
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ════════════════════ SEGURIDAD ════════════════════ -->
+  <section class="bg-ink py-16 text-white sm:py-24">
+    <Container>
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota-light">Seguridad</p>
+        <h2 class="text-3xl sm:text-4xl">Entrás tranquila, incluso de noche.</h2>
+        <p class="mt-5 text-lg leading-relaxed text-white/70 text-pretty">El acceso 24/7 es libertad — y también tranquilidad. El edificio cuida quién entra, para que vos te ocupes solo de tu sesión.</p>
+      </div>
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {seguridad.map((s) => (
+          <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota/25 text-terracota-light">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[s.icon]} />
+            </span>
+            <h3 class="mt-5 text-lg text-white">{s.t}</h3>
+            <p class="mt-2 text-sm leading-relaxed text-white/65">{s.d}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- ════════════════════ CANCELACIÓN ════════════════════ -->
+  <section class="bg-[#f8f9fa] py-16 sm:py-24">
+    <Container>
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">Cancelación</p>
+        <h2 class="text-3xl text-ink sm:text-4xl">A vos también te cancelan. Acá no lo pagás.</h2>
+        <p class="mt-5 text-lg leading-relaxed text-ink-soft text-pretty">Tu semana cambia, y lo entendemos. Cancelás con la misma flexibilidad que vos les das a tus pacientes — sin penalización y sin letra chica.</p>
+      </div>
+      <div class="mx-auto mt-12 grid max-w-3xl gap-4 sm:grid-cols-2">
+        {cancelacion.map((c) => (
+          <div class={`rounded-2xl p-6 ${c.destacado ? 'border-2 border-terracota bg-terracota-tint' : 'border border-hairline bg-white'}`}>
+            <p class={`text-xs font-semibold uppercase tracking-wider ${c.destacado ? 'text-terracota' : 'text-ink-muted'}`}>{c.cuando}</p>
+            <p class="mt-2 text-2xl font-bold text-ink">{c.que}</p>
+            <p class="mt-2 text-sm leading-relaxed text-ink-soft">{c.detalle}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mx-auto mt-8 max-w-2xl text-center text-sm text-ink-soft">
+        ¿Tenés día y hora fijos cada semana? Tus reservas fijas incluyen <strong class="font-semibold text-ink">cancelaciones sin cargo todos los meses</strong>.
+      </p>
     </Container>
   </section>
 
@@ -197,6 +297,12 @@ const iconPaths: Record<string, string> = {
         ))}
       </div>
       <p class="mt-8 text-center text-sm text-ink-muted">Fotos reales de cada espacio, muy pronto.</p>
+      <div class="mt-10 text-center">
+        <a href="#registro" class="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terracota px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-terracota-light">
+          Quiero mi primera hora gratis
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
     </Container>
   </section>
 
@@ -204,7 +310,7 @@ const iconPaths: Record<string, string> = {
   <section id="registro" class="scroll-mt-16 bg-[#f8f9fa] py-16 sm:py-24">
     <Container size="narrow">
       <div class="mx-auto max-w-md">
-        <div class="text-center">
+        <div id="registro-intro" class="text-center">
           <h2 class="text-3xl text-ink sm:text-4xl">Pre-registrate gratis</h2>
           <p class="mt-3 text-base leading-relaxed text-ink-soft">Asegurá tu primera hora gratis para usarla cuando quieras durante 2026.</p>
         </div>
@@ -230,7 +336,7 @@ const iconPaths: Record<string, string> = {
 
           <label class="flex items-start gap-2.5 text-xs leading-relaxed text-ink-soft">
             <input id="f-consent" type="checkbox" required checked class="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#9e4e42]" />
-            <span>Acepto que me contacten por WhatsApp y la <a href="/privacidad" class="text-terracota underline-offset-2 hover:underline">política de privacidad</a>.</span>
+            <span>Quiero que me avisen por WhatsApp cuando abran y me guarden mi hora. Acepto la <a href="/privacidad" class="text-terracota underline-offset-2 hover:underline">política de privacidad</a>.</span>
           </label>
 
           <p id="f-error" class="hidden text-xs text-[#C0392B]"></p>
@@ -239,12 +345,73 @@ const iconPaths: Record<string, string> = {
             Quiero mi primera hora gratis
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
           </button>
+          <p class="text-center text-xs text-ink-soft">Sin tarjeta · sin permanencia · no pagás nada hasta reservar</p>
           <p class="text-center text-[11px] text-ink-muted">Te llevamos a crear tu cuenta con la hora gratis ya cargada.</p>
         </form>
+
+        <!-- Pantalla de pre-registro exitoso: confirma + explica el paso 2 + redirige sola -->
+        <div id="preregistro-exito" class="hidden rounded-2xl border border-hairline bg-white p-8 text-center shadow-[var(--shadow-md)]">
+          <span class="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-terracota-tint text-terracota">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+          </span>
+          <h3 class="mt-5 text-2xl text-ink">¡Listo<span id="exito-nombre"></span>! Tu pre-registro está hecho.</h3>
+          <p class="mt-3 text-base leading-relaxed text-ink-soft">Te estamos llevando a completar tu registro y activar tu <strong class="font-semibold text-ink">primera hora gratis</strong>. Son 30 segundos más.</p>
+          <div class="mt-5 flex items-center justify-center gap-2 text-sm text-ink-muted">
+            <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56" stroke-linecap="round" /></svg>
+            Redirigiéndote…
+          </div>
+          <a id="exito-continuar" href="#" class="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terracota px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-terracota-light">
+            Continuar ahora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </a>
+        </div>
       </div>
     </Container>
   </section>
+
+  <!-- ════════════════════ BARRA CTA STICKY (solo mobile) ════════════════════ -->
+  <div
+    id="sticky-cta"
+    class="fixed inset-x-0 bottom-0 z-30 border-t border-hairline bg-white/95 px-4 pt-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-6px_24px_-10px_rgba(0,0,0,0.25)] backdrop-blur-sm transition-transform duration-300 sm:hidden"
+    style="transform: translateY(120%);"
+  >
+    <a href="#registro" class="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-terracota text-sm font-semibold text-white">
+      Quiero mi primera hora gratis
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
 </LandingLayout>
+
+<script>
+  // Barra CTA sticky en mobile: aparece al salir del hero y se esconde cuando el
+  // form de registro entra en pantalla (para no duplicar el botón). Empuja el botón
+  // flotante de WhatsApp hacia arriba mientras está visible, solo en mobile.
+  const bar = document.getElementById('sticky-cta');
+  const hero = document.getElementById('hero');
+  const registro = document.getElementById('registro');
+  const wa = document.querySelector<HTMLElement>('[data-floating-wa]');
+  const isMobile = () => window.matchMedia('(max-width: 639px)').matches;
+
+  let pastHero = false;
+  let registroVisible = false;
+
+  const apply = () => {
+    const show = pastHero && !registroVisible;
+    if (bar) bar.style.transform = show ? 'translateY(0)' : 'translateY(120%)';
+    if (wa) wa.style.bottom = show && isMobile() ? '5.75rem' : '';
+  };
+
+  if (bar && hero && registro) {
+    new IntersectionObserver(
+      (entries) => { entries.forEach((e) => { pastHero = !e.isIntersecting; }); apply(); },
+      { threshold: 0.1 }
+    ).observe(hero);
+    new IntersectionObserver(
+      (entries) => { entries.forEach((e) => { registroVisible = e.isIntersecting; }); apply(); },
+      { threshold: 0.1 }
+    ).observe(registro);
+  }
+</script>
 
 <script>
   import { createClient } from '@supabase/supabase-js';
@@ -304,8 +471,24 @@ const iconPaths: Record<string, string> = {
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({ event: 'lead_preregistro' });
 
-    // Redirige a la PWA con cupón + campos precargados.
+    // Destino: la PWA con cupón + campos precargados.
     const q = new URLSearchParams({ nombre, apellido, telefono });
-    setTimeout(() => { location.href = `${CUPON_URL}?${q.toString()}`; }, 250);
+    const destino = `${CUPON_URL}?${q.toString()}`;
+
+    // Pantalla de éxito: confirma el pre-registro y explica el paso 2 antes de redirigir.
+    const intro = document.getElementById('registro-intro');
+    const exito = document.getElementById('preregistro-exito');
+    const nombreEl = document.getElementById('exito-nombre');
+    const continuar = document.getElementById('exito-continuar') as HTMLAnchorElement | null;
+
+    if (nombreEl && nombre) nombreEl.textContent = `, ${nombre}`;
+    if (continuar) continuar.href = destino;
+    intro?.classList.add('hidden');
+    form.classList.add('hidden');
+    exito?.classList.remove('hidden');
+    exito?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Redirige sola tras unos segundos (el botón "Continuar ahora" permite adelantarlo).
+    setTimeout(() => { location.href = destino; }, 3000);
   });
 </script>

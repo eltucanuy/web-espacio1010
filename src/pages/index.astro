@@ -63,7 +63,7 @@ const seguridadPills = [
 const testimonios = [
   {
     texto: 'Lo fui a ver y me alegró un montón. Es un lugar generoso —mucha luz, espacios grandes—, de esos donde dan ganas de quedarse a trabajar.',
-    nombre: 'Gastón', rol: 'Instructor del Bach Centre', edad: 50, inicial: 'G',
+    nombre: 'Gastón', rol: 'Instructor del Bach Centre', edad: 63, inicial: 'G',
   },
   {
     texto: 'Es justo la vuelta que estaba buscando. Coordinar agenda con los pacientes siempre fue un ida y vuelta eterno; con esto voy a poder reservar todo desde el celular, cuando quiera, sin depender de nadie. Simple y rápido.',
@@ -323,8 +323,8 @@ const iconPaths: Record<string, string> = {
             <figcaption class="mt-6 flex items-center gap-3">
               <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-terracota/25 text-sm font-semibold text-terracota-light">{t.inicial}</span>
               <div>
-                <p class="text-sm font-semibold text-white">{t.nombre}</p>
-                <p class="text-xs text-white/55">{t.rol} · {t.edad}</p>
+                <p class="text-sm font-semibold text-white">{t.nombre}, {t.edad} años</p>
+                <p class="text-xs text-white/55">{t.rol}</p>
               </div>
             </figcaption>
           </figure>

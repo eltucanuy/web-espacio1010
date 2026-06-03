@@ -43,12 +43,12 @@ const nivel2 = [
 ];
 
 const nivel3 = [
-  { t: 'Precio único y claro', d: `$${PRECIO_HORA} la hora, sin costos escondidos.`, icon: 'tag' },
-  { t: 'Descuentos por volumen', d: 'A más horas por mes, mejor tarifa.', icon: 'trend' },
-  { t: 'Cocina y sala de estar sin cargo', d: 'Para vos y para tus pacientes.', icon: 'coffee' },
-  { t: 'Estacionamiento fácil', d: 'En la zona y sin parquímetro.', icon: 'car' },
-  { t: 'Bien conectado en bus', d: 'Líneas troncales a pocas cuadras.', icon: 'bus' },
-  { t: 'Edificio reciclado a nuevo', d: 'Atendés en un lugar con prestigio.', icon: 'sparkle' },
+  { t: `Precio único: $${PRECIO_HORA}/h`, icon: 'tag' },
+  { t: 'Descuentos por volumen', icon: 'trend' },
+  { t: 'Cocina y sala sin cargo', icon: 'coffee' },
+  { t: 'Estacionamiento sin parquímetro', icon: 'car' },
+  { t: 'Bien conectado en bus', icon: 'bus' },
+  { t: 'Edificio reciclado a nuevo', icon: 'sparkle' },
 ];
 
 // Seguridad — comprimida a un bloque chico de etiquetas (solo lo confirmado).
@@ -204,17 +204,14 @@ const iconPaths: Record<string, string> = {
         ))}
       </div>
 
-      <!-- Nivel 3: el resto, compacto (2 columnas en mobile) -->
-      <div class="mt-4 grid grid-cols-2 gap-3 lg:grid-cols-3">
+      <!-- Nivel 3: el resto, en filas compactas (ícono + etiqueta corta) -->
+      <div class="mt-4 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
         {nivel3.map((v) => (
-          <div class="flex items-start gap-3 rounded-xl border border-hairline bg-white p-4">
-            <span class="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-terracota-tint text-terracota">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[v.icon]} />
+          <div class="flex items-center gap-3 rounded-xl border border-hairline bg-white px-4 py-3">
+            <span class="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-terracota-tint text-terracota">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[v.icon]} />
             </span>
-            <div>
-              <h4 class="text-sm font-semibold text-ink">{v.t}</h4>
-              <p class="mt-0.5 text-xs leading-snug text-ink-soft">{v.d}</p>
-            </div>
+            <span class="text-sm font-medium leading-snug text-ink">{v.t}</span>
           </div>
         ))}
       </div>
@@ -321,15 +318,18 @@ const iconPaths: Record<string, string> = {
   <section class="bg-ink py-16 text-white sm:py-24">
     <Container>
       <div class="mx-auto max-w-2xl text-center">
-        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota-light">Testimonios</p>
-        <h2 class="text-3xl sm:text-4xl">Lo que dicen quienes ya lo conocieron.</h2>
-        <p class="mt-5 text-lg leading-relaxed text-white/70 text-pretty">Terapeutas de distintas ramas que vinieron, lo vivieron y eligieron 1010.</p>
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota-light">Nuestros primeros profesionales</p>
+        <h2 class="text-3xl sm:text-4xl">Nos eligieron antes de abrir.</h2>
+        <p class="mt-5 text-lg leading-relaxed text-white/70 text-pretty">Conocieron el espacio, les gustó y ya aseguraron sus horarios para la apertura. Que confíen antes de que abramos las puertas, para nosotros es un honor.</p>
       </div>
       <div class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
         {testimonios.map((t) => (
           <figure class="flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-7">
-            <span class="font-display text-5xl leading-none text-terracota-light/40" aria-hidden="true">&ldquo;</span>
-            <blockquote class="-mt-3 flex-1 text-base leading-relaxed text-white/85 text-pretty">{t.texto}</blockquote>
+            <span class="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-terracota/20 px-3 py-1 text-[11px] font-medium text-terracota-light">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+              Ya reservó para la apertura
+            </span>
+            <blockquote class="flex-1 text-base leading-relaxed text-white/85 text-pretty">{t.texto}</blockquote>
             <figcaption class="mt-6 flex items-center gap-3">
               <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-terracota/25 text-sm font-semibold text-terracota-light">{t.inicial}</span>
               <div>

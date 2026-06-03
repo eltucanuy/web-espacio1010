@@ -60,6 +60,26 @@ const seguridadPills = [
   'Bien iluminado',
 ];
 
+// Testimonios reales, aprobados por cada persona (prueba social).
+const testimonios = [
+  {
+    texto: 'Lo fui a ver y me alegró un montón. Es un lugar generoso —mucha luz, espacios grandes—, de esos donde dan ganas de quedarse a trabajar.',
+    nombre: 'Gastón Laffitte', rol: 'Instructor del Bach Centre', edad: 50, inicial: 'G',
+  },
+  {
+    texto: 'Lo que más me cambió es no depender de nadie para organizarme. Antes era un ida y vuelta eterno para coordinar agenda con los pacientes; ahora entro desde el celular, reservo cuando quiero y listo. Simple y rápido.',
+    nombre: 'Claudia Zerpa', rol: 'Psicóloga', edad: 36, inicial: 'C',
+  },
+  {
+    texto: 'Para lo que hago necesito de todo: a veces un grupo grande, a veces algo más chico, a veces una consulta sola. Tener todo en un mismo lugar me resuelve la vida. Y poder trabajar un fin de semana o bien temprano a la mañana, para mí no tiene precio.',
+    nombre: 'Patricia', rol: 'Consteladora familiar', edad: 62, inicial: 'P',
+  },
+  {
+    texto: 'Trabajo con grupos chicos y acá armo el espacio como quiero, con colchonetas y todo, pagando como un individual y no como un salón. Eso para mí es un montón. Y encima el edificio es divino, toda esa madera original tiene una historia.',
+    nombre: 'Maite Atchugarry', rol: 'Método Feldenkrais', edad: 39, inicial: 'M',
+  },
+];
+
 const espacios = [
   { nombre: 'Consultorios acogedores', nota: 'Psicología · psiquiatría', cap: '2 personas', precio: PRECIO_HORA, icon: 'sofa' },
   { nombre: 'Escritorios luminosos', nota: 'Nutrición · consulta clínica', cap: '2 a 3 personas', precio: PRECIO_HORA, icon: 'desk' },
@@ -293,6 +313,32 @@ const iconPaths: Record<string, string> = {
             <li class="rounded-full border border-hairline bg-white px-3 py-1.5 text-xs font-medium text-ink-soft">{s}</li>
           ))}
         </ul>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ════════════════════ TESTIMONIOS (prueba social) ════════════════════ -->
+  <section class="bg-ink py-16 text-white sm:py-24">
+    <Container>
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota-light">Testimonios</p>
+        <h2 class="text-3xl sm:text-4xl">Lo que dicen quienes ya lo conocieron.</h2>
+        <p class="mt-5 text-lg leading-relaxed text-white/70 text-pretty">Terapeutas de distintas ramas que vinieron, lo vivieron y eligieron 1010.</p>
+      </div>
+      <div class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
+        {testimonios.map((t) => (
+          <figure class="flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-7">
+            <span class="font-display text-5xl leading-none text-terracota-light/40" aria-hidden="true">&ldquo;</span>
+            <blockquote class="-mt-3 flex-1 text-base leading-relaxed text-white/85 text-pretty">{t.texto}</blockquote>
+            <figcaption class="mt-6 flex items-center gap-3">
+              <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-terracota/25 text-sm font-semibold text-terracota-light">{t.inicial}</span>
+              <div>
+                <p class="text-sm font-semibold text-white">{t.nombre}</p>
+                <p class="text-xs text-white/55">{t.rol} · {t.edad}</p>
+              </div>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </Container>
   </section>

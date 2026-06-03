@@ -53,11 +53,11 @@ const nivel3 = [
 
 // Seguridad — comprimida a un bloque chico de etiquetas (solo lo confirmado).
 const seguridadPills = [
-  'Edificio siempre cerrado',
-  'Código personal con registro',
-  'Cámaras en accesos y pasillos',
-  'Vos abrís por videoportero',
-  'Entrada y cuadra iluminadas',
+  'Cerrado 24/7',
+  'Código con registro',
+  'Cámaras',
+  'Videoportero',
+  'Bien iluminado',
 ];
 
 const espacios = [
@@ -340,21 +340,23 @@ const iconPaths: Record<string, string> = {
           <p class="text-center text-[11px] text-ink-muted">Te llevamos a crear tu cuenta con la hora gratis ya cargada.</p>
         </form>
 
-        <!-- Pantalla de pre-registro exitoso: confirma + explica el paso 2 + redirige sola -->
-        <div id="preregistro-exito" class="hidden rounded-2xl border border-hairline bg-white p-8 text-center shadow-[var(--shadow-md)]">
-          <span class="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-full bg-terracota-tint text-terracota">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
-          </span>
-          <h3 class="mt-5 text-2xl text-ink">¡Listo<span id="exito-nombre"></span>! Tu pre-registro está hecho.</h3>
-          <p class="mt-3 text-base leading-relaxed text-ink-soft">Te estamos llevando a completar tu registro y activar tu <strong class="font-semibold text-ink">primera hora gratis</strong>. Son 30 segundos más.</p>
-          <div class="mt-5 flex items-center justify-center gap-2 text-sm text-ink-muted">
-            <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56" stroke-linecap="round" /></svg>
-            Redirigiéndote…
+        <!-- Pantalla de pre-registro exitoso: overlay a pantalla completa, instantáneo -->
+        <div id="preregistro-exito" class="fixed inset-0 z-[70] flex items-center justify-center bg-white px-6" style="display:none">
+          <div class="w-full max-w-md text-center">
+            <span class="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-terracota-tint text-terracota">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+            </span>
+            <h3 class="mt-6 text-2xl text-ink sm:text-3xl">¡Listo<span id="exito-nombre"></span>! Tu pre-registro está hecho.</h3>
+            <p class="mt-3 text-base leading-relaxed text-ink-soft">Te estamos llevando a completar tu registro y activar tu <strong class="font-semibold text-ink">primera hora gratis</strong>. Son 30 segundos más.</p>
+            <div class="mt-6 flex items-center justify-center gap-2 text-sm text-ink-muted">
+              <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56" stroke-linecap="round" /></svg>
+              Redirigiéndote…
+            </div>
+            <a id="exito-continuar" href="#" class="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terracota px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-terracota-light">
+              Continuar ahora
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </a>
           </div>
-          <a id="exito-continuar" href="#" class="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terracota px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-terracota-light">
-            Continuar ahora
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
-          </a>
         </div>
       </div>
     </Container>
@@ -427,13 +429,19 @@ const iconPaths: Record<string, string> = {
     const nombre = (form.querySelector('[name="nombre"]') as HTMLInputElement).value.trim();
     const apellido = (form.querySelector('[name="apellido"]') as HTMLInputElement).value.trim();
     const telRaw = (form.querySelector('[name="telefono"]') as HTMLInputElement).value;
-    const telefono = telRaw.replace(/\D/g, '');
+    let telefono = telRaw.replace(/\D/g, '');
+    if (telefono.startsWith('598')) telefono = telefono.slice(3); // por si ponen el código de país
+    const telOk = /^09\d{7}$/.test(telefono); // celular uruguayo: 09 + 7 dígitos
     const consent = (document.getElementById('f-consent') as HTMLInputElement)?.checked;
 
     if (errorEl) { errorEl.classList.add('hidden'); errorEl.textContent = ''; }
 
-    if (!nombre || !apellido || telefono.length < 6) {
-      if (errorEl) { errorEl.textContent = 'Completá nombre, apellido y WhatsApp.'; errorEl.classList.remove('hidden'); }
+    if (!nombre || !apellido) {
+      if (errorEl) { errorEl.textContent = 'Completá nombre y apellido.'; errorEl.classList.remove('hidden'); }
+      return;
+    }
+    if (!telOk) {
+      if (errorEl) { errorEl.textContent = 'Ingresá un celular uruguayo válido (ej. 099 123 456).'; errorEl.classList.remove('hidden'); }
       return;
     }
     if (!consent) {
@@ -443,7 +451,20 @@ const iconPaths: Record<string, string> = {
 
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Un segundo…'; }
 
-    // UTMs para atribución de campañas.
+    // Destino: la PWA con cupón + campos precargados.
+    const q = new URLSearchParams({ nombre, apellido, telefono });
+    const destino = `${CUPON_URL}?${q.toString()}`;
+
+    // Mostramos el éxito YA (pantalla completa), sin esperar al guardado.
+    const exito = document.getElementById('preregistro-exito');
+    const nombreEl = document.getElementById('exito-nombre');
+    const continuar = document.getElementById('exito-continuar') as HTMLAnchorElement | null;
+    if (nombreEl && nombre) nombreEl.textContent = `, ${nombre}`;
+    if (continuar) continuar.href = destino;
+    if (exito) exito.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+
+    // Guardado del lead + evento de conversión, en paralelo (no bloquean la UX).
     const p = new URLSearchParams(location.search);
     const lead = {
       nombre, apellido, telefono,
@@ -452,32 +473,14 @@ const iconPaths: Record<string, string> = {
       utm_medium: p.get('utm_medium'),
       utm_campaign: p.get('utm_campaign'),
     };
-
     if (supabase) {
-      try { await supabase.from('pre_registros').insert(lead); }
-      catch (err) { /* no bloqueamos la conversión si falla el guardado */ console.warn('lead insert failed', err); }
+      supabase.from('pre_registros').insert(lead).then(
+        () => {},
+        (err: unknown) => console.warn('lead insert failed', err)
+      );
     }
-
-    // Evento de conversión para GTM (Meta Pixel / Google Ads se enganchan a esto).
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({ event: 'lead_preregistro' });
-
-    // Destino: la PWA con cupón + campos precargados.
-    const q = new URLSearchParams({ nombre, apellido, telefono });
-    const destino = `${CUPON_URL}?${q.toString()}`;
-
-    // Pantalla de éxito: confirma el pre-registro y explica el paso 2 antes de redirigir.
-    const intro = document.getElementById('registro-intro');
-    const exito = document.getElementById('preregistro-exito');
-    const nombreEl = document.getElementById('exito-nombre');
-    const continuar = document.getElementById('exito-continuar') as HTMLAnchorElement | null;
-
-    if (nombreEl && nombre) nombreEl.textContent = `, ${nombre}`;
-    if (continuar) continuar.href = destino;
-    intro?.classList.add('hidden');
-    form.classList.add('hidden');
-    exito?.classList.remove('hidden');
-    exito?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
     // Redirige sola tras unos segundos (el botón "Continuar ahora" permite adelantarlo).
     setTimeout(() => { location.href = destino; }, 3000);

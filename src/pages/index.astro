@@ -451,8 +451,16 @@ const iconPaths: Record<string, string> = {
 
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Un segundo…'; }
 
-    // Destino: la PWA con cupón + campos precargados.
+    // Parámetros de la URL actual (UTMs de la campaña, si vino de Ads).
+    const p = new URLSearchParams(location.search);
+
+    // Destino: la PWA con cupón + campos precargados + UTMs reenviadas, para que
+    // la PWA pueda atribuir la "cuenta creada" a la campaña que trajo el lead.
     const q = new URLSearchParams({ nombre, apellido, telefono });
+    for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+      const v = p.get(k);
+      if (v) q.set(k, v);
+    }
     const destino = `${CUPON_URL}?${q.toString()}`;
 
     // Mostramos el éxito YA (pantalla completa), sin esperar al guardado.
@@ -465,7 +473,6 @@ const iconPaths: Record<string, string> = {
     document.body.style.overflow = 'hidden';
 
     // Guardado del lead + evento de conversión, en paralelo (no bloquean la UX).
-    const p = new URLSearchParams(location.search);
     const lead = {
       nombre, apellido, telefono,
       origen: 'landing',

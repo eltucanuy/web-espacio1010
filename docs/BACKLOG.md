@@ -1,5 +1,19 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-06-03 — sesión CRO (leer primero)
+> Sesión de optimización de conversión de la home — ver [`HANDOFF_2026_06_03.md`](./HANDOFF_2026_06_03.md). Se ejecutaron ~10 palancas de conversión + extras, todo en producción.
+>
+> **Resuelto esta sesión (de la lista "diferenciales fuertes sin comunicar" de abajo y del backlog):**
+> - ✅ **Cuenta corriente "te fiamos"** → ahora es un diferencial humanizado ("Confiamos en vos desde el día 1") en "Pensado para que digas que sí".
+> - ✅ **Cancelación de fijas** → bloque protagonista con hook empático ("A vos también te cancelan…") + escalera visual (gratis +24h / 50% hasta 1h) + tope mensual en positivo. **Nota:** se comunica el tope de forma genérica ("cancelaciones sin cargo todos los meses"), sin el número "1 de cada 5"; Rafa confirmó que la fórmula real es 1 de 5.
+> - ✅ **Testimoniales reales** (#8) → 4 profesionales que pre-reservaron, aprobados, con framing de pre-apertura.
+> - ✅ **Floating WhatsApp** (ya estaba) + **barra CTA sticky mobile** nueva.
+> - ✅ Hero, jerarquía visual, seguridad, validación de tel UY, pantalla de éxito full-screen, reenvío de UTMs a la PWA, title/OG alineados.
+>
+> **Sigue pendiente:** fotos reales de los espacios (desbloquean OG con foto + re-OK de testimonios), medición `cuenta_creada` en GTM/Ads (agencia), confirmar 9 vs 12 espacios. Detalle en el handoff §8.
+>
+> ---
+
 > ## 🔄 Actualización 2026-06-02 — leer primero
 > El sitio cambió fuerte esta sesión (ver [`HANDOFF_2026_06_02.md`](./HANDOFF_2026_06_02.md)). La home es ahora una **landing de conversión** con form que guarda leads en Supabase y manda al registro de la PWA con el cupón `BIENVENIDA1010`.
 >

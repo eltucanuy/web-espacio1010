@@ -5,8 +5,9 @@ Sitio de **Espacio 1010** — [www.espacio1010.uy](https://www.espacio1010.uy).
 Edificio centenario reciclado a nuevo en **Gaboto 1010, entre Palermo y Parque Rodó (Montevideo)**, con 12 consultorios y salas boutique que se alquilan por hora. La **home (`/`) es una landing de conversión** cuyo objetivo es el pre-registro; el resto del sitio son páginas de contenido/SEO. La PWA de reservas vive aparte en [`espacio1010`](../espacio1010) y se publica en `agenda.espacio1010.uy`.
 
 > **Lectura obligatoria antes de tocar código:**
-> 1. [`docs/HANDOFF_2026_06_02.md`](./docs/HANDOFF_2026_06_02.md) — estado actual (landing como home, design system, flujo de conversión).
-> 2. [`docs/BACKLOG.md`](./docs/BACKLOG.md) — pendientes priorizados.
+> 1. [`docs/HANDOFF_2026_06_03.md`](./docs/HANDOFF_2026_06_03.md) — **último estado**: sesión de optimización de conversión (CRO) de la home (hero, jerarquía, seguridad, cancelación, testimonios reales, flujo del form).
+> 2. [`docs/HANDOFF_2026_06_02.md`](./docs/HANDOFF_2026_06_02.md) — base: landing como home, design system, flujo de conversión.
+> 3. [`docs/BACKLOG.md`](./docs/BACKLOG.md) — pendientes priorizados.
 
 ## Stack
 
@@ -90,4 +91,4 @@ Ver `.env.example`. Copiá a `.env` para dev y configurá en Vercel para prod.
 
 ## Pendientes
 
-Ver `docs/HANDOFF_2026_06_02.md` §7 y `docs/BACKLOG.md`. En corto: tags dentro de GTM (Meta/Google), fotos reales de los espacios, confirmar 9 vs 12 espacios, coordenadas/postal exactos.
+Ver `docs/HANDOFF_2026_06_03.md` §8 (lo más actual) y `docs/BACKLOG.md`. En corto: **fotos reales** de los espacios (desbloquean OG con foto + re-OK final), **medición `cuenta_creada`** en GTM/Ads (agencia), confirmar 9 vs 12 espacios, y que la fecha exacta de apertura no quede en internas.

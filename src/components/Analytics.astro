@@ -18,6 +18,16 @@
 const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN as string | undefined;
 const gtmId = import.meta.env.PUBLIC_GTM_ID as string | undefined;
 const isProd = import.meta.env.PROD;
+
+// Snippet oficial de GTM. Se arma como string en el frontmatter y se inyecta con
+// set:html: dentro de un <script is:inline> el contenido es texto crudo, así que la
+// sintaxis JSX {`...`} NO se evalúa (dejaría el código atrapado en un template literal
+// que JS descarta). set:html sí evalúa la expresión y mete el JS ejecutable real.
+const gtmSnippet = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${gtmId}');`;
 ---
 
 {
@@ -35,15 +45,7 @@ const isProd = import.meta.env.PROD;
   isProd && gtmId && (
     <Fragment>
       {/* Google Tag Manager — head */}
-      <script is:inline define:vars={{ gtmId }}>
-        {`
-          (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-          })(window,document,'script','dataLayer','${gtmId}');
-        `}
-      </script>
+      <script is:inline set:html={gtmSnippet} />
     </Fragment>
   )
 }

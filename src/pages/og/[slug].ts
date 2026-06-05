@@ -19,7 +19,7 @@ const pages: Record<string, OgPage> = {
   // Landing principal
   home: {
     title: 'Tu consultorio,\nsin complicaciones.',
-    description: 'Espacios boutique por hora para profesionales · Parque Rodó, Montevideo',
+    description: 'Espacios cuidados por hora para profesionales · Parque Rodó, Montevideo',
   },
   // Páginas core
   'los-espacios': {

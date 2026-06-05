@@ -8,18 +8,17 @@
  *
  * Mobile-first: casi todo el tráfico entra desde el celular (una sola columna vertical).
  * La jerarquía se logra con orden + tamaño, no con columnas.
- * Orden: Hero → Pensado para que digas que sí → Los espacios → Cómo funciona → Seguridad → Form.
+ * Orden: Hero → Pensado para que digas que sí → Los espacios → Cómo funciona → Acceso → Testimonios → Dónde estamos → Form.
  */
 import LandingLayout from '../layouts/LandingLayout.astro';
 import Container from '../components/Container.astro';
 import { ADDRESS } from '../lib/site';
 
 const PRECIO_HORA = 350;
-const PRECIO_ARCOS = 700;
 const CUPON_URL = 'https://agenda.espacio1010.uy/c/BIENVENIDA1010';
 
 const pasos = [
-  { n: '01', t: 'Te pre-registrás ahora', d: 'Gratis, en 30 segundos, desde el celular. Sin tarjeta, sin permanencia. Tu primera hora queda reservada a tu nombre.' },
+  { n: '01', t: 'Te registrás en 30 segundos', d: 'Desde el celular, sin tarjeta y sin compromiso. Tu primera hora queda gratis, reservada a tu nombre.' },
   { n: '02', t: 'Ves disponibilidad real', d: 'La agenda de los 12 espacios, en vivo. Lo que ves disponible, está disponible.' },
   { n: '03', t: 'Reservás en 1 minuto', d: 'Elegís espacio, día y hora. Confirmación al instante, sin esperar a nadie.' },
   { n: '04', t: 'Entrás con tu código', d: 'Tu código personal abre las puertas 24/7. Llegás y atendés, con todo a punto.' },
@@ -32,7 +31,7 @@ const pasos = [
  */
 const cancelacion = [
   { cuando: 'Hasta 24 h antes', que: 'Cancelás gratis', detalle: 'No pagás nada. Tu hora vuelve a quedar disponible.', destacado: true },
-  { cuando: 'Hasta 1 h antes', que: 'Pagás solo el 50%', detalle: 'Tu día cambió sobre la hora: cubrís la mitad, no la hora entera.', destacado: false },
+  { cuando: 'Hasta 1 h antes', que: 'Pagás solo el 50%', detalle: 'Cancelás hasta 1 hora antes de tu horario reservado y solo pagás la mitad.', destacado: false },
 ];
 
 const nivel2 = [
@@ -45,18 +44,18 @@ const nivel3 = [
   { t: `Precio único: $${PRECIO_HORA}/h`, icon: 'tag' },
   { t: 'Descuentos por volumen', icon: 'trend' },
   { t: 'Cocina y sala sin cargo', icon: 'coffee' },
-  { t: 'Estacionamiento sin parquímetro', icon: 'car' },
+  { t: 'Zona con estacionamiento NO tarifado', icon: 'car' },
   { t: 'Bien conectado en bus', icon: 'bus' },
   { t: 'Edificio reciclado a nuevo', icon: 'sparkle' },
 ];
 
-// Seguridad — comprimida a un bloque chico de etiquetas (solo lo confirmado).
-const seguridadPills = [
-  'Cerrado 24/7',
-  'Código con registro',
-  'Cámaras',
+// Acceso — bloque chico de etiquetas (solo lo confirmado).
+const accesoPills = [
+  'Código personal',
+  'Acceso registrado',
   'Videoportero',
-  'Bien iluminado',
+  'Áreas iluminadas',
+  'Cámaras',
 ];
 
 // Testimonios reales, aprobados por cada persona (prueba social).
@@ -79,11 +78,12 @@ const testimonios = [
   },
 ];
 
+// Los espacios, agrupados por uso/necesidad (no por nombre).
 const espacios = [
-  { nombre: 'Consultorios acogedores', nota: 'Psicología · psiquiatría', cap: '2 personas', precio: PRECIO_HORA, icon: 'sofa' },
-  { nombre: 'Escritorios luminosos', nota: 'Nutrición · consulta clínica', cap: '2 a 3 personas', precio: PRECIO_HORA, icon: 'desk' },
-  { nombre: 'Salas de terapia', nota: 'Psicoanálisis · coaching', cap: '2 personas', precio: PRECIO_HORA, icon: 'chair' },
-  { nombre: 'Sala Arcos', nota: 'Grupos · talleres · yoga', cap: 'hasta 30', precio: PRECIO_ARCOS, icon: 'group' },
+  { nombre: 'Atención individual', nota: 'Sesiones uno a uno, entrevistas, orientación o consulta clínica.', icon: 'sofa' },
+  { nombre: 'Para infancias', nota: 'Con rincón infantil y sector de butacas, para trabajar con niños y familias.', icon: 'child' },
+  { nombre: 'Con camilla', nota: 'Para masajes, reflexología, reiki, terapias corporales o consultas con camilla.', icon: 'massage' },
+  { nombre: 'Grupos y talleres', nota: 'Para grupos chicos, movimiento, meditación o yoga. Y la Sala Arcos, la más grande, para lo de mayor escala.', icon: 'group' },
 ];
 
 const iconPaths: Record<string, string> = {
@@ -104,12 +104,14 @@ const iconPaths: Record<string, string> = {
   car: '<path d="M5 11l1.6-4.4A2 2 0 0 1 8.5 5h7a2 2 0 0 1 1.9 1.4L19 11"/><path d="M3 11h18v5a1 1 0 0 1-1 1h-2v-2H6v2H4a1 1 0 0 1-1-1z"/><circle cx="7.5" cy="14.5" r="1"/><circle cx="16.5" cy="14.5" r="1"/>',
   bus: '<rect x="4" y="3" width="16" height="14" rx="2"/><path d="M4 11h16"/><path d="M7 17v2M17 17v2"/><circle cx="8.5" cy="14" r="1"/><circle cx="15.5" cy="14" r="1"/>',
   sparkle: '<path d="M12 3l1.8 5.2L19 11l-5.2 1.8L12 18l-1.8-5.2L5 11l5.2-2z"/>',
+  child: '<circle cx="12" cy="4.5" r="2"/><path d="M12 9v6M9 21l1.2-6M15 21l-1.2-6M8 10.5l4 1 4-1"/>',
+  massage: '<circle cx="6" cy="10" r="1.6"/><path d="M8 11h9a3 3 0 0 1 3 3M3 11h3"/><path d="M3 11v7M20 14v4"/>',
 };
 ---
 
 <LandingLayout
   title="Alquilá tu consultorio por hora, sin costos fijos"
-  description="Alquilá uno de los 12 consultorios y salas boutique por hora de Espacio 1010, entre Palermo y Parque Rodó, Montevideo. Sin alquiler fijo ni permanencia. Pre-registrate y asegurá tu primera hora gratis para usar durante 2026."
+  description="Alquilá uno de los 12 consultorios y salas por hora de Espacio 1010, entre Palermo y Parque Rodó, Montevideo. Sin alquiler fijo ni compromiso. Pre-registrate y asegurá tu primera hora gratis para usar durante 2026."
 >
   <!-- ════════════════════ HERO (sin la captura: se movió a Cómo funciona) ════════════════════ -->
   <section id="hero" class="relative overflow-hidden text-white">
@@ -132,22 +134,23 @@ const iconPaths: Record<string, string> = {
           <span class="block text-terracota-light">Tu primera hora, gratis.</span>
         </h1>
 
-        <p class="mt-5 max-w-xl text-base leading-relaxed text-white/80 text-pretty">12 espacios boutique entre Palermo y Parque Rodó. Reservás y entrás 100% desde el celular.</p>
+        <p class="mt-5 max-w-xl text-base leading-relaxed text-white/80 text-pretty">Espacios cuidados entre Palermo y Parque Rodó. Reservás 100% desde el celular y entrás con tu código.</p>
 
         <ul class="mt-6 flex flex-wrap gap-2" aria-label="Para quién es Espacio 1010">
-          {['Psicología', 'Psiquiatría', 'Psicopedagogía', 'Nutrición', 'Yoga y meditación', 'Talleres'].map((n) => (
+          {['Psicología', 'Terapeutas', 'Coaching', 'Nutrición', 'Terapias corporales', 'Talleres/Cursos', 'Meditación/Yoga', 'Otros'].map((n) => (
             <li class="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium text-white/85 backdrop-blur-sm">{n}</li>
           ))}
         </ul>
 
-        <p class="mt-6 max-w-xl text-base leading-relaxed text-white/80 text-pretty">Registrate hoy y tu hora gratis queda a tu nombre para usarla cuando quieras en 2026.</p>
+        <p class="mt-6 max-w-xl text-base leading-relaxed text-white/80 text-pretty">Registrate hoy y tu primera hora queda gratis para usarla cuando quieras en 2026.</p>
 
         <div class="mt-8">
           <a href="#registro" class="inline-flex h-14 w-full items-center justify-center gap-2 rounded-full bg-terracota px-9 text-base font-semibold text-white transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:bg-terracota-light sm:w-auto">
             Quiero mi primera hora gratis
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
-          <p class="mt-3 text-xs text-white/70">Sin tarjeta · sin permanencia · no pagás nada hasta reservar</p>
+          <p class="mt-3 text-xs text-white/70">Sin tarjeta · sin compromiso · no pagás nada hasta reservar</p>
+          <p class="mt-1.5 text-xs text-terracota-light">Cancelás gratis hasta 24 h antes · o pagás solo el 50% hasta 1 h antes</p>
         </div>
       </div>
     </Container>
@@ -167,13 +170,13 @@ const iconPaths: Record<string, string> = {
         <div class="mx-auto max-w-2xl text-center">
           <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota-light">Cancelación flexible</p>
           <h3 class="mt-3 text-2xl font-bold sm:text-3xl">A vos también te cancelan. Acá no lo pagás.</h3>
-          <p class="mt-4 text-base leading-relaxed text-white/70">Cancelás con la misma flexibilidad que vos les das a tus pacientes — sin penalización ni letra chica.</p>
+          <p class="mt-4 text-base leading-relaxed text-white/70">Cancelás con la misma flexibilidad que vos les das a las personas que atendés — sin penalización ni letra chica.</p>
         </div>
         <div class="mx-auto mt-8 grid max-w-2xl gap-4 sm:grid-cols-2">
           {cancelacion.map((c) => (
             <div class={`rounded-2xl p-6 ${c.destacado ? 'bg-terracota' : 'bg-white/[0.06]'}`}>
               <p class={`text-xs font-semibold uppercase tracking-wider ${c.destacado ? 'text-white/85' : 'text-white/55'}`}>{c.cuando}</p>
-              <p class="mt-2 text-2xl font-bold text-white">{c.que}</p>
+              <p class="mt-2 text-3xl font-bold text-white">{c.que}</p>
               <p class={`mt-2 text-sm leading-relaxed ${c.destacado ? 'text-white/90' : 'text-white/65'}`}>{c.detalle}</p>
             </div>
           ))}
@@ -220,8 +223,8 @@ const iconPaths: Record<string, string> = {
     <Container size="wide">
       <div class="mx-auto max-w-2xl text-center">
         <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">Los espacios</p>
-        <h2 class="text-3xl text-ink sm:text-4xl">Uno para cada práctica.</h2>
-        <p class="mt-5 text-lg leading-relaxed text-ink-soft text-pretty">12 espacios amoblados, climatizados e insonorizados, entre Palermo y {ADDRESS.neighborhood}. Desde consultas individuales hasta la Sala Arcos para grupos y talleres.</p>
+        <h2 class="text-3xl text-ink sm:text-4xl">Hay un espacio ideal para vos.</h2>
+        <p class="mt-5 text-lg leading-relaxed text-ink-soft text-pretty">12 espacios amoblados y climatizados, pensados para trabajar con privacidad, entre Palermo y {ADDRESS.neighborhood}. Desde consultas individuales hasta la Sala Arcos para grupos y talleres.</p>
       </div>
       <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {espacios.map((e) => (
@@ -230,9 +233,7 @@ const iconPaths: Record<string, string> = {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[e.icon]} />
             </span>
             <h3 class="mt-5 text-lg text-ink">{e.nombre}</h3>
-            <p class="mt-1 text-sm text-ink-soft">{e.nota}</p>
-            <p class="mt-1 text-xs text-ink-muted">{e.cap}</p>
-            <p class="mt-4 text-sm font-semibold text-terracota">${e.precio} <span class="font-normal text-ink-muted">/ hora</span></p>
+            <p class="mt-1 text-sm leading-relaxed text-ink-soft">{e.nota}</p>
           </article>
         ))}
       </div>
@@ -288,15 +289,15 @@ const iconPaths: Record<string, string> = {
     </Container>
   </section>
 
-  <!-- ════════════════════ SEGURIDAD (comprimida) ════════════════════ -->
+  <!-- ════════════════════ ACCESO (comprimido) ════════════════════ -->
   <section class="bg-white py-12 sm:py-16">
     <Container>
       <div class="mx-auto max-w-2xl rounded-2xl border border-hairline bg-[#f8f9fa] p-6 text-center sm:p-8">
-        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">Seguridad</p>
-        <h2 class="mt-3 text-xl font-semibold text-ink sm:text-2xl">Entrás tranquila, incluso de noche.</h2>
-        <p class="mt-3 text-sm leading-relaxed text-ink-soft">El edificio cuida quién entra, para que vos solo te ocupes de tu sesión.</p>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">Acceso</p>
+        <h2 class="mt-3 text-xl font-semibold text-ink sm:text-2xl">Un acceso pensado para trabajar con tranquilidad.</h2>
+        <p class="mt-3 text-sm leading-relaxed text-ink-soft">El ingreso al edificio funciona con código personal, registro de reservas y control de acceso.</p>
         <ul class="mt-5 flex flex-wrap justify-center gap-2">
-          {seguridadPills.map((s) => (
+          {accesoPills.map((s) => (
             <li class="rounded-full border border-hairline bg-white px-3 py-1.5 text-xs font-medium text-ink-soft">{s}</li>
           ))}
         </ul>
@@ -329,6 +330,35 @@ const iconPaths: Record<string, string> = {
             </figcaption>
           </figure>
         ))}
+      </div>
+    </Container>
+  </section>
+
+  <!-- ════════════════════ DÓNDE ESTAMOS (ubicación) ════════════════════ -->
+  <section class="bg-white py-16 sm:py-24">
+    <Container>
+      <div class="mx-auto max-w-2xl text-center">
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">Dónde estamos</p>
+        <h2 class="text-3xl text-ink sm:text-4xl">A pasos de Parque Rodó.</h2>
+        <p class="mt-5 text-lg leading-relaxed text-ink-soft text-pretty">{ADDRESS.street}, {ADDRESS.betweenStreets} — en el límite de Palermo y {ADDRESS.neighborhood}, {ADDRESS.city}.</p>
+        <p class="mt-3 text-sm text-ink-soft">Zona con estacionamiento NO tarifado · bien conectada en bus.</p>
+      </div>
+      <div class="mx-auto mt-10 max-w-3xl overflow-hidden rounded-2xl border border-hairline shadow-[var(--shadow-md)]">
+        <iframe
+          title="Mapa de Espacio 1010 — Gaboto 1010, Montevideo"
+          src="https://www.google.com/maps?q=Gaboto%201010%20Montevideo%20Uruguay&output=embed"
+          width="100%"
+          height="320"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          style="border:0; display:block;"
+        ></iframe>
+      </div>
+      <div class="mt-6 text-center">
+        <a href={ADDRESS.mapsUrl} target="_blank" rel="noopener noreferrer" class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-hairline px-6 text-sm font-semibold text-ink transition-all duration-300 hover:border-terracota/40 hover:text-terracota">
+          Ver en el mapa
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </Container>
   </section>
@@ -372,7 +402,7 @@ const iconPaths: Record<string, string> = {
             Quiero mi primera hora gratis
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
           </button>
-          <p class="text-center text-xs text-ink-soft">Sin tarjeta · sin permanencia · no pagás nada hasta reservar</p>
+          <p class="text-center text-xs text-ink-soft">Sin tarjeta · sin compromiso · no pagás nada hasta reservar</p>
           <p class="text-center text-[11px] text-ink-muted">Te llevamos a crear tu cuenta con la hora gratis ya cargada.</p>
         </form>
 

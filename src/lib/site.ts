@@ -11,7 +11,7 @@ export const SITE = {
   url: 'https://www.espacio1010.uy',
   tagline: 'Tu consultorio sin complicaciones',
   description:
-    'Espacios boutique por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo entre Palermo y Parque Rodó, Montevideo. Reservá online, autogestión total, 24/7.',
+    'Espacios cuidados por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo entre Palermo y Parque Rodó, Montevideo. Reservá online, autogestión total, 24/7.',
   locale: 'es_UY',
   // Subdominio operativo de la PWA de reservas — el "Reservar ahora" apunta acá.
   agendaUrl: 'https://agenda.espacio1010.uy',
@@ -214,7 +214,7 @@ export const AMENITIES = [
   { icon: 'coffee', label: 'Cocina y sala de estar para tus pacientes' },
   { icon: 'sofa', label: 'Sala de espera compartida' },
   { icon: 'cowork', label: 'Sala de cowork incluida sin cargo' },
-  { icon: 'parking', label: 'Estacionamiento gratuito en la zona' },
+  { icon: 'parking', label: 'Estacionamiento no tarifado en la zona' },
   { icon: 'bus', label: 'A 2 cuadras de líneas troncales' },
 ] as const;
 
@@ -240,7 +240,7 @@ export const DIFERENCIALES = [
   {
     titulo: 'Edificio centenario, todo nuevo',
     descripcion:
-      '100 años de historia, reciclado a cero. Domótica, climatización, insonorización y materiales premium.',
+      '100 años de historia, reciclado a cero. Domótica, climatización, privacidad acústica y materiales premium.',
   },
   {
     titulo: 'Cowork incluido sin cargo',

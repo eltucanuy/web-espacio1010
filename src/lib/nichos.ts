@@ -72,7 +72,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿Cómo manejo la confidencialidad entre sesiones?',
-        a: 'La privacidad acústica es prioridad. Trabajamos especialmente la insonorización y sumamos música ambiente en pasillos. Es muy difícil escuchar de un espacio a otro.',
+        a: 'La privacidad acústica es prioridad. La trabajamos especialmente y sumamos música ambiente en pasillos. Es muy difícil escuchar de un espacio a otro.',
       },
       {
         q: '¿Puedo dejar mis libros o materiales entre sesiones?',
@@ -103,7 +103,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Buscás flexibilidad para combinar consulta presencial con teleconsulta',
     ],
     solucion:
-      'El edificio fue pensado para profesionales de la salud — la sala de espera, los pasillos, el detalle del mobiliario están al nivel de una clínica boutique. Reservás los días y horarios que se ajustan a tu agenda hospitalaria, y mantenés consulta privada sin costos fijos altos.',
+      'El edificio fue pensado para profesionales de la salud — la sala de espera, los pasillos, el detalle del mobiliario están al nivel de una clínica privada. Reservás los días y horarios que se ajustan a tu agenda hospitalaria, y mantenés consulta privada sin costos fijos altos.',
     espaciosRecomendados: ['consulta-1', 'consulta-2', 'consulta-7', 'estudio-norte'],
     testimonial: {
       texto:

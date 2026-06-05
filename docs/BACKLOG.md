@@ -1,5 +1,12 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-06-05 (sesión 2) — fix de GTM (leer primero)
+> GTM **no ejecutaba en producción** (roto desde el launch): el snippet quedaba atrapado en un template literal por una sintaxis mal escrita en `Analytics.astro`. Corregido con `set:html`, deployado (`44c818c`) y verificado en navegador. Ver [`HANDOFF_2026_06_05_gtm-fix.md`](./HANDOFF_2026_06_05_gtm-fix.md).
+>
+> **Efecto:** queda **desbloqueado** el trabajo de la agencia dentro de GTM (Meta Pixel + Google Ads sobre `lead_preregistro`) — antes nada de eso podía funcionar porque el container ni cargaba.
+>
+> ---
+
 > ## 🔄 Actualización 2026-06-05 — feedback pareja/amigos + ubicación (leer primero)
 > Ver [`HANDOFF_2026_06_05.md`](./HANDOFF_2026_06_05.md). Se aplicó el feedback del doc (13 puntos, consensuados por 3 agentes y decididos punto por punto), todo en producción.
 >

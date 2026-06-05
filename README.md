@@ -5,9 +5,10 @@ Sitio de **Espacio 1010** — [www.espacio1010.uy](https://www.espacio1010.uy).
 Edificio centenario reciclado a nuevo en **Gaboto 1010, entre Palermo y Parque Rodó (Montevideo)**, con 12 consultorios y salas boutique que se alquilan por hora. La **home (`/`) es una landing de conversión** cuyo objetivo es el pre-registro; el resto del sitio son páginas de contenido/SEO. La PWA de reservas vive aparte en [`espacio1010`](../espacio1010) y se publica en `agenda.espacio1010.uy`.
 
 > **Lectura obligatoria antes de tocar código:**
-> 1. [`docs/HANDOFF_2026_06_03.md`](./docs/HANDOFF_2026_06_03.md) — **último estado**: sesión de optimización de conversión (CRO) de la home (hero, jerarquía, seguridad, cancelación, testimonios reales, flujo del form).
-> 2. [`docs/HANDOFF_2026_06_02.md`](./docs/HANDOFF_2026_06_02.md) — base: landing como home, design system, flujo de conversión.
-> 3. [`docs/BACKLOG.md`](./docs/BACKLOG.md) — pendientes priorizados.
+> 1. [`docs/HANDOFF_2026_06_05.md`](./docs/HANDOFF_2026_06_05.md) — **último estado**: feedback de pareja/amigos aplicado (13 puntos), "Los espacios" por uso, sección de ubicación con mapa, Seguridad→Acceso, chips ampliados.
+> 2. [`docs/HANDOFF_2026_06_03.md`](./docs/HANDOFF_2026_06_03.md) — sesión CRO: hero, jerarquía, cancelación, testimonios reales, flujo del form.
+> 3. [`docs/HANDOFF_2026_06_02.md`](./docs/HANDOFF_2026_06_02.md) — base: landing como home, design system, flujo de conversión.
+> 4. [`docs/BACKLOG.md`](./docs/BACKLOG.md) — pendientes priorizados.
 
 ## Stack
 
@@ -91,4 +92,4 @@ Ver `.env.example`. Copiá a `.env` para dev y configurá en Vercel para prod.
 
 ## Pendientes
 
-Ver `docs/HANDOFF_2026_06_03.md` §8 (lo más actual) y `docs/BACKLOG.md`. En corto: **fotos reales** de los espacios (desbloquean OG con foto + re-OK final), **medición `cuenta_creada`** en GTM/Ads (agencia), confirmar 9 vs 12 espacios, y que la fecha exacta de apertura no quede en internas.
+Ver `docs/HANDOFF_2026_06_05.md` §6 y §8 (lo más actual) y `docs/BACKLOG.md`. En corto: **verificar antes de pautar** (estacionamiento sin parquímetro, pin del mapa, cupón = primera hora, 9 vs 12 espacios); y a futuro **fotos reales** (desbloquean OG con foto) + **medición `cuenta_creada`** en GTM/Ads (agencia).

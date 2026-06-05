@@ -1,5 +1,14 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-06-05 — feedback pareja/amigos + ubicación (leer primero)
+> Ver [`HANDOFF_2026_06_05.md`](./HANDOFF_2026_06_05.md). Se aplicó el feedback del doc (13 puntos, consensuados por 3 agentes y decididos punto por punto), todo en producción.
+>
+> **Lo más relevante:** "Los espacios" pasó a 4 categorías por uso (Atención individual / Para infancias / Con camilla / Grupos y talleres); nueva sección **"Dónde estamos" con mapa**; Seguridad → **Acceso**; chips de disciplinas ampliados a 8; barrido de copy (sacar "boutique" e "insonorizado" de todo el sitio; "estacionamiento NO tarifado" unificado; "sin permanencia" → "sin compromiso").
+>
+> **🔴 Verificar antes de pautar** (detalle en handoff §6): cuadra sin parquímetro, pin del mapa de Gaboto 1010, cupón = primera hora, y **9 vs 12 espacios** (sigue sin definirse). Ya confirmado: existen camilla y rincón infantil, cámaras y videoportero.
+>
+> ---
+
 > ## 🔄 Actualización 2026-06-03 — sesión CRO (leer primero)
 > Sesión de optimización de conversión de la home — ver [`HANDOFF_2026_06_03.md`](./HANDOFF_2026_06_03.md). Se ejecutaron ~10 palancas de conversión + extras, todo en producción.
 >

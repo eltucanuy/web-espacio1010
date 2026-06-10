@@ -1,5 +1,14 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-06-10 — fotos reales del lugar (leer primero)
+> Entró la **primera tanda de fotos crudas del local** (pre-decoración) a la landing — ver [`HANDOFF_2026_06_10.md`](./HANDOFF_2026_06_10.md). Esto ataca el **freno #1 de conversión** (falta de visual real) marcado en sesiones anteriores.
+>
+> **Lo más relevante:** hero → recorte nocturno de la **ventana en arco** (`fachada-final.webp`, reemplaza la fachada en obra); nueva sección **"Así está quedando"** con 6 fotos reales (áreas comunes/arquitectura), ubicada **antes de "Los espacios"**, como **tira con swipe** en mobile y **masonry de 3 columnas** en desktop. Commit `7a020c6`, en producción.
+>
+> **Ojo:** son **áreas comunes/arquitectura, NO los consultorios** → la línea *"Fotos reales de cada espacio, muy pronto"* sigue válida. **Sigue pendiente** la foto de cada espacio decorado (post-decoración) → reemplazar íconos de "Los espacios" + OG con foto. Notas de proceso (dónde viven las fotos, no bajarlas por MCP, `preview_screenshot` se cuelga) en el handoff §4.
+>
+> ---
+
 > ## 🔄 Actualización 2026-06-05 (sesión 2) — fix de GTM (leer primero)
 > GTM **no ejecutaba en producción** (roto desde el launch): el snippet quedaba atrapado en un template literal por una sintaxis mal escrita en `Analytics.astro`. Corregido con `set:html`, deployado (`44c818c`) y verificado en navegador. Ver [`HANDOFF_2026_06_05_gtm-fix.md`](./HANDOFF_2026_06_05_gtm-fix.md).
 >

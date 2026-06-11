@@ -8,14 +8,47 @@
  *
  * Mobile-first: casi todo el tráfico entra desde el celular (una sola columna vertical).
  * La jerarquía se logra con orden + tamaño, no con columnas.
- * Orden: Hero → Pensado para que digas que sí → Los espacios → Cómo funciona → Acceso → Testimonios → Dónde estamos → Form.
+ * Orden: Hero → Pensado para que digas que sí → Los espacios → Cómo funciona → Acceso → Testimonios → Dónde estamos → Form → FAQ.
  */
 import LandingLayout from '../layouts/LandingLayout.astro';
 import Container from '../components/Container.astro';
-import { ADDRESS } from '../lib/site';
+import { ADDRESS, CONTACT } from '../lib/site';
 
 const PRECIO_HORA = 350;
 const CUPON_URL = 'https://agenda.espacio1010.uy/c/BIENVENIDA1010';
+
+/**
+ * FAQ corta abajo del form (sugerencia agencia 2026-06-10): evacuar las dudas
+ * típicas de quien duda en registrarse, con tono liviano y positivo, sin
+ * sacarlo de la página. La FAQ completa vive en /preguntas-frecuentes — si
+ * cambia un precio o la política de cancelación, actualizar en ambos lados.
+ */
+const faqsRegistro = [
+  {
+    q: '¿Pre-registrarme me compromete a algo?',
+    a: 'No. Es gratis, sin tarjeta y sin compromiso: te guardamos tu primera hora gratis y te avisamos por WhatsApp cuando abrimos. Nada más.',
+  },
+  {
+    q: '¿Cómo funciona la primera hora gratis?',
+    a: 'Al completar tu registro queda cargada a tu nombre, lista para usarla cuando quieras durante 2026, en el espacio que elijas.',
+  },
+  {
+    q: '¿Cuánto cuesta la hora después?',
+    a: `$${PRECIO_HORA} la hora en todos los consultorios, sin costos de gestión escondidos. La Sala Arcos, la gran sala para grupos y talleres, sale $700.`,
+  },
+  {
+    q: '¿Hay mínimo de horas o permanencia?',
+    a: 'No. Reservás desde 1 hora suelta, solo cuando la necesitás. Y si querés un horario fijo todas las semanas, también podés — vos elegís.',
+  },
+  {
+    q: '¿Cómo se pagan las reservas?',
+    a: 'Tranquilo y a mes vencido: el día 1 recibís el detalle de lo que usaste y lo pagás por transferencia. Sin tarjeta ni cobros automáticos.',
+  },
+  {
+    q: '¿Y si necesito cancelar una reserva?',
+    a: 'Cancelás gratis avisando con 24 horas, directo desde la app. Sabemos que la agenda cambia — la idea es que sea flexible.',
+  },
+];
 
 const pasos = [
   { n: '01', t: 'Te registrás en 30 segundos', d: 'Desde el celular, sin tarjeta y sin compromiso. Tu primera hora queda gratis, reservada a tu nombre.' },
@@ -477,6 +510,54 @@ const iconPaths: Record<string, string> = {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
             </a>
           </div>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- ════════════════════ FAQ CORTA (abajo del form) ════════════════════ -->
+  <section id="faq-registro" class="bg-white py-16 sm:py-20">
+    <Container size="narrow">
+      <div class="mx-auto max-w-2xl">
+        <div class="text-center">
+          <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">Preguntas frecuentes</p>
+          <h2 class="text-3xl text-ink sm:text-4xl">¿Dudas antes de registrarte?</h2>
+          <p class="mt-3 text-base leading-relaxed text-ink-soft">Lo que más nos preguntan, en corto.</p>
+        </div>
+
+        <div class="mt-8 space-y-3">
+          {
+            faqsRegistro.map((item) => (
+              <details class="group rounded-2xl border border-hairline bg-[#f8f9fa] p-6 transition-colors duration-300 hover:border-terracota/30">
+                <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-medium text-ink">
+                  {item.q}
+                  <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-terracota-tint text-terracota transition-transform duration-300 group-open:rotate-45">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                      <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+                    </svg>
+                  </span>
+                </summary>
+                <p class="mt-4 text-base leading-relaxed text-ink-soft">{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 text-center sm:flex-row sm:gap-6">
+          <a
+            href={CONTACT.whatsappLink('Hola! Tengo una consulta antes de registrarme en Espacio 1010.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex h-11 items-center justify-center gap-2 text-sm font-semibold text-terracota transition-colors duration-300 hover:text-terracota-light"
+          >
+            ¿Otra duda? Escribinos por WhatsApp
+          </a>
+          <a
+            href="/preguntas-frecuentes"
+            class="inline-flex h-11 items-center justify-center text-sm text-ink-soft underline underline-offset-4 transition-colors duration-300 hover:text-terracota"
+          >
+            Ver todas las preguntas frecuentes
+          </a>
         </div>
       </div>
     </Container>

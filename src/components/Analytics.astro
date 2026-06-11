@@ -10,9 +10,9 @@
  * Meta Pixel desde su interfaz — no metemos esos scripts a mano para no
  * acoplar el código a sus decisiones.
  *
- * Por qué no cookie banner: Plausible no usa cookies (privacy-first).
- * Si la agencia inyecta GA4 desde GTM con configuración por default (con
- * cookies), tocaría meter banner. Coordinarlo cuando se active GTM.
+ * Por qué no cookie banner: decisión tomada (2026-06-10) — el sitio NO lleva
+ * banner de consentimiento, aunque la agencia active GA4/Clarity con cookies
+ * desde GTM. No reabrir el tema.
  */
 
 const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN as string | undefined;

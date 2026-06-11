@@ -1,5 +1,14 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-06-10 (sesión 2) — Clarity instalado + sin cookie banner (leer primero)
+> **Microsoft Clarity quedó activo en producción** (heatmaps + grabaciones), instalado por Rafa vía la integración automática Clarity→GTM en el container `GTM-WQT4VNXV` — sin tocar código. Verificado en el sitio en vivo. Ver [`HANDOFF_2026_06_10_clarity.md`](./HANDOFF_2026_06_10_clarity.md).
+>
+> **Decisión firme: NO se pone cookie banner** (ni se gestiona enmascarado de campos en Clarity), aunque GA4/Clarity usen cookies. Tema cerrado — no volver a sugerirlo.
+>
+> Hallazgo lateral: la agencia ya metió el **Meta Pixel** en GTM (~05/06). Siguen pendientes de la agencia: GA4/Google Ads sobre `lead_preregistro` y `cuenta_creada`.
+>
+> ---
+
 > ## 🔄 Actualización 2026-06-10 — fotos reales del lugar (leer primero)
 > Entró la **primera tanda de fotos crudas del local** (pre-decoración) a la landing — ver [`HANDOFF_2026_06_10.md`](./HANDOFF_2026_06_10.md). Esto ataca el **freno #1 de conversión** (falta de visual real) marcado en sesiones anteriores.
 >

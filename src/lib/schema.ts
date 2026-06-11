@@ -68,19 +68,14 @@ export function localBusinessSchema(imageUrl: string) {
         closes: '23:59',
       },
     ],
-    // Atención humana en horario comercial (hoursAvailable solo es válido en ContactPoint/Service).
+    // Sin hoursAvailable: no se publica horario de atención humana
+    // (decisión Rafa 2026-06-11 — atención familiar, sin rango comprometido).
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: CONTACT.whatsappLeads,
       email: CONTACT.email,
       contactType: 'customer service',
       availableLanguage: 'es',
-      hoursAvailable: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-        opens: '09:00',
-        closes: '20:00',
-      },
     },
     areaServed: { '@type': 'City', name: ADDRESS.city },
     sameAs: [SOCIAL.instagram],

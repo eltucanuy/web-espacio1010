@@ -53,7 +53,8 @@ export const HOURS = {
   // por WhatsApp (no son de libre reserva por la app).
   openingHours: 'Abierto 24/7',
   appBooking: 'Por la app reservás de 7 a 24; la madrugada se coordina por WhatsApp',
-  humanSupport: 'Lunes a sábado, 9 a 20 hs',
+  // Sin horario de atención publicado (decisión Rafa 2026-06-11: atención
+  // familiar, "cuando podemos" — no comprometer un rango).
 } as const;
 
 /**
@@ -249,15 +250,18 @@ export const ICONOS_GRUPO: Record<GrupoEspacio, string> = {
 
 /**
  * Amenities transversales del edificio — los renderiza /el-lugar.
- * Solo datos con respaldo en la fuente de verdad (música ambiente, sala de espera,
- * "cowork", "fibra", "LED regulable" y "a 2 cuadras de líneas troncales" se quitaron —
- * flaggeados a Rafa para reincorporar si los confirma).
+ * Confirmados por Rafa el 2026-06-11: salas de espera (2, una por piso, con
+ * sillones/agua/wifi/aire), música ambiente (pasillos y salas de espera) y
+ * café/té/agua en la cocina de profesionales. Quedaron AFUERA por decisión:
+ * "fibra" (todo Uruguay tiene), limpieza, "LED regulable" y "cowork".
  */
 export const AMENITIES = [
   { icon: 'wifi', label: 'Wifi en todo el edificio' },
   { icon: 'air-conditioner', label: 'Aire acondicionado en cada espacio' },
   { icon: 'lock', label: 'Acceso 24/7 con código personal' },
-  { icon: 'coffee', label: 'Comedor y sala de estar para profesionales, sin cargo' },
+  { icon: 'sofa', label: 'Dos salas de espera para quienes atendés — una por piso, con sillones y agua' },
+  { icon: 'sound', label: 'Música ambiente en pasillos y salas de espera' },
+  { icon: 'coffee', label: 'Cocina y sala de estar para profesionales, con café, té y agua sin cargo' },
   { icon: 'parking', label: 'Estacionamiento no tarifado en la zona' },
   { icon: 'bus', label: 'Bien conectado en bus' },
 ] as const;

@@ -45,14 +45,19 @@ Por página:
 ## 🔴 Contradicciones / decisiones para que revises
 
 1. ✅ **RESUELTO (Rafa, 2026-06-11 de mañana)**: la comunicación oficial es **"12 espacios"** (los totales a futuro) y **"24/7"** (la app reserva de 7 a 24; la madrugada se coordina por WhatsApp, no es de libre reserva). Las subpáginas se realinearon a ese criterio el mismo día: "12 espacios" reinstalado en descripciones y pasos, `/los-espacios` presenta los 8 publicados como "los primeros que abren", y el horario se comunica como "El edificio funciona 24/7: por la app reservás de 7 a 24, la madrugada por WhatsApp" (Schema.org de vuelta a 24/7). La home quedó tal cual estaba — ya era consistente con este criterio.
-2. **Espacios 04 y 15** — inactivos en DB con descripción placeholder. Los omití. ¿Van como "próximamente"?
-3. **Nombres "Espacio 01/02/…"** — son los reales de la app y eso publiqué. Si querés nombres con marca, se cambian en `site.ts` + DB a la vez.
-4. **Amenities/claims eliminados por no verificables** (decí cuáles son reales y los reincorporo): wifi de fibra "en todo el edificio", limpieza diaria, música ambiente, sala de espera para pacientes, café/té, iluminación LED regulable, "a 2 cuadras de líneas troncales", "aprobamos cuentas el mismo día", confirmación por mail, "casi siempre hay lugar para estacionar".
-5. **¿Dónde espera un paciente que llega antes?** El flujo documentado es timbre/videoportero y la espera no está definida — puede generar fricción real en puerta.
-6. **¿El código personal abre solo la puerta de calle o también cada espacio?** La web ahora solo afirma la puerta de calle.
-7. **Atención humana por WhatsApp "L–S 9–20"** — quedó como estaba (no hay dato en la app que lo contradiga). Confirmalo.
-8. **Publicamos los % de descuento por volumen (10/20%)** — antes el sitio no los decía. Si preferís solo "descuentos por volumen", se saca en `/precios` y FAQ.
-9. **SEO de URLs**: los slugs viejos (`estudio-norte`, etc.) tienen 301 al espacio real más parecido o al índice. Si Google ya indexó fichas viejas, se va a reacomodar solo.
+2. ✅ **RESUELTO (Rafa, 2026-06-11)**: espacios 04 y 15 no se listan; alcanza con la línea "De los 12 espacios del edificio, estos son los primeros que abren".
+3. ✅ **RESUELTO (Rafa, 2026-06-11)**: los nombres quedan como en la app ("Espacio 01"… "Sala Arcos"). Tema cerrado.
+4. ✅ **RESUELTO (Rafa, 2026-06-11), repasado punto por punto**:
+   - **Salas de espera: SÍ existen — son 2, una por piso**, cómodas, con sillones, agua, wifi, aire y música ambiente. El profesional le abre al paciente (en persona o por videoportero) y este espera en la que le quede cómoda. Incorporado a /como-funciona, FAQ, /precios, fichas y amenities. ⚠️ **Pendiente en la APP**: la Ayuda (`/app/ayuda`) no menciona las salas de espera (empuja "entrá en hora" sin alternativa) — actualizarla.
+   - **Música ambiente**: real, en pasillos y salas de espera → amenities + FAQ de privacidad.
+   - **Café/té/agua sin cargo**: real, en la cocina de profesionales (agua también en salas de espera) → amenities, fichas, /como-funciona.
+   - **Aprobación de cuentas**: a mano, se comunica "**en pocas horas**" → /como-funciona paso 01.
+   - **Quedan AFUERA por decisión**: "fibra" (todo Uruguay tiene fibra, no aporta), limpieza (no mencionarla), LED regulable, "2 cuadras de líneas troncales", confirmación por mail (la app solo comunica por WhatsApp).
+5. ✅ **RESUELTO**: ver salas de espera en el punto 4.
+6. ✅ **RESUELTO (Rafa, 2026-06-11)**: el código abre **solo la puerta de calle** — la web ya estaba correcta.
+7. ✅ **RESUELTO (Rafa, 2026-06-11)**: **no se publica horario de atención** (es atención familiar, responden cuando pueden). Eliminado el "L–S 9–20" de /contacto, Schema.org y site.ts.
+8. ✅ **RESUELTO (Rafa, 2026-06-11)**: los % de descuento quedan publicados con números (20 h+ → 10% · 40 h+ → 20%).
+9. **SEO de URLs** (informativo, sin acción): los slugs viejos (`estudio-norte`, etc.) tienen 301 al espacio real más parecido o al índice. Si Google ya indexó fichas viejas, se reacomoda solo.
 
 ## Verificación
 - `npm run build` ✅ (24 páginas, sitemap y OG regenerados).

@@ -1,5 +1,6 @@
 ---
 import type { Espacio } from '../lib/site';
+import { TIPO_LABEL } from '../lib/site';
 
 interface Props {
   espacio: Espacio;
@@ -8,14 +9,6 @@ interface Props {
 }
 
 const { espacio, featured = false } = Astro.props;
-
-const amuebladoLabel =
-  espacio.amueblado === 'completo' ? 'Amueblado'
-  : espacio.amueblado === 'versatil' ? 'Versátil'
-  : 'Mixto';
-
-const PRECIO_ARCOS = 700;
-const precio = espacio.id === 'sala-subsuelo' ? PRECIO_ARCOS : 350;
 ---
 
 <a
@@ -27,7 +20,7 @@ const precio = espacio.id === 'sala-subsuelo' ? PRECIO_ARCOS : 350;
       {espacio.metros}<span class="align-top text-base font-semibold">m²</span>
     </span>
     <span class="inline-flex items-center rounded-full border border-hairline bg-[#f8f9fa] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft">
-      {amuebladoLabel}
+      {TIPO_LABEL[espacio.tipo]}
     </span>
   </div>
 
@@ -35,7 +28,7 @@ const precio = espacio.id === 'sala-subsuelo' ? PRECIO_ARCOS : 350;
   <p class="mt-1.5 flex-1 text-sm leading-relaxed text-ink-soft">{espacio.resumen}</p>
 
   <div class="mt-5 flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
-    <span>{espacio.capacidad} · <span class="font-semibold text-terracota">${precio}/h</span></span>
+    <span>{espacio.capacidadBreve} · <span class="font-semibold text-terracota">${espacio.precioHora}/h</span></span>
     <span class="inline-flex items-center gap-1 font-medium text-terracota transition-transform duration-300 group-hover:translate-x-0.5">
       Ver detalles
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

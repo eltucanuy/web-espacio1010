@@ -2,42 +2,31 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Button from '../../components/Button.astro';
-import { ESPACIOS, SITE, ADDRESS } from '../../lib/site';
-import type { Espacio } from '../../lib/site';
+import { ESPACIOS, CONTACT, ADDRESS, TIPO_LABEL, TIPO_DESC, ICONOS_GRUPO } from '../../lib/site';
+import { breadcrumbSchema } from '../../lib/schema';
 
-// Agrupamos por tipo para que el grid cuente una historia, no sólo enumere.
-const consultas = ESPACIOS.filter((e) => e.id.startsWith('consulta'));
-const estudios = ESPACIOS.filter((e) => e.id.startsWith('estudio'));
-const salones = ESPACIOS.filter((e) => e.id.startsWith('salon'));
-const subsuelo = ESPACIOS.find((e) => e.id === 'sala-subsuelo');
+// Agrupación real por uso — la misma que la home (verificada contra la DB de la app).
+const individuales = ESPACIOS.filter((e) => e.grupo === 'individual');
+const infancias = ESPACIOS.filter((e) => e.grupo === 'infancias');
+const camilla = ESPACIOS.filter((e) => e.grupo === 'camilla');
+const grupos = ESPACIOS.filter((e) => e.grupo === 'grupos' && e.id !== 'sala-arcos');
+const arcos = ESPACIOS.find((e) => e.id === 'sala-arcos');
 
-const PRECIO_HORA = 350;
-const PRECIO_ARCOS = 700;
-
-// Precio por hora real: $350 todos; $700 la Sala Arcos (subsuelo).
-const precioDe = (e: Espacio) => (e.id === 'sala-subsuelo' ? PRECIO_ARCOS : PRECIO_HORA);
-
-// Tratamiento sin fotos: cada espacio recibe un ícono según su tipo.
-const iconPaths: Record<string, string> = {
-  estudio: '<path d="M3 7h18M5 7v13M19 7v13M4 12h7"/><rect x="13" y="11" width="7" height="5" rx="1"/>',
-  consulta: '<path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"/><path d="M2 13a2 2 0 0 1 4 0v3h12v-3a2 2 0 0 1 4 0v5H2z"/>',
-  salon: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20a6 6 0 0 1 12 0M15 20a5 5 0 0 1 6-3.5"/>',
-  sala: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20a6 6 0 0 1 12 0M15 20a5 5 0 0 1 6-3.5"/>',
-};
-const iconDe = (e: Espacio) => iconPaths[e.id.split('-')[0]] ?? iconPaths.consulta;
-
-const amuebladoLabel: Record<string, string> = {
-  completo: 'Amueblado',
-  versatil: 'Versátil',
-  mixto: 'Mixto',
-};
+const schemaBreadcrumb = breadcrumbSchema([
+  { name: 'Inicio', url: '/' },
+  { name: 'Los espacios', url: '/los-espacios' },
+]);
 ---
 
 <BaseLayout
-  title="Los 12 espacios"
-  description="Conocé los 12 espacios de Espacio 1010: consultas íntimas amobladas, estudios premium, salones versátiles y la Sala Arcos para hasta 30 personas. Todo entre Palermo y Parque Rodó, Montevideo."
+  title="Consultorios y salas por hora en Montevideo"
+  description="Consultorios amueblados, espacio con camilla y salas para grupos, por hora a $350. Sala Arcos hasta 25 personas. Entre Palermo y Parque Rodó, Montevideo."
   ogSlug="los-espacios"
 >
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+  </Fragment>
+
   <!-- ════════════════════ HEADER ════════════════════ -->
   <section class="bg-white pt-16 pb-12 sm:pt-24 sm:pb-16">
     <Container>
@@ -51,63 +40,75 @@ const amuebladoLabel: Record<string, string> = {
         Los espacios
       </p>
       <h1 class="text-balance text-ink">
-        12 ambientes, <span class="text-terracota">una sola filosofía</span>.
+        Consultorios y salas, <span class="text-terracota">para cada forma de atender</span>.
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
-        Desde consultas íntimas para sesiones individuales hasta la Sala Arcos de
-        60 m² para grupos. Cada uno fue pensado para una forma distinta de
-        trabajar — y todos comparten el mismo estándar de detalle, entre Palermo
-        y {ADDRESS.neighborhood}.
+        Espacios amueblados para atender uno a uno, un espacio con camilla y salas
+        despejadas para grupos y movimiento — todos a $350 la hora. Y la Sala Arcos,
+        la más grande, a $700, para encuentros de mayor escala. Entre Palermo y
+        {ADDRESS.neighborhood}, Montevideo.
       </p>
 
-      <!-- Leyenda de tipos de amueblado -->
+      <!-- Leyenda de tipos (los 2 reales de la app) -->
       <div class="mt-10 flex flex-wrap gap-x-8 gap-y-4 border-t border-hairline pt-6 text-sm text-ink-soft">
         <span class="inline-flex items-center gap-2">
           <span class="h-2.5 w-2.5 rounded-full bg-terracota"></span>
-          <strong class="font-semibold text-ink">Amueblado</strong> — sillón, escritorio, sillas
+          <strong class="font-semibold text-ink">{TIPO_LABEL.amueblado}</strong> — {TIPO_DESC.amueblado}
         </span>
         <span class="inline-flex items-center gap-2">
           <span class="h-2.5 w-2.5 rounded-full bg-ink-soft"></span>
-          <strong class="font-semibold text-ink">Mixto</strong> — base + materiales móviles
-        </span>
-        <span class="inline-flex items-center gap-2">
-          <span class="h-2.5 w-2.5 rounded-full border border-hairline bg-[#f8f9fa]"></span>
-          <strong class="font-semibold text-ink">Versátil</strong> — vos configurás
+          <strong class="font-semibold text-ink">{TIPO_LABEL.multiuso}</strong> — {TIPO_DESC.multiuso}
         </span>
       </div>
+      <p class="mt-6 text-sm text-ink-muted">Fotos reales de cada espacio, muy pronto.</p>
     </Container>
   </section>
 
-  <!-- ════════════════════ SALA ARCOS (destacada) ════════════════════ -->
-  {subsuelo && (
+  <!-- ════════════════════ SALA ARCOS (destacada, con foto real) ════════════════════ -->
+  {arcos && (
     <section class="bg-[#f8f9fa] py-12 sm:py-16">
       <Container>
         <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">La gran sala</p>
         <div class="grid gap-6 lg:grid-cols-12">
           <a
-            href={`/los-espacios/${subsuelo.id}`}
-            class="group flex flex-col rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)] lg:col-span-5"
+            href={`/los-espacios/${arcos.id}`}
+            class="group flex flex-col overflow-hidden rounded-2xl border border-hairline bg-white transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)] lg:col-span-5"
           >
-            <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={iconDe(subsuelo)} />
-            </span>
-            <h2 class="mt-5 text-2xl text-ink">{subsuelo.nombre}</h2>
-            <p class="mt-2 text-sm leading-relaxed text-ink-soft">{subsuelo.resumen}</p>
-            <div class="mt-6 flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
-              <span>{subsuelo.capacidad} · {subsuelo.metros} m²</span>
-              <span class="text-sm font-semibold text-terracota">${precioDe(subsuelo)} <span class="font-normal text-ink-muted">/ h</span></span>
+            <img
+              src={arcos.foto}
+              alt={arcos.fotoAlt}
+              class="aspect-[4/3] w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="flex flex-1 flex-col p-7">
+              <h2 class="text-2xl text-ink">{arcos.nombre}</h2>
+              <p class="mt-2 text-sm leading-relaxed text-ink-soft">{arcos.resumen}</p>
+              <div class="mt-auto flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
+                <span>{arcos.capacidad} · {arcos.metros} m²</span>
+                <span class="text-sm font-semibold text-terracota">${arcos.precioHora} <span class="font-normal text-ink-muted">/ h</span></span>
+              </div>
             </div>
           </a>
 
           <div class="flex flex-col justify-center rounded-2xl border border-hairline bg-white p-8 sm:p-10 lg:col-span-7">
-            <h3 class="text-2xl text-ink text-balance">Para cuando 30 personas se juntan a aprender, meditar o sanar.</h3>
+            <h3 class="text-2xl text-ink text-balance">Para cuando 25 personas se juntan a aprender, moverse o trabajar en grupo.</h3>
             <p class="mt-4 text-base leading-relaxed text-ink-soft text-pretty">
-              Sin columnas, mobiliario versátil, acústica trabajada. Ideal para
-              talleres de fin de semana, formaciones, prácticas grupales o
-              presentaciones. Reservala por bloques o por día completo, a ${PRECIO_ARCOS} la hora.
+              40 m² en el subsuelo, con proyector, parlante, kitchenette y baño
+              propio. Ideal para talleres, formaciones, prácticas grupales o
+              encuentros. Se coordina directo con nosotros: escribinos por WhatsApp
+              y la armamos juntos. $700 la hora.
             </p>
-            <div class="mt-6">
-              <Button href={`/los-espacios/${subsuelo.id}`} variant="outline" size="md">
+            <div class="mt-6 flex flex-col gap-3 sm:flex-row">
+              <Button
+                href={CONTACT.whatsappLink('Hola! Quiero consultar por la Sala Arcos para un taller/encuentro.')}
+                variant="outline"
+                size="md"
+                target="_blank"
+              >
+                Consultar por WhatsApp
+              </Button>
+              <Button href={`/los-espacios/${arcos.id}`} variant="ghost" size="md">
                 Ver la Sala Arcos
               </Button>
             </div>
@@ -117,28 +118,28 @@ const amuebladoLabel: Record<string, string> = {
     </section>
   )}
 
-  <!-- ════════════════════ ESTUDIOS ════════════════════ -->
+  <!-- ════════════════════ ATENCIÓN INDIVIDUAL ════════════════════ -->
   <section class="bg-white py-12 sm:py-16">
     <Container size="wide">
-      <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Estudios premium</h2>
-      <p class="mb-8 text-ink-soft">Los más amplios y luminosos, para sesiones largas.</p>
+      <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Atención individual</h2>
+      <p class="mb-8 text-ink-soft">Para sesiones uno a uno, entrevistas, orientación o consulta clínica.</p>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {estudios.map((e) => (
+        {individuales.map((e) => (
           <a
             href={`/los-espacios/${e.id}`}
             class="group flex flex-col rounded-2xl border border-hairline bg-[#f8f9fa] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]"
           >
             <div class="flex items-start justify-between">
               <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={iconDe(e)} />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={ICONOS_GRUPO[e.grupo]} />
               </span>
-              <span class="rounded-full bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft">{amuebladoLabel[e.amueblado]}</span>
+              <span class="rounded-full bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft">{TIPO_LABEL[e.tipo]}</span>
             </div>
             <h3 class="mt-5 text-lg text-ink">{e.nombre}</h3>
             <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">{e.resumen}</p>
             <div class="mt-auto flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
-              <span>{e.capacidad} · {e.metros} m²</span>
-              <span class="text-sm font-semibold text-terracota">${precioDe(e)} <span class="font-normal text-ink-muted">/ h</span></span>
+              <span>{e.capacidadBreve} · {e.metros} m²</span>
+              <span class="text-sm font-semibold text-terracota">${e.precioHora} <span class="font-normal text-ink-muted">/ h</span></span>
             </div>
           </a>
         ))}
@@ -146,62 +147,93 @@ const amuebladoLabel: Record<string, string> = {
     </Container>
   </section>
 
-  <!-- ════════════════════ CONSULTAS ════════════════════ -->
+  <!-- ════════════════════ INFANCIAS + CAMILLA (comparten fila) ════════════════════ -->
   <section class="bg-[#f8f9fa] py-12 sm:py-16">
     <Container size="wide">
-      <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Consultas individuales</h2>
-      <p class="mb-8 text-ink-soft">Íntimas y silenciosas, pensadas para la sesión uno a uno.</p>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {consultas.map((e) => (
-          <a
-            href={`/los-espacios/${e.id}`}
-            class="group flex flex-col rounded-2xl border border-hairline bg-white p-6 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]"
-          >
-            <div class="flex items-start justify-between">
-              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={iconDe(e)} />
-              </span>
-              <span class="rounded-full bg-[#f8f9fa] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft">{amuebladoLabel[e.amueblado]}</span>
-            </div>
-            <h3 class="mt-5 text-lg text-ink">{e.nombre}</h3>
-            <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">{e.resumen}</p>
-            <div class="mt-auto flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
-              <span>{e.capacidad} · {e.metros} m²</span>
-              <span class="text-sm font-semibold text-terracota">${precioDe(e)} <span class="font-normal text-ink-muted">/ h</span></span>
-            </div>
-          </a>
-        ))}
+      <div class="grid gap-12 lg:grid-cols-2 lg:gap-8">
+        <div>
+          <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Para infancias</h2>
+          <p class="mb-8 text-ink-soft">Con rincón infantil y butacas, para trabajar con niños y familias.</p>
+          <div class="grid gap-4">
+            {infancias.map((e) => (
+              <a
+                href={`/los-espacios/${e.id}`}
+                class="group flex flex-col rounded-2xl border border-hairline bg-white p-6 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]"
+              >
+                <div class="flex items-start justify-between">
+                  <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={ICONOS_GRUPO[e.grupo]} />
+                  </span>
+                  <span class="rounded-full bg-[#f8f9fa] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft">{TIPO_LABEL[e.tipo]}</span>
+                </div>
+                <h3 class="mt-5 text-lg text-ink">{e.nombre}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">{e.resumen}</p>
+                <div class="mt-auto flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
+                  <span>{e.capacidadBreve} · {e.metros} m²</span>
+                  <span class="text-sm font-semibold text-terracota">${e.precioHora} <span class="font-normal text-ink-muted">/ h</span></span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Con camilla</h2>
+          <p class="mb-8 text-ink-soft">Para masajes, reflexología y terapias corporales.</p>
+          <div class="grid gap-4">
+            {camilla.map((e) => (
+              <a
+                href={`/los-espacios/${e.id}`}
+                class="group flex flex-col rounded-2xl border border-hairline bg-white p-6 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]"
+              >
+                <div class="flex items-start justify-between">
+                  <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={ICONOS_GRUPO[e.grupo]} />
+                  </span>
+                  <span class="rounded-full bg-[#f8f9fa] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft">{TIPO_LABEL[e.tipo]}</span>
+                </div>
+                <h3 class="mt-5 text-lg text-ink">{e.nombre}</h3>
+                <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">{e.resumen}</p>
+                <div class="mt-auto flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
+                  <span>{e.capacidadBreve} · {e.metros} m²</span>
+                  <span class="text-sm font-semibold text-terracota">${e.precioHora} <span class="font-normal text-ink-muted">/ h</span></span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </Container>
   </section>
 
-  <!-- ════════════════════ SALONES GRUPALES ════════════════════ -->
+  <!-- ════════════════════ GRUPOS, MOVIMIENTO Y TALLERES ════════════════════ -->
   <section class="bg-white py-12 sm:py-16">
     <Container size="wide">
-      <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Salones grupales</h2>
-      <p class="mb-8 text-ink-soft">Versátiles, para grupos chicos y talleres de medio día.</p>
+      <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Grupos, movimiento y talleres</h2>
+      <p class="mb-8 text-ink-soft">Despejados y con colchonetas, para grupos chicos, meditación o movimiento.</p>
       <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {salones.map((e) => (
+        {grupos.map((e) => (
           <a
             href={`/los-espacios/${e.id}`}
             class="group flex flex-col rounded-2xl border border-hairline bg-[#f8f9fa] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]"
           >
             <div class="flex items-start justify-between">
               <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={iconDe(e)} />
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={ICONOS_GRUPO[e.grupo]} />
               </span>
-              <span class="rounded-full bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft">{amuebladoLabel[e.amueblado]}</span>
+              <span class="rounded-full bg-white px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-soft">{TIPO_LABEL[e.tipo]}</span>
             </div>
             <h3 class="mt-5 text-lg text-ink">{e.nombre}</h3>
             <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">{e.resumen}</p>
             <div class="mt-auto flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
-              <span>{e.capacidad} · {e.metros} m²</span>
-              <span class="text-sm font-semibold text-terracota">${precioDe(e)} <span class="font-normal text-ink-muted">/ h</span></span>
+              <span>{e.capacidadBreve} · {e.metros} m²</span>
+              <span class="text-sm font-semibold text-terracota">${e.precioHora} <span class="font-normal text-ink-muted">/ h</span></span>
             </div>
           </a>
         ))}
       </div>
-      <p class="mt-8 text-center text-sm text-ink-muted">Fotos reales de cada espacio, muy pronto.</p>
+      <p class="mt-8 text-sm text-ink-soft">
+        ¿Necesitás más lugar? La <a href="/los-espacios/sala-arcos" class="font-semibold text-terracota underline-offset-4 hover:underline">Sala Arcos</a> recibe hasta 25 personas.
+      </p>
     </Container>
   </section>
 
@@ -209,17 +241,17 @@ const amuebladoLabel: Record<string, string> = {
   <section class="bg-[#f8f9fa] py-20 sm:py-28">
     <Container>
       <div class="rounded-[var(--radius-xl)] border border-hairline bg-white p-12 text-center shadow-[var(--shadow-md)] sm:p-16">
-        <h2 class="text-balance text-ink">¿Listo para reservar?</h2>
+        <h2 class="text-balance text-ink">Tu primera hora acá adentro es gratis.</h2>
         <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-ink-soft text-pretty">
-          Creá tu cuenta gratis y entrá a ver la disponibilidad real de los 12
-          espacios para los próximos días.
+          Pre-registrate hoy y te guardamos una hora gratis para usarla cuando
+          quieras durante 2026, en el espacio que elijas.
         </p>
         <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href={SITE.agendaUrl} variant="primary" size="lg">
-            Crear cuenta y reservar
+          <Button href="/#registro" variant="primary" size="lg">
+            Quiero mi primera hora gratis
           </Button>
-          <Button href="/contacto" variant="ghost" size="lg">
-            Tengo una consulta
+          <Button href={CONTACT.whatsappLink('Hola! Quiero saber más sobre los espacios de Espacio 1010.')} variant="ghost" size="lg" target="_blank">
+            Escribinos por WhatsApp
           </Button>
         </div>
       </div>

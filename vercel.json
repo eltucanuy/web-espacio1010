@@ -32,6 +32,18 @@
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/espacios", "destination": "/los-espacios", "permanent": true },
     { "source": "/faq", "destination": "/preguntas-frecuentes", "permanent": true },
-    { "source": "/contact", "destination": "/contacto", "permanent": true }
+    { "source": "/contact", "destination": "/contacto", "permanent": true },
+    { "source": "/los-espacios/sala-subsuelo", "destination": "/los-espacios/sala-arcos", "permanent": true },
+    { "source": "/los-espacios/salon-cobre", "destination": "/los-espacios/espacio-03", "permanent": true },
+    { "source": "/los-espacios/salon-roble", "destination": "/los-espacios/espacio-14", "permanent": true },
+    { "source": "/los-espacios/estudio-norte", "destination": "/los-espacios/espacio-01", "permanent": true },
+    { "source": "/los-espacios/estudio-sur", "destination": "/los-espacios/espacio-12", "permanent": true },
+    { "source": "/los-espacios/consulta-1", "destination": "/los-espacios", "permanent": true },
+    { "source": "/los-espacios/consulta-2", "destination": "/los-espacios", "permanent": true },
+    { "source": "/los-espacios/consulta-3", "destination": "/los-espacios", "permanent": true },
+    { "source": "/los-espacios/consulta-4", "destination": "/los-espacios", "permanent": true },
+    { "source": "/los-espacios/consulta-5", "destination": "/los-espacios", "permanent": true },
+    { "source": "/los-espacios/consulta-6", "destination": "/los-espacios", "permanent": true },
+    { "source": "/los-espacios/consulta-7", "destination": "/los-espacios", "permanent": true }
   ]
 }

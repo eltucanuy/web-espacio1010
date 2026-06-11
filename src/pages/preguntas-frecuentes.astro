@@ -2,19 +2,40 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
-import { SITE } from '../lib/site';
+import { CONTACT } from '../lib/site';
 
 const faqs = [
+  {
+    categoria: 'Pre-apertura',
+    items: [
+      {
+        q: '¿Cuándo abre Espacio 1010?',
+        a: 'Este mes: abrimos en junio 2026. Mientras tanto podés pre-registrarte gratis: te guardamos tu primera hora gratis y te avisamos por WhatsApp el día que abrimos.',
+      },
+      {
+        q: '¿Pre-registrarme me compromete a algo?',
+        a: 'No. Es gratis, sin tarjeta y sin compromiso: te guardamos tu primera hora gratis y te avisamos por WhatsApp cuando abrimos. Nada más.',
+      },
+      {
+        q: '¿Cómo funciona la primera hora gratis?',
+        a: 'Al completar tu registro queda cargada a tu nombre, lista para usarla cuando quieras durante 2026, en el espacio que elijas.',
+      },
+    ],
+  },
   {
     categoria: 'Reservas y agenda',
     items: [
       {
         q: '¿Necesito registrarme antes de reservar?',
-        a: 'Sí. Es gratis y toma 30 segundos. Aprobamos cuentas el mismo día — siempre revisado por una persona, no por un bot.',
+        a: 'Sí. Es gratis y toma menos de un minuto desde el celular. Una persona del equipo (no un bot) revisa y activa tu cuenta — te avisamos por WhatsApp en cuanto está lista. Si te registrás ahora, además, tu primera hora queda gratis.',
       },
       {
         q: '¿Puedo reservar para hoy mismo?',
-        a: 'Sí, siempre que haya disponibilidad. La agenda se actualiza en tiempo real y aceptamos reservas hasta minutos antes del horario, sujeto a disponibilidad.',
+        a: 'Sí, siempre que haya disponibilidad. La agenda se actualiza en tiempo real: lo que ves libre, lo podés reservar, incluso para dentro de un rato.',
+      },
+      {
+        q: '¿En qué horarios puedo atender?',
+        a: 'Todos los días, de 7 a 24 h — también sábados, domingos y feriados. Reservás en bloques de 1 hora (hasta 8 seguidas) y podés agendar con hasta 150 días de anticipación.',
       },
       {
         q: '¿Hay un mínimo de horas?',
@@ -26,7 +47,7 @@ const faqs = [
       },
       {
         q: '¿Qué pasa si llego tarde a mi reserva?',
-        a: 'Tu código sigue funcionando hasta el final de la hora reservada. Si necesitás extender, depende de la disponibilidad del siguiente turno.',
+        a: 'Tu reserva sigue siendo tuya hasta el final del horario — entrás con tu código cuando llegues. Eso sí: el horario no se corre, e incluye ingreso, sesión y cierre. Si necesitás extender, depende de que el siguiente turno esté libre.',
       },
     ],
   },
@@ -35,23 +56,27 @@ const faqs = [
     items: [
       {
         q: '¿Cuál es la política de cancelaciones?',
-        a: 'En reservas eventuales: si cancelás con 24 horas o más de aviso, no pagás nada; dentro de las 24 horas te bonificamos el 50% (pagás solo la mitad). En reservas fijas podés cancelar 1 de cada 5 sin cargo.',
+        a: 'Cancelás gratis avisando con más de 24 horas. Entre 24 horas y 1 hora antes, pagás solo la mitad (te bonificamos el 50%). Con menos de 1 hora ya no se puede cancelar. Todo directo desde la app.',
       },
       {
-        q: '¿Las series fijas también tienen cancelaciones gratis?',
-        a: 'Sí: podés cancelar 1 de cada 5 reservas de tu serie fija sin ningún cargo. La idea es ser flexible sin que se vuelva injusto para quien espera ese slot.',
+        q: '¿Las reservas fijas también tienen cancelaciones gratis?',
+        a: 'Sí. Avisando con más de 24 horas, cada mes podés cancelar sin cargo hasta el 20% de tus horas fijas — 1 de cada 5. La app te muestra cuántas gratis te quedan al momento de cancelar, y el tope se reinicia el día 1. Si lo que querés es dejar el horario para siempre, eso es "liberar" el horario y no cuenta para el tope.',
       },
       {
         q: '¿Cuánto cuesta la hora?',
-        a: '$350 la hora en todos los consultorios. La Sala Arcos, la gran sala del subsuelo para grupos y talleres, sale $700 la hora. Sin costos de gestión escondidos.',
+        a: '$350 la hora en todos los espacios que reservás desde la app. La Sala Arcos, la gran sala del subsuelo para grupos y talleres (hasta 25 personas, con proyector, parlante y kitchenette), sale $700 la hora y se coordina directo por WhatsApp. Sin costos de gestión escondidos.',
+      },
+      {
+        q: '¿Hay descuentos si reservo muchas horas?',
+        a: 'Sí, automáticos: con 20 horas o más en el mes, 10% de descuento; con 40 o más, 20%. Se aplican solos en tu liquidación, sin trámite.',
       },
       {
         q: '¿Cómo pago las reservas?',
-        a: 'Mes a mes, contra una liquidación que generamos automáticamente el día 1. Vence el día 10. Sin tarjeta en cada reserva ni cobros automáticos.',
+        a: 'A mes vencido: el día 1 te generamos la liquidación con el detalle de lo que usaste el mes anterior y tenés 10 días para pagarla. Pagás por transferencia bancaria o depósito en Abitab/RedPagos, y podés hacerlo en pagos parciales. Sin tarjeta, sin adelantos, sin cobros automáticos.',
       },
       {
         q: '¿Qué pasa si no pago a tiempo?',
-        a: 'Después del día 10 la liquidación queda "vencida" y se suspende la posibilidad de hacer reservas nuevas hasta regularizar.',
+        a: 'Si la liquidación vence sin pagar, queda "vencida" y se suspende la posibilidad de hacer reservas nuevas hasta regularizar.',
       },
     ],
   },
@@ -60,23 +85,23 @@ const faqs = [
     items: [
       {
         q: '¿Cómo accedo al edificio?',
-        a: 'Con un código personal que recibís al crear tu cuenta. El código abre la puerta de calle y el espacio que reservaste, dentro de tu franja horaria.',
+        a: 'Con tu código personal, que ves en cualquier momento desde la app. Lo ingresás en el panel de la entrada y listo. Es personal e intransferible: cada ingreso queda registrado a tu nombre.',
       },
       {
-        q: '¿Cómo accede mi paciente?',
-        a: 'Toca timbre y vos le abrís remoto desde la app, o lo recibís personalmente. La sala de espera común es cómoda y privada.',
+        q: '¿Cómo entran las personas que atendés?',
+        a: 'Tocan timbre y vos les abrís desde el videoportero. Desde el botón "Puerta" de la app podés mandarles por WhatsApp las instrucciones de ingreso ya armadas. Ingresan a la hora de tu reserva y quedan bajo tu responsabilidad mientras están en el edificio.',
       },
       {
-        q: '¿Puedo dejar materiales en el espacio?',
-        a: 'En los espacios versátiles no, son compartidos. En consultas amobladas con uso fijo, hay opción de armario reservado — consultá por WhatsApp.',
+        q: '¿Puedo dejar materiales en el lugar?',
+        a: 'Dentro de los espacios no — son compartidos. Para tus materiales (caja de juegos, material de trabajo) hay muebles habilitados en el comedor del primer piso: van en una caja rotulada con tu nombre. Los muebles son comunes y no tienen llave, así que lo importante llevalo con vos.',
       },
       {
-        q: '¿Hay limpieza entre reservas?',
-        a: 'Sí, todos los espacios se ventilan y revisan entre uso y uso. La limpieza profunda es diaria, generalmente al cierre.',
+        q: '¿Cómo se mantiene la limpieza de los espacios?',
+        a: 'Con limpieza regular del lugar y una regla simple entre colegas: cada uno deja el espacio como lo encontró. Si algo no está en condiciones, lo reportás desde la app o por WhatsApp y lo resolvemos.',
       },
       {
-        q: '¿Puedo usar la sala de cowork sin reserva?',
-        a: 'Sí, mientras tengas al menos una reserva ese día. Llegás antes, te quedás después o aprovechás un hueco entre pacientes sin pagar extra.',
+        q: '¿Puedo usar el comedor y la sala de estar?',
+        a: 'Sí. El comedor del primer piso es exclusivo y sin cargo para profesionales registrados: para llegar antes, quedarte después, almorzar o trabajar entre sesiones, sin límite de tiempo mientras haya lugar. Tiene heladera, café y elementos de uso común.',
       },
     ],
   },
@@ -89,19 +114,19 @@ const faqs = [
       },
       {
         q: '¿Hay estacionamiento?',
-        a: 'No tenemos cochera propia, pero la zona no es tarifada y casi siempre hay lugar en la calle. Las cuadras alrededor son tranquilas.',
+        a: 'No tenemos cochera propia, pero es zona de estacionamiento NO tarifado: podés dejar el auto en la calle sin costo. Y en bus la zona está bien conectada.',
       },
       {
         q: '¿Es accesible para personas con movilidad reducida?',
-        a: 'La planta baja tiene baño accesible. El acceso desde la calle tiene 2 escalones — si necesitás asistencia, coordinamos por WhatsApp para recibirte.',
+        a: 'Depende de lo que necesites — escribinos por WhatsApp y lo vemos juntos antes de tu primera reserva, así te recibimos como corresponde.',
       },
       {
-        q: '¿Hay wifi en todo el edificio?',
-        a: 'Sí, fibra óptica con repetidores por planta. Funciona también en la sala de espera y la cocina.',
+        q: '¿Hay wifi?',
+        a: 'Sí. Todos los espacios tienen wifi y aire acondicionado.',
       },
       {
-        q: '¿Cómo es la privacidad acústica entre espacios?',
-        a: 'Trabajamos especialmente la privacidad acústica. Además, hay música ambiente suave en pasillos para sumar enmascaramiento — es muy difícil escuchar de un espacio a otro.',
+        q: '¿Cómo es la privacidad entre espacios?',
+        a: 'La cuidamos entre todos: las pautas de la casa piden cuidar el volumen y evitar conversaciones sensibles en zonas comunes. Si tu práctica incluye música o movimiento, contanos y te recomendamos el espacio que mejor convive con eso.',
       },
     ],
   },
@@ -121,7 +146,7 @@ const schemaFAQ = {
 ---
 
 <BaseLayout
-  title="Preguntas frecuentes"
+  title="Preguntas frecuentes · Consultorios por hora en Montevideo"
   description="Respuestas a las dudas más comunes sobre Espacio 1010: reservas, cancelaciones, acceso, precios y uso del edificio. Si tu pregunta no está, escribinos por WhatsApp."
   ogSlug="preguntas-frecuentes"
 >
@@ -140,7 +165,7 @@ const schemaFAQ = {
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
         Si tu pregunta no está acá, escribinos por WhatsApp y te respondemos
-        en minutos. Vamos sumando más preguntas a medida que llegan.
+        enseguida. Vamos sumando más preguntas a medida que llegan.
       </p>
     </Container>
   </section>
@@ -176,18 +201,34 @@ const schemaFAQ = {
 
   <section class="bg-[#f8f9fa] py-20 sm:py-24">
     <Container size="narrow">
+      <img
+        src="/fotos/lugar-pasillo.webp"
+        alt="Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya"
+        loading="lazy"
+        class="mb-10 aspect-[5/2] w-full rounded-[var(--radius-lg)] object-cover shadow-[var(--shadow-md)]"
+      />
       <div class="rounded-[var(--radius-lg)] border border-hairline bg-white p-10 text-center shadow-[var(--shadow-md)]">
         <h2 class="text-3xl text-ink">¿Te quedó alguna duda?</h2>
         <p class="mt-3 text-ink-soft">
-          WhatsApp es lo más rápido. Si preferís ver el lugar antes, también
-          coordinamos visita.
+          Escribinos por WhatsApp y te respondemos enseguida. Y si ya está todo
+          claro, asegurá tu primera hora gratis — es sin tarjeta y sin compromiso.
+        </p>
+        <p class="mt-3 text-sm text-ink-soft">
+          ¿Querés seguir mirando? Conocé
+          <a href="/los-espacios" class="font-medium text-terracota underline-offset-2 hover:underline">los espacios</a>,
+          <a href="/precios" class="font-medium text-terracota underline-offset-2 hover:underline">los precios</a> o
+          <a href="/como-funciona" class="font-medium text-terracota underline-offset-2 hover:underline">cómo funciona</a>.
         </p>
         <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href="/contacto" variant="primary" size="md">
-            Escribirnos
+          <Button href="/#registro" variant="primary" size="md">
+            Quiero mi primera hora gratis
           </Button>
-          <Button href={SITE.agendaUrl} variant="ghost" size="md">
-            Crear cuenta
+          <Button
+            href={CONTACT.whatsappLink('Hola! Tengo una pregunta que no está en la FAQ de Espacio 1010.')}
+            variant="ghost"
+            size="md"
+          >
+            Preguntar por WhatsApp
           </Button>
         </div>
       </div>

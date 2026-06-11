@@ -2,55 +2,67 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
-import { SITE } from '../lib/site';
+import { CONTACT } from '../lib/site';
 
 const pasos = [
   {
     n: '01',
-    titulo: 'Te registrás',
-    bajada: 'En 30 segundos. Email, profesión, datos básicos.',
+    titulo: 'Te pre-registrás',
+    bajada: 'En 30 segundos, desde el celular.',
     detalle:
-      'Tu cuenta queda en revisión y la aprobamos el mismo día — siempre por una persona, no un bot. Eso nos permite cuidar quién entra al edificio y que la comunidad de profesionales se mantenga curada.',
+      'Te pre-registrás hoy con tu nombre y WhatsApp, y tu primera hora queda gratis, guardada a tu nombre para usarla cuando quieras durante 2026. Después completás tu cuenta en la app y listo.',
     bullets: [
-      'Validamos cédula y matrícula profesional cuando aplica',
-      'Te contactamos si necesitamos algún dato adicional',
-      'Apenas aprobamos, recibís el código de acceso por mail',
+      'Sin tarjeta y sin compromiso',
+      'Tu primera hora gratis queda reservada a tu nombre',
+      'Tu código de entrada lo ves directo en la app',
     ],
   },
   {
     n: '02',
     titulo: 'Buscás disponibilidad',
-    bajada: 'Ves los 12 espacios con sus horarios libres en tiempo real.',
+    bajada: 'Ves los consultorios y salas con sus horarios libres en tiempo real.',
     detalle:
-      'La agenda muestra exactamente lo que está libre cuando vos entrás. Filtrás por día, por tamaño de espacio o por tipo de equipamiento. Si querés algo recurrente, podés bloquear un mismo día y hora de la semana.',
+      'La agenda muestra exactamente lo que está libre cuando vos entrás: elegís el día y el rango horario, y listo. Y si querés un horario fijo, lo dejás reservado todas las semanas.',
     bullets: [
-      'Reserva eventual: hora suelta cuando la necesitás',
-      'Reserva fija: día y hora garantizados todas las semanas',
-      'Filtros por capacidad, mobiliario y profesional',
+      'Reserva "Una vez": una fecha y hora concretas',
+      'Reserva "Todas las semanas": tu horario fijo — mismo día, hora y espacio',
+      'Hasta 8 horas seguidas y hasta 150 días hacia adelante',
     ],
   },
   {
     n: '03',
     titulo: 'Reservás en un click',
-    bajada: 'Confirmás y listo. Cero idas y vueltas con humanos.',
+    bajada: 'Confirmás y listo. Sin esperar a nadie.',
     detalle:
-      'No hay aprobación intermedia, no hay "te confirmo mañana". Apenas hacés click la reserva queda firme y aparece en tu panel. $350 la hora en todos los consultorios; $700 la hora la Sala Arcos del subsuelo. Si cambian tus planes, cancelar una eventual con 24 horas no tiene costo.',
+      'No hay aprobación intermedia, no hay "te confirmo mañana". Apenas hacés click la reserva queda firme y la ves en tu agenda de la app. $350 la hora en todos los espacios que reservás desde la app; la Sala Arcos del subsuelo ($700 la hora) se coordina directo por WhatsApp.',
     bullets: [
-      'Confirmación inmediata por mail',
-      'Aparece en tu panel y en tu calendario',
-      '$350/h consultorios · $700/h Sala Arcos',
+      'Confirmación al instante, sin esperar a nadie',
+      '$350/h en todos los espacios que reservás desde la app',
+      'Sala Arcos ($700/h): se coordina por WhatsApp',
     ],
   },
   {
     n: '04',
-    titulo: 'Entrás cuando querés',
-    bajada: '24/7, con tu código personal. Sin coordinar con nadie.',
+    titulo: 'Entrás con tu código',
+    bajada: 'Todos los días, de 7 a 24 h. Sin coordinar con nadie.',
     detalle:
-      'Tu código abre la puerta de calle y el espacio que reservaste. Llegás antes, esperás en la sala de cowork sin pagar extra. Tus pacientes esperan en la sala de espera común, cómoda y con privacidad.',
+      'Tu código personal abre la puerta de calle y lo tenés siempre a mano en la app. Las personas que atendés tocan timbre y vos les abrís por el videoportero. Si llegás antes, esperás en la cocina y sala de estar del primer piso, exclusiva para profesionales y sin cargo.',
     bullets: [
-      'Código personal que cambia con cada reserva',
-      'Sala de cowork gratis mientras esperás',
-      'Tu paciente espera en una sala pensada para eso',
+      'Código personal e intransferible — lo ves siempre en la app',
+      'Videoportero para abrirles a las personas que atendés',
+      'Cocina y sala de estar del primer piso sin cargo, exclusiva para profesionales',
+    ],
+  },
+  {
+    n: '05',
+    titulo: 'Pagás a mes vencido',
+    bajada: 'Primero usás, después pagás. Sin tarjeta.',
+    detalle:
+      'El día 1 de cada mes te llega la liquidación con el detalle de lo que usaste el mes anterior, y tenés 10 días para pagarla por transferencia o depósito. Sin tarjeta, sin adelantos, sin cobros automáticos. Y si reservás mucho, mejor: con 20 horas o más en el mes se aplica un 10% de descuento automático; con 40 o más, un 20%.',
+    bullets: [
+      'Liquidación el día 1, con 10 días para pagar',
+      'Transferencia o depósito — también en pagos parciales',
+      'Descuento automático: 20 h o más → 10% · 40 h o más → 20%',
     ],
   },
 ];
@@ -71,8 +83,8 @@ const schemaHowTo = {
 ---
 
 <BaseLayout
-  title="Cómo funciona"
-  description="Cómo reservar consultorio en Espacio 1010 en 4 pasos: registrate, buscá disponibilidad real, reservá online y entrá 24/7 con tu código personal."
+  title="Cómo funciona: reservá tu consultorio por hora"
+  description="Cómo reservar consultorio por hora en Espacio 1010: pre-registrate, mirá la disponibilidad real, reservá desde el celular y entrá con tu código todos los días, de 7 a 24 h."
   ogSlug="como-funciona"
 >
   <Fragment slot="head">
@@ -85,8 +97,15 @@ const schemaHowTo = {
       <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
         Cómo funciona
       </p>
+      <p class="mb-5 inline-flex items-center gap-2 whitespace-nowrap rounded-full border border-terracota/25 bg-terracota-tint px-4 py-2 text-xs font-medium text-terracota">
+        <span class="relative flex h-2 w-2">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-terracota opacity-50"></span>
+          <span class="relative inline-flex h-2 w-2 rounded-full bg-terracota"></span>
+        </span>
+        Pre-lanzamiento · ¡muy pronto!
+      </p>
       <h1 class="text-balance">
-        Cuatro pasos.
+        Cinco pasos.
         <span class="text-terracota">El resto es atender.</span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
@@ -100,6 +119,19 @@ const schemaHowTo = {
   <!-- Pasos en detalle -->
   <section class="bg-white pb-20 sm:pb-24">
     <Container>
+      <div class="mx-auto mb-12 w-full max-w-[240px]">
+        <div class="relative overflow-hidden rounded-[2.2rem] border-[7px] border-[#0f0c0e] bg-[#0f0c0e] shadow-[var(--shadow-md)]">
+          <img
+            src="/fotos/app-captura.png"
+            alt="Pantalla de la app de Espacio 1010: elegís espacio, día y hora y reservás desde el celular"
+            width="460"
+            height="912"
+            loading="lazy"
+            decoding="async"
+            class="block w-full"
+          />
+        </div>
+      </div>
       <ol class="space-y-4">
         {
           pasos.map((p) => (
@@ -128,6 +160,9 @@ const schemaHowTo = {
           ))
         }
       </ol>
+      <p class="mt-10 text-base text-ink-soft">
+        ¿Querés ver dónde vas a atender? Mirá <a href="/los-espacios" class="font-medium text-terracota underline-offset-4 hover:underline">los consultorios y salas</a> o el detalle de <a href="/precios" class="font-medium text-terracota underline-offset-4 hover:underline">precios y descuentos por volumen</a>.
+      </p>
     </Container>
   </section>
 
@@ -138,35 +173,22 @@ const schemaHowTo = {
         Política de cancelaciones
       </p>
       <h2 class="text-3xl text-ink sm:text-4xl">
-        La más favorable del mercado.
+        A vos también te cancelan. Acá no lo pagás.
       </h2>
       <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-soft text-pretty">
-        Pensada para que la flexibilidad que vos das a tus pacientes la tengas
-        también con nosotros. Sin letra chica.
+        Cancelás con la misma flexibilidad que vos les das a las personas que
+        atendés. Sin letra chica.
       </p>
 
       <div class="mt-12 grid gap-4 sm:grid-cols-3">
         <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-md)]">
           <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
-          </span>
-          <h3 class="mt-5 text-lg text-ink">Reservas fijas</h3>
-          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
-            Podés cancelar <strong class="text-ink">1 de cada 5</strong> reservas
-            de tu serie fija sin ningún cargo. Así mantenemos la equidad con
-            quienes esperan ese mismo slot.
-          </p>
-        </div>
-
-        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-md)]">
-          <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
           </span>
-          <h3 class="mt-5 text-lg text-ink">Eventuales con 24 h</h3>
+          <h3 class="mt-5 text-lg text-ink">Hasta 24 h antes</h3>
           <p class="mt-2 text-sm leading-relaxed text-ink-soft">
-            Si avisás con <strong class="text-ink">24 horas o más</strong> de
-            anticipación, la reserva se libera <strong class="text-ink">sin
-            costo</strong>. Cero penalización.
+            Cancelás <strong class="text-ink">gratis</strong>. No pagás nada y
+            tu hora vuelve a quedar disponible.
           </p>
         </div>
 
@@ -174,19 +196,29 @@ const schemaHowTo = {
           <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
           </span>
-          <h3 class="mt-5 text-lg text-ink">Dentro de las 24 h</h3>
+          <h3 class="mt-5 text-lg text-ink">Hasta 1 h antes</h3>
           <p class="mt-2 text-sm leading-relaxed text-ink-soft">
-            Si cancelás con menos de 24 horas, te
-            <strong class="text-ink">bonificamos el 50%</strong>: pagás solo la
-            mitad de esa hora.
+            Pagás <strong class="text-ink">solo el 50%</strong>. La otra mitad
+            queda bonificada.
+          </p>
+        </div>
+
+        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-md)]">
+          <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+          </span>
+          <h3 class="mt-5 text-lg text-ink">Reservas fijas</h3>
+          <p class="mt-2 text-sm leading-relaxed text-ink-soft">
+            Tus reservas de "Todas las semanas" incluyen un
+            <strong class="text-ink">cupo de cancelaciones gratis</strong> cada
+            mes: hasta el 20% de tus horas fijas (1 de cada 5).
           </p>
         </div>
       </div>
 
       <p class="mt-8 text-sm text-ink-muted">
-        Resumen: 1 de cada 5 fijas sin cargo · eventuales con 24 h sin cargo ·
-        dentro de las 24 h, 50% bonificado. Todo el detalle queda visible en tu
-        panel al momento de cancelar.
+        Con menos de 1 hora de anticipación ya no se puede cancelar. El detalle
+        exacto lo ves en la app al momento de cancelar.
       </p>
     </Container>
   </section>
@@ -200,27 +232,27 @@ const schemaHowTo = {
         {[
           {
             q: '¿Puedo probar el espacio antes de reservar?',
-            a: 'Sí. Coordinamos visita guiada sin compromiso por WhatsApp. Te mostramos los 12 espacios y respondemos cualquier duda.',
+            a: 'Sí. Estamos en pre-apertura — coordinamos una visita sin compromiso por WhatsApp y te mostramos los consultorios y las salas.',
           },
           {
             q: '¿Tengo que firmar contrato anual?',
-            a: 'No. Reservás por hora, las veces que quieras, sin contrato. Las series fijas son mes a mes — si querés cortar, lo hacés desde tu panel.',
+            a: 'No. Reservás por hora, las veces que quieras, sin contrato. Y si tenés un horario fijo todas las semanas, lo liberás cuando quieras desde la app, sin penalización.',
           },
           {
             q: '¿Cuánto cuesta la hora?',
-            a: '$350 la hora en todos los consultorios. La Sala Arcos, la gran sala del subsuelo para grupos y talleres, sale $700 la hora. Sin costos de gestión escondidos.',
+            a: '$350 la hora en todos los consultorios, sin costos de gestión escondidos. La Sala Arcos, la gran sala del subsuelo para grupos y talleres, sale $700 la hora y se coordina directo por WhatsApp. Y si reservás 20 horas o más en el mes, tenés un descuento automático del 10% (20% con 40 o más).',
           },
           {
             q: '¿Cómo accede mi paciente?',
-            a: 'Te avisa por timbre o le abrís remoto desde la app. Pasa a la sala de espera común y vos lo recibís cuando estás listo.',
+            a: 'Toca el timbre y vos le abrís por el videoportero. Entra justo a la hora de tu reserva — tu horario incluye ingreso, sesión y cierre, así nadie se superpone con nadie.',
           },
           {
             q: '¿Qué pasa si llego tarde?',
-            a: 'Tu código sigue funcionando — la reserva es tuya hasta que se cumpla la hora completa. Si necesitás extender, depende de la disponibilidad del siguiente turno.',
+            a: 'La reserva es tuya hasta que termina la hora — tu horario incluye ingreso, sesión y cierre. Si vas a necesitar más tiempo, reservá una hora más desde la app (podés reservar hasta 8 seguidas).',
           },
           {
             q: '¿Puedo dejar materiales en el espacio?',
-            a: 'En los espacios versátiles no, son compartidos. En estudios y consultas amobladas hay opción de pack mensual con armario reservado — preguntá por WhatsApp.',
+            a: 'Los espacios son compartidos, así que no quedan cosas dentro de ellos. Podés dejar tus materiales en una caja rotulada con tu nombre en los muebles de la cocina y sala de estar de profesionales. Son muebles comunes, sin llave — lo importante llevalo con vos.',
           },
         ].map((item) => (
           <details class="group rounded-2xl border border-hairline bg-[#f8f9fa] p-6 transition-all duration-300 hover:border-terracota/30">
@@ -249,19 +281,27 @@ const schemaHowTo = {
   <section class="bg-white py-20 sm:py-28">
     <Container>
       <div class="rounded-[var(--radius-xl)] bg-terracota p-12 text-center text-white sm:p-20">
-        <h2 class="text-balance text-white">¿Probamos?</h2>
+        <h2 class="text-balance text-white">¿Empezamos?</h2>
         <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-          Crear tu cuenta es gratis y toma 30 segundos. Después ves la
-          disponibilidad real y reservás cuando quieras.
+          Pre-registrate gratis en 30 segundos y tu primera hora queda guardada
+          a tu nombre, para usarla cuando quieras durante 2026.
         </p>
         <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
-            Crear mi cuenta
+          <Button href="/#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
+            Quiero mi primera hora gratis
           </Button>
-          <Button href="/precios" variant="ghost" size="lg" class="text-white hover:bg-white/10">
-            Ver precios
+          <Button
+            href={CONTACT.whatsappLink('Hola! Quiero saber más sobre cómo funciona Espacio 1010.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="ghost"
+            size="lg"
+            class="text-white hover:bg-white/10"
+          >
+            Escribinos por WhatsApp
           </Button>
         </div>
+        <p class="mt-5 text-xs text-white/70">Sin tarjeta · sin compromiso · no pagás nada hasta reservar</p>
       </div>
     </Container>
   </section>

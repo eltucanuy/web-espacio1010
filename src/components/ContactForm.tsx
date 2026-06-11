@@ -16,13 +16,19 @@ const PROFESIONES = [
   'Psicología',
   'Psiquiatría',
   'Psicopedagogía',
+  'Fonoaudiología',
+  'Psicomotricidad',
+  'Terapia ocupacional',
   'Nutrición',
+  'Kinesiología / Fisioterapia',
+  'Masajes / terapias corporales',
   'Coaching',
   'Constelaciones familiares',
-  'Homeopatía',
-  'Masajes / corporal',
+  'Terapias holísticas',
+  'Sexología',
+  'Arteterapia / Musicoterapia',
+  'Docente / Tallerista',
   'Meditación / yoga',
-  'Taller o grupo',
   'Otra',
 ];
 
@@ -30,7 +36,7 @@ const USOS = [
   { value: 'eventual', label: 'Hora suelta / eventual' },
   { value: 'fija', label: 'Día y hora fijos semanales' },
   { value: 'sala', label: 'Sala grupal / taller' },
-  { value: 'visita', label: 'Visita guiada al lugar' },
+  { value: 'visita', label: 'Visita al lugar' },
   { value: 'otra', label: 'Otra consulta' },
 ];
 
@@ -69,8 +75,9 @@ export default function ContactForm({ whatsappNumber }: Props) {
 
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(texto)}`;
 
-    // Abrimos WhatsApp en nueva pestaña / app nativa según device.
-    window.open(url, '_blank', 'noopener,noreferrer');
+    // Abrimos WhatsApp; si el navegador bloquea la pestaña (webviews in-app), navegamos directo.
+    const win = window.open(url, '_blank');
+    if (!win) window.location.href = url;
     setSubmitting(false);
   };
 

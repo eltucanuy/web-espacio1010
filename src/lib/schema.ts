@@ -3,7 +3,7 @@
  * Centralizar acá evita drift entre páginas.
  */
 
-import { SITE, ADDRESS, CONTACT } from './site';
+import { SITE, ADDRESS, CONTACT, SOCIAL } from './site';
 
 /**
  * BreadcrumbList — para páginas con breadcrumbs visibles.
@@ -24,7 +24,7 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
 
 /**
  * LocalBusiness refinado con OpeningHoursSpecification dual:
- *   - El edificio opera 24/7 (auto-acceso con código personal)
+ *   - Horario reservable real: todos los días de 07:00 a 24:00 (auto-acceso con código)
  *   - La atención humana tiene horario comercial
  * Google entiende ambos y muestra el correcto según el query.
  */
@@ -44,7 +44,7 @@ export function localBusinessSchema(imageUrl: string) {
     logo: `${SITE.url}/favicon.svg`,
     priceRange: '$$$',
     currenciesAccepted: 'UYU',
-    paymentAccepted: 'Cash, Credit Card, Bank Transfer',
+    paymentAccepted: 'Cash, Bank Transfer',
     address: {
       '@type': 'PostalAddress',
       streetAddress: ADDRESS.street,
@@ -58,26 +58,30 @@ export function localBusinessSchema(imageUrl: string) {
       latitude: ADDRESS.lat,
       longitude: ADDRESS.lng,
     },
-    // Edificio operativo 24/7 (auto-acceso con código).
+    // Horario reservable real (auto-acceso con código): 7 a 24, todos los días.
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '00:00',
+        opens: '07:00',
         closes: '23:59',
       },
     ],
-    // Atención humana en horario comercial.
-    hoursAvailable: {
-      '@type': 'OpeningHoursSpecification',
-      dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-      opens: '09:00',
-      closes: '20:00',
-      description: 'Atención humana por WhatsApp y visitas guiadas',
+    // Atención humana en horario comercial (hoursAvailable solo es válido en ContactPoint/Service).
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: CONTACT.whatsappLeads,
+      email: CONTACT.email,
+      contactType: 'customer service',
+      availableLanguage: 'es',
+      hoursAvailable: {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+        opens: '09:00',
+        closes: '20:00',
+      },
     },
     areaServed: { '@type': 'City', name: ADDRESS.city },
-    sameAs: [
-      // Cuando exista IG real, agregarlo.
-    ],
+    sameAs: [SOCIAL.instagram],
   };
 }

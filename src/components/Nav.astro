@@ -1,7 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import Button from './Button.astro';
-import { NAV, SITE } from '../lib/site';
+import { NAV } from '../lib/site';
 ---
 
 <header
@@ -30,7 +30,7 @@ import { NAV, SITE } from '../lib/site';
     </nav>
 
     <div class="hidden md:block">
-      <Button href={SITE.agendaUrl} variant="primary" size="sm">Reservar →</Button>
+      <Button href="/#registro" variant="primary" size="sm">Primera hora gratis</Button>
     </div>
 
     <button
@@ -68,10 +68,10 @@ import { NAV, SITE } from '../lib/site';
       }
       <li class="pt-3">
         <a
-          href={SITE.agendaUrl}
+          href="/#registro"
           class="block w-full rounded-full bg-terracota px-6 py-3 text-center text-base font-medium text-white"
         >
-          Reservar →
+          Primera hora gratis
         </a>
       </li>
     </ul>

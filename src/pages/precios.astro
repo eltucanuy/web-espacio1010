@@ -2,10 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
-import { SITE } from '../lib/site';
+import { CONTACT } from '../lib/site';
 
-// Precios reales — fuente de verdad para el sitio institucional.
-// Consultorios: $350/h. Sala Arcos (subsuelo): $700/h.
+// Precios reales — fuente de verdad: docs/VERDAD_APP_2026_06_10.md (la app manda).
+// Consultorios y salas: $350/h. Sala Arcos (subsuelo): $700/h.
+// Dos formas de reservar: hora suelta o fija semanal. Descuentos por volumen:
+// 20 h o más al mes → 10% · 40 h o más → 20% (automáticos, sobre el total del mes).
 const PRECIO_HORA = 350;
 const PRECIO_ARCOS = 700;
 
@@ -17,82 +19,63 @@ const planes = [
     unidad: 'por hora',
     destacado: false,
     incluye: [
-      'Cualquier consultorio disponible',
-      'Sin compromiso ni contrato',
-      'Cancelás con 24 hs, no pagás',
-      'Cowork gratis incluido',
+      'Cualquier espacio disponible',
+      'Desde 1 hora, sin compromiso ni contrato',
+      'Cancelás gratis hasta 24 h antes (50% hasta 1 h antes)',
+      'Reservás hasta con 150 días de anticipación',
     ],
-    cta: { label: 'Reservar hora', variant: 'outline' as const },
+    cta: { label: 'Quiero mi primera hora gratis', variant: 'outline' as const },
   },
   {
-    nombre: 'Pack de horas',
-    bajada: 'Comprás un bloque y lo usás cuando quieras.',
+    nombre: 'Fija semanal',
+    bajada: 'Tu día, tu hora y tu espacio, todas las semanas.',
     precio: `$${PRECIO_HORA}`,
-    unidad: 'por hora · descuento por volumen',
+    unidad: 'por hora',
     destacado: true,
     incluye: [
-      'Mejor tarifa cuanto más reservás',
-      'Las horas no se vencen mientras tengas cuenta',
-      'Combinás distintos consultorios',
-      'Prioridad sobre la hora suelta',
+      'Mismo espacio, día y hora cada semana',
+      'La cortás cuando quieras, sin trámite ni penalización',
+      'Cancelaciones gratis todos los meses (hasta el 20% de tus horas fijas)',
+      'Suma para tu descuento por volumen',
     ],
-    cta: { label: 'Comprar pack', variant: 'primary' as const },
-  },
-  {
-    nombre: 'Fija mensual',
-    bajada: 'Día y espacio garantizados, todas las semanas.',
-    precio: `$${PRECIO_HORA}`,
-    unidad: 'por hora · tarifa fija',
-    destacado: false,
-    incluye: [
-      'La mejor tarifa por volumen mensual',
-      'Tu día y hora reservados sin trámite',
-      'Cancelaciones flexibles dentro del tope mensual',
-      'Bonificación si cancelás con tiempo',
-    ],
-    cta: { label: 'Reservar fija', variant: 'outline' as const },
+    cta: { label: 'Quiero empezar con mi hora gratis', variant: 'primary' as const },
   },
 ];
 
-const schemaFAQ = {
+const schemaPrecios = {
   '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
+  '@type': 'Service',
+  name: 'Alquiler de consultorios y salas por hora',
+  provider: { '@type': 'LocalBusiness', name: 'Espacio 1010' },
+  areaServed: 'Montevideo, Uruguay',
+  offers: [
     {
-      '@type': 'Question',
-      name: '¿Cuánto cuesta alquilar consultorio por hora en Espacio 1010?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Los consultorios cuestan $350 por hora, precio único para todos. La Sala Arcos (subsuelo, hasta 30 personas) cuesta $700 por hora. Hay tres modalidades: hora suelta, pack de horas y serie fija mensual, con mejor tarifa cuanto más reservás por mes.',
-      },
+      '@type': 'Offer',
+      name: 'Consultorios y salas',
+      price: '350',
+      priceCurrency: 'UYU',
+      description:
+        'Precio por hora, único para todos los consultorios y salas. Descuentos automáticos: 10% desde 20 h al mes, 20% desde 40 h.',
     },
     {
-      '@type': 'Question',
-      name: '¿Hay contrato anual?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'No. Reservás por hora o por serie fija mes a mes. Cortás cuando quieras desde tu panel.',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '¿Qué incluye el precio?',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: 'Acceso al espacio + wifi + climatización + sala de espera + sala de cowork + cocina común + acceso 24/7. Sin cargos extra.',
-      },
+      '@type': 'Offer',
+      name: 'Sala Arcos',
+      price: '700',
+      priceCurrency: 'UYU',
+      description:
+        'Sala del subsuelo de 40 m² para hasta 25 personas sentadas, por hora. Se coordina por WhatsApp.',
     },
   ],
 };
 ---
 
 <BaseLayout
-  title="Precios"
-  description="Tarifas claras para alquilar consultorio por hora en Espacio 1010. Tres modalidades: hora suelta, pack de horas y serie fija mensual. Sin contratos anuales."
+  title="Precios: consultorio por hora a $350"
+  description="Consultorio por hora a $350 en Montevideo, precio único y sin sorpresas. Descuentos de hasta 20%, pago a mes vencido sin tarjeta. Tu primera hora es gratis."
   ogSlug="precios"
 >
   <Fragment slot="head">
-    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaPrecios)} />
   </Fragment>
 
   <!-- Hero -->
@@ -102,45 +85,47 @@ const schemaFAQ = {
         Precios
       </p>
       <h1 class="text-balance">
-        Sin letra chica.
+        Precios sin letra chica.
         <span class="text-terracota">Sin sorpresas.</span>
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
-        Tres formas de usar el espacio. Elegís la que mejor se adapta a cómo
-        trabajás, no a cuánto te quieren cobrar. Y si cambia tu agenda,
-        cambiás de plan sin penalización.
+        Un solo precio: $350 la hora, en todos los consultorios y salas (solo
+        la Sala Arcos, para grupos grandes, sale $700). Reservás suelto o
+        con horario fijo semanal, y cuanto más usás en el mes, menos pagás.
+        Sin matrícula, sin mínimos, sin costos fijos.
       </p>
     </Container>
   </section>
 
-  <!-- Banner Tarifa Fundadores -->
+  <!-- Banner pre-lanzamiento: primera hora gratis -->
   <section class="pb-16">
     <Container>
       <div class="rounded-[var(--radius-lg)] border-2 border-terracota bg-terracota-tint/40 p-6 sm:flex sm:items-center sm:justify-between sm:gap-8 sm:p-8">
         <div>
           <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">
-            Apertura · cupo limitado
+            Pre-lanzamiento · abrimos en junio
           </p>
           <h2 class="mt-2 font-display text-2xl text-ink sm:text-3xl">
-            Tarifa Fundadores — las primeras 50 cuentas
+            Tu primera hora, gratis.
           </h2>
           <p class="mt-2 text-base text-ink-soft">
-            Tarifa congelada por 6 meses + primer mes de fija sin cargo. Quedan 41 cupos.
+            Pre-registrate hoy y te guardamos una hora sin cargo para usarla
+            cuando quieras durante 2026, en el espacio que elijas.
           </p>
         </div>
         <div class="mt-5 sm:mt-0 sm:flex-shrink-0">
-          <Button href={SITE.agendaUrl} variant="primary" size="md">
-            Reservar mi cupo
+          <Button href="/#registro" variant="primary" size="md">
+            Quiero mi primera hora gratis
           </Button>
         </div>
       </div>
     </Container>
   </section>
 
-  <!-- Cards de planes -->
+  <!-- Cards de modalidades -->
   <section class="pb-24">
     <Container size="wide">
-      <div class="grid gap-6 lg:grid-cols-3">
+      <div class="mx-auto grid max-w-3xl gap-6 sm:grid-cols-2">
         {
           planes.map((p) => (
             <article
@@ -152,7 +137,7 @@ const schemaFAQ = {
             >
               {p.destacado && (
                 <span class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-terracota px-4 py-1.5 text-[10px] font-semibold uppercase tracking-[0.16em] text-crema">
-                  Más elegido
+                  Para tu consulta semanal
                 </span>
               )}
 
@@ -176,7 +161,7 @@ const schemaFAQ = {
               </ul>
 
               <div class="mt-8">
-                <Button href={SITE.agendaUrl} variant={p.cta.variant} size="md" class="w-full">
+                <Button href="/#registro" variant={p.cta.variant} size="md" class="w-full">
                   {p.cta.label}
                 </Button>
               </div>
@@ -185,16 +170,55 @@ const schemaFAQ = {
         }
       </div>
 
-      <div class="mt-10 rounded-2xl border border-hairline bg-[#f8f9fa] p-6 text-center sm:flex sm:items-center sm:justify-center sm:gap-3 sm:text-left">
-        <p class="text-base text-ink">
-          <span class="font-display text-2xl text-terracota">${PRECIO_ARCOS}/h</span>
-          <span class="ml-2 font-medium">Sala Arcos</span>
-          <span class="text-ink-soft"> — la gran sala del subsuelo, hasta 30 personas, sin columnas.</span>
-        </p>
+      <p class="mx-auto mt-10 max-w-2xl text-center text-sm text-ink-soft">
+        Cancelación simple: gratis avisando con más de 24 h; hasta 1 h antes
+        pagás solo la mitad; con menos de 1 h ya no se puede cancelar.
+        En las fijas, las cancelaciones gratis tienen un
+        tope del 20% de tus horas fijas del mes.
+        <a href="/preguntas-frecuentes" class="font-medium text-terracota underline-offset-2 hover:underline">Más detalles en las preguntas frecuentes →</a>
+      </p>
+      <p class="mx-auto mt-3 max-w-2xl text-center text-sm text-ink-soft">
+        Tu primera hora es gratis:
+        <a href="/#registro" class="font-medium text-terracota underline-offset-2 hover:underline">pre-registrate</a>
+        y queda guardada a tu nombre para usarla durante 2026.
+      </p>
+
+      <!-- Sala Arcos -->
+      <div class="mt-10 overflow-hidden rounded-2xl border border-hairline bg-[#f8f9fa] sm:flex sm:items-stretch">
+        <img
+          src="/fotos/lugar-sala-subsuelo.webp"
+          alt="Sala Arcos, la gran sala del subsuelo con paredes de piedra y arcos"
+          class="h-56 w-full object-cover sm:h-auto sm:w-2/5"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="flex flex-col justify-center gap-4 p-6 sm:p-8">
+          <p class="text-base text-ink">
+            <span class="font-display text-2xl text-terracota">${PRECIO_ARCOS}/h</span>
+            <span class="ml-2 font-medium">Sala Arcos</span>
+            <span class="text-ink-soft"> — la gran sala del subsuelo: 40 m² para hasta 25 personas sentadas, con proyector, parlante, kitchenette y baño propio.</span>
+          </p>
+          <div class="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <a
+              href={CONTACT.whatsappLink('Hola! Quiero consultar por la Sala Arcos.')}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-2 text-base font-medium text-terracota hover:underline"
+            >
+              Consultala por WhatsApp
+            </a>
+            <a
+              href="/los-espacios/sala-arcos"
+              class="text-sm font-medium text-ink-soft underline-offset-2 hover:text-terracota hover:underline"
+            >
+              Conocé la Sala Arcos →
+            </a>
+          </div>
+        </div>
       </div>
 
       <p class="mt-6 text-center text-sm text-ink-muted">
-        Precios en pesos uruguayos. Todos los consultorios: ${PRECIO_HORA} la hora, precio único.
+        Precios en pesos uruguayos. Consultorios y salas: ${PRECIO_HORA} la hora, precio único.
       </p>
     </Container>
   </section>
@@ -210,39 +234,68 @@ const schemaFAQ = {
 
       <div class="mt-10 grid gap-4 sm:grid-cols-3">
         <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
-          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">Empezando</p>
-          <h3 class="mt-3 font-display text-xl text-ink">Pocas horas al mes</h3>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">Menos de 20 h al mes</p>
+          <h3 class="mt-3 font-display text-xl text-ink">$350 la hora</h3>
           <p class="mt-3 text-sm leading-relaxed text-ink-soft">
-            Pagás la tarifa estándar de $350 la hora. Ideal para arrancar tu
-            práctica sin asumir ningún costo fijo.
+            La tarifa estándar, sin mínimos ni costos fijos.
           </p>
         </div>
         <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
-          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">Práctica estable</p>
-          <h3 class="mt-3 font-display text-xl text-ink">Varias horas por semana</h3>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">20 h o más al mes</p>
+          <h3 class="mt-3 font-display text-xl text-ink">10% de descuento</h3>
           <p class="mt-3 text-sm leading-relaxed text-ink-soft">
-            Al superar cierto volumen mensual, tu tarifa por hora baja
-            automáticamente. Lo ves reflejado en tu liquidación.
+            Queda en $315 la hora. El descuento se aplica automáticamente sobre el total del mes.
           </p>
         </div>
         <div class="rounded-2xl border-2 border-terracota bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[var(--shadow-md)]">
-          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">Práctica intensiva</p>
-          <h3 class="mt-3 font-display text-xl text-ink">Muchas horas o fija mensual</h3>
+          <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-terracota">40 h o más al mes</p>
+          <h3 class="mt-3 font-display text-xl text-ink">20% de descuento</h3>
           <p class="mt-3 text-sm leading-relaxed text-ink-soft">
-            La mejor tarifa del esquema. Cuantas más horas reservás por mes,
-            menos pagás cada una. Sin trámites ni promociones que pedir.
+            Queda en $280 la hora. La mejor tarifa del esquema.
           </p>
         </div>
       </div>
 
       <p class="mt-6 text-sm text-ink-muted">
-        Los tramos exactos y el ahorro por hora los coordinás al crear tu cuenta — se calculan solos sobre tu uso real.
+        El descuento se calcula solo, sobre todas tus horas del mes, y lo ves en
+        tu liquidación el día 1. No hay que pedirlo ni hacer ningún trámite.
       </p>
     </Container>
   </section>
 
-  <!-- Qué incluye el precio -->
+  <!-- Cómo se paga -->
   <section class="py-20">
+    <Container size="narrow">
+      <h2 class="font-display text-4xl text-ink">¿Y cómo se paga? Después de usar.</h2>
+
+      <div class="mt-10 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
+          <h3 class="font-display text-xl text-ink">A mes vencido</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+            Usás el espacio todo el mes y recién el día 1 recibís el detalle de
+            tus horas, con los descuentos ya aplicados. Tenés 10 días para pagarlo.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
+          <h3 class="font-display text-xl text-ink">Sin tarjeta</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+            No te pedimos tarjeta nunca: ni para registrarte, ni para reservar.
+            Nada de cobros automáticos ni adelantos.
+          </p>
+        </div>
+        <div class="rounded-2xl border border-hairline bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
+          <h3 class="font-display text-xl text-ink">Como te quede cómodo</h3>
+          <p class="mt-3 text-sm leading-relaxed text-ink-soft">
+            Pagás por transferencia bancaria o depósito en Abitab o RedPagos.
+            Si lo necesitás, podés ir pagando en partes.
+          </p>
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <!-- Qué incluye el precio -->
+  <section class="py-20 bg-[#f8f9fa]">
     <Container size="narrow">
       <h2 class="font-display text-3xl text-ink">Qué incluye siempre el precio.</h2>
       <p class="mt-3 text-ink-soft">
@@ -251,14 +304,11 @@ const schemaFAQ = {
 
       <ul class="mt-10 grid gap-4 sm:grid-cols-2">
         {[
-          'Wifi de fibra en todo el edificio',
-          'Climatización individual por espacio',
-          'Sala de espera para tus pacientes',
-          'Cocina común con café, té y agua',
-          'Sala de cowork mientras esperás',
-          'Acceso 24/7 con código personal',
-          'Música ambiente para privacidad',
-          'Mantenimiento y limpieza diaria',
+          'Espacios amoblados y climatizados',
+          'Cocina y sala de estar para profesionales, sin cargo',
+          'Acceso con código personal, todos los días de 7 a 24 h',
+          'Videoportero y cámaras en accesos y zonas comunes (nunca en los espacios de atención)',
+          'Wifi en todo el edificio',
         ].map((i) => (
           <li class="flex items-start gap-3 text-base text-ink">
             <svg class="mt-1 flex-shrink-0" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9e4e42" stroke-width="2">
@@ -276,18 +326,28 @@ const schemaFAQ = {
     <Container>
       <div class="rounded-[var(--radius-xl)] bg-ink p-12 text-center text-crema sm:p-20">
         <h2 class="text-balance text-crema">
-          Crear cuenta es gratis.
-          <span class="text-terracota">Reservar después.</span>
+          Pre-registrarte es gratis.
+          <span class="text-terracota">Reservar, cuando abramos.</span>
         </h2>
         <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-crema/80">
-          Mirá la agenda real antes de comprometerte. Si te convence, reservás.
-          Si no, no hiciste nada.
+          Dejá tu nombre y WhatsApp, te guardamos tu primera hora gratis y te
+          avisamos apenas abrimos las puertas. Sin tarjeta, sin compromiso.
         </p>
         <div class="mt-8">
-          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-white text-terracota hover:bg-[#f8f9fa]">
-            Empezar gratis
+          <Button href="/#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-[#f8f9fa]">
+            Quiero mi primera hora gratis
           </Button>
         </div>
+        <p class="mt-5">
+          <a
+            href={CONTACT.whatsappLink('Hola! Tengo una consulta sobre los precios de Espacio 1010.')}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-crema/70 underline underline-offset-2 hover:text-crema"
+          >
+            o escribinos por WhatsApp
+          </a>
+        </p>
       </div>
     </Container>
   </section>

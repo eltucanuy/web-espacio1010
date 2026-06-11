@@ -7,6 +7,9 @@
  *   - Ads landings (un único H1, CTA arriba, prueba social abajo, FAQ que
  *     destraba objeciones)
  *
+ * Datos duros (espacios, precios, horarios): docs/VERDAD_APP_2026_06_10.md —
+ * la app manda. Testimonios: solo los reales y aprobados de la home.
+ *
  * Si querés que la landing cargue con un mensaje específico de campaña,
  * la URL admite `?utm_campaign=...` y podés agregar lógica para mostrar
  * variantes — para v1 el contenido es estático.
@@ -16,22 +19,28 @@ import type { EspacioId } from './site';
 
 export interface NichoContent {
   slug: string;
-  /** H1 / title para SEO */
+  /** H1 de la página */
   label: string;
+  /** Title SEO con geo (distinto del H1) */
+  titleSeo: string;
   /** Subhead descriptivo bajo el H1 */
   intro: string;
   /** Lo que buscan resolver — habla de su realidad, no de features */
   painPoints: string[];
   /** Por qué Espacio 1010 funciona para este nicho */
   solucion: string;
-  /** Espacios que se ajustan al nicho — IDs de ESPACIOS */
+  /** Espacios que se ajustan al nicho — IDs de ESPACIOS (reales, ver spec-espacios) */
   espaciosRecomendados: EspacioId[];
-  /** Quote testimonial (placeholder hasta tener reales) */
-  testimonial: { texto: string; autor: string; rol: string };
+  /** Testimonio REAL y aprobado (de la home). Si el nicho no tiene, se omite. */
+  testimonial?: { texto: string; autor: string; rol: string };
+  /** Fotos reales del lugar (public/fotos/) — mismas alt/caps que la home */
+  fotos: { src: string; alt: string; cap: string }[];
   /** FAQ específica del nicho (sobre la práctica + sobre el espacio) */
   faq: { q: string; a: string }[];
-  /** Keywords para meta description */
+  /** Meta description */
   meta: string;
+  /** Mensaje exacto para el CTA de WhatsApp */
+  whatsappIntro: string;
   /**
    * Variaciones de búsqueda long-tail que también aplican.
    * Renderizadas como chips "También conocido como" — sin diluir URLs,
@@ -44,43 +53,49 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
   psicologos: {
     slug: 'psicologos',
     label: 'Espacios para psicólogas y psicólogos',
+    titleSeo: 'Consultorio por hora para psicólogos en Montevideo',
     intro:
-      'Consultorios por hora pensados para la práctica clínica. Privacidad acústica, agenda online y la flexibilidad que te permite armar tu semana como vos querés.',
+      'Consultorios por hora pensados para la práctica clínica, entre Palermo y Parque Rodó. Agenda online, espacios pensados para trabajar con privacidad y la flexibilidad de armar tu semana como vos quieras. Abrimos en junio 2026.',
     painPoints: [
       'Alquilar un consultorio propio cuesta lo que cuesta — y tenés que llenarlo solo',
       'Compartir mal con colegas termina en conflictos por turnos',
-      'Las salas comerciales por hora son frías, mal equipadas o difíciles de reservar',
+      'Las salas por hora suelen ser frías, mal equipadas o difíciles de reservar',
       'Coordinar por WhatsApp con un encargado te hace perder tiempo todas las semanas',
     ],
     solucion:
-      'Diseñamos cada espacio pensando en la sesión. Sillón cómodo, escritorio si lo necesitás, privacidad sonora real y aire acondicionado individual. La agenda online te deja ver disponibilidad y reservar en tiempo real, sin pasar por nadie. Si tu agenda cambia, cancelás con 24 hs y no pagás nada.',
-    espaciosRecomendados: ['estudio-norte', 'estudio-sur', 'consulta-1', 'consulta-2', 'consulta-7'],
+      'Cada espacio está pensado para la sesión: sillón o butacas cómodas, escritorio en varios, todo amoblado y climatizado. La agenda online te muestra la disponibilidad real y reservás sin pasar por nadie. Y si tu agenda cambia, cancelás gratis hasta 24 h antes — y hasta 1 h antes pagás solo la mitad.',
+    espaciosRecomendados: ['espacio-01', 'espacio-12', 'espacio-11', 'espacio-02'],
     testimonial: {
       texto:
-        'Tener la agenda abierta cuando atiendo me cambió la semana. Reservo el lunes y el jueves a las 6, y si una vez no puedo, cancelo desde el celular. Listo.',
-      autor: 'Profesional fundadora',
-      rol: 'Psicóloga clínica, Parque Rodó',
+        'Es justo la vuelta que estaba buscando. Coordinar agenda con los pacientes siempre fue un ida y vuelta eterno; con esto voy a poder reservar todo desde el celular, cuando quiera, sin depender de nadie. Simple y rápido.',
+      autor: 'Claudia, 36 años',
+      rol: 'Psicóloga',
     },
+    fotos: [
+      { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
+      { src: '/fotos/lugar-marmol.webp', alt: 'Escalera de mármol original de Espacio 1010 junto a un muro de ladrillo a la vista', cap: 'Escalera de mármol original' },
+    ],
     faq: [
       {
-        q: '¿Puedo recibir pacientes adultos y niños en el mismo espacio?',
-        a: 'Sí, varios de nuestros espacios están equipados para ambos. Si trabajás regularmente con niños, te recomendamos las consultas con más metros y materiales versátiles.',
+        q: '¿Puedo atender adultos y también niños?',
+        a: 'Sí. Para sesiones con niños está el Espacio 02, con rincón infantil: mobiliario y materiales pensados para niños, además de butacas y escritorio. Si viene la familia completa, el Espacio 01 recibe hasta 4 personas sentadas. Para adultos, cualquiera de los consultorios amueblados.',
       },
       {
-        q: '¿Hay divan para psicoanálisis?',
-        a: 'Sí, algunos espacios cuentan con divan. Especificá en la reserva o consultanos para que te orientemos al espacio adecuado.',
+        q: '¿Cómo están equipados los consultorios?',
+        a: 'Cada consultorio amueblado tiene sillón o butacas cómodas, y varios suman escritorio. El Espacio 01, por ejemplo, tiene un sillón de tres cuerpos más una butaca individual. Si necesitás algo puntual para tu práctica, escribinos por WhatsApp y lo conversamos.',
       },
       {
-        q: '¿Cómo manejo la confidencialidad entre sesiones?',
-        a: 'La privacidad acústica es prioridad. La trabajamos especialmente y sumamos música ambiente en pasillos. Es muy difícil escuchar de un espacio a otro.',
+        q: '¿Cómo se cuida la privacidad de las sesiones?',
+        a: 'Los espacios están pensados para conversaciones privadas y el edificio está dedicado por completo a consultorios: se entra con código personal y videoportero, sin público de paso. Las cámaras están solo en la entrada y zonas comunes, nunca en los espacios de atención.',
       },
       {
         q: '¿Puedo dejar mis libros o materiales entre sesiones?',
-        a: 'Si tenés serie fija con espacio asignado, hay opción de armario reservado. En reservas eventuales el espacio queda disponible para otros profesionales.',
+        a: 'Los espacios se comparten entre profesionales, así que cada quien lleva sus materiales. Si tenés una necesidad puntual, escribinos por WhatsApp y lo conversamos.',
       },
     ],
     meta:
-      'Alquilá consultorio por hora para psicólogos en Parque Rodó, Montevideo. 12 espacios premium, reservas online, cancelación flexible. Para sesiones individuales, pareja o grupales.',
+      'Consultorio por hora para psicólogos entre Palermo y Parque Rodó, Montevideo. Reserva online, cancelación gratis con 24 h. Tu primera hora es gratis.',
+    whatsappIntro: 'Hola, soy psicóloga/o y quería más info sobre Espacio 1010.',
     variantesBusqueda: [
       'consultorio psicología por hora',
       'alquiler espacio psicólogo Montevideo',
@@ -94,8 +109,9 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
   psiquiatras: {
     slug: 'psiquiatras',
     label: 'Consultorios para psiquiatras',
+    titleSeo: 'Consultorio para psiquiatras por hora en Montevideo',
     intro:
-      'Espacios sobrios y profesionales para consulta clínica. Ubicación céntrica, privacidad acústica garantizada y la posibilidad de armar tu propia agenda sin ataduras.',
+      'Consultorios sobrios y profesionales para tu consulta privada, entre Palermo y Parque Rodó. Reservás por hora, sin costos fijos y sin compromiso. Abrimos en junio 2026.',
     painPoints: [
       'Necesitás un entorno serio que respalde tu práctica',
       'No querés depender de un sanatorio o policlínica con horarios fijos',
@@ -103,30 +119,30 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Buscás flexibilidad para combinar consulta presencial con teleconsulta',
     ],
     solucion:
-      'El edificio fue pensado para profesionales de la salud — la sala de espera, los pasillos, el detalle del mobiliario están al nivel de una clínica privada. Reservás los días y horarios que se ajustan a tu agenda hospitalaria, y mantenés consulta privada sin costos fijos altos.',
-    espaciosRecomendados: ['consulta-1', 'consulta-2', 'consulta-7', 'estudio-norte'],
-    testimonial: {
-      texto:
-        'Vengo dos veces por semana después del hospital. Es el lugar que necesitaba para tener consulta privada sin atarme a un alquiler mensual.',
-      autor: 'Profesional fundador',
-      rol: 'Psiquiatra, Montevideo',
-    },
+      'El edificio —una casa de principios del siglo XX reciclada a nuevo— está pensado para profesionales de la salud, con consultorios amoblados y climatizados que respaldan una práctica clínica formal. Reservás los días y horarios que se ajustan a tu agenda hospitalaria y mantenés consulta privada sin alquiler mensual: pagás solo las horas que usás, a mes vencido.',
+    espaciosRecomendados: ['espacio-11', 'espacio-12', 'espacio-01'],
+    // SIN testimonial (no hay psiquiatra real aprobado — la sección no se renderiza)
+    fotos: [
+      { src: '/fotos/lugar-marmol.webp', alt: 'Escalera de mármol original de Espacio 1010 junto a un muro de ladrillo a la vista', cap: 'Escalera de mármol original' },
+      { src: '/fotos/lugar-fachada.webp', alt: 'Fachada reciclada del edificio de Espacio 1010, iluminada de noche, una casa de principios de siglo XX entre Palermo y Parque Rodó', cap: 'La fachada, de noche' },
+    ],
     faq: [
       {
         q: '¿El espacio tiene la formalidad que necesita la consulta psiquiátrica?',
-        a: 'Sí. El mobiliario, la sala de espera y la atención de detalle están pensados para una práctica clínica formal. Recibí a tus pacientes con la presencia que tu profesión requiere.',
+        a: 'Sí. Los consultorios son sobrios, amoblados y climatizados, en un edificio reciclado a nuevo y dedicado por completo a consultorios profesionales. Recibís a las personas que atendés con la presencia que tu práctica requiere.',
       },
       {
         q: '¿Puedo recetar y emitir documentación profesional desde el espacio?',
-        a: 'Por supuesto. Es tu consulta privada cuando estás acá. Wifi de fibra y todo lo que necesites para trabajar con tu sistema de historias clínicas habitual.',
+        a: 'Por supuesto: mientras lo tenés reservado, es tu consulta privada. Varios consultorios tienen escritorio para trabajar con tu sistema de historias clínicas habitual.',
       },
       {
-        q: '¿Hay opción de bloqueo de horario fijo semanal?',
-        a: 'Sí. La serie fija te garantiza día, hora y espacio todas las semanas. Es lo que la mayoría de los psiquiatras eligen para construir su agenda privada.',
+        q: '¿Hay opción de horario fijo semanal?',
+        a: 'Sí. La reserva fija te garantiza día, hora y espacio todas las semanas, hasta que vos la liberes. Ideal para construir tu agenda de consulta privada.',
       },
     ],
     meta:
-      'Consultorio para psiquiatra en alquiler por hora en Montevideo. Espacios sobrios y profesionales en Parque Rodó, agenda online flexible, sin contrato anual.',
+      'Consultorio para psiquiatras por hora entre Palermo y Parque Rodó, Montevideo. Sin contrato ni costos fijos, agenda online. Tu primera hora es gratis.',
+    whatsappIntro: 'Hola, soy psiquiatra y quería más info sobre Espacio 1010.',
     variantesBusqueda: [
       'consultorio psiquiátrico Montevideo',
       'alquiler consulta clínica',
@@ -139,8 +155,9 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
   psicopedagogos: {
     slug: 'psicopedagogos',
     label: 'Espacios para psicopedagogía',
+    titleSeo: 'Consultorio por hora para psicopedagogía en Montevideo',
     intro:
-      'Consultorios con espacio para materiales, juego y trabajo individual o con familias. Pensados para sesiones con niños, adolescentes y adultos.',
+      'Consultorios con lugar para materiales, juego y trabajo con familias. Pensados para sesiones con niños, adolescentes y adultos, entre Palermo y Parque Rodó. Abrimos en junio 2026.',
     painPoints: [
       'Necesitás espacio físico para desplegar materiales',
       'A veces atendés con la familia, a veces solo con el niño',
@@ -148,30 +165,30 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Tus sesiones pueden ser más largas y necesitás flexibilidad horaria',
     ],
     solucion:
-      'Los espacios mixtos y versátiles te permiten configurar cada sesión: mesa de trabajo, alfombra, materiales móviles. Las consultas más amplias dan margen para que el niño se mueva y la familia pueda participar cuando hace falta. Reservás bloques de 1 hora o más según necesites.',
-    espaciosRecomendados: ['consulta-4', 'estudio-norte', 'estudio-sur', 'salon-cobre'],
-    testimonial: {
-      texto:
-        'Atender psicopedagogía es atender un montón de cosas al mismo tiempo. Acá puedo armar el espacio como lo necesito para cada paciente.',
-      autor: 'Profesional fundadora',
-      rol: 'Psicopedagoga, Parque Rodó',
-    },
+      'El Espacio 02 tiene un rincón infantil con mobiliario y materiales pensados para niños, además de butacas y escritorio. Y si necesitás trabajar en el piso o con movimiento, los espacios multiuso tienen colchonetas y almohadones. Reservás por hora, las que necesites, y armás cada sesión como te sirva.',
+    espaciosRecomendados: ['espacio-02', 'espacio-03', 'espacio-01'],
+    // SIN testimonial
+    fotos: [
+      { src: '/fotos/lugar-circulacion.webp', alt: 'Circulación de Espacio 1010 con lámparas circulares colgantes y luz natural al fondo', cap: 'Circulación con luz natural' },
+      { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
+    ],
     faq: [
       {
-        q: '¿Hay materiales disponibles o tengo que llevar los míos?',
-        a: 'Los materiales especializados son tuyos. El espacio te provee mobiliario (mesa, sillas, alfombra) y la versatilidad para armar la sesión como necesites.',
+        q: '¿Hay materiales disponibles o llevo los míos?',
+        a: 'El Espacio 02 tiene un rincón infantil con mobiliario y materiales para niños, más butacas y escritorio. Tus materiales especializados los traés vos: el espacio te da la base para armar la sesión como necesites.',
       },
       {
         q: '¿Puedo recibir al niño con la familia?',
-        a: 'Sí. Los espacios más amplios tienen lugar para sesiones con 3 a 4 personas cómodas. Si planeás trabajar regularmente con familias, sumamos esa info al reservar.',
+        a: 'Sí. El Espacio 01, por ejemplo, recibe hasta 4 personas sentadas, y el Espacio 02 está pensado para trabajar con niños y familias. Si la dinámica lo pide, también podés reservar un espacio multiuso.',
       },
       {
-        q: '¿Cómo manejan los espacios con niños inquietos?',
-        a: 'Los pisos son aptos para juego en el suelo. Algunas consultas tienen colchonetas disponibles. La acústica entre espacios está trabajada para que no moleste a tus colegas.',
+        q: '¿Y si el niño necesita moverse?',
+        a: 'Los espacios multiuso tienen colchonetas y almohadones, pensados para trabajar en el suelo y con movimiento. Podés armar y desarmar el espacio según cada sesión.',
       },
     ],
     meta:
-      'Espacios para psicopedagogía en Montevideo. Consultorios versátiles con material para juego y trabajo, ideales para sesiones con niños y adolescentes.',
+      'Espacios para psicopedagogía por hora en Montevideo, con rincón infantil para sesiones con niños y familias. Tu primera hora es gratis.',
+    whatsappIntro: 'Hola, soy psicopedagoga/o y quería más info sobre Espacio 1010.',
     variantesBusqueda: [
       'consultorio psicopedagogía',
       'espacio terapia infantil',
@@ -184,35 +201,36 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
   nutricionistas: {
     slug: 'nutricionistas',
     label: 'Consultorios para nutricionistas',
+    titleSeo: 'Consultorio para nutricionistas por hora en Montevideo',
     intro:
-      'Espacios cómodos para consulta nutricional individual o de pareja. Privacidad para hablar de hábitos sin interrupciones, ambiente cálido y profesional.',
+      'Consultorios cómodos para consulta nutricional individual o con familias, entre Palermo y Parque Rodó. Ambiente cálido y profesional, sin costos fijos. Abrimos en junio 2026.',
     painPoints: [
-      'Tu consulta puede durar 30 minutos o una hora completa según el tipo de seguimiento',
+      'Encadenás consultas cortas y largas — necesitás un espacio que se adapte a tu agenda, no al revés',
       'Necesitás un espacio que invite a la conversación abierta, no a la formalidad fría',
-      'Querés crecer tu práctica sin asumir costos fijos altos',
+      'Querés hacer crecer tu práctica sin asumir costos fijos altos',
       'A veces atendés a deportistas, otras a familias enteras — querés flexibilidad',
     ],
     solucion:
-      'Los espacios cuentan con escritorio y sillas cómodas para consultas largas. La sala de espera es agradable y la cocina común te permite mostrar opciones de hidratación si lo necesitás. Reservás bloques de 1 hora y crecés tu agenda sin contrato.',
-    espaciosRecomendados: ['consulta-3', 'consulta-1', 'estudio-sur'],
-    testimonial: {
-      texto:
-        'Mis pacientes vienen relajados. El edificio se siente como un consultorio premium pero la conversación fluye porque no es un hospital.',
-      autor: 'Profesional fundador',
-      rol: 'Nutricionista, Parque Rodó',
-    },
+      'El Espacio 12 suma escritorio al sillón y la butaca; todos los consultorios tienen butacas cómodas para conversaciones largas. Reservás por hora y la usás como quieras: una consulta larga o varias cortas. Crecés sin contrato ni alquiler fijo, y entre consulta y consulta tenés cocina y sala de estar para profesionales en el piso 1, sin cargo.',
+    espaciosRecomendados: ['espacio-12', 'espacio-11', 'espacio-01'],
+    // SIN testimonial
+    fotos: [
+      { src: '/fotos/lugar-fachada.webp', alt: 'Fachada reciclada del edificio de Espacio 1010, iluminada de noche, una casa de principios de siglo XX entre Palermo y Parque Rodó', cap: 'La fachada, de noche' },
+      { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
+    ],
     faq: [
       {
         q: '¿Hay balanza o equipamiento específico?',
-        a: 'No proveemos equipamiento clínico especializado — sí escritorio, sillas, buena iluminación. Si tenés balanza o equipo, lo traés contigo. Algunos profesionales con serie fija lo dejan en armario reservado.',
+        a: 'No proveemos equipamiento clínico: sí butacas cómodas, buena iluminación y, en varios consultorios, escritorio (el Espacio 12, por ejemplo). Si tenés balanza o equipo propio, lo traés con vos.',
       },
       {
-        q: '¿Puedo dar charlas grupales o talleres de alimentación?',
-        a: 'Sí, en los salones grupales o en la sala subsuelo. Para talleres regulares te recomendamos serie fija con horario garantizado.',
+        q: '¿Puedo dar charlas o talleres de alimentación?',
+        a: 'Sí. Los espacios multiuso reciben hasta 8 personas sentadas, y para grupos más grandes está la Sala Arcos, con capacidad para 25 personas sentadas (se coordina por WhatsApp).',
       },
     ],
     meta:
-      'Consultorio para nutricionista en Montevideo, alquiler por hora en Parque Rodó. Espacios cómodos para consulta individual y de pareja, agenda online flexible.',
+      'Consultorio para nutricionistas por hora entre Palermo y Parque Rodó, Montevideo. Butacas cómodas, agenda online, sin costos fijos. Tu primera hora es gratis.',
+    whatsappIntro: 'Hola, soy nutricionista y quería más info sobre Espacio 1010.',
     variantesBusqueda: [
       'consultorio nutrición Montevideo',
       'alquiler sala nutricionista',
@@ -224,9 +242,10 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
 
   'meditacion-yoga': {
     slug: 'meditacion-yoga',
-    label: 'Salones para meditación y yoga',
+    label: 'Espacios para meditación y yoga',
+    titleSeo: 'Sala por hora para yoga y meditación en Montevideo',
     intro:
-      'Salones versátiles con piso noble, luz regulable y colchonetas. Para clases reducidas, sesiones individuales o talleres de fin de semana.',
+      'Espacios multiuso despejados, con mats y almohadones, para clases reducidas, sesiones individuales o talleres — y la Sala Arcos para grupos más grandes. Entre Palermo y Parque Rodó. Abrimos en junio 2026.',
     painPoints: [
       'Los gimnasios y estudios grandes te imponen horarios y reparten alumnos',
       'Querés cuidar la experiencia desde el espacio físico, no solo desde tu práctica',
@@ -234,30 +253,35 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Buscás un lugar que respire calma desde que se entra',
     ],
     solucion:
-      'Los salones versátiles vienen con colchonetas, soportes y mobiliario móvil. La acústica está trabajada, la luz se regula, la música ambiente la silenciás cuando entrás a dar clase. Reservás 1 o 2 horas para una clase reducida, o un día entero para taller.',
-    espaciosRecomendados: ['salon-cobre', 'salon-roble', 'sala-subsuelo'],
+      'Los espacios multiuso vienen despejados, con colchonetas y almohadones, listos para que armes tu práctica: reciben hasta 8 personas sentadas o 6 en movimiento libre. Para grupos más grandes está la Sala Arcos, en el subsuelo, con capacidad para 25 personas. Reservás por hora —desde 1 y hasta 8 seguidas— y probás horarios sin compromiso.',
+    espaciosRecomendados: ['espacio-03', 'espacio-14', 'sala-arcos'],
     testimonial: {
       texto:
-        'Probé varios espacios antes de quedarme acá. La diferencia se nota cuando los alumnos entran y se quedan en silencio sin que se los pidas.',
-      autor: 'Profesional fundadora',
-      rol: 'Instructora de yoga, Parque Rodó',
+        'Trabajo con grupos chicos, y acá voy a poder armar el espacio como quiera, con colchonetas y todo, pagando como un individual y no como un salón. Eso para mí es un montón. Y encima el edificio es divino, toda esa madera original tiene una historia.',
+      autor: 'Maite, 39 años',
+      rol: 'Método Feldenkrais',
     },
+    fotos: [
+      { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
+      { src: '/fotos/lugar-sala-subsuelo.webp', alt: 'Sala amplia del subsuelo de Espacio 1010 con muro de piedra, piso de madera y escalera metálica', cap: 'Sala del subsuelo' },
+    ],
     faq: [
       {
         q: '¿Hay colchonetas y materiales disponibles?',
-        a: 'Sí, colchonetas básicas. Si querés mats específicos, bloques o correas profesionales, te recomendamos traer los propios o evaluar guardarlos en armario si tenés serie fija.',
+        a: 'Sí: los espacios multiuso tienen mats, colchonetas y almohadones. Bloques, correas u otros elementos específicos de tu práctica los traés vos.',
       },
       {
-        q: '¿Cuántas personas entran en cada salón?',
-        a: 'Salón Cobre: 6-10 personas cómodas. Salón Roble: 6-8 personas. Sala subsuelo: 20-30 personas, sin columnas. Los tamaños se pueden ajustar según tipo de práctica.',
+        q: '¿Cuántas personas entran?',
+        a: 'Los espacios multiuso reciben hasta 8 personas sentadas o 6 en movimiento libre. Para grupos más grandes está la Sala Arcos, con capacidad para 25 personas sentadas — se coordina por WhatsApp.',
       },
       {
-        q: '¿Cómo es la ventilación?',
-        a: 'Cada salón tiene aire acondicionado individual y ventanas que se abren. El edificio tiene buena ventilación cruzada — pensado para mantener el aire renovado.',
+        q: '¿En qué horarios puedo dar clase?',
+        a: 'Todos los días, de 7 a 24 h. Podés reservar una hora suelta para probar un horario, o fijar tu día y hora todas las semanas hasta que vos la liberes.',
       },
     ],
     meta:
-      'Salones para clases de yoga y meditación en Montevideo, Parque Rodó. Espacios versátiles con colchonetas, alquiler por hora o día, sin contrato.',
+      'Salas por hora para yoga y meditación entre Palermo y Parque Rodó, Montevideo. Mats y almohadones, y sala para 25 personas. Tu primera hora es gratis.',
+    whatsappIntro: 'Hola, doy clases de yoga/meditación y quería más info sobre Espacio 1010.',
     variantesBusqueda: [
       'salón yoga alquiler hora',
       'sala meditación grupal',
@@ -271,43 +295,49 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
   'talleres-grupos': {
     slug: 'talleres-grupos',
     label: 'Sala para talleres y trabajo grupal',
+    titleSeo: 'Sala Arcos: talleres y grupos en Montevideo',
     intro:
-      'La sala subsuelo de 60 m² te recibe para grupos de hasta 30 personas. Sin columnas, mobiliario versátil, acústica trabajada — para tu taller, formación o presentación.',
+      'La Sala Arcos, en el subsuelo, te recibe para grupos de hasta 25 personas: 40 m² con piedra y arcos originales, sillas y mesas, proyector, parlante, kitchenette y baño independiente. Para tu taller, formación o encuentro grupal. Abrimos en junio 2026.',
     painPoints: [
       'Las salas de eventos son frías y caras, las casas privadas son pequeñas y poco profesionales',
       'Necesitás flexibilidad para configurar el espacio según la dinámica',
       'Querés un lugar que comunique cuidado, no solo metros cuadrados',
-      'Tu taller puede durar 2 horas o 8 — necesitás reservar en bloque',
+      'Tu taller puede durar 2 horas u 8 — necesitás reservar todo el bloque junto',
     ],
     solucion:
-      'La sala subsuelo está pensada justamente para esto: sin columnas, sillas apilables, posibilidad de armar círculo o filas, acceso a baño y cocina. Reservás por bloques de 2 hs o por día completo. Ideal para constelaciones, formaciones, presentaciones o grupos terapéuticos.',
-    espaciosRecomendados: ['sala-subsuelo', 'salon-cobre', 'salon-roble'],
+      'La Sala Arcos está pensada justamente para esto: sillas y mesas para armar círculo o filas, proyector y parlante incluidos, kitchenette y baño independiente. Reservás por hora —hasta 8 seguidas si tu taller lo necesita— y lo coordinamos por WhatsApp según fecha y duración. Ideal para constelaciones, formaciones, presentaciones o grupos terapéuticos. Para grupos chicos también están los espacios multiuso, que pagás como un consultorio.',
+    espaciosRecomendados: ['sala-arcos', 'espacio-03', 'espacio-14'],
     testimonial: {
       texto:
-        'Hago constelaciones cada dos meses. Tener la sala lista, sin tener que armar y desarmar, vale oro. Llego y empiezo.',
-      autor: 'Profesional fundadora',
-      rol: 'Consteladora familiar, Parque Rodó',
+        'Para lo que hago necesito de todo: a veces un grupo grande, a veces algo más chico, a veces una consulta sola. Tener todo en un mismo lugar me va a resolver la vida. Y poder trabajar un fin de semana o bien temprano a la mañana, para mí no tiene precio.',
+      autor: 'Patricia, 62 años',
+      rol: 'Consteladora familiar',
     },
+    fotos: [
+      { src: '/fotos/lugar-sala-subsuelo.webp', alt: 'Sala amplia del subsuelo de Espacio 1010 con muro de piedra, piso de madera y escalera metálica', cap: 'Sala del subsuelo' },
+      { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
+    ],
     faq: [
       {
-        q: '¿Cuánto cuesta reservar la sala por un día completo?',
-        a: 'Tiene tarifa diferenciada por bloque y por día. Consultanos por WhatsApp y te pasamos el detalle según fecha y duración.',
+        q: '¿Cuánto cuesta la Sala Arcos?',
+        a: '$700 la hora. Reservás en bloques de 1 hora, hasta 8 horas seguidas si tu taller lo necesita. Escribinos por WhatsApp y lo coordinamos según fecha y duración.',
       },
       {
-        q: '¿Hay proyector, sonido o pizarra?',
-        a: 'Proyector + sonido vienen incluidos cuando reservás bloques de 4 hs o más. Pizarra y rotafolio disponibles a pedido. Lo coordinamos al reservar.',
+        q: '¿Hay proyector o sonido?',
+        a: 'Sí: la sala incluye proyector y parlante, además de sillas, mesas, colchonetas y almohadones. También tiene kitchenette y baño independiente.',
       },
       {
-        q: '¿Puede entrar comida o catering?',
-        a: 'Sí, podés traer catering propio. La cocina común del edificio se puede usar para servir café y agua. Para catering completo coordinamos con un proveedor de confianza.',
+        q: '¿Puede entrar comida?',
+        a: 'La sala tiene kitchenette propia para servir café y agua sin salir del subsuelo. Si tu taller incluye comida, contanos por WhatsApp y lo coordinamos.',
       },
       {
         q: '¿Cómo accede el grupo el día del taller?',
-        a: 'Coordinamos un horario de apertura y una persona del edificio recibe a los participantes en la entrada. Vos te concentrás en armar el espacio.',
+        a: 'Vos entrás con tu código personal y recibís a tu grupo en la entrada. El edificio funciona con videoportero y acceso registrado.',
       },
     ],
     meta:
-      'Sala para talleres, formaciones y grupos en Montevideo. 60 m² sin columnas en Parque Rodó, hasta 30 personas, reservás por bloques o día completo.',
+      'Sala Arcos: sala para talleres y grupos en Montevideo. 40 m², hasta 25 personas, proyector y kitchenette. Consultá por WhatsApp.',
+    whatsappIntro: 'Hola, quería info sobre la Sala Arcos para un taller.',
     variantesBusqueda: [
       'sala talleres Montevideo',
       'espacio para formación profesional',

@@ -23,24 +23,24 @@ const pages: Record<string, OgPage> = {
   },
   // Páginas core
   'los-espacios': {
-    title: '12 espacios.\nUna sola filosofía.',
+    title: 'Consultorios y salas.\nUna sola filosofía.',
     description: 'Conocé los espacios de Espacio 1010',
   },
   'el-lugar': {
     title: 'Cien años de historia,\nreciclados a nuevo.',
-    description: 'Gaboto 1010 · Parque Rodó · Montevideo',
+    description: 'Gaboto 1010 · entre Palermo y Parque Rodó · Montevideo',
   },
   'como-funciona': {
-    title: 'Cuatro pasos.\nEl resto es atender.',
-    description: 'Reservás online, accedés 24/7, cancelás con 24 hs',
+    title: 'Cinco pasos.\nEl resto es atender.',
+    description: 'Reservás online y entrás con tu código, todos los días de 7 a 24',
   },
   precios: {
     title: 'Sin letra chica.\nSin sorpresas.',
-    description: 'Hora suelta · Pack · Fija mensual · Tarifa Fundadores',
+    description: 'Hora suelta o fija semanal · $350/h · Tu primera hora gratis',
   },
   contacto: {
     title: 'Hablamos\ncuando querés.',
-    description: 'WhatsApp · Email · Visita guiada',
+    description: 'WhatsApp · Email · Visita',
   },
   'preguntas-frecuentes': {
     title: 'Preguntas\nfrecuentes.',
@@ -48,16 +48,16 @@ const pages: Record<string, OgPage> = {
   },
   'alquiler-consultorio-montevideo': {
     title: 'Alquiler de consultorio\npor hora en Montevideo.',
-    description: '12 espacios en Parque Rodó · A 5 cuadras de 18 de Julio',
+    description: 'Consultorios y salas por hora · Palermo / Parque Rodó · Desde $350',
   },
 
-  // Auto-generadas para cada espacio
+  // Auto-generadas para cada espacio (key = id del espacio, ver los-espacios/[slug].astro)
   ...Object.fromEntries(
     ESPACIOS.map((e) => [
-      `espacio-${e.id}`,
+      e.id,
       {
         title: e.nombre,
-        description: `${e.resumen} · ${e.capacidad} · ${e.metros} m²`,
+        description: `${e.resumen} · ${e.capacidad} · ${e.metros} m² · $${e.precioHora}/h`,
       } satisfies OgPage,
     ])
   ),

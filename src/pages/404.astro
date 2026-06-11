@@ -7,7 +7,7 @@ import { NAV, NICHOS } from '../lib/site';
 
 <BaseLayout
   title="Página no encontrada"
-  description="La página que buscás no está. Pero hay 12 espacios esperándote. Volvé al inicio o explorá las secciones principales del sitio."
+  description="La página que buscás no está, pero tu primera hora gratis sí. Volvé al inicio de Espacio 1010 o explorá los consultorios y salas."
   noindex={true}
 >
   <section class="flex min-h-[70vh] flex-col items-center justify-center py-20 sm:py-32">
@@ -25,15 +25,15 @@ import { NAV, NICHOS } from '../lib/site';
         </h1>
         <p class="mt-6 text-lg leading-relaxed text-ink-soft text-pretty">
           La página que buscás se mudó, cambió de nombre o nunca existió.
-          Pero hay 12 espacios esperándote a la vuelta de la esquina.
+          Los consultorios y salas de Gaboto 1010, en cambio, siguen donde siempre.
         </p>
 
         <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href="/" variant="primary" size="lg">
-            Volver al inicio
+          <Button href="/#registro" variant="primary" size="lg">
+            Quiero mi primera hora gratis
           </Button>
-          <Button href="/los-espacios" variant="ghost" size="lg">
-            Ver los espacios
+          <Button href="/" variant="ghost" size="lg">
+            Volver al inicio
           </Button>
         </div>
 
@@ -44,7 +44,11 @@ import { NAV, NICHOS } from '../lib/site';
           </p>
           <ul class="mt-5 flex flex-wrap justify-center gap-2">
             {
-              [...NAV, ...NICHOS.map((n) => ({ href: `/para/${n.slug}`, label: n.label }))].slice(0, 8).map((item) => (
+              [
+                { href: '/#registro', label: 'Pre-registro · 1.ª hora gratis' },
+                ...NAV,
+                ...NICHOS.map((n) => ({ href: `/para/${n.slug}`, label: n.label })),
+              ].slice(0, 8).map((item) => (
                 <li>
                   <a
                     href={item.href}

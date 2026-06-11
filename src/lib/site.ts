@@ -2,7 +2,7 @@
  * Datos centrales del negocio. Todo lo que cambia con frecuencia o se reutiliza
  * en varias páginas vive acá — un solo lugar para editar.
  *
- * Convención: cualquier "TBD" debe quedar visible y resolverse antes del launch.
+ * Fuente de verdad de datos duros: docs/VERDAD_APP_2026_06_10.md (la app manda).
  */
 
 export const SITE = {
@@ -11,9 +11,10 @@ export const SITE = {
   url: 'https://www.espacio1010.uy',
   tagline: 'Tu consultorio sin complicaciones',
   description:
-    'Espacios cuidados por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo entre Palermo y Parque Rodó, Montevideo. Reservá online, autogestión total, 24/7.',
+    'Consultorios y salas por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo entre Palermo y Parque Rodó, Montevideo. Reservás online y entrás con tu código, todos los días de 7 a 24.',
   locale: 'es_UY',
-  // Subdominio operativo de la PWA de reservas — el "Reservar ahora" apunta acá.
+  // Subdominio operativo de la PWA de reservas. NO usarlo como CTA durante el
+  // pre-lanzamiento: el CTA primario de todas las páginas es /#registro (cupón).
   agendaUrl: 'https://agenda.espacio1010.uy',
 } as const;
 
@@ -47,206 +48,216 @@ export const SOCIAL = {
 } as const;
 
 export const HOURS = {
-  // El edificio opera 24/7 (auto-acceso). Esto es lo que entra en Schema.org.
-  // Para Google Business Profile probablemente convenga acotar atención humana.
-  openingHours: '24/7',
+  // Horario reservable real de la app: 07:00 a 24:00, todos los días
+  // (el cierre es la hora a la que termina la última reserva).
+  openingHours: 'Todos los días, de 7 a 24 h',
   humanSupport: 'Lunes a sábado, 9 a 20 hs',
 } as const;
 
 /**
- * Los 12 espacios cara al cliente. Centralizado acá para que el sitio refleje
- * exactamente lo que vende la PWA. Slug = URL friendly para /los-espacios/[slug].
+ * Los espacios cara al cliente — datos REALES de la DB de producción de la app
+ * (tabla `consultorios`, ver docs/VERDAD_APP_2026_06_10.md). Mismos nombres que
+ * ve el cliente en la PWA. Slug = URL para /los-espacios/[slug].
  *
- * Nota interna: la PWA tiene 9 consultorios en DB. Discrepancia pendiente con Rafa.
- * Cuando se aclare, este array es la fuente de verdad del sitio institucional.
+ * Espacios 04 (PB) y 15 (P1) existen pero están inactivos en la app (placeholders
+ * sin terminar) — sumarlos acá cuando Rafa los termine.
  */
 export type EspacioId =
-  | 'estudio-norte'
-  | 'estudio-sur'
-  | 'consulta-1'
-  | 'consulta-2'
-  | 'consulta-3'
-  | 'consulta-4'
-  | 'consulta-5'
-  | 'consulta-6'
-  | 'consulta-7'
-  | 'salon-cobre'
-  | 'salon-roble'
-  | 'sala-subsuelo';
+  | 'espacio-01'
+  | 'espacio-02'
+  | 'espacio-03'
+  | 'espacio-11'
+  | 'espacio-12'
+  | 'espacio-13'
+  | 'espacio-14'
+  | 'sala-arcos';
+
+export type GrupoEspacio = 'individual' | 'infancias' | 'camilla' | 'grupos';
 
 export interface Espacio {
   id: EspacioId;
-  nombre: string;
-  resumen: string;
-  capacidad: string;
-  amueblado: 'completo' | 'versatil' | 'mixto';
-  metros: number; // m² aprox
-  destacado?: boolean;
-  ideal: string[]; // segmentos / usos sugeridos
+  nombre: string; // tal cual lo ve el cliente en la app
+  piso: 'Planta baja' | 'Piso 1' | 'Subsuelo';
+  tipo: 'amueblado' | 'multiuso';
+  grupo: GrupoEspacio; // misma agrupación por uso que la home
+  resumen: string; // fiel a la descripción de la DB
+  capacidad: string; // detalle completo (ficha)
+  capacidadBreve: string; // versión corta (cards)
+  metros: number; // m² aprox (DB)
+  precioHora: number; // 350 | 700 — único lugar donde vive el precio
+  reservaPorApp: boolean; // false solo para Sala Arcos (CTA WhatsApp)
+  ideal: string[]; // derivado de la descripción DB + profesiones_lista de la app
+  foto?: string; // ruta en /public — solo Sala Arcos tiene foto real hoy
+  fotoAlt?: string;
+  destacado?: boolean; // los 3 que muestra /alquiler-consultorio-montevideo
 }
 
 export const ESPACIOS: Espacio[] = [
-  // TODO: confirmar nombres reales con Rafa. Estos son placeholders cohesivos
-  // con el tono editorial premium del brandboard.
   {
-    id: 'estudio-norte',
-    nombre: 'Estudio Norte',
-    resumen: 'Luz natural de mañana, sillón de terapia, escritorio macizo.',
-    capacidad: '2 a 3 personas',
-    amueblado: 'completo',
-    metros: 14,
-    destacado: true,
-    ideal: ['Psicología', 'Psiquiatría', 'Psicopedagogía'],
-  },
-  {
-    id: 'estudio-sur',
-    nombre: 'Estudio Sur',
-    resumen: 'Cálido y sereno, ideal para sesiones largas y trabajo individual.',
-    capacidad: '2 a 3 personas',
-    amueblado: 'completo',
+    id: 'espacio-01',
+    nombre: 'Espacio 01',
+    piso: 'Planta baja',
+    tipo: 'amueblado',
+    grupo: 'individual',
+    resumen:
+      'A la calle y cálido. Sillón de tres cuerpos y butaca individual — ideal para sesiones individuales, entrevistas y consultas.',
+    capacidad: 'Hasta 4 sentados',
+    capacidadBreve: 'Hasta 4',
     metros: 13,
-    ideal: ['Psicología', 'Coaching', 'Constelaciones individuales'],
+    precioHora: 350,
+    reservaPorApp: true,
+    ideal: ['Psicología', 'Psiquiatría', 'Coaching', 'Nutrición'],
+    destacado: true,
   },
   {
-    id: 'consulta-1',
-    nombre: 'Consulta I',
-    resumen: 'Sobria, mobiliario clásico, perfecta para consulta clínica.',
+    id: 'espacio-02',
+    nombre: 'Espacio 02',
+    piso: 'Planta baja',
+    tipo: 'amueblado',
+    grupo: 'infancias',
+    resumen:
+      'Versátil, con rincón infantil: mobiliario y materiales para trabajar con niños y familias, más dos butacas y escritorio.',
     capacidad: '2 personas',
-    amueblado: 'completo',
-    metros: 11,
-    ideal: ['Psiquiatría', 'Nutrición', 'Homeopatía'],
+    capacidadBreve: '2 personas',
+    metros: 15,
+    precioHora: 350,
+    reservaPorApp: true,
+    ideal: ['Psicopedagogía', 'Psicología infantil', 'Fonoaudiología', 'Psicomotricidad'],
   },
   {
-    id: 'consulta-2',
-    nombre: 'Consulta II',
-    resumen: 'Compacta y silenciosa, con foco en privacidad acústica.',
+    id: 'espacio-03',
+    nombre: 'Espacio 03',
+    piso: 'Planta baja',
+    tipo: 'multiuso',
+    grupo: 'grupos',
+    resumen:
+      'Flexible y despejado, para movimiento, meditación y grupos chicos. Con almohadones y colchonetas para armarlo como necesites.',
+    capacidad: '8 sentados · 6 en movimiento',
+    capacidadBreve: 'Hasta 8',
+    metros: 19,
+    precioHora: 350,
+    reservaPorApp: true,
+    ideal: ['Meditación', 'Yoga', 'Grupos chicos', 'Movimiento'],
+  },
+  {
+    id: 'espacio-11',
+    nombre: 'Espacio 11',
+    piso: 'Piso 1',
+    tipo: 'amueblado',
+    grupo: 'individual',
+    resumen:
+      'Compacto y luminoso, a la calle. Dos butacas individuales — perfecto para sesiones uno a uno y entrevistas breves.',
     capacidad: '2 personas',
-    amueblado: 'completo',
-    metros: 10,
-    ideal: ['Psicología', 'Psicoanálisis'],
+    capacidadBreve: '2 personas',
+    metros: 9.5,
+    precioHora: 350,
+    reservaPorApp: true,
+    ideal: ['Psicología', 'Psiquiatría', 'Coaching', 'Nutrición'],
   },
   {
-    id: 'consulta-3',
-    nombre: 'Consulta III',
-    resumen: 'Vista interior, diseño contemporáneo, escritorio plegable.',
-    capacidad: '2 personas',
-    amueblado: 'completo',
-    metros: 11,
-    ideal: ['Psicología', 'Nutrición'],
-  },
-  {
-    id: 'consulta-4',
-    nombre: 'Consulta IV',
-    resumen: 'Espacio amplio para terapias con materiales o juego.',
+    id: 'espacio-12',
+    nombre: 'Espacio 12',
+    piso: 'Piso 1',
+    tipo: 'amueblado',
+    grupo: 'individual',
+    resumen:
+      'Luminoso y con balcón a la calle. Sillón de dos cuerpos, butaca individual y escritorio.',
     capacidad: '3 personas',
-    amueblado: 'mixto',
+    capacidadBreve: '3 personas',
     metros: 14,
-    ideal: ['Psicopedagogía', 'Psicología infantil', 'Fonoaudiología'],
+    precioHora: 350,
+    reservaPorApp: true,
+    ideal: ['Psicología', 'Psiquiatría', 'Coaching', 'Nutrición'],
   },
   {
-    id: 'consulta-5',
-    nombre: 'Consulta V',
-    resumen: 'Versátil, con divan opcional y zona de escritorio.',
+    id: 'espacio-13',
+    nombre: 'Espacio 13',
+    piso: 'Piso 1',
+    tipo: 'amueblado',
+    grupo: 'camilla',
+    resumen:
+      'Con camilla: masajes, reflexología, tratamientos corporales y abordajes integrales. También tiene escritorio.',
     capacidad: '2 personas',
-    amueblado: 'mixto',
-    metros: 12,
-    ideal: ['Psicoanálisis', 'Psicología'],
-  },
-  {
-    id: 'consulta-6',
-    nombre: 'Consulta VI',
-    resumen: 'Pequeña, recogida, perfecta para sesiones de 50 minutos.',
-    capacidad: '2 personas',
-    amueblado: 'completo',
-    metros: 9,
-    ideal: ['Psicología', 'Coaching'],
-  },
-  {
-    id: 'consulta-7',
-    nombre: 'Consulta VII',
-    resumen: 'Ambiente luminoso con detalles de madera original recuperada.',
-    capacidad: '2 personas',
-    amueblado: 'completo',
+    capacidadBreve: '2 personas',
     metros: 11,
-    ideal: ['Psiquiatría', 'Psicología'],
-  },
-  {
-    id: 'salon-cobre',
-    nombre: 'Salón Cobre',
-    resumen: 'Sillas apilables y colchonetas — montás el espacio como lo necesites.',
-    capacidad: '6 a 10 personas',
-    amueblado: 'versatil',
-    metros: 22,
+    precioHora: 350,
+    reservaPorApp: true,
+    ideal: ['Masajes', 'Reflexología', 'Osteopatía', 'Terapias corporales'],
     destacado: true,
-    ideal: ['Terapia grupal', 'Mindfulness', 'Yoga reducido'],
   },
   {
-    id: 'salon-roble',
-    nombre: 'Salón Roble',
-    resumen: 'Mobiliario versátil para grupos chicos o talleres de medio día.',
-    capacidad: '6 a 8 personas',
-    amueblado: 'versatil',
-    metros: 20,
-    ideal: ['Talleres', 'Terapia grupal', 'Constelaciones familiares'],
+    id: 'espacio-14',
+    nombre: 'Espacio 14',
+    piso: 'Piso 1',
+    tipo: 'multiuso',
+    grupo: 'grupos',
+    resumen:
+      'Amplio y despejado, para movimiento, meditación y grupos chicos. Con almohadones y colchonetas.',
+    capacidad: '8 sentados · 6 en movimiento',
+    capacidadBreve: 'Hasta 8',
+    metros: 16,
+    precioHora: 350,
+    reservaPorApp: true,
+    ideal: ['Meditación', 'Yoga', 'Grupos chicos', 'Movimiento'],
+    destacado: true,
   },
   {
-    id: 'sala-subsuelo',
+    id: 'sala-arcos',
     nombre: 'Sala Arcos',
-    resumen: 'La gran sala del edificio, en el subsuelo. Sin columnas, configuración libre.',
-    capacidad: '20 a 30 personas',
-    amueblado: 'versatil',
-    metros: 60,
-    destacado: true,
-    ideal: ['Talleres', 'Presentaciones', 'Yoga', 'Meditación grupal'],
+    piso: 'Subsuelo',
+    tipo: 'multiuso',
+    grupo: 'grupos',
+    resumen:
+      'La gran sala del subsuelo, para talleres, encuentros y trabajo grupal. Con proyector, parlante, kitchenette y baño propio.',
+    capacidad: 'Hasta 25 sentados',
+    capacidadBreve: 'Hasta 25',
+    metros: 40,
+    precioHora: 700,
+    reservaPorApp: false,
+    ideal: ['Talleres', 'Formaciones', 'Constelaciones', 'Encuentros grupales'],
+    foto: '/fotos/lugar-sala-subsuelo.webp',
+    fotoAlt:
+      'Sala Arcos en el subsuelo de Espacio 1010, con muro de piedra, arco original y piso de madera',
   },
 ];
 
-/**
- * Amenities transversales del edificio — sirven para landing principal,
- * /el-lugar y schema.org.
- */
-export const AMENITIES = [
-  { icon: 'wifi', label: 'Wifi de fibra en todo el edificio' },
-  { icon: 'air-conditioner', label: 'Aire acondicionado en cada espacio' },
-  { icon: 'led', label: 'Iluminación LED regulable' },
-  { icon: 'lock', label: 'Acceso 24/7 con código personal' },
-  { icon: 'sound', label: 'Música ambiente para mayor privacidad' },
-  { icon: 'coffee', label: 'Cocina y sala de estar para tus pacientes' },
-  { icon: 'sofa', label: 'Sala de espera compartida' },
-  { icon: 'cowork', label: 'Sala de cowork incluida sin cargo' },
-  { icon: 'parking', label: 'Estacionamiento no tarifado en la zona' },
-  { icon: 'bus', label: 'A 2 cuadras de líneas troncales' },
-] as const;
+/** Labels de tipo — un solo lugar (los usan índice, ficha y EspacioCard). */
+export const TIPO_LABEL: Record<Espacio['tipo'], string> = {
+  amueblado: 'Amueblado',
+  multiuso: 'Multiuso',
+};
+
+/** Explicación corta de cada tipo (leyenda del índice). */
+export const TIPO_DESC: Record<Espacio['tipo'], string> = {
+  amueblado: 'sillón, butacas y/o escritorio — llegás y atendés',
+  multiuso: 'despejado, con almohadones y colchonetas — lo armás como necesites',
+};
+
+/** Íconos por grupo de uso — mismos paths que usa la home (index.astro). */
+export const ICONOS_GRUPO: Record<GrupoEspacio, string> = {
+  individual:
+    '<path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"/><path d="M2 13a2 2 0 0 1 4 0v3h12v-3a2 2 0 0 1 4 0v5H2z"/>',
+  infancias:
+    '<circle cx="12" cy="4.5" r="2"/><path d="M12 9v6M9 21l1.2-6M15 21l-1.2-6M8 10.5l4 1 4-1"/>',
+  camilla:
+    '<circle cx="6" cy="10" r="1.6"/><path d="M8 11h9a3 3 0 0 1 3 3M3 11h3"/><path d="M3 11v7M20 14v4"/>',
+  grupos:
+    '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 20a6 6 0 0 1 12 0M15 20a5 5 0 0 1 6-3.5"/>',
+};
 
 /**
- * Diferenciales pesados — orden importa, es el orden en que se muestran.
+ * Amenities transversales del edificio — los renderiza /el-lugar.
+ * Solo datos con respaldo en la fuente de verdad (música ambiente, sala de espera,
+ * "cowork", "fibra", "LED regulable" y "a 2 cuadras de líneas troncales" se quitaron —
+ * flaggeados a Rafa para reincorporar si los confirma).
  */
-export const DIFERENCIALES = [
-  {
-    titulo: 'Reservás vos, en tiempo real',
-    descripcion:
-      'Entrás, ves la disponibilidad real de los 12 espacios y reservás en menos de un minuto. Sin esperar respuesta de nadie.',
-  },
-  {
-    titulo: 'Acceso 24/7',
-    descripcion:
-      'Tu código personal abre las puertas cualquier día, a cualquier hora. Atendés cuando tus pacientes te necesitan.',
-  },
-  {
-    titulo: 'Cancelaciones flexibles',
-    descripcion:
-      'Cancelás con 24 horas de aviso y no pagás nada. La política más favorable del mercado.',
-  },
-  {
-    titulo: 'Edificio centenario, todo nuevo',
-    descripcion:
-      '100 años de historia, reciclado a cero. Domótica, climatización, privacidad acústica y materiales premium.',
-  },
-  {
-    titulo: 'Cowork incluido sin cargo',
-    descripcion:
-      'Llegás antes o te queda un hueco entre pacientes. Trabajás en la sala compartida sin pagar extra.',
-  },
+export const AMENITIES = [
+  { icon: 'wifi', label: 'Wifi en todo el edificio' },
+  { icon: 'air-conditioner', label: 'Aire acondicionado en cada espacio' },
+  { icon: 'lock', label: 'Acceso con código personal, todos los días de 7 a 24 h' },
+  { icon: 'coffee', label: 'Comedor y sala de estar para profesionales, sin cargo' },
+  { icon: 'parking', label: 'Estacionamiento no tarifado en la zona' },
+  { icon: 'bus', label: 'Bien conectado en bus' },
 ] as const;
 
 /**

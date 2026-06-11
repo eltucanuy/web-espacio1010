@@ -16,6 +16,11 @@ export async function getStaticPaths() {
 
 const { nicho } = Astro.props;
 
+// La Sala Arcos no se reserva por la app: en talleres-grupos el CTA primario es WhatsApp.
+const esTalleres = nicho.slug === 'talleres-grupos';
+// meditacion-yoga también recomienda la Sala Arcos: el subtexto del hero muestra ambos precios.
+const esYoga = nicho.slug === 'meditacion-yoga';
+
 // Buscamos los espacios recomendados en el array global.
 const espaciosDelNicho = nicho.espaciosRecomendados
   .map((id) => ESPACIOS.find((e) => e.id === id))
@@ -27,7 +32,7 @@ const schemaService = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   serviceType: nicho.label,
-  provider: { '@type': 'LocalBusiness', name: 'Espacio 1010' },
+  provider: { '@type': 'LocalBusiness', '@id': `${SITE.url}/#business`, name: 'Espacio 1010', url: SITE.url },
   areaServed: { '@type': 'City', name: 'Montevideo' },
   description: nicho.intro,
   url: `${SITE.url}/para/${nicho.slug}`,
@@ -45,12 +50,11 @@ const schemaFAQ = {
 
 const schemaBreadcrumb = breadcrumbSchema([
   { name: 'Inicio', url: '/' },
-  { name: 'Para profesionales', url: '/#para-profesionales' },
   { name: nicho.label, url: `/para/${nicho.slug}` },
 ]);
 ---
 
-<BaseLayout title={nicho.label} description={nicho.meta} ogSlug={`nicho-${nicho.slug}`}>
+<BaseLayout title={nicho.titleSeo} description={nicho.meta} ogSlug={`nicho-${nicho.slug}`}>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaService)} />
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFAQ)} />
@@ -61,7 +65,7 @@ const schemaBreadcrumb = breadcrumbSchema([
   <section class="pt-16 pb-16 sm:pt-24 sm:pb-20">
     <Container>
       <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
-        Para profesionales
+        {esTalleres ? 'Pre-lanzamiento · abrimos en junio 2026' : 'Pre-lanzamiento · tu primera hora gratis'}
       </p>
       <h1 class="text-balance">{nicho.label}</h1>
       <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
@@ -69,13 +73,37 @@ const schemaBreadcrumb = breadcrumbSchema([
       </p>
 
       <div class="mt-10 flex flex-col gap-3 sm:flex-row">
-        <Button href={SITE.agendaUrl} variant="primary" size="lg">
-          Crear cuenta gratis
-        </Button>
-        <Button href="/los-espacios" variant="ghost" size="lg">
-          Ver los espacios
-        </Button>
+        {
+          esTalleres ? (
+            <>
+              <Button href={CONTACT.whatsappLink(nicho.whatsappIntro)} variant="primary" size="lg" target="_blank">
+                Consultar por la Sala Arcos
+              </Button>
+              <Button href="/#registro" variant="ghost" size="lg">
+                Quiero mi primera hora gratis
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button href="/#registro" variant="primary" size="lg">
+                Quiero mi primera hora gratis
+              </Button>
+              <Button href="/los-espacios" variant="ghost" size="lg">
+                Ver los espacios
+              </Button>
+            </>
+          )
+        }
       </div>
+      <p class="mt-4 text-sm text-ink-soft">
+        {
+          esTalleres
+            ? 'Sala Arcos: $700 la hora · espacios multiuso para grupos chicos: $350 — y tu primera hora es gratis al pre-registrarte.'
+            : esYoga
+              ? 'Espacios multiuso: $350 la hora, todo incluido · Sala Arcos para grupos grandes: $700 — y tu primera hora es gratis al pre-registrarte.'
+              : '$350 la hora, todo incluido · sin costos fijos ni compromiso — y tu primera hora es gratis.'
+        }
+      </p>
     </Container>
   </section>
 
@@ -109,12 +137,32 @@ const schemaBreadcrumb = breadcrumbSchema([
     </Container>
   </section>
 
+  <!-- Fotos reales del lugar -->
+  <section class="py-16">
+    <Container>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {nicho.fotos.map((f) => (
+          <figure class="group overflow-hidden rounded-[var(--radius-xl)] border border-hairline shadow-[var(--shadow-md)]">
+            <div class="relative aspect-[3/2] overflow-hidden">
+              <img src={f.src} alt={f.alt} loading="lazy" decoding="async"
+                class="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-soft)] group-hover:scale-105" />
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 via-ink/30 to-transparent p-4 pt-12">
+                <p class="text-sm font-medium text-white">{f.cap}</p>
+              </div>
+            </div>
+          </figure>
+        ))}
+      </div>
+      <p class="mt-6 text-center text-sm text-ink-muted">Fotos reales de cada espacio, muy pronto.</p>
+    </Container>
+  </section>
+
   <!-- Espacios recomendados -->
   <section class="py-24">
     <Container size="wide">
       <h2 class="font-display text-3xl text-ink">Espacios pensados para tu práctica.</h2>
       <p class="mt-3 max-w-xl text-ink-soft">
-        Estos son los que mejor se ajustan a la forma de trabajo de quien hace lo tuyo.
+        Los que mejor se ajustan a tu forma de trabajar.
       </p>
       <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {espaciosDelNicho.map((e) => <EspacioCard espacio={e} />)}
@@ -122,20 +170,28 @@ const schemaBreadcrumb = breadcrumbSchema([
     </Container>
   </section>
 
-  <!-- Testimonial -->
-  <section class="py-20 bg-ink text-crema">
-    <Container size="narrow">
-      <svg class="mb-6 text-terracota-light" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M7 7c-2 0-3.5 1.5-3.5 3.5S5 14 7 14c0 2-1.5 3.5-3.5 3.5v2C7 19.5 9 17 9 13V8c0-.5-.5-1-1-1zm9 0c-2 0-3.5 1.5-3.5 3.5s1.5 3.5 3.5 3.5c0 2-1.5 3.5-3.5 3.5v2c3.5 0 5.5-2.5 5.5-6.5V8c0-.5-.5-1-1-1z" />
-      </svg>
-      <blockquote class="font-display text-3xl leading-tight text-crema sm:text-4xl">
-        "{nicho.testimonial.texto}"
-      </blockquote>
-      <footer class="mt-6 text-sm text-crema/70">
-        — {nicho.testimonial.autor}, {nicho.testimonial.rol}
-      </footer>
-    </Container>
-  </section>
+  <!-- Testimonial (solo nichos con testimonio real aprobado) -->
+  {
+    nicho.testimonial && (
+      <section class="py-20 bg-ink text-crema">
+        <Container size="narrow">
+          <span class="mb-5 inline-flex w-fit items-center gap-1.5 rounded-full bg-terracota/20 px-3 py-1 text-[11px] font-medium text-terracota-light">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+            Ya reservó para la apertura
+          </span>
+          <svg class="mb-6 text-terracota-light" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M7 7c-2 0-3.5 1.5-3.5 3.5S5 14 7 14c0 2-1.5 3.5-3.5 3.5v2C7 19.5 9 17 9 13V8c0-.5-.5-1-1-1zm9 0c-2 0-3.5 1.5-3.5 3.5s1.5 3.5 3.5 3.5c0 2-1.5 3.5-3.5 3.5v2c3.5 0 5.5-2.5 5.5-6.5V8c0-.5-.5-1-1-1z" />
+          </svg>
+          <blockquote class="font-display text-3xl leading-tight text-crema sm:text-4xl">
+            "{nicho.testimonial.texto}"
+          </blockquote>
+          <footer class="mt-6 text-sm text-crema/70">
+            — {nicho.testimonial.autor}, {nicho.testimonial.rol}
+          </footer>
+        </Container>
+      </section>
+    )
+  }
 
   <!-- Variantes de búsqueda — long-tail SEO sin diluir URLs -->
   <section class="py-16 bg-[#f8f9fa]">
@@ -186,23 +242,48 @@ const schemaBreadcrumb = breadcrumbSchema([
   <section class="py-24">
     <Container>
       <div class="rounded-[var(--radius-xl)] bg-gradient-to-br from-terracota via-terracota-dark to-ink p-12 text-center text-crema sm:p-20">
-        <h2 class="text-balance text-crema">¿Probamos?</h2>
+        <h2 class="text-balance text-crema">{esTalleres ? '¿Armamos tu taller?' : 'Tu primera hora, gratis.'}</h2>
         <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-crema/85">
-          Crear cuenta es gratis. Después ves la disponibilidad real y reservás cuando quieras.
+          {
+            esTalleres
+              ? 'Contanos fecha, duración y cuántas personas vienen, y lo coordinamos por WhatsApp. Y si también atendés individual, pre-registrate: tu primera hora en los consultorios es gratis.'
+              : 'Pre-registrate gratis, sin tarjeta y sin compromiso. Te guardamos tu primera hora para usarla cuando quieras durante 2026, en el espacio que elijas.'
+          }
         </p>
         <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href={SITE.agendaUrl} variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
-            Crear mi cuenta
-          </Button>
-          <Button
-            href={CONTACT.whatsappLink(`Hola, soy ${nicho.label.toLowerCase().replace('espacios para ', '').replace('consultorios para ', '').replace('salones para ', '').replace('sala para ', '')} y quería más info.`)}
-            variant="ghost"
-            size="lg"
-            class="text-crema hover:bg-white/10"
-            target="_blank"
-          >
-            Hablar por WhatsApp
-          </Button>
+          {
+            esTalleres ? (
+              <>
+                <Button
+                  href={CONTACT.whatsappLink(nicho.whatsappIntro)}
+                  variant="primary"
+                  size="lg"
+                  class="bg-white text-terracota hover:bg-white/90"
+                  target="_blank"
+                >
+                  Consultar por la Sala Arcos
+                </Button>
+                <Button href="/#registro" variant="ghost" size="lg" class="text-crema hover:bg-white/10">
+                  Quiero mi primera hora gratis
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button href="/#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
+                  Quiero mi primera hora gratis
+                </Button>
+                <Button
+                  href={CONTACT.whatsappLink(nicho.whatsappIntro)}
+                  variant="ghost"
+                  size="lg"
+                  class="text-crema hover:bg-white/10"
+                  target="_blank"
+                >
+                  Hablar por WhatsApp
+                </Button>
+              </>
+            )
+          }
         </div>
       </div>
     </Container>

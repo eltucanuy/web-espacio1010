@@ -1,5 +1,25 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-06-11 — sesión nocturna + repaso 1 a 1 con Rafa (leer primero)
+> **Todas las subpáginas fueron reescritas con los datos reales de la app** (espacios reales
+> de la DB, slugs nuevos con 301, precios/cancelaciones/pagos de producción) y después se
+> repasaron 1 a 1 todas las dudas con Rafa. Ver [`INFORME_NOCTURNO_2026_06_11.md`](./INFORME_NOCTURNO_2026_06_11.md)
+> (resoluciones fechadas) y [`VERDAD_APP_2026_06_10.md`](./VERDAD_APP_2026_06_10.md) (fuente de verdad).
+>
+> **Resueltos** (no volver a preguntar): 9 vs 12 espacios → **la comunicación es "12 espacios"**
+> y /los-espacios presenta los 8 publicados como "los primeros que abren"; horario → **"24/7"**
+> (la app reserva de 7 a 24, madrugada por WhatsApp); **2 salas de espera reales** (una por piso —
+> detalle solo en /el-lugar, en el resto "sala de espera" a secas; al espacio se entra EN HORA);
+> café/té/agua y música ambiente confirmados; sin horario de atención publicado; nombres de
+> espacios quedan "Espacio 01…"; descuentos publicados con números; cupón BIENVENIDA1010
+> corregido en la DB de la app (1 reserva gratis por usuario).
+>
+> De la lista vieja de "pendientes bloqueantes" de abajo ya están resueltos: precios reales,
+> WhatsApp, Instagram, testimonios, 9-vs-12. Siguen vigentes: fotos de los espacios decorados,
+> coordenadas/postal exactos, favicons definitivos, OG con foto, y los tags de la agencia en GTM.
+>
+> ---
+
 > ## 🔄 Actualización 2026-06-10 (sesión 2) — Clarity instalado + sin cookie banner (leer primero)
 > **Microsoft Clarity quedó activo en producción** (heatmaps + grabaciones), instalado por Rafa vía la integración automática Clarity→GTM en el container `GTM-WQT4VNXV` — sin tocar código. Verificado en el sitio en vivo. Ver [`HANDOFF_2026_06_10_clarity.md`](./HANDOFF_2026_06_10_clarity.md).
 >

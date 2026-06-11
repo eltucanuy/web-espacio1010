@@ -59,6 +59,16 @@ Por página:
 8. ✅ **RESUELTO (Rafa, 2026-06-11)**: los % de descuento quedan publicados con números (20 h+ → 10% · 40 h+ → 20%).
 9. **SEO de URLs** (informativo, sin acción): los slugs viejos (`estudio-norte`, etc.) tienen 301 al espacio real más parecido o al índice. Si Google ya indexó fichas viejas, se reacomoda solo.
 
+## Adenda — repaso final con Rafa (2026-06-11, antes de archivar la sesión)
+
+- **FAQ corta de la home: queda SIN link a /preguntas-frecuentes** (decisión de Rafa, aunque la página ya está al día). No restaurarlo sin preguntarle.
+- **Coordenadas exactas aplicadas**: pin oficial "Espacio 1010" en Google Maps (-34.9111051, -56.1769524, maps.app.goo.gl/fn3y6k5ujuxt56jn7) → `ADDRESS` en site.ts y Schema.org. El pin viejo estaba corrido ~600 m.
+- **Favicons: resueltos** — los de `public/` ya son idénticos a los de la app (verificado por hash); era solo un comentario viejo.
+- **Fotos de espacios decorados: sigue PENDIENTE** (confirmado por Rafa) — fichas, OG con foto, sacar "muy pronto", repoblar `consultorios.fotos`.
+- **Espacios 04/15**: cuando se activen en la app, avisará para sumarlos a la web.
+- **Tags GA4/Ads en GTM**: la agencia ya está trabajando en eso.
+- Pendientes de la app (logo, T&C formal, cron liquidaciones) quedan en su propio repo.
+
 ## Verificación
 - `npm run build` ✅ (24 páginas, sitemap y OG regenerados).
 - Verificador global: links internos OK, números consistentes entre páginas, redirects sin loops, sin términos prohibidos fuera de la home.

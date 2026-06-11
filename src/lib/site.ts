@@ -24,11 +24,12 @@ export const ADDRESS = {
   neighborhood: 'Parque Rodó',
   city: 'Montevideo',
   country: 'Uruguay',
-  postalCode: '11200', // límite Palermo / Parque Rodó aprox — confirmar con Rafa
-  // Coordenadas aproximadas Gaboto 1010 — verificar con Google Maps real antes del launch.
-  lat: -34.9094,
-  lng: -56.1834,
-  mapsUrl: 'https://maps.google.com/?q=Gaboto+1010+Montevideo+Uruguay',
+  postalCode: '11200', // límite Palermo / Parque Rodó aprox
+  // Coordenadas exactas del pin oficial "Espacio 1010" en Google Maps
+  // (link compartido por Rafa 2026-06-11: maps.app.goo.gl/fn3y6k5ujuxt56jn7).
+  lat: -34.9111051,
+  lng: -56.1769524,
+  mapsUrl: 'https://maps.app.goo.gl/fn3y6k5ujuxt56jn7',
 } as const;
 
 export const CONTACT = {

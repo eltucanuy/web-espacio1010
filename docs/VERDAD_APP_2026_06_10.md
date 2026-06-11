@@ -53,8 +53,8 @@
 
 ## Horarios (config DB de producción)
 
-- Horario reservable: **07:00 a 24:00, todos los días** (`horario_apertura=07:00`, `horario_cierre=24:00`; el cierre es la hora a la que termina la última reserva).
-- ⚠️ La web dice "24/7" / "cualquier hora" en varios lados (incl. la home y `HOURS.openingHours`). **Para subpáginas usar "todos los días, de 7 a 24 h"**. La home no se toca → flag en informe.
+- Horario reservable por la app: **07:00 a 24:00, todos los días** (`horario_apertura=07:00`, `horario_cierre=24:00`; el cierre es la hora a la que termina la última reserva).
+- ✅ RESUELTO POR RAFA (2026-06-11): **la comunicación oficial es 24/7**. El edificio funciona 24/7; la app reserva de 7 a 24 y **los horarios de madrugada se coordinan por WhatsApp** (no son de libre reserva por la app). Frase estándar: "El edificio funciona 24/7: por la app reservás de 7 a 24, la madrugada se coordina por WhatsApp."
 - Atención humana (WhatsApp): el sitio decía "Lunes a sábado, 9 a 20 hs" — no hay dato en la app que lo contradiga; mantener salvo mejor criterio.
 - Acceso con **código personal** + videoportero (sistema con contraseña + código + OK). Cámaras SOLO en entrada y zonas comunes, nunca en espacios de atención.
 
@@ -89,8 +89,8 @@ Psicólogo/a, Psiquiatra, Psicopedagogo/a, Fonoaudiólogo/a, Psicomotricista, Te
 
 ## Abierto / para el informe (NO resolver unilateralmente)
 
-1. 9 vs 12 espacios (la home dice 12; DB tiene 10 con 7 activos + Sala Arcos).
-2. Claims "24/7" de la home vs horario real 7–24.
+1. ✅ RESUELTO POR RAFA (2026-06-11): **la comunicación oficial es "12 espacios"** (serán los totales más adelante; hoy se publican 8: 7 reservables + Sala Arcos, presentados como "los primeros que abren").
+2. ✅ RESUELTO POR RAFA (2026-06-11): **"24/7" es correcto** — madrugada (0 a 7) por WhatsApp, app de 7 a 24.
 3. Espacios 04 y 15: ¿se publican como "próximamente" o se omiten?
 4. Cupón BIENVENIDA1010 con `cupo_reservas_por_usuario = null` — verificar en la app que el 100% aplique a UNA sola reserva.
 5. Nombres reales de los espacios son utilitarios ("Espacio 01") — ¿Rafa quiere nombres con marca más adelante?

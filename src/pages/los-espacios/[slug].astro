@@ -55,7 +55,7 @@ const pageTitle = esArcos
 
 const metaDescription = esArcos
   ? `Sala Arcos: 40 m² para talleres y grupos de hasta 25 personas, con proyector, parlante y kitchenette. $700/h, se coordina por WhatsApp. Gaboto 1010, Montevideo.`
-  : `${espacio.resumen} $${espacio.precioHora}/h, todos los días de 7 a 24. Gaboto 1010, entre Palermo y Parque Rodó, Montevideo.`;
+  : `${espacio.resumen} $${espacio.precioHora}/h, acceso 24/7. Gaboto 1010, entre Palermo y Parque Rodó, Montevideo.`;
 
 const incluye = [
   { titulo: 'Wifi en todo el edificio', desc: 'Conexión estable para trabajar tranquilo.' },
@@ -63,11 +63,11 @@ const incluye = [
   { titulo: 'Comedor y sala de estar', desc: 'En el piso 1, exclusivo para profesionales, sin cargo.' },
   ...(espacio.reservaPorApp
     ? [
-        { titulo: 'Acceso con código personal', desc: 'Todos los días, de 7 a 24 h — sin coordinar con nadie.' },
+        { titulo: 'Acceso con código personal', desc: 'Abre 24/7: por la app reservás de 7 a 24, la madrugada por WhatsApp.' },
         { titulo: 'Reservas desde 1 hora', desc: 'Sin mínimo ni compromiso: reservás solo lo que usás.' },
       ]
     : [
-        { titulo: 'Se coordina directo con nosotros', desc: 'Fecha y horario se arman por WhatsApp, dentro del horario del edificio (todos los días, de 7 a 24 h).' },
+        { titulo: 'Se coordina directo con nosotros', desc: 'Fecha y horario se arman por WhatsApp — el edificio funciona 24/7.' },
         { titulo: 'Sillas, mesas y colchonetas', desc: 'Sillas y mesas, colchonetas y almohadones para armar la sala como la necesites.' },
       ]),
   { titulo: 'Estacionamiento NO tarifado', desc: 'En la zona — y bien conectado en bus.' },

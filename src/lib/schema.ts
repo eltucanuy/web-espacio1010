@@ -58,12 +58,13 @@ export function localBusinessSchema(imageUrl: string) {
       latitude: ADDRESS.lat,
       longitude: ADDRESS.lng,
     },
-    // Horario reservable real (auto-acceso con código): 7 a 24, todos los días.
+    // El edificio funciona 24/7 (comunicación oficial, decisión Rafa 2026-06-11).
+    // La app reserva de 7 a 24; la madrugada se coordina por WhatsApp.
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
         dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        opens: '07:00',
+        opens: '00:00',
         closes: '23:59',
       },
     ],

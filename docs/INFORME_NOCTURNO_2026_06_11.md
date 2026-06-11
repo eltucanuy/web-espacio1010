@@ -44,7 +44,7 @@ Por página:
 
 ## 🔴 Contradicciones / decisiones para que revises
 
-1. **La home dice "12 espacios" (3 veces) y "24/7"/"las 24 horas"** — la DB tiene 7 públicos activos + Sala Arcos (+ 04 y 15 inactivos) y el horario reservable es 7–24. No la toqué por tu regla. Las subpáginas ya no dan totales. **Decidir: ¿la home pasa a "espacios para cada forma de atender" / "7 a 24"?**
+1. ✅ **RESUELTO (Rafa, 2026-06-11 de mañana)**: la comunicación oficial es **"12 espacios"** (los totales a futuro) y **"24/7"** (la app reserva de 7 a 24; la madrugada se coordina por WhatsApp, no es de libre reserva). Las subpáginas se realinearon a ese criterio el mismo día: "12 espacios" reinstalado en descripciones y pasos, `/los-espacios` presenta los 8 publicados como "los primeros que abren", y el horario se comunica como "El edificio funciona 24/7: por la app reservás de 7 a 24, la madrugada por WhatsApp" (Schema.org de vuelta a 24/7). La home quedó tal cual estaba — ya era consistente con este criterio.
 2. **Espacios 04 y 15** — inactivos en DB con descripción placeholder. Los omití. ¿Van como "próximamente"?
 3. **Nombres "Espacio 01/02/…"** — son los reales de la app y eso publiqué. Si querés nombres con marca, se cambian en `site.ts` + DB a la vez.
 4. **Amenities/claims eliminados por no verificables** (decí cuáles son reales y los reincorporo): wifi de fibra "en todo el edificio", limpieza diaria, música ambiente, sala de espera para pacientes, café/té, iluminación LED regulable, "a 2 cuadras de líneas troncales", "aprobamos cuentas el mismo día", confirmación por mail, "casi siempre hay lugar para estacionar".

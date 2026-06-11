@@ -32,7 +32,7 @@ const pages: Record<string, OgPage> = {
   },
   'como-funciona': {
     title: 'Cinco pasos.\nEl resto es atender.',
-    description: 'Reservás online y entrás con tu código, todos los días de 7 a 24',
+    description: 'Reservás online y entrás con tu código — acceso 24/7',
   },
   precios: {
     title: 'Sin letra chica.\nSin sorpresas.',

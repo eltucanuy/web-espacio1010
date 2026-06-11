@@ -11,7 +11,7 @@ export const SITE = {
   url: 'https://www.espacio1010.uy',
   tagline: 'Tu consultorio sin complicaciones',
   description:
-    'Consultorios y salas por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo entre Palermo y Parque Rodó, Montevideo. Reservás online y entrás con tu código, todos los días de 7 a 24.',
+    '12 consultorios y salas por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo entre Palermo y Parque Rodó, Montevideo. Reservás online y entrás con tu código — acceso 24/7.',
   locale: 'es_UY',
   // Subdominio operativo de la PWA de reservas. NO usarlo como CTA durante el
   // pre-lanzamiento: el CTA primario de todas las páginas es /#registro (cupón).
@@ -48,9 +48,11 @@ export const SOCIAL = {
 } as const;
 
 export const HOURS = {
-  // Horario reservable real de la app: 07:00 a 24:00, todos los días
-  // (el cierre es la hora a la que termina la última reserva).
-  openingHours: 'Todos los días, de 7 a 24 h',
+  // Comunicación oficial (decisión Rafa 2026-06-11): el edificio es 24/7.
+  // La app reserva de 07:00 a 24:00; los horarios de madrugada se coordinan
+  // por WhatsApp (no son de libre reserva por la app).
+  openingHours: 'Abierto 24/7',
+  appBooking: 'Por la app reservás de 7 a 24; la madrugada se coordina por WhatsApp',
   humanSupport: 'Lunes a sábado, 9 a 20 hs',
 } as const;
 
@@ -254,7 +256,7 @@ export const ICONOS_GRUPO: Record<GrupoEspacio, string> = {
 export const AMENITIES = [
   { icon: 'wifi', label: 'Wifi en todo el edificio' },
   { icon: 'air-conditioner', label: 'Aire acondicionado en cada espacio' },
-  { icon: 'lock', label: 'Acceso con código personal, todos los días de 7 a 24 h' },
+  { icon: 'lock', label: 'Acceso 24/7 con código personal' },
   { icon: 'coffee', label: 'Comedor y sala de estar para profesionales, sin cargo' },
   { icon: 'parking', label: 'Estacionamiento no tarifado en la zona' },
   { icon: 'bus', label: 'Bien conectado en bus' },

@@ -276,7 +276,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿En qué horarios puedo dar clase?',
-        a: 'Todos los días, de 7 a 24 h. Podés reservar una hora suelta para probar un horario, o fijar tu día y hora todas las semanas hasta que vos la liberes.',
+        a: 'El edificio funciona 24/7: por la app reservás de 7 a 24, y los horarios de madrugada se coordinan por WhatsApp. Podés reservar una hora suelta para probar un horario, o fijar tu día y hora todas las semanas hasta que vos la liberes.',
       },
     ],
     meta:

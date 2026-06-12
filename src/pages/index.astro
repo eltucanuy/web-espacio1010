@@ -681,6 +681,11 @@ const iconPaths: Record<string, string> = {
         (err: unknown) => console.warn('lead insert failed', err)
       );
     }
+    // IMPORTANTE (privacidad): este push va SIN payload a propósito — solo { event }.
+    // NUNCA agregar nombre/apellido/telefono ni otros datos del form al dataLayer:
+    // GTM lo reenviaría a GA4/Meta y mandar PII a Google viola sus TOS (riesgo de
+    // pérdida de la cuenta). La PII viaja únicamente al insert de Supabase de arriba.
+    // Los utm_* no hacen falta acá: GA4 los toma solo de la URL de la página.
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({ event: 'lead_preregistro' });
 

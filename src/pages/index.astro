@@ -12,7 +12,7 @@
  */
 import LandingLayout from '../layouts/LandingLayout.astro';
 import Container from '../components/Container.astro';
-import { ADDRESS, CONTACT } from '../lib/site';
+import { ADDRESS, CONTACT, SITE } from '../lib/site';
 
 const PRECIO_HORA = 350;
 const CUPON_URL = 'https://agenda.espacio1010.uy/c/BIENVENIDA1010';
@@ -151,6 +151,11 @@ const iconPaths: Record<string, string> = {
     <img src="/fotos/fachada-final.webp" alt="Fachada reciclada del edificio de Espacio 1010, iluminada de noche, entre Palermo y Parque Rodó" class="absolute inset-0 -z-20 h-full w-full object-cover object-center" fetchpriority="high" decoding="async" />
     <div class="absolute inset-0 -z-10 bg-gradient-to-br from-ink/92 via-ink/85 to-ink/70"></div>
     <div class="absolute -right-32 -top-24 -z-10 h-[420px] w-[420px] rounded-full opacity-40 blur-3xl" style="background: radial-gradient(circle, #9e4e42 0%, transparent 70%);" aria-hidden="true"></div>
+
+    <a href={SITE.loginUrl} class="absolute right-5 top-4 z-10 inline-flex items-center gap-1.5 text-sm font-medium text-white/85 transition-colors hover:text-white sm:right-8 sm:top-6">
+      Ya tengo cuenta
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
 
     <Container class="py-14 sm:py-20 md:py-24">
       <div class="max-w-2xl">

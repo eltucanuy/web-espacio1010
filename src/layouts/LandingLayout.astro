@@ -109,6 +109,17 @@ const year = 2026;
       Saltar al contenido
     </a>
 
+    <!-- Acceso discreto para clientes existentes — no reintroduce el menú completo
+         (la landing es de conversión); solo la puerta al login arriba a la derecha. -->
+    <div class="mx-auto flex w-full max-w-6xl justify-end px-5 pt-4 sm:px-8">
+      <a
+        href={SITE.loginUrl}
+        class="inline-flex h-10 items-center rounded-full border border-ink/15 px-4 text-sm font-medium text-ink-soft transition-colors hover:border-terracota hover:text-terracota"
+      >
+        Ya tengo cuenta
+      </a>
+    </div>
+
     <main id="main" class="flex-1">
       <slot />
     </main>
@@ -121,6 +132,9 @@ const year = 2026;
           <p class="mt-2 text-sm text-ink-muted">Gaboto 1010, entre Palermo y Parque Rodó · Montevideo</p>
         </div>
         <div class="flex flex-col items-center gap-1.5 text-sm sm:items-end">
+          <a href={SITE.loginUrl} class="font-medium text-terracota hover:underline">
+            Ya tengo cuenta
+          </a>
           <a href={CONTACT.whatsappLink()} target="_blank" rel="noopener noreferrer" class="font-medium text-terracota hover:underline">
             WhatsApp {CONTACT.whatsappLeadsDisplay}
           </a>

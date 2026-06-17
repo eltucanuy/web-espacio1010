@@ -113,10 +113,10 @@ const testimonios = [
 
 // Los espacios, agrupados por uso/necesidad (no por nombre).
 const espacios = [
-  { nombre: 'Atención individual', nota: 'Sesiones uno a uno, entrevistas, orientación o consulta clínica.', icon: 'sofa' },
-  { nombre: 'Para infancias', nota: 'Con rincón infantil y sector de butacas, para trabajar con niños y familias.', icon: 'child' },
-  { nombre: 'Con camilla', nota: 'Para masajes, reflexología, reiki, terapias corporales o consultas con camilla.', icon: 'massage' },
-  { nombre: 'Grupos y talleres', nota: 'Para grupos chicos, movimiento, meditación o yoga. Y la Sala Arcos, la más grande, para lo de mayor escala.', icon: 'group' },
+  { nombre: 'Atención individual', nota: 'Sesiones uno a uno, entrevistas, orientación o consulta clínica.', icon: 'sofa', foto: '/fotos/espacio-individual.webp' },
+  { nombre: 'Para infancias', nota: 'Con rincón infantil y sector de butacas, para trabajar con niños y familias.', icon: 'child', foto: '/fotos/espacio-infancias.webp' },
+  { nombre: 'Con camilla', nota: 'Para masajes, reflexología, reiki, terapias corporales o consultas con camilla.', icon: 'massage', foto: '/fotos/espacio-camilla.webp' },
+  { nombre: 'Grupos y talleres', nota: 'Para grupos chicos, movimiento, meditación o yoga. Y la Sala Arcos, la más grande, para lo de mayor escala.', icon: 'group', foto: '/fotos/espacio-arcos.webp' },
 ];
 
 const iconPaths: Record<string, string> = {
@@ -320,16 +320,28 @@ const iconPaths: Record<string, string> = {
       </div>
       <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {espacios.map((e) => (
-          <article class="flex flex-col rounded-2xl border border-hairline bg-[#f8f9fa] p-6 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
-            <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-terracota-tint text-terracota">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[e.icon]} />
-            </span>
-            <h3 class="mt-5 text-lg text-ink">{e.nombre}</h3>
-            <p class="mt-1 text-sm leading-relaxed text-ink-soft">{e.nota}</p>
+          <article class="group flex flex-col overflow-hidden rounded-2xl border border-hairline bg-white transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <img
+                src={e.foto}
+                alt={`Espacio de Espacio 1010 para ${e.nombre.toLowerCase()}`}
+                width="1200"
+                height="900"
+                loading="lazy"
+                decoding="async"
+                class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <span class="absolute bottom-3 left-3 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/90 text-terracota shadow-[var(--shadow-sm)] backdrop-blur">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" set:html={iconPaths[e.icon]} />
+              </span>
+            </div>
+            <div class="flex flex-col p-6">
+              <h3 class="text-lg text-ink">{e.nombre}</h3>
+              <p class="mt-1 text-sm leading-relaxed text-ink-soft">{e.nota}</p>
+            </div>
           </article>
         ))}
       </div>
-      <p class="mt-8 text-center text-sm text-ink-muted">Fotos reales de cada espacio, muy pronto.</p>
       <div class="mt-10 text-center">
         <a href="#registro" class="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terracota px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-terracota-light">
           Quiero mi primera hora gratis

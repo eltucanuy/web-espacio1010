@@ -7,10 +7,10 @@ import { CONTACT } from '../lib/site';
 const pasos = [
   {
     n: '01',
-    titulo: 'Te pre-registrás',
+    titulo: 'Te registrás',
     bajada: 'En 30 segundos, desde el celular.',
     detalle:
-      'Te pre-registrás hoy con tu nombre y WhatsApp, y tu primera hora queda gratis, guardada a tu nombre para usarla cuando quieras durante 2026. Después completás tu cuenta en la app, la aprobamos en pocas horas y listo.',
+      'Te registrás hoy con tu nombre y WhatsApp, y tu primera hora queda gratis, guardada a tu nombre para usarla cuando quieras. Después completás tu cuenta en la app, la aprobamos en pocas horas y listo.',
     bullets: [
       'Sin tarjeta y sin compromiso',
       'Tu primera hora gratis queda reservada a tu nombre',
@@ -20,7 +20,7 @@ const pasos = [
   {
     n: '02',
     titulo: 'Buscás disponibilidad',
-    bajada: 'Ves los 12 espacios con sus horarios libres en tiempo real.',
+    bajada: 'Ves los espacios con sus horarios libres en tiempo real.',
     detalle:
       'La agenda muestra exactamente lo que está libre cuando vos entrás: elegís el día y el rango horario, y listo. Y si querés un horario fijo, lo dejás reservado todas las semanas.',
     bullets: [
@@ -84,7 +84,7 @@ const schemaHowTo = {
 
 <BaseLayout
   title="Cómo funciona: reservá tu consultorio por hora"
-  description="Cómo reservar consultorio por hora en Espacio 1010: pre-registrate, mirá la disponibilidad real, reservá desde el celular y entrá con tu código — acceso 24/7."
+  description="Cómo reservar consultorio por hora en Espacio 1010: registrate, mirá la disponibilidad real, reservá desde el celular y entrá con tu código — acceso 24/7."
   ogSlug="como-funciona"
 >
   <Fragment slot="head">
@@ -102,7 +102,7 @@ const schemaHowTo = {
           <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-terracota opacity-50"></span>
           <span class="relative inline-flex h-2 w-2 rounded-full bg-terracota"></span>
         </span>
-        Pre-lanzamiento · ¡muy pronto!
+        Ya estamos abiertos · primera hora gratis
       </p>
       <h1 class="text-balance">
         Cinco pasos.
@@ -232,7 +232,7 @@ const schemaHowTo = {
         {[
           {
             q: '¿Puedo probar el espacio antes de reservar?',
-            a: 'Sí. Estamos en pre-apertura — coordinamos una visita sin compromiso por WhatsApp y te mostramos los consultorios y las salas.',
+            a: 'Sí. Coordinamos una visita sin compromiso por WhatsApp y te mostramos los consultorios y las salas.',
           },
           {
             q: '¿Tengo que firmar contrato anual?',
@@ -283,8 +283,8 @@ const schemaHowTo = {
       <div class="rounded-[var(--radius-xl)] bg-terracota p-12 text-center text-white sm:p-20">
         <h2 class="text-balance text-white">¿Empezamos?</h2>
         <p class="mx-auto mt-5 max-w-xl text-lg leading-relaxed text-white/85">
-          Pre-registrate gratis en 30 segundos y tu primera hora queda guardada
-          a tu nombre, para usarla cuando quieras durante 2026.
+          Registrate gratis en 30 segundos y tu primera hora queda guardada
+          a tu nombre, para usarla cuando quieras.
         </p>
         <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button href="/#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">

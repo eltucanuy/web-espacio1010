@@ -55,7 +55,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     label: 'Espacios para psicólogas y psicólogos',
     titleSeo: 'Consultorio por hora para psicólogos en Montevideo',
     intro:
-      'Consultorios por hora pensados para la práctica clínica, entre Palermo y Parque Rodó. Agenda online, espacios pensados para trabajar con privacidad y la flexibilidad de armar tu semana como vos quieras. Abrimos en junio 2026.',
+      'Consultorios por hora pensados para la práctica clínica, entre Palermo y Parque Rodó. Agenda online, espacios pensados para trabajar con privacidad y la flexibilidad de armar tu semana como vos quieras.',
     painPoints: [
       'Alquilar un consultorio propio cuesta lo que cuesta — y tenés que llenarlo solo',
       'Compartir mal con colegas termina en conflictos por turnos',
@@ -111,7 +111,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     label: 'Consultorios para psiquiatras',
     titleSeo: 'Consultorio para psiquiatras por hora en Montevideo',
     intro:
-      'Consultorios sobrios y profesionales para tu consulta privada, entre Palermo y Parque Rodó. Reservás por hora, sin costos fijos y sin compromiso. Abrimos en junio 2026.',
+      'Consultorios sobrios y profesionales para tu consulta privada, entre Palermo y Parque Rodó. Reservás por hora, sin costos fijos y sin compromiso.',
     painPoints: [
       'Necesitás un entorno serio que respalde tu práctica',
       'No querés depender de un sanatorio o policlínica con horarios fijos',
@@ -157,7 +157,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     label: 'Espacios para psicopedagogía',
     titleSeo: 'Consultorio por hora para psicopedagogía en Montevideo',
     intro:
-      'Consultorios con lugar para materiales, juego y trabajo con familias. Pensados para sesiones con niños, adolescentes y adultos, entre Palermo y Parque Rodó. Abrimos en junio 2026.',
+      'Consultorios con lugar para materiales, juego y trabajo con familias. Pensados para sesiones con niños, adolescentes y adultos, entre Palermo y Parque Rodó.',
     painPoints: [
       'Necesitás espacio físico para desplegar materiales',
       'A veces atendés con la familia, a veces solo con el niño',
@@ -203,7 +203,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     label: 'Consultorios para nutricionistas',
     titleSeo: 'Consultorio para nutricionistas por hora en Montevideo',
     intro:
-      'Consultorios cómodos para consulta nutricional individual o con familias, entre Palermo y Parque Rodó. Ambiente cálido y profesional, sin costos fijos. Abrimos en junio 2026.',
+      'Consultorios cómodos para consulta nutricional individual o con familias, entre Palermo y Parque Rodó. Ambiente cálido y profesional, sin costos fijos.',
     painPoints: [
       'Encadenás consultas cortas y largas — necesitás un espacio que se adapte a tu agenda, no al revés',
       'Necesitás un espacio que invite a la conversación abierta, no a la formalidad fría',
@@ -245,7 +245,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     label: 'Espacios para meditación y yoga',
     titleSeo: 'Sala por hora para yoga y meditación en Montevideo',
     intro:
-      'Espacios multiuso despejados, con mats y almohadones, para clases reducidas, sesiones individuales o talleres — y la Sala Arcos para grupos más grandes. Entre Palermo y Parque Rodó. Abrimos en junio 2026.',
+      'Espacios multiuso despejados, con mats y almohadones, para clases reducidas, sesiones individuales o talleres — y la Sala Arcos para grupos más grandes. Entre Palermo y Parque Rodó.',
     painPoints: [
       'Los gimnasios y estudios grandes te imponen horarios y reparten alumnos',
       'Querés cuidar la experiencia desde el espacio físico, no solo desde tu práctica',
@@ -297,7 +297,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     label: 'Sala para talleres y trabajo grupal',
     titleSeo: 'Sala Arcos: talleres y grupos en Montevideo',
     intro:
-      'La Sala Arcos, en el subsuelo, te recibe para grupos de hasta 25 personas: 40 m² con piedra y arcos originales, sillas y mesas, proyector, parlante, kitchenette y baño independiente. Para tu taller, formación o encuentro grupal. Abrimos en junio 2026.',
+      'La Sala Arcos, en el subsuelo, te recibe para grupos de hasta 25 personas: 40 m² con piedra y arcos originales, sillas y mesas, proyector, parlante, kitchenette y baño independiente. Para tu taller, formación o encuentro grupal.',
     painPoints: [
       'Las salas de eventos son frías y caras, las casas privadas son pequeñas y poco profesionales',
       'Necesitás flexibilidad para configurar el espacio según la dinámica',

@@ -11,7 +11,7 @@ export const SITE = {
   url: 'https://www.espacio1010.uy',
   tagline: 'Tu consultorio sin complicaciones',
   description:
-    '12 consultorios y salas por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo entre Palermo y Parque Rodó, Montevideo. Reservás online y entrás con tu código — acceso 24/7.',
+    'Consultorios y salas por hora para profesionales de la salud y el bienestar. Edificio centenario reciclado a nuevo entre Palermo y Parque Rodó, Montevideo. Reservás online y entrás con tu código — acceso 24/7.',
   locale: 'es_UY',
   // Subdominio operativo de la PWA de reservas. NO usarlo como CTA primario
   // durante el pre-lanzamiento: el CTA primario de todas las páginas es

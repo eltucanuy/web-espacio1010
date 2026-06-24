@@ -1,5 +1,14 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-06-24 — el sitio ya está EN MODO ABIERTO (leer primero)
+> Espacio 1010 **ya abrió** (junio 2026). Se hizo una **pasada completa de copy pre-apertura → abierto** en todo el sitio + carrusel de fotos por espacio + sala de espera equipada (feedback de la pareja, 6 puntos). Ver [`HANDOFF_2026_06_24.md`](./HANDOFF_2026_06_24.md).
+>
+> **⚠️ Dos decisiones de abajo quedaron REVERTIDAS — no las re-apliques:**
+> - **"12 espacios"**: la regla del 2026-06-11 ("comunicar 12 espacios") **ya NO rige**. Rafa decidió **no poner cantidad**. Si reaparece "12 espacios/consultorios", es regresión.
+> - **Framing "pre-apertura"**: ya no se dice "abrimos en junio / cuando abramos / antes de abrir / durante 2026". El sitio habla como **local abierto**. La oferta "primera hora gratis" y el form **se mantienen** (solo se reescribió el tiempo verbal).
+>
+> ---
+
 > ## 🔄 Actualización 2026-06-11 — sesión nocturna + repaso 1 a 1 con Rafa (leer primero)
 > **Todas las subpáginas fueron reescritas con los datos reales de la app** (espacios reales
 > de la DB, slugs nuevos con 301, precios/cancelaciones/pagos de producción) y después se

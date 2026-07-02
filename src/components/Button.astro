@@ -5,7 +5,7 @@
  */
 interface Props {
   href?: string;
-  variant?: 'primary' | 'ghost' | 'outline';
+  variant?: 'primary' | 'ghost' | 'outline' | 'light' | 'ghost-light';
   size?: 'sm' | 'md' | 'lg';
   target?: string;
   rel?: string;
@@ -35,6 +35,12 @@ const variants = {
     'bg-transparent text-ink hover:bg-ink/5',
   outline:
     'bg-transparent text-ink border border-ink/15 hover:border-terracota hover:text-terracota',
+  // Para CTAs sobre fondos oscuros (bandas bg-ink). NO superponer bg-white/
+  // text-terracota sobre "primary" vía class: las utilidades en conflicto se
+  // resuelven por orden del CSS generado y el texto queda blanco sobre blanco.
+  light:
+    'bg-white text-terracota hover:bg-[#f8f9fa] hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.35)] hover:-translate-y-0.5',
+  'ghost-light': 'bg-transparent text-crema hover:bg-white/10',
 };
 
 const sizes = {

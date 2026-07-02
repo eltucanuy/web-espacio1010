@@ -40,6 +40,14 @@
     requestAnimationFrame(raf);
   }
 
+  // Al cambiar de página con view transitions, Astro setea el scroll (top en
+  // navegación nueva, posición restaurada en back/forward) pero Lenis conserva
+  // su estado interno viejo y en el siguiente frame "devuelve" la página al
+  // scroll anterior. Sincronizamos Lenis con el scroll real tras cada swap.
+  document.addEventListener('astro:after-swap', () => {
+    lenis?.scrollTo(window.scrollY, { immediate: true, force: true });
+  });
+
   // ─── 5. data-parallax: translate Y suave por scroll (desktop only) ───
   // Suscripción única a scroll; la lista de elementos se refresca por página.
   let parallaxEls: HTMLElement[] = [];

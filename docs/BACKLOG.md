@@ -1,5 +1,12 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-07-01 — relanzamiento en marcha: internas niveladas, falta el switch del home (leer primero)
+> Se decidió y ejecutó el plan de **relanzamiento de la web completa**: la landing evolucionará a home con Nav (NO se resucita el home v1; la pauta seguirá apuntando a `/`, sin `/empeza`). Fases 1–3 hechas y en producción **sin tocar la landing**: fotos reales en fichas y cards (32 webp desde el repo de la app), `/los-espacios` con los 10 espacios (04 y 15 como "Próximamente" sin ficha), **form de registro pre-footer en todas las internas** (`RegistroForm.astro`, `origen` = pathname, CTAs anclan a `#registro`), y fix del bug de view transitions (scripts muertos tras navegar — patrón `astro:page-load` obligatorio para scripts nuevos). Ver [`HANDOFF_2026_07_01.md`](./HANDOFF_2026_07_01.md).
+>
+> **Pendiente (próxima sesión):** migrar el home a `BaseLayout` (Nav + form compartido), interlinking home→internas, avisar a la agencia (cortesía), y pasar 04/15 a `ESPACIOS` cuando estén terminados. Guardrail post-switch: mirar conversión del tráfico pago 2–3 semanas en Clarity/GTM.
+>
+> ---
+
 > ## 🔄 Actualización 2026-06-24 — el sitio ya está EN MODO ABIERTO (leer primero)
 > Espacio 1010 **ya abrió** (junio 2026). Se hizo una **pasada completa de copy pre-apertura → abierto** en todo el sitio + carrusel de fotos por espacio + sala de espera equipada (feedback de la pareja, 6 puntos). Ver [`HANDOFF_2026_06_24.md`](./HANDOFF_2026_06_24.md).
 >

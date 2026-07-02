@@ -32,15 +32,17 @@ const waLink = CONTACT.whatsappLink(
 
 <script>
   // Aparece sólo después del primer scroll significativo — no en el hero.
-  const btn = document.querySelector<HTMLElement>('[data-floating-wa]');
-  if (btn) {
-    const update = () => {
-      const visible = window.scrollY > 300;
-      btn.style.opacity = visible ? '1' : '0';
-      btn.style.pointerEvents = visible ? 'auto' : 'none';
-      btn.style.transform = visible ? 'translateY(0)' : 'translateY(20px)';
-    };
-    window.addEventListener('scroll', update, { passive: true });
-    update();
-  }
+  // Query en vivo (no cachear el elemento): con view transitions el DOM se
+  // reemplaza en cada navegación y una referencia vieja queda muerta.
+  const update = () => {
+    const btn = document.querySelector<HTMLElement>('[data-floating-wa]');
+    if (!btn) return;
+    const visible = window.scrollY > 300;
+    btn.style.opacity = visible ? '1' : '0';
+    btn.style.pointerEvents = visible ? 'auto' : 'none';
+    btn.style.transform = visible ? 'translateY(0)' : 'translateY(20px)';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  document.addEventListener('astro:page-load', update);
+  update();
 </script>

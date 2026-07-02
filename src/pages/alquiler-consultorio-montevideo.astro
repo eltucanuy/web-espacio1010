@@ -2,7 +2,8 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
-import { NICHOS, SITE, ADDRESS, ESPACIOS, TIPO_LABEL } from '../lib/site';
+import { NICHOS, SITE, ADDRESS, ESPACIOS } from '../lib/site';
+import EspacioCard from '../components/EspacioCard.astro';
 
 const PRECIO_HORA = 350;
 import { breadcrumbSchema } from '../lib/schema';
@@ -110,7 +111,7 @@ const schemaFaq = {
       </p>
 
       <div data-reveal data-reveal-delay="200" class="mt-10 flex flex-col gap-3 sm:flex-row">
-        <Button href="/#registro" variant="primary" size="lg" class="btn-primary-glow">
+        <Button href="#registro" variant="primary" size="lg" class="btn-primary-glow">
           Quiero mi primera hora gratis
         </Button>
         <Button href="/los-espacios" variant="ghost" size="lg">
@@ -193,30 +194,7 @@ const schemaFaq = {
       </p>
 
       <div data-reveal-group="80" class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {destacados.map((e) => (
-          <a
-            href={`/los-espacios/${e.id}`}
-            class="group flex flex-col rounded-2xl border border-hairline bg-white p-6 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]"
-          >
-            <div class="flex items-center justify-between">
-              <span class="text-4xl font-bold text-terracota/20">{e.metros}m²</span>
-              <span class="inline-flex items-center rounded-full bg-[#f8f9fa] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-soft">
-                {TIPO_LABEL[e.tipo]}
-              </span>
-            </div>
-            <h3 class="mt-5 text-lg text-ink">{e.nombre} · {e.piso.toLowerCase()}</h3>
-            <p class="mt-2 text-sm leading-relaxed text-ink-soft">{e.resumen}</p>
-            <div class="mt-auto flex items-center justify-between pt-6 text-xs text-ink-muted">
-              <span>{e.capacidadBreve}</span>
-              <span class="inline-flex items-center gap-1 font-medium text-terracota transition-transform duration-300 group-hover:translate-x-0.5">
-                Ver este espacio
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
-                </svg>
-              </span>
-            </div>
-          </a>
-        ))}
+        {destacados.map((e) => <EspacioCard espacio={e} />)}
       </div>
 
       <div class="mt-12 text-center">
@@ -283,7 +261,7 @@ const schemaFaq = {
           para usarla cuando quieras.
         </p>
         <div class="mt-8">
-          <Button href="/#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
+          <Button href="#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
             Quiero mi primera hora gratis
           </Button>
         </div>

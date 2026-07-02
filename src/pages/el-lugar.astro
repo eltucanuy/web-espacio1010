@@ -113,7 +113,9 @@ import { ADDRESS, AMENITIES, CONTACT } from '../lib/site';
         }
       </div>
       <p class="mt-6 text-center text-sm text-ink-soft">
-        Fotos reales de las áreas comunes. Fotos de cada espacio, muy pronto.
+        Fotos reales de las áreas comunes. Y en
+        <a href="/los-espacios" class="font-medium text-terracota underline-offset-2 hover:underline">Los espacios</a>,
+        las fotos de cada consultorio y sala.
       </p>
     </Container>
   </section>
@@ -255,7 +257,7 @@ import { ADDRESS, AMENITIES, CONTACT } from '../lib/site';
           cuando quieras. ¿Querés verlo antes? Coordinamos una visita por WhatsApp.
         </p>
         <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <Button href="/#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
+          <Button href="#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
             Quiero mi primera hora gratis
           </Button>
           <Button href={CONTACT.whatsappLink('Hola! Quiero coordinar una visita a Espacio 1010.')} variant="ghost" size="lg" class="text-white hover:bg-white/10" target="_blank">

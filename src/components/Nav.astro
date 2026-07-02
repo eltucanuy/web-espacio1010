@@ -31,7 +31,7 @@ import { NAV, SITE } from '../lib/site';
 
     <div class="hidden md:flex md:items-center md:gap-2">
       <Button href={SITE.loginUrl} variant="ghost" size="sm">Ya tengo cuenta</Button>
-      <Button href="/#registro" variant="primary" size="sm">Primera hora gratis</Button>
+      <Button href="#registro" variant="primary" size="sm">Primera hora gratis</Button>
     </div>
 
     <button
@@ -77,7 +77,7 @@ import { NAV, SITE } from '../lib/site';
       </li>
       <li class="pt-3">
         <a
-          href="/#registro"
+          href="#registro"
           class="block w-full rounded-full bg-terracota px-6 py-3 text-center text-base font-medium text-white"
         >
           Primera hora gratis
@@ -99,28 +99,38 @@ import { NAV, SITE } from '../lib/site';
 </style>
 
 <script>
-  // Toggle mobile menu
-  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
-  const menu = document.querySelector<HTMLDivElement>('[data-mobile-menu]');
-
-  toggle?.addEventListener('click', () => {
-    const isOpen = !menu?.classList.contains('hidden');
-    if (isOpen) {
-      menu?.classList.add('hidden');
-      toggle.setAttribute('aria-expanded', 'false');
-    } else {
-      menu?.classList.remove('hidden');
-      toggle.setAttribute('aria-expanded', 'true');
-    }
-  });
+  // Con view transitions (ClientRouter) el DOM del nav se reemplaza en cada
+  // navegación: los listeners se re-enganchan en astro:page-load y el estado
+  // de scroll se consulta en vivo (sin cachear elementos).
 
   // Borde fino sólo al scrollear — el header pasa de "flotando" a "anclado"
-  const nav = document.querySelector<HTMLElement>('[data-nav]');
   const onScroll = () => {
+    const nav = document.querySelector<HTMLElement>('[data-nav]');
     if (!nav) return;
     if (window.scrollY > 12) nav.classList.add('is-scrolled');
     else nav.classList.remove('is-scrolled');
   };
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+
+  const init = () => {
+    // Toggle mobile menu
+    const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    if (toggle && !toggle.dataset.bound) {
+      toggle.dataset.bound = '1';
+      toggle.addEventListener('click', () => {
+        const menu = document.querySelector<HTMLDivElement>('[data-mobile-menu]');
+        const isOpen = !menu?.classList.contains('hidden');
+        if (isOpen) {
+          menu?.classList.add('hidden');
+          toggle.setAttribute('aria-expanded', 'false');
+        } else {
+          menu?.classList.remove('hidden');
+          toggle.setAttribute('aria-expanded', 'true');
+        }
+      });
+    }
+    onScroll();
+  };
+  document.addEventListener('astro:page-load', init);
+  init();
 </script>

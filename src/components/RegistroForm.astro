@@ -1,0 +1,179 @@
+---
+/**
+ * Form de registro (pre-footer) — copia extraída del form de la landing
+ * (src/pages/index.astro §registro), para que TODAS las páginas internas tengan
+ * el punto de conversión sin mandar al usuario de vuelta a la home.
+ *
+ * BaseLayout lo renderiza arriba del Footer. Los CTAs internos anclan a
+ * `#registro` (misma página). La landing conserva su propia copia inline;
+ * cuando la home migre a BaseLayout, se unifica acá.
+ *
+ * Mismo flujo verificado de la landing: INSERT en Supabase `pre_registros`
+ * (origen = pathname de la página) → dataLayer 'lead_preregistro' (SIN payload,
+ * regla de privacidad) → redirect a la PWA con cupón + campos precargados.
+ * NO cambiar los identificadores `preregistro-form`, `preregistro-exito` ni el
+ * evento `lead_preregistro`: GTM y la medición de la agencia dependen de ellos.
+ */
+---
+
+<section id="registro" class="scroll-mt-16 border-t border-hairline bg-[#f8f9fa] py-16 sm:py-24">
+  <div class="mx-auto max-w-7xl px-5 sm:px-8">
+    <div class="mx-auto max-w-md">
+      <div id="registro-intro" class="text-center">
+        <h2 class="text-3xl text-ink sm:text-4xl">Registrate gratis</h2>
+        <p class="mt-3 text-base leading-relaxed text-ink-soft">Asegurá tu primera hora gratis para usarla cuando quieras.</p>
+      </div>
+
+      <form id="preregistro-form" class="mt-8 grid gap-4 rounded-2xl border border-hairline bg-white p-6 shadow-[var(--shadow-md)] sm:p-7" novalidate>
+        <div class="grid grid-cols-2 gap-3">
+          <div class="grid min-w-0 gap-1.5">
+            <label for="f-nombre" class="text-xs font-medium text-ink-soft">Nombre</label>
+            <input id="f-nombre" name="nombre" type="text" required maxlength="80" placeholder="Juana" autocomplete="given-name" class="h-12 w-full min-w-0 rounded-lg border border-hairline bg-white px-4 text-ink placeholder:text-ink-muted/60 focus:border-terracota focus:outline-none" />
+          </div>
+          <div class="grid min-w-0 gap-1.5">
+            <label for="f-apellido" class="text-xs font-medium text-ink-soft">Apellido</label>
+            <input id="f-apellido" name="apellido" type="text" required maxlength="80" placeholder="García" autocomplete="family-name" class="h-12 w-full min-w-0 rounded-lg border border-hairline bg-white px-4 text-ink placeholder:text-ink-muted/60 focus:border-terracota focus:outline-none" />
+          </div>
+        </div>
+        <div class="grid gap-1.5">
+          <label for="f-tel" class="text-xs font-medium text-ink-soft">WhatsApp</label>
+          <input id="f-tel" name="telefono" type="tel" required inputmode="numeric" maxlength="20" placeholder="099 123 456" autocomplete="tel" class="h-12 w-full rounded-lg border border-hairline bg-white px-4 text-ink placeholder:text-ink-muted/60 focus:border-terracota focus:outline-none" />
+        </div>
+
+        <!-- Honeypot anti-spam (oculto) -->
+        <input type="text" name="company" tabindex="-1" autocomplete="off" class="absolute left-[-9999px] h-0 w-0 opacity-0" aria-hidden="true" />
+
+        <label class="flex items-start gap-2.5 text-xs leading-relaxed text-ink-soft">
+          <input id="f-consent" type="checkbox" required checked class="mt-0.5 h-4 w-4 flex-shrink-0 accent-[#9e4e42]" />
+          <span>Quiero registrarme y que me guarden mi primera hora gratis. Acepto la <a href="/privacidad" class="text-terracota underline-offset-2 hover:underline">política de privacidad</a>.</span>
+        </label>
+
+        <p id="f-error" class="hidden text-xs text-[#C0392B]"></p>
+
+        <button id="f-submit" type="submit" class="mt-1 inline-flex h-14 items-center justify-center gap-2 rounded-full bg-terracota text-base font-semibold text-white transition-all duration-300 ease-[var(--ease-out-soft)] hover:-translate-y-0.5 hover:bg-terracota-light disabled:opacity-60">
+          Quiero mi primera hora gratis
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </button>
+        <p class="text-center text-xs text-ink-soft">Sin tarjeta · sin compromiso · no pagás nada hasta reservar</p>
+        <p class="text-center text-[11px] text-ink-muted">Te llevamos a crear tu cuenta con la hora gratis ya cargada.</p>
+      </form>
+
+      <!-- Pantalla de registro exitoso: overlay a pantalla completa, instantáneo -->
+      <div id="preregistro-exito" class="fixed inset-0 z-[70] flex items-center justify-center bg-white px-6" style="display:none">
+        <div class="w-full max-w-md text-center">
+          <span class="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-terracota-tint text-terracota">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
+          </span>
+          <h3 class="mt-6 text-2xl text-ink sm:text-3xl">¡Listo<span id="exito-nombre"></span>! Tu registro está hecho.</h3>
+          <p class="mt-3 text-base leading-relaxed text-ink-soft">Te estamos llevando a completar tu registro y activar tu <strong class="font-semibold text-ink">primera hora gratis</strong>. Son 30 segundos más.</p>
+          <div class="mt-6 flex items-center justify-center gap-2 text-sm text-ink-muted">
+            <svg class="animate-spin" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56" stroke-linecap="round" /></svg>
+            Redirigiéndote…
+          </div>
+          <a id="exito-continuar" href="#" class="mt-6 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-terracota px-7 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-terracota-light">
+            Continuar ahora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { createClient } from '@supabase/supabase-js';
+
+  const url = import.meta.env.PUBLIC_SUPABASE_URL;
+  const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
+  const supabase = url && key ? createClient(url, key) : null;
+  const CUPON_URL = 'https://agenda.espacio1010.uy/c/BIENVENIDA1010';
+
+  // Re-engancha en cada navegación (ClientRouter); data-bound evita doble binding.
+  const init = () => {
+    const form = document.getElementById('preregistro-form') as HTMLFormElement | null;
+    if (!form || form.dataset.bound) return;
+    form.dataset.bound = '1';
+    const errorEl = document.getElementById('f-error');
+    const submitBtn = document.getElementById('f-submit') as HTMLButtonElement | null;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Honeypot: si un bot llenó el campo oculto, abortamos en silencio.
+      const honeypot = (form.querySelector('[name="company"]') as HTMLInputElement)?.value;
+      if (honeypot) return;
+
+      const nombre = (form.querySelector('[name="nombre"]') as HTMLInputElement).value.trim();
+      const apellido = (form.querySelector('[name="apellido"]') as HTMLInputElement).value.trim();
+      const telRaw = (form.querySelector('[name="telefono"]') as HTMLInputElement).value;
+      let telefono = telRaw.replace(/\D/g, '');
+      if (telefono.startsWith('598')) telefono = telefono.slice(3); // por si ponen el código de país
+      const telOk = /^09\d{7}$/.test(telefono); // celular uruguayo: 09 + 7 dígitos
+      const consent = (document.getElementById('f-consent') as HTMLInputElement)?.checked;
+
+      if (errorEl) { errorEl.classList.add('hidden'); errorEl.textContent = ''; }
+
+      if (!nombre || !apellido) {
+        if (errorEl) { errorEl.textContent = 'Completá nombre y apellido.'; errorEl.classList.remove('hidden'); }
+        return;
+      }
+      if (!telOk) {
+        if (errorEl) { errorEl.textContent = 'Ingresá un celular uruguayo válido (ej. 099 123 456).'; errorEl.classList.remove('hidden'); }
+        return;
+      }
+      if (!consent) {
+        if (errorEl) { errorEl.textContent = 'Necesitamos tu OK para contactarte.'; errorEl.classList.remove('hidden'); }
+        return;
+      }
+
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Un segundo…'; }
+
+      // Parámetros de la URL actual (UTMs de la campaña, si vino de Ads).
+      const p = new URLSearchParams(location.search);
+
+      // Destino: la PWA con cupón + campos precargados + UTMs reenviadas.
+      const q = new URLSearchParams({ nombre, apellido, telefono });
+      for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+        const v = p.get(k);
+        if (v) q.set(k, v);
+      }
+      const destino = `${CUPON_URL}?${q.toString()}`;
+
+      // Mostramos el éxito YA (pantalla completa), sin esperar al guardado.
+      const exito = document.getElementById('preregistro-exito');
+      const nombreEl = document.getElementById('exito-nombre');
+      const continuar = document.getElementById('exito-continuar') as HTMLAnchorElement | null;
+      if (nombreEl && nombre) nombreEl.textContent = `, ${nombre}`;
+      if (continuar) continuar.href = destino;
+      if (exito) exito.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      // Guardado del lead + evento de conversión, en paralelo (no bloquean la UX).
+      // origen = página interna desde la que se registró (la landing usa 'landing').
+      const lead = {
+        nombre, apellido, telefono,
+        origen: location.pathname,
+        utm_source: p.get('utm_source'),
+        utm_medium: p.get('utm_medium'),
+        utm_campaign: p.get('utm_campaign'),
+      };
+      if (supabase) {
+        supabase.from('pre_registros').insert(lead).then(
+          () => {},
+          (err: unknown) => console.warn('lead insert failed', err)
+        );
+      }
+      // IMPORTANTE (privacidad): este push va SIN payload a propósito — solo { event }.
+      // NUNCA agregar nombre/apellido/telefono ni otros datos del form al dataLayer:
+      // GTM lo reenviaría a GA4/Meta y mandar PII a Google viola sus TOS (riesgo de
+      // pérdida de la cuenta). La PII viaja únicamente al insert de Supabase de arriba.
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: 'lead_preregistro' });
+
+      // Redirige sola tras unos segundos (el botón "Continuar ahora" permite adelantarlo).
+      setTimeout(() => { location.href = destino; }, 3000);
+    });
+  };
+  document.addEventListener('astro:page-load', init);
+  init();
+</script>

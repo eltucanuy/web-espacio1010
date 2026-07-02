@@ -79,13 +79,13 @@ const schemaBreadcrumb = breadcrumbSchema([
               <Button href={CONTACT.whatsappLink(nicho.whatsappIntro)} variant="primary" size="lg" target="_blank">
                 Consultar por la Sala Arcos
               </Button>
-              <Button href="/#registro" variant="ghost" size="lg">
+              <Button href="#registro" variant="ghost" size="lg">
                 Quiero mi primera hora gratis
               </Button>
             </>
           ) : (
             <>
-              <Button href="/#registro" variant="primary" size="lg">
+              <Button href="#registro" variant="primary" size="lg">
                 Quiero mi primera hora gratis
               </Button>
               <Button href="/los-espacios" variant="ghost" size="lg">
@@ -153,7 +153,9 @@ const schemaBreadcrumb = breadcrumbSchema([
           </figure>
         ))}
       </div>
-      <p class="mt-6 text-center text-sm text-ink-muted">Fotos reales de cada espacio, muy pronto.</p>
+      <p class="mt-6 text-center text-sm text-ink-muted">
+        Fotos reales del edificio. Abajo, cada espacio con las suyas.
+      </p>
     </Container>
   </section>
 
@@ -263,13 +265,13 @@ const schemaBreadcrumb = breadcrumbSchema([
                 >
                   Consultar por la Sala Arcos
                 </Button>
-                <Button href="/#registro" variant="ghost" size="lg" class="text-crema hover:bg-white/10">
+                <Button href="#registro" variant="ghost" size="lg" class="text-crema hover:bg-white/10">
                   Quiero mi primera hora gratis
                 </Button>
               </>
             ) : (
               <>
-                <Button href="/#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
+                <Button href="#registro" variant="primary" size="lg" class="bg-white text-terracota hover:bg-white/90">
                   Quiero mi primera hora gratis
                 </Button>
                 <Button

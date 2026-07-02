@@ -7,6 +7,7 @@ import '../styles/global.css';
 import { ClientRouter } from 'astro:transitions';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import RegistroForm from '../components/RegistroForm.astro';
 import Analytics from '../components/Analytics.astro';
 import Enhancements from '../components/Enhancements.astro';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
@@ -111,6 +112,9 @@ const schemaBusiness = localBusinessSchema(imageUrl);
     <main id="main" class="flex-1">
       <slot />
     </main>
+
+    <!-- Form de registro en todas las internas (pre-footer). Los CTAs anclan a #registro. -->
+    <RegistroForm />
 
     <Footer />
 

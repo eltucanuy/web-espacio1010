@@ -21,6 +21,8 @@
 
   // ─── 1. Lenis smooth scroll (desktop only) ───────────────────────────
   // En mobile el scroll nativo es mejor (momentum del SO, mejor UX).
+  // Singleton a nivel módulo: sobrevive a las view transitions (el módulo
+  // corre una sola vez); lo dependiente del DOM se re-inicializa abajo.
   let lenis: Lenis | null = null;
   if (isFinePointer && !prefersReducedMotion) {
     lenis = new Lenis({
@@ -38,118 +40,136 @@
     requestAnimationFrame(raf);
   }
 
-  // ─── 2. data-reveal: fade-up con stagger via IntersectionObserver ────
-  // Elementos con [data-reveal] empiezan invisibles y animan al entrar viewport.
-  // Si tienen padre con [data-reveal-group], los hijos animan en stagger.
-  if (!prefersReducedMotion) {
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement;
-            const delay = parseInt(el.dataset.revealDelay || '0', 10);
-            setTimeout(() => el.classList.add('is-revealed'), delay);
-            revealObserver.unobserve(el);
-          }
-        });
-      },
-      { rootMargin: '0px 0px -80px 0px', threshold: 0.05 }
-    );
-
-    document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
-      revealObserver.observe(el);
-    });
-
-    // Stagger automático para hijos directos en grupos con [data-reveal-group]
-    document.querySelectorAll<HTMLElement>('[data-reveal-group]').forEach((group) => {
-      const baseDelay = parseInt(group.dataset.revealGroup || '80', 10);
-      Array.from(group.children).forEach((child, i) => {
-        const el = child as HTMLElement;
-        if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', '');
-        el.dataset.revealDelay = String(i * baseDelay);
-        revealObserver.observe(el);
-      });
-    });
-  } else {
-    // Si reducimos movimiento, mostrar todo de inmediato.
-    document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
-      el.classList.add('is-revealed');
-    });
-  }
-
-  // ─── 3. data-counter: animar número del 0 al valor final ─────────────
-  if (!prefersReducedMotion) {
-    const counterObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const el = entry.target as HTMLElement;
-            const target = parseInt(el.dataset.counter || '0', 10);
-            const duration = parseInt(el.dataset.counterDuration || '1400', 10);
-            const start = performance.now();
-
-            const tick = (now: number) => {
-              const progress = Math.min((now - start) / duration, 1);
-              // ease-out-quart
-              const eased = 1 - Math.pow(1 - progress, 4);
-              el.textContent = String(Math.floor(eased * target));
-              if (progress < 1) requestAnimationFrame(tick);
-              else el.textContent = String(target);
-            };
-            requestAnimationFrame(tick);
-            counterObserver.unobserve(el);
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    document.querySelectorAll<HTMLElement>('[data-counter]').forEach((el) => {
-      counterObserver.observe(el);
-    });
-  }
-
-  // ─── 4. data-magnetic: hover magnetic translate (desktop only) ───────
-  if (isFinePointer && !prefersReducedMotion) {
-    document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
-      const strength = parseFloat(el.dataset.magnetic || '0.25');
-
-      const onMove = (e: MouseEvent) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
-      };
-      const onLeave = () => {
-        el.style.transform = '';
-      };
-
-      el.addEventListener('mousemove', onMove);
-      el.addEventListener('mouseleave', onLeave);
-    });
-  }
-
   // ─── 5. data-parallax: translate Y suave por scroll (desktop only) ───
+  // Suscripción única a scroll; la lista de elementos se refresca por página.
+  let parallaxEls: HTMLElement[] = [];
+  const parallaxUpdate = () => {
+    parallaxEls.forEach((el) => {
+      const speed = parseFloat(el.dataset.parallax || '0.15');
+      const rect = el.getBoundingClientRect();
+      const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -speed;
+      el.style.transform = `translate3d(0, ${offset}px, 0)`;
+    });
+  };
   if (isFinePointer && !prefersReducedMotion) {
-    const parallaxEls = document.querySelectorAll<HTMLElement>('[data-parallax]');
-    if (parallaxEls.length > 0) {
-      const update = () => {
-        parallaxEls.forEach((el) => {
-          const speed = parseFloat(el.dataset.parallax || '0.15');
-          const rect = el.getBoundingClientRect();
-          const offset = (rect.top + rect.height / 2 - window.innerHeight / 2) * -speed;
-          el.style.transform = `translate3d(0, ${offset}px, 0)`;
-        });
-      };
-      // Lenis emite "scroll", también escuchamos scroll nativo como fallback.
-      if (lenis) {
-        lenis.on('scroll', update);
-      } else {
-        window.addEventListener('scroll', update, { passive: true });
-      }
-      update();
+    // Lenis emite "scroll", también escuchamos scroll nativo como fallback.
+    if (lenis) {
+      lenis.on('scroll', parallaxUpdate);
+    } else {
+      window.addEventListener('scroll', parallaxUpdate, { passive: true });
     }
   }
+
+  // ─── Init por página: corre en cada astro:page-load (view transitions
+  // reemplazan el DOM en cada navegación, los observers/listeners viejos
+  // quedan sobre nodos muertos). También cubre la carga inicial.
+  const initPage = () => {
+    // ─── 2. data-reveal: fade-up con stagger via IntersectionObserver ────
+    if (!prefersReducedMotion) {
+      const revealObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const delay = parseInt(el.dataset.revealDelay || '0', 10);
+              setTimeout(() => el.classList.add('is-revealed'), delay);
+              revealObserver.unobserve(el);
+            }
+          });
+        },
+        { rootMargin: '0px 0px -80px 0px', threshold: 0.05 }
+      );
+
+      document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
+        if (el.dataset.revealInit) return;
+        el.dataset.revealInit = '1';
+        revealObserver.observe(el);
+      });
+
+      // Stagger automático para hijos directos en grupos con [data-reveal-group]
+      document.querySelectorAll<HTMLElement>('[data-reveal-group]').forEach((group) => {
+        const baseDelay = parseInt(group.dataset.revealGroup || '80', 10);
+        Array.from(group.children).forEach((child, i) => {
+          const el = child as HTMLElement;
+          if (el.dataset.revealInit) return;
+          el.dataset.revealInit = '1';
+          if (!el.hasAttribute('data-reveal')) el.setAttribute('data-reveal', '');
+          el.dataset.revealDelay = String(i * baseDelay);
+          revealObserver.observe(el);
+        });
+      });
+    } else {
+      // Si reducimos movimiento, mostrar todo de inmediato.
+      document.querySelectorAll<HTMLElement>('[data-reveal]').forEach((el) => {
+        el.classList.add('is-revealed');
+      });
+    }
+
+    // ─── 3. data-counter: animar número del 0 al valor final ─────────────
+    if (!prefersReducedMotion) {
+      const counterObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const el = entry.target as HTMLElement;
+              const target = parseInt(el.dataset.counter || '0', 10);
+              const duration = parseInt(el.dataset.counterDuration || '1400', 10);
+              const start = performance.now();
+
+              const tick = (now: number) => {
+                const progress = Math.min((now - start) / duration, 1);
+                // ease-out-quart
+                const eased = 1 - Math.pow(1 - progress, 4);
+                el.textContent = String(Math.floor(eased * target));
+                if (progress < 1) requestAnimationFrame(tick);
+                else el.textContent = String(target);
+              };
+              requestAnimationFrame(tick);
+              counterObserver.unobserve(el);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document.querySelectorAll<HTMLElement>('[data-counter]').forEach((el) => {
+        if (el.dataset.counterInit) return;
+        el.dataset.counterInit = '1';
+        counterObserver.observe(el);
+      });
+    }
+
+    // ─── 4. data-magnetic: hover magnetic translate (desktop only) ───────
+    if (isFinePointer && !prefersReducedMotion) {
+      document.querySelectorAll<HTMLElement>('[data-magnetic]').forEach((el) => {
+        if (el.dataset.magneticBound) return;
+        el.dataset.magneticBound = '1';
+        const strength = parseFloat(el.dataset.magnetic || '0.25');
+
+        const onMove = (e: MouseEvent) => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          el.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+        };
+        const onLeave = () => {
+          el.style.transform = '';
+        };
+
+        el.addEventListener('mousemove', onMove);
+        el.addEventListener('mouseleave', onLeave);
+      });
+    }
+
+    // ─── 5. data-parallax: refrescar elementos de la página actual ───────
+    if (isFinePointer && !prefersReducedMotion) {
+      parallaxEls = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'));
+      if (parallaxEls.length > 0) parallaxUpdate();
+    }
+  };
+
+  document.addEventListener('astro:page-load', initPage);
+  initPage();
 </script>
 
 <style is:global>

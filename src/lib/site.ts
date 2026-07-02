@@ -95,7 +95,9 @@ export interface Espacio {
   precioHora: number; // 350 | 700 — único lugar donde vive el precio
   reservaPorApp: boolean; // false solo para Sala Arcos (CTA WhatsApp)
   ideal: string[]; // derivado de la descripción DB + profesiones_lista de la app
-  foto?: string; // ruta en /public — solo Sala Arcos tiene foto real hoy
+  /** Fotos reales del espacio (webp en /public/fotos/espacios, convertidas de la app 2026-07-01). */
+  fotos: string[];
+  foto?: string; // legacy: portada suelta (la usa /precios para Sala Arcos)
   fotoAlt?: string;
   destacado?: boolean; // los 3 que muestra /alquiler-consultorio-montevideo
 }
@@ -115,6 +117,7 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Psicología', 'Psiquiatría', 'Coaching', 'Nutrición'],
+    fotos: [1, 2, 3, 4].map((n) => `/fotos/espacios/espacio-01-${n}.webp`),
     destacado: true,
   },
   {
@@ -131,6 +134,7 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Psicopedagogía', 'Psicología infantil', 'Fonoaudiología', 'Psicomotricidad'],
+    fotos: [1, 2, 3, 4, 5, 6].map((n) => `/fotos/espacios/espacio-02-${n}.webp`),
   },
   {
     id: 'espacio-03',
@@ -146,6 +150,7 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Meditación', 'Yoga', 'Grupos chicos', 'Movimiento'],
+    fotos: [1, 2, 3].map((n) => `/fotos/espacios/espacio-03-${n}.webp`),
   },
   {
     id: 'espacio-11',
@@ -161,6 +166,7 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Psicología', 'Psiquiatría', 'Coaching', 'Nutrición'],
+    fotos: [1, 2, 3, 4, 5].map((n) => `/fotos/espacios/espacio-11-${n}.webp`),
   },
   {
     id: 'espacio-12',
@@ -176,6 +182,7 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Psicología', 'Psiquiatría', 'Coaching', 'Nutrición'],
+    fotos: [1, 2, 3, 4, 5].map((n) => `/fotos/espacios/espacio-12-${n}.webp`),
   },
   {
     id: 'espacio-13',
@@ -191,6 +198,7 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Masajes', 'Reflexología', 'Osteopatía', 'Terapias corporales'],
+    fotos: [1, 2, 3, 4].map((n) => `/fotos/espacios/espacio-13-${n}.webp`),
     destacado: true,
   },
   {
@@ -207,6 +215,7 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Meditación', 'Yoga', 'Grupos chicos', 'Movimiento'],
+    fotos: [1, 2].map((n) => `/fotos/espacios/espacio-14-${n}.webp`),
     destacado: true,
   },
   {
@@ -223,11 +232,23 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 700,
     reservaPorApp: false,
     ideal: ['Talleres', 'Formaciones', 'Constelaciones', 'Encuentros grupales'],
+    fotos: [1, 2, 3].map((n) => `/fotos/espacios/sala-arcos-${n}.webp`),
     foto: '/fotos/lugar-sala-subsuelo.webp',
     fotoAlt:
       'Sala Arcos en el subsuelo de Espacio 1010, con muro de piedra, arco original y piso de madera',
   },
 ];
+
+/**
+ * Espacios que existen en el edificio pero todavía no están disponibles para
+ * reservar (inactivos en la app: descripción y fotos pendientes). Decisión Rafa
+ * 2026-07-01: se muestran en /los-espacios como "Próximamente" — tarjeta simple,
+ * sin ficha propia y sin CTA de reserva. Al terminarlos, pasan al array ESPACIOS.
+ */
+export const ESPACIOS_PROXIMOS = [
+  { nombre: 'Espacio 04', piso: 'Planta baja', metros: 17 },
+  { nombre: 'Espacio 15', piso: 'Piso 1', metros: 11 },
+] as const;
 
 /** Labels de tipo — un solo lugar (los usan índice, ficha y EspacioCard). */
 export const TIPO_LABEL: Record<Espacio['tipo'], string> = {

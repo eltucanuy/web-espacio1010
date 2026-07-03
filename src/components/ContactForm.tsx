@@ -75,6 +75,11 @@ export default function ContactForm({ whatsappNumber }: Props) {
 
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(texto)}`;
 
+    // Medición del clic a WhatsApp (el listener delegado del layout no ve este
+    // window.open). SIN PII: sólo la etiqueta de ubicación, nunca nombre/mensaje.
+    (window as any).dataLayer = (window as any).dataLayer || [];
+    (window as any).dataLayer.push({ event: 'wa_soporte_click', ubicacion: 'landing_contacto_form' });
+
     // Abrimos WhatsApp; si el navegador bloquea la pestaña (webviews in-app), navegamos directo.
     const win = window.open(url, '_blank');
     if (!win) window.location.href = url;

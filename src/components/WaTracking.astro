@@ -1,0 +1,31 @@
+---
+/**
+ * Medición de clics a WhatsApp — un solo listener delegado capta cualquier <a>
+ * a wa.me/api.whatsapp.com de la landing (y los que se agreguen a futuro).
+ * Se incluye en LandingLayout y BaseLayout (los dos layouts de producción).
+ *
+ * Evento `wa_soporte_click` (el mismo que la app agenda.espacio1010.uy) para
+ * unificar el conteo en GA4; `ubicacion` distingue el botón. Los botones globales
+ * (flotante, footer) llevan data-wa propio; el resto se etiqueta por la ruta.
+ * SIN PII: `ubicacion` es una etiqueta de lugar en la UI, nunca datos del usuario.
+ * El form de contacto usa window.open y empuja su propio evento en ContactForm.tsx.
+ */
+---
+
+<script>
+  if (!(window as any).__waTrackBound) {
+    (window as any).__waTrackBound = true;
+    document.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement)?.closest?.(
+        'a[href*="wa.me"], a[href*="api.whatsapp.com"]'
+      );
+      if (!a) return;
+      const path = location.pathname.replace(/\/+$/, '');
+      const ubicacion =
+        a.getAttribute('data-wa') ||
+        'landing_' + (path === '' ? 'home' : path.slice(1).replace(/\//g, '_'));
+      (window as any).dataLayer = (window as any).dataLayer || [];
+      (window as any).dataLayer.push({ event: 'wa_soporte_click', ubicacion });
+    }, true);
+  }
+</script>

@@ -19,6 +19,7 @@ import { ClientRouter } from 'astro:transitions';
 import Analytics from '../components/Analytics.astro';
 import Enhancements from '../components/Enhancements.astro';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import WaTracking from '../components/WaTracking.astro';
 import { SITE, CONTACT, SOCIAL } from '../lib/site';
 import { localBusinessSchema } from '../lib/schema';
 
@@ -124,7 +125,7 @@ const year = 2026;
           <a href={SITE.loginUrl} class="font-medium text-terracota hover:underline">
             Ya tengo cuenta
           </a>
-          <a href={CONTACT.whatsappLink()} target="_blank" rel="noopener noreferrer" class="font-medium text-terracota hover:underline">
+          <a href={CONTACT.whatsappLink()} target="_blank" rel="noopener noreferrer" data-wa="landing_footer" class="font-medium text-terracota hover:underline">
             WhatsApp {CONTACT.whatsappLeadsDisplay}
           </a>
           <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" class="text-ink-soft hover:text-ink hover:underline">
@@ -139,5 +140,8 @@ const year = 2026;
 
     <FloatingWhatsApp />
     <Enhancements />
+
+    <!-- Medición de clics a WhatsApp (listener delegado, ver componente). -->
+    <WaTracking />
   </body>
 </html>

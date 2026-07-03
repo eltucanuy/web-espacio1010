@@ -11,6 +11,7 @@ import RegistroForm from '../components/RegistroForm.astro';
 import Analytics from '../components/Analytics.astro';
 import Enhancements from '../components/Enhancements.astro';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
+import WaTracking from '../components/WaTracking.astro';
 import { SITE } from '../lib/site';
 import { localBusinessSchema } from '../lib/schema';
 
@@ -123,5 +124,8 @@ const schemaBusiness = localBusinessSchema(imageUrl);
 
     <!-- Animations + scroll + magnetic hover (vanilla, opt-in via data-*) -->
     <Enhancements />
+
+    <!-- Medición de clics a WhatsApp (listener delegado, ver componente). -->
+    <WaTracking />
   </body>
 </html>

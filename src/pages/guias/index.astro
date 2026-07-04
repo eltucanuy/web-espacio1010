@@ -1,0 +1,124 @@
+---
+/**
+ * /guias — índice de la sección editorial.
+ *
+ * Palanca principal de SEO informacional y de citas en asistentes de IA:
+ * guías prácticas con datos concretos (precios, requisitos, comparativas)
+ * para profesionales que buscan dónde y cómo atender en Montevideo.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import Button from '../../components/Button.astro';
+import { getCollection } from 'astro:content';
+import { SITE } from '../../lib/site';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const guias = (await getCollection('guias')).sort(
+  (a, b) => a.data.orden - b.data.orden
+);
+
+const schemaBreadcrumb = breadcrumbSchema([
+  { name: 'Inicio', url: '/' },
+  { name: 'Guías', url: '/guias' },
+]);
+
+// ItemList: le dice a buscadores y asistentes qué artículos componen la sección.
+const schemaItemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Guías para profesionales — Espacio 1010',
+  itemListElement: guias.map((g, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: g.data.title,
+    url: `${SITE.url}/guias/${g.id}`,
+  })),
+};
+
+const fechaLegible = (d: Date) =>
+  d.toLocaleDateString('es-UY', { year: 'numeric', month: 'long' });
+---
+
+<BaseLayout
+  title="Guías para profesionales: consultorios y salas en Montevideo"
+  description="Guías prácticas para profesionales de la salud y el bienestar en Montevideo: cuánto cuesta un consultorio, por hora o mensual, cómo empezar tu consulta particular y más."
+>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaItemList)} />
+  </Fragment>
+
+  <section class="bg-white pt-16 pb-12 sm:pt-24 sm:pb-16">
+    <Container>
+      <nav aria-label="Migas de pan" class="mb-8 text-sm text-ink-muted">
+        <a href="/" class="hover:text-terracota">Inicio</a>
+        <span class="mx-2">/</span>
+        <span class="text-ink">Guías</span>
+      </nav>
+
+      <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+        Guías
+      </p>
+      <h1 class="text-balance text-ink">
+        Guías para <span class="text-terracota">tu consulta</span>.
+      </h1>
+      <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
+        Lo que aprendimos armando Espacio 1010, puesto por escrito: cuánto
+        cuesta atender en Montevideo, cómo elegir consultorio, cómo empezar tu
+        consulta particular. Con números reales y sin vueltas.
+      </p>
+    </Container>
+  </section>
+
+  <section class="bg-white pb-20 sm:pb-24">
+    <Container>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          guias.map((g) => (
+            <a
+              href={`/guias/${g.id}`}
+              class="group flex flex-col rounded-2xl border border-hairline bg-[#f8f9fa] p-7 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:bg-white hover:shadow-[var(--shadow-md)]"
+            >
+              <h2 class="text-xl leading-snug text-ink transition-colors group-hover:text-terracota sm:text-2xl">
+                {g.data.title}
+              </h2>
+              <p class="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">
+                {g.data.resumen}
+              </p>
+              <p class="mt-5 flex items-center justify-between border-t border-hairline pt-4 text-xs text-ink-muted">
+                <span>
+                  Actualizada: {fechaLegible(g.data.updatedDate ?? g.data.pubDate)}
+                </span>
+                <span class="inline-flex items-center gap-1 font-semibold text-terracota">
+                  Leer la guía
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+              </p>
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </section>
+
+  <section class="bg-[#f8f9fa] py-20 sm:py-24">
+    <Container>
+      <div class="rounded-[var(--radius-lg)] border border-hairline bg-white p-10 text-center shadow-[var(--shadow-md)]">
+        <h2 class="text-3xl text-ink">¿Buscás dónde atender?</h2>
+        <p class="mx-auto mt-3 max-w-xl text-ink-soft">
+          En Espacio 1010 alquilás consultorios y salas por hora, entre Palermo
+          y Parque Rodó. Sin costos fijos, con agenda online y acceso 24/7 — y
+          tu primera hora es gratis.
+        </p>
+        <div class="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Button href="#registro" variant="primary" size="md">
+            Quiero mi primera hora gratis
+          </Button>
+          <Button href="/los-espacios" variant="ghost" size="md">
+            Conocer los espacios
+          </Button>
+        </div>
+      </div>
+    </Container>
+  </section>
+</BaseLayout>

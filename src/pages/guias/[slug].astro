@@ -1,0 +1,274 @@
+---
+/**
+ * /guias/[slug] — plantilla de artículo de la sección editorial.
+ *
+ * SEO/AEO: Article + FAQPage + BreadcrumbList por artículo, fecha visible de
+ * actualización, FAQ renderizada al final (misma data que el schema) y bloque
+ * de guías relacionadas para el interlinking.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Container from '../../components/Container.astro';
+import Button from '../../components/Button.astro';
+import { getCollection, render } from 'astro:content';
+import { SITE } from '../../lib/site';
+import { breadcrumbSchema } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const guias = await getCollection('guias');
+  return guias.map((guia) => ({
+    params: { slug: guia.id },
+    props: { guia, todas: guias },
+  }));
+}
+
+const { guia, todas } = Astro.props;
+const { Content } = await render(guia);
+
+const relacionadas = guia.data.relacionadas
+  .map((slug) => todas.find((g) => g.id === slug))
+  .filter((g): g is NonNullable<typeof g> => Boolean(g));
+
+const pub = guia.data.pubDate;
+const upd = guia.data.updatedDate ?? guia.data.pubDate;
+const fechaLegible = upd.toLocaleDateString('es-UY', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const url = `${SITE.url}/guias/${guia.id}`;
+
+const schemaArticle = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: guia.data.title,
+  description: guia.data.description,
+  datePublished: pub.toISOString(),
+  dateModified: upd.toISOString(),
+  inLanguage: 'es-UY',
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  author: {
+    '@type': 'Organization',
+    name: 'Espacio 1010',
+    url: SITE.url,
+  },
+  publisher: { '@id': `${SITE.url}/#business` },
+};
+
+const schemaFaq =
+  guia.data.faq.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: guia.data.faq.map((f) => ({
+          '@type': 'Question',
+          name: f.q,
+          acceptedAnswer: { '@type': 'Answer', text: f.a },
+        })),
+      }
+    : null;
+
+const schemaBreadcrumb = breadcrumbSchema([
+  { name: 'Inicio', url: '/' },
+  { name: 'Guías', url: '/guias' },
+  { name: guia.data.title, url: `/guias/${guia.id}` },
+]);
+---
+
+<BaseLayout title={guia.data.titleSeo ?? guia.data.title} description={guia.data.description}>
+  <Fragment slot="head">
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaArticle)} />
+    {schemaFaq && <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFaq)} />}
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+  </Fragment>
+
+  <article>
+    <!-- Header del artículo -->
+    <section class="bg-white pt-12 pb-10 sm:pt-16 sm:pb-12">
+      <Container size="narrow">
+        <nav aria-label="Migas de pan" class="mb-8 text-sm text-ink-muted">
+          <a href="/" class="hover:text-terracota">Inicio</a>
+          <span class="mx-2">/</span>
+          <a href="/guias" class="hover:text-terracota">Guías</a>
+          <span class="mx-2">/</span>
+          <span class="text-ink">{guia.data.title}</span>
+        </nav>
+
+        <p class="mb-5 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota">
+          Guía
+        </p>
+        <h1 class="text-balance text-ink" style="font-size: clamp(2rem, 3.5vw + 1rem, 3.5rem);">
+          {guia.data.title}
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
+          {guia.data.description}
+        </p>
+        <p class="mt-6 text-sm text-ink-muted">
+          Por el equipo de Espacio 1010 · Actualizada el {fechaLegible}
+        </p>
+      </Container>
+    </section>
+
+    <!-- Cuerpo (markdown) -->
+    <section class="bg-white pb-16 sm:pb-20">
+      <Container size="narrow">
+        <div class="prosa">
+          <Content />
+        </div>
+      </Container>
+    </section>
+
+    <!-- FAQ del artículo -->
+    {
+      guia.data.faq.length > 0 && (
+        <section class="bg-[#f8f9fa] py-16 sm:py-20">
+          <Container size="narrow">
+            <h2 class="text-2xl text-ink sm:text-3xl">Preguntas frecuentes</h2>
+            <div class="mt-8 space-y-3">
+              {guia.data.faq.map((item) => (
+                <details class="group rounded-2xl border border-hairline bg-white p-6 transition-colors duration-300 hover:border-terracota/30">
+                  <summary class="flex cursor-pointer list-none items-start justify-between gap-4 text-base font-medium text-ink">
+                    {item.q}
+                    <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-terracota-tint text-terracota transition-transform duration-300 group-open:rotate-45">
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M12 5v14M5 12h14" stroke-linecap="round" />
+                      </svg>
+                    </span>
+                  </summary>
+                  <p class="mt-4 text-base leading-relaxed text-ink-soft">{item.a}</p>
+                </details>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )
+    }
+
+    <!-- CTA -->
+    <section class="bg-white py-16 sm:py-20">
+      <Container size="narrow">
+        <div class="rounded-[var(--radius-lg)] bg-ink p-10 text-center text-crema sm:p-12">
+          <h2 class="text-2xl text-crema sm:text-3xl">
+            ¿Buscás consultorio en Montevideo?
+          </h2>
+          <p class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-crema/80">
+            En Espacio 1010 alquilás por hora, a $350, entre Palermo y Parque
+            Rodó: agenda online, acceso 24/7 y sin costos fijos. Registrate y tu
+            primera hora es gratis.
+          </p>
+          <div class="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <Button href="#registro" variant="light" size="md">
+              Quiero mi primera hora gratis
+            </Button>
+            <Button href="/los-espacios" variant="ghost-light" size="md">
+              Ver los espacios
+            </Button>
+          </div>
+        </div>
+      </Container>
+    </section>
+
+    <!-- Guías relacionadas -->
+    {
+      relacionadas.length > 0 && (
+        <section class="bg-[#f8f9fa] py-16 sm:py-20">
+          <Container>
+            <h2 class="text-2xl text-ink sm:text-3xl">Seguí leyendo</h2>
+            <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {relacionadas.map((g) => (
+                <a
+                  href={`/guias/${g.id}`}
+                  class="group flex flex-col rounded-2xl border border-hairline bg-white p-6 transition-all duration-500 hover:-translate-y-1 hover:border-terracota/30 hover:shadow-[var(--shadow-md)]"
+                >
+                  <h3 class="text-lg leading-snug text-ink transition-colors group-hover:text-terracota">
+                    {g.data.title}
+                  </h3>
+                  <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-soft">{g.data.resumen}</p>
+                  <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-terracota">
+                    Leer la guía
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  </span>
+                </a>
+              ))}
+            </div>
+          </Container>
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style is:global>
+  /* Estilos editoriales del cuerpo markdown — solo dentro de .prosa */
+  .prosa {
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    color: var(--color-ink-soft);
+  }
+  .prosa h2 {
+    margin-top: 3rem;
+    font-size: clamp(1.5rem, 1.5vw + 1rem, 2rem);
+    line-height: 1.25;
+    color: var(--color-ink);
+  }
+  .prosa h3 {
+    margin-top: 2.25rem;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    color: var(--color-ink);
+  }
+  .prosa p {
+    margin-top: 1.25rem;
+    font-size: 1.0625rem;
+    line-height: 1.75;
+  }
+  .prosa ul,
+  .prosa ol {
+    margin-top: 1.25rem;
+    padding-left: 1.5rem;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .prosa ul { list-style: disc; }
+  .prosa ol { list-style: decimal; }
+  .prosa li::marker { color: var(--color-terracota); }
+  .prosa a {
+    color: var(--color-terracota);
+    font-weight: 500;
+    text-underline-offset: 3px;
+  }
+  .prosa a:hover { text-decoration: underline; }
+  .prosa strong { color: var(--color-ink); font-weight: 600; }
+  .prosa blockquote {
+    margin-top: 1.5rem;
+    border-left: 3px solid var(--color-terracota);
+    padding-left: 1.25rem;
+    font-style: italic;
+  }
+  .prosa table {
+    margin-top: 1.5rem;
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+  .prosa th {
+    background: var(--color-crema-warm);
+    color: var(--color-ink);
+    font-weight: 600;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-hairline);
+  }
+  .prosa td {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-hairline);
+    vertical-align: top;
+  }
+  .prosa hr {
+    margin-top: 2.5rem;
+    border: none;
+    border-top: 1px solid var(--color-hairline);
+  }
+  /* Tablas anchas scrollean sin romper el layout mobile */
+  .prosa .tabla-scroll { overflow-x: auto; }
+</style>

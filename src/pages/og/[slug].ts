@@ -1,6 +1,9 @@
 import { OGImageRoute } from 'astro-og-canvas';
+import { getCollection } from 'astro:content';
 import { ESPACIOS, NICHOS } from '../../lib/site';
 import { NICHOS_CONTENT } from '../../lib/nichos';
+
+const guias = await getCollection('guias');
 
 /**
  * Generación on-build de OG images por página.
@@ -61,6 +64,23 @@ const pages: Record<string, OgPage> = {
       } satisfies OgPage,
     ])
   ),
+
+  // Auto-generadas para cada guía (key = `guia-<id>`, ver guias/[slug].astro)
+  ...Object.fromEntries(
+    guias.map((g) => [
+      `guia-${g.id}`,
+      {
+        title: g.data.title,
+        description: 'Guías de Espacio 1010 · Parque Rodó · Montevideo',
+      } satisfies OgPage,
+    ])
+  ),
+
+  // Índice de guías
+  guias: {
+    title: 'Guías para\ntu consulta.',
+    description: 'Precios, comparativas y consejos para atender en Montevideo',
+  },
 
   // Auto-generadas para cada nicho
   ...Object.fromEntries(

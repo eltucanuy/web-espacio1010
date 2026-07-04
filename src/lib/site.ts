@@ -303,6 +303,8 @@ export const NICHOS = [
   { slug: 'fonoaudiologos', label: 'Fonoaudiólogos', short: 'fonoaudiología' },
   { slug: 'nutricionistas', label: 'Nutricionistas', short: 'nutrición' },
   { slug: 'terapias-corporales', label: 'Terapias corporales y masajes', short: 'terapias corporales' },
+  { slug: 'terapeutas-holisticos', label: 'Terapeutas holísticos', short: 'terapias holísticas' },
+  { slug: 'coaches', label: 'Coaches', short: 'coaching' },
   { slug: 'meditacion-yoga', label: 'Meditación y yoga', short: 'meditación' },
   { slug: 'talleres-grupos', label: 'Talleres y grupos', short: 'talleres' },
 ] as const;

@@ -343,6 +343,109 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     ],
   },
 
+  'terapeutas-holisticos': {
+    slug: 'terapeutas-holisticos',
+    label: 'Espacios para terapeutas holísticos',
+    titleSeo: 'Consultorio por hora para terapias holísticas en Montevideo',
+    intro:
+      'Espacios cálidos para reiki, terapia floral, biodescodificación y abordajes integrales, en una casa centenaria reciclada a nuevo entre Palermo y Parque Rodó. Con camilla si la necesitás, o colchonetas para trabajar en el piso.',
+    painPoints: [
+      'Atender en tu casa le resta profesionalismo a tu práctica — y te quita intimidad',
+      'Los consultorios médicos tradicionales se sienten fríos para un abordaje holístico',
+      'Tu agenda es irregular: algunas semanas mucho, otras poco — un alquiler fijo no cierra',
+      'Querés un lugar cuya energía acompañe el trabajo, no un box de oficina',
+    ],
+    solucion:
+      'El edificio tiene el carácter que tu práctica pide: una casa de principios del siglo XX reciclada con respeto, con ladrillo, piedra y madera originales. Para trabajar sobre camilla está el Espacio 13; para trabajo en el piso, los espacios multiuso con colchonetas y almohadones; y para sesiones de palabra, cualquiera de los consultorios amueblados. Reservás por hora, solo cuando atendés, con acceso 24/7.',
+    espaciosRecomendados: ['espacio-13', 'espacio-03', 'espacio-01', 'espacio-14'],
+    // SIN testimonial (no hay terapeuta holístico real aprobado)
+    fotos: [
+      { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
+      { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
+    ],
+    faq: [
+      {
+        q: '¿Hay camilla disponible?',
+        a: 'Sí: el Espacio 13 tiene camilla incluida, ideal para reiki, terapia floral con testeo, acupuntura y abordajes sobre camilla. Para trabajo en el piso, los espacios multiuso tienen colchonetas y almohadones.',
+      },
+      {
+        q: '¿Puedo usar música en mis sesiones?',
+        a: 'Sí, cuidando el volumen: las pautas de la casa piden que lo que pasa en cada espacio quede adentro, y la música ambiente de pasillos y salas de espera ayuda. Si tu práctica tiene alguna necesidad particular (música, aromas, elementos), contanos por WhatsApp y te recomendamos el espacio que mejor convive con eso.',
+      },
+      {
+        q: '¿Puedo hacer círculos o encuentros grupales?',
+        a: 'Sí. Los espacios multiuso reciben hasta 8 personas sentadas, con colchonetas y almohadones para armar ronda. Para encuentros más grandes está la Sala Arcos del subsuelo —piedra y arcos originales, hasta 25 personas—, que se coordina por WhatsApp.',
+      },
+      {
+        q: '¿Y si mi agenda es irregular?',
+        a: 'Es el escenario ideal del pago por hora: reservás desde 1 hora, sin mínimos ni compromiso, y tu costo acompaña tu agenda real. Si más adelante fijás un horario semanal, la reserva fija te lo garantiza hasta que vos la liberes.',
+      },
+    ],
+    meta:
+      'Consultorio por hora para terapias holísticas en Montevideo: reiki, terapia floral, biodescodificación. Con camilla, en un edificio centenario cálido. Tu primera hora es gratis.',
+    whatsappIntro: 'Hola, soy terapeuta holístico/a y quería más info sobre Espacio 1010.',
+    variantesBusqueda: [
+      'espacio para reiki Montevideo',
+      'consultorio terapias alternativas',
+      'sala para terapia floral',
+      'espacio para biodescodificación',
+      'consultorio para acupuntura',
+      'sala para constelaciones individuales',
+      'espacio para terapeutas integrales',
+    ],
+  },
+
+  coaches: {
+    slug: 'coaches',
+    label: 'Espacios para coaches',
+    titleSeo: 'Espacio para sesiones de coaching por hora en Montevideo',
+    intro:
+      'Espacios profesionales para sesiones de coaching uno a uno, procesos con equipos y talleres, entre Palermo y Parque Rodó. Reservás por hora, sin costos fijos, y recibís a tus coachees en un lugar que respalda tu trabajo.',
+    painPoints: [
+      'El café no es lugar para una conversación de coaching: ruido, cero privacidad y poca seriedad',
+      'Una oficina propia es mucho costo fijo para una agenda que mezcla presencial y online',
+      'A veces es sesión individual, a veces un taller con un equipo entero — necesitás ambos formatos',
+      'Tu marca personal merece un espacio que esté a la altura',
+    ],
+    solucion:
+      'Los consultorios amueblados —butacas cómodas, escritorio en varios, luz natural— dan el marco de privacidad y presencia que una sesión de coaching necesita. Para dinámicas con equipos están los espacios multiuso (hasta 8 personas) y la Sala Arcos (hasta 25, con proyector y parlante). Reservás por hora con agenda online, combinás presencial y virtual como quieras, y pagás solo lo que usás.',
+    espaciosRecomendados: ['espacio-01', 'espacio-12', 'espacio-11', 'espacio-14'],
+    // SIN testimonial (Gastón es instructor del Bach Centre, no coach — no forzarlo)
+    fotos: [
+      { src: '/fotos/lugar-fachada.webp', alt: 'Fachada reciclada del edificio de Espacio 1010, iluminada de noche, una casa de principios de siglo XX entre Palermo y Parque Rodó', cap: 'La fachada, de noche' },
+      { src: '/fotos/lugar-marmol.webp', alt: 'Escalera de mármol original de Espacio 1010 junto a un muro de ladrillo a la vista', cap: 'Escalera de mármol original' },
+    ],
+    faq: [
+      {
+        q: '¿El espacio da la imagen profesional que necesito?',
+        a: 'Sí: un edificio centenario reciclado a nuevo, dedicado por completo a profesionales, con salas de espera cuidadas y consultorios amoblados y climatizados. Tus coachees llegan a una dirección real —Gaboto 1010— que respalda tu propuesta.',
+      },
+      {
+        q: '¿Puedo facilitar talleres o trabajar con equipos?',
+        a: 'Sí. Los espacios multiuso reciben hasta 8 personas, y la Sala Arcos del subsuelo hasta 25 sentadas, con proyector, parlante y kitchenette — ideal para workshops y jornadas con equipos. La Sala Arcos se coordina por WhatsApp.',
+      },
+      {
+        q: '¿Me conviene si la mayoría de mis sesiones son online?',
+        a: 'Justamente: pagás solo las horas presenciales, sin sostener una oficina vacía el resto de la semana. Muchos coaches reservan bloques de un día fijo para concentrar lo presencial y hacen el resto por videollamada.',
+      },
+      {
+        q: '¿Puedo reservar varias horas seguidas para un proceso intensivo?',
+        a: 'Sí: reservás en bloques de 1 hora, hasta 8 seguidas, y hasta con 150 días de anticipación. Y si armás un horario fijo semanal, queda garantizado hasta que vos lo liberes.',
+      },
+    ],
+    meta:
+      'Espacio para sesiones de coaching por hora en Montevideo, entre Palermo y Parque Rodó. Consultorios profesionales y salas para talleres. Tu primera hora es gratis.',
+    whatsappIntro: 'Hola, soy coach y quería más info sobre Espacio 1010.',
+    variantesBusqueda: [
+      'espacio para coaching Montevideo',
+      'sala para sesiones de coaching',
+      'oficina por hora para coach',
+      'espacio para coaching ontológico',
+      'sala para mentoría',
+      'espacio para workshop de equipo',
+    ],
+  },
+
   'meditacion-yoga': {
     slug: 'meditacion-yoga',
     label: 'Espacios para meditación y yoga',

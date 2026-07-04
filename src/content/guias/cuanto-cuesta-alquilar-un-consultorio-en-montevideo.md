@@ -4,10 +4,11 @@ titleSeo: 'Cuánto cuesta alquilar un consultorio en Montevideo · Precios 2026'
 description: 'Precios reales de consultorios en Montevideo en 2026: cuánto cuesta por hora, cuánto un alquiler mensual, qué incluye cada opción y cómo calcular qué te conviene según tus horas de atención.'
 resumen: 'Rangos de precios reales por hora y por mes, qué incluye cada opción y una cuenta simple para saber qué te conviene según cuántas horas atendés.'
 pubDate: 2026-07-03
+updatedDate: 2026-07-04
 orden: 1
 faq:
   - q: '¿Cuánto cuesta un consultorio por hora en Montevideo?'
-    a: 'En julio de 2026, el mercado de Montevideo va aproximadamente de $90 a $400 pesos uruguayos la hora. Las opciones más básicas rondan los $90–$170 con carnés de horas prepagas; la franja media va de $200 a $300; y las propuestas con más servicios incluidos van de $300 a $400. En Espacio 1010 la hora sale $350 en todos los consultorios, con todo incluido y descuentos automáticos que la llevan hasta $280.'
+    a: 'En julio de 2026, el mercado de Montevideo va aproximadamente de $90 a $400 pesos uruguayos la hora. Las opciones más básicas rondan los $90–$170 con carnés de horas prepagas; la franja media va de $200 a $300; y las propuestas con más servicios incluidos van de $300 a $400. En Espacio 1010 la hora sale $350 en todos los consultorios, con todo incluido y descuentos automáticos por volumen: el precio efectivo queda entre $280 y $350 la hora según cuántas horas uses en el mes, sin paquetes ni compromisos.'
   - q: '¿Cuánto cuesta alquilar un consultorio mensual en Montevideo?'
     a: 'Un consultorio o apartamento chico para uso profesional en zonas como Cordón, Parque Rodó o Pocitos suele arrancar en el eje de los $18.000–$30.000 por mes según zona y estado, más gastos comunes, servicios (luz, internet), mobiliario y garantía de alquiler. El costo real mensual, con todo, difícilmente baje de $25.000.'
   - q: '¿Qué incluye normalmente el precio por hora?'
@@ -40,6 +41,11 @@ En julio de 2026, el mercado de consultorios por hora en Montevideo se mueve apr
 | Económica | $90 – $170 | Espacios básicos, muchas veces con carné de horas prepagas y horarios acotados |
 | Media | $200 – $300 | Consultorios amueblados, reserva online o por WhatsApp, descuentos por volumen semanal |
 | Completa | $300 – $400 | Todo incluido (limpieza, aire, wifi, sala de espera), agenda online en tiempo real, horarios amplios |
+
+**Ojo: esos son precios de lista, y casi nadie paga el precio de lista.** La mayoría de los espacios ofrece descuentos por volumen, pero con mecánicas muy distintas — y ahí se define tu costo real:
+
+- En varios lugares el descuento exige **comprometerte a un paquete de horas semanales**: si una semana atendés menos, esas horas las pagás igual. El precio baja, pero deja de ser "por hora" — volviste a tener un costo fijo.
+- En Espacio 1010 el descuento es **automático y sin compromiso**: se calcula solo sobre tus horas reales del mes. El precio efectivo queda entre **$280 y $350 la hora** — $350 hasta 20 horas mensuales, $315 desde 20 horas (10% off) y $280 desde 40 horas (20% off) — sin paquetes, sin mínimos y sin pagar horas que no usaste.
 
 Tres cosas a mirar además del número:
 

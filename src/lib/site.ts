@@ -300,7 +300,9 @@ export const NICHOS = [
   { slug: 'psicologos', label: 'Psicólogos', short: 'psicología' },
   { slug: 'psiquiatras', label: 'Psiquiatras', short: 'psiquiatría' },
   { slug: 'psicopedagogos', label: 'Psicopedagogos', short: 'psicopedagogía' },
+  { slug: 'fonoaudiologos', label: 'Fonoaudiólogos', short: 'fonoaudiología' },
   { slug: 'nutricionistas', label: 'Nutricionistas', short: 'nutrición' },
+  { slug: 'terapias-corporales', label: 'Terapias corporales y masajes', short: 'terapias corporales' },
   { slug: 'meditacion-yoga', label: 'Meditación y yoga', short: 'meditación' },
   { slug: 'talleres-grupos', label: 'Talleres y grupos', short: 'talleres' },
 ] as const;
@@ -315,5 +317,6 @@ export const NAV = [
   { href: '/el-lugar', label: 'El lugar' },
   { href: '/como-funciona', label: 'Cómo funciona' },
   { href: '/precios', label: 'Precios' },
+  { href: '/guias', label: 'Guías' },
   { href: '/contacto', label: 'Contacto' },
 ] as const;

@@ -240,6 +240,109 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     ],
   },
 
+  fonoaudiologos: {
+    slug: 'fonoaudiologos',
+    label: 'Espacios para fonoaudiología',
+    titleSeo: 'Consultorio por hora para fonoaudiólogos en Montevideo',
+    intro:
+      'Consultorios por hora pensados para la sesión fonoaudiológica: espacios tranquilos para trabajar la escucha y el habla, con opción de rincón infantil para atender niños. Entre Palermo y Parque Rodó.',
+    painPoints: [
+      'Atendés niños y adultos, y cada sesión pide un espacio distinto',
+      'Necesitás un entorno tranquilo, donde se pueda trabajar la escucha sin ruido de fondo',
+      'Trabajás en instituciones y querés sumar consulta particular sin costo fijo',
+      'Los materiales de trabajo son tuyos y necesitás espacio para desplegarlos',
+    ],
+    solucion:
+      'El Espacio 02 tiene rincón infantil con mobiliario y materiales pensados para niños, más butacas y escritorio para trabajar con la familia. Para sesiones con adultos, los consultorios amueblados dan la tranquilidad que la sesión necesita. Reservás por hora, solo las que usás, y armás tu semana entre la institución y tu consulta particular como te sirva.',
+    espaciosRecomendados: ['espacio-02', 'espacio-01', 'espacio-11'],
+    // SIN testimonial (no hay fonoaudiólogo real aprobado)
+    fotos: [
+      { src: '/fotos/lugar-circulacion.webp', alt: 'Circulación de Espacio 1010 con lámparas circulares colgantes y luz natural al fondo', cap: 'Circulación con luz natural' },
+      { src: '/fotos/lugar-espera.webp', alt: 'Sala de espera de Espacio 1010 con cuatro butacas tapizadas oscuras y mesa auxiliar frente a un muro de ladrillo a la vista', cap: 'Sala de espera · butacas y ladrillo' },
+    ],
+    faq: [
+      {
+        q: '¿Hay un espacio adecuado para atender niños?',
+        a: 'Sí: el Espacio 02 tiene un rincón infantil con mobiliario y materiales pensados para niños, además de butacas y escritorio. Y si la sesión pide movimiento, los espacios multiuso tienen colchonetas y almohadones para trabajar en el piso.',
+      },
+      {
+        q: '¿El entorno es tranquilo para trabajar la escucha?',
+        a: 'El edificio está dedicado por completo a consultorios profesionales, sin público de paso, y las pautas de la casa piden cuidar el volumen. La música ambiente suena solo en pasillos y salas de espera, para que lo que pasa en cada espacio quede adentro.',
+      },
+      {
+        q: '¿Puedo dejar mis materiales entre sesiones?',
+        a: 'Los espacios se comparten, así que los materiales viajan con vos. Para cajas de materiales hay muebles habilitados en el comedor del primer piso, rotulados con tu nombre.',
+      },
+      {
+        q: '¿Puedo atender solo algunas horas por semana?',
+        a: 'Sí — es la idea. Reservás desde 1 hora, sin mínimo ni compromiso, y si querés un horario fijo semanal (mismo espacio, día y hora), lo fijás hasta que vos lo liberes. Ideal para combinar con el trabajo institucional.',
+      },
+    ],
+    meta:
+      'Consultorio por hora para fonoaudiólogos en Montevideo, con rincón infantil para sesiones con niños. Sin costos fijos, agenda online. Tu primera hora es gratis.',
+    whatsappIntro: 'Hola, soy fonoaudióloga/o y quería más info sobre Espacio 1010.',
+    variantesBusqueda: [
+      'consultorio fonoaudiología Montevideo',
+      'espacio para fonoaudiólogos',
+      'sala para terapia del lenguaje',
+      'consultorio para atender niños',
+      'espacio para psicomotricidad',
+      'consultorio terapia ocupacional',
+    ],
+  },
+
+  'terapias-corporales': {
+    slug: 'terapias-corporales',
+    label: 'Espacios con camilla para terapias corporales y masajes',
+    titleSeo: 'Sala con camilla por hora en Montevideo · Masajes y terapias corporales',
+    intro:
+      'Espacio con camilla listo para masajes, reflexología, reiki, osteopatía y tratamientos corporales — y salas multiuso con colchonetas para abordajes en el piso. Por hora, entre Palermo y Parque Rodó.',
+    painPoints: [
+      'Atender en tu casa no es profesional, y montar un local propio es carísimo',
+      'Las salas por hora casi nunca tienen camilla — y cargar la tuya no es opción todos los días',
+      'Tu agenda mezcla sesiones sueltas y clientes fijos: necesitás la misma flexibilidad',
+      'Querés que la persona llegue a un lugar cuidado, que acompañe el trabajo corporal',
+    ],
+    solucion:
+      'El Espacio 13 viene con camilla y escritorio: llegás y atendés, sin cargar nada. Para trabajo corporal en el piso —o sesiones que combinan camilla y movimiento— están los espacios multiuso con colchonetas y almohadones. El edificio, una casa centenaria reciclada a nuevo, recibe a quien atendés con la calidez que el trabajo corporal pide. Y reservás por hora, con agenda online y acceso 24/7.',
+    espaciosRecomendados: ['espacio-13', 'espacio-03', 'espacio-14'],
+    // SIN testimonial (no hay terapeuta corporal real aprobado)
+    fotos: [
+      { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
+      { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
+    ],
+    faq: [
+      {
+        q: '¿La camilla está incluida o llevo la mía?',
+        a: 'El Espacio 13 tiene camilla incluida, además de escritorio. Sábanas, aceites y elementos específicos de tu práctica los traés vos. Si preferís trabajar con tu propia camilla en otro espacio, también podés.',
+      },
+      {
+        q: '¿Sirve para reiki, reflexología u osteopatía?',
+        a: 'Sí. El Espacio 13 está pensado para cualquier abordaje sobre camilla: masajes, reflexología, reiki, osteopatía, drenaje y tratamientos corporales en general. Para técnicas que trabajan en el piso, los espacios multiuso tienen colchonetas y almohadones.',
+      },
+      {
+        q: '¿Puedo atender de noche o el fin de semana?',
+        a: 'Sí. El edificio funciona 24/7: por la app reservás de 7 a 24 —sábados, domingos y feriados incluidos— y los horarios de madrugada se coordinan por WhatsApp. Entrás con tu código personal, sin depender de nadie.',
+      },
+      {
+        q: '¿Cuánto cuesta?',
+        a: '$350 la hora, como todos los espacios que se reservan por la app, con todo incluido: camilla, aire acondicionado, wifi y salas de espera. Con 20 horas o más al mes tenés 10% de descuento automático; con 40 o más, 20%. Y tu primera hora es gratis al registrarte.',
+      },
+    ],
+    meta:
+      'Sala con camilla por hora en Montevideo para masajes, reflexología, reiki y terapias corporales. $350/h todo incluido, acceso 24/7. Tu primera hora es gratis.',
+    whatsappIntro: 'Hola, trabajo con terapias corporales/masajes y quería más info sobre Espacio 1010.',
+    variantesBusqueda: [
+      'sala con camilla por hora Montevideo',
+      'consultorio para masajes',
+      'espacio para reiki',
+      'consultorio reflexología',
+      'sala para osteopatía',
+      'espacio para terapias alternativas',
+      'consultorio para drenaje linfático',
+    ],
+  },
+
   'meditacion-yoga': {
     slug: 'meditacion-yoga',
     label: 'Espacios para meditación y yoga',

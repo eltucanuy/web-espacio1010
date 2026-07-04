@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Button from '../../components/Button.astro';
-import { ESPACIOS, ESPACIOS_PROXIMOS, CONTACT, ADDRESS, TIPO_LABEL, TIPO_DESC } from '../../lib/site';
+import { ESPACIOS, ESPACIOS_PROXIMOS, CONTACT, ADDRESS, TIPO_LABEL, TIPO_DESC, SITE } from '../../lib/site';
 import { breadcrumbSchema } from '../../lib/schema';
 import EspacioCard from '../../components/EspacioCard.astro';
 
@@ -17,6 +17,20 @@ const schemaBreadcrumb = breadcrumbSchema([
   { name: 'Inicio', url: '/' },
   { name: 'Los espacios', url: '/los-espacios' },
 ]);
+
+// ItemList: el catálogo completo de espacios, citeable por buscadores y asistentes.
+const schemaItemList = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Consultorios y salas por hora de Espacio 1010',
+  numberOfItems: ESPACIOS.length,
+  itemListElement: ESPACIOS.map((e, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: `${e.nombre} — ${e.metros} m², ${e.capacidadBreve}, $${e.precioHora}/h`,
+    url: `${SITE.url}/los-espacios/${e.id}`,
+  })),
+};
 ---
 
 <BaseLayout
@@ -26,6 +40,7 @@ const schemaBreadcrumb = breadcrumbSchema([
 >
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBreadcrumb)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaItemList)} />
   </Fragment>
 
   <!-- ════════════════════ HEADER ════════════════════ -->

@@ -78,6 +78,33 @@ export function localBusinessSchema(imageUrl: string) {
       availableLanguage: 'es',
     },
     areaServed: { '@type': 'City', name: ADDRESS.city },
+    hasMap: ADDRESS.mapsUrl,
+    // Oferta citeable: precio por hora explícito para buscadores y asistentes de IA.
+    makesOffer: [
+      {
+        '@type': 'Offer',
+        name: 'Consultorios y salas por hora',
+        price: '350',
+        priceCurrency: 'UYU',
+        description:
+          'Alquiler por hora de consultorios amueblados y salas multiuso, todo incluido. Descuentos automáticos: 10% desde 20 horas al mes, 20% desde 40.',
+      },
+      {
+        '@type': 'Offer',
+        name: 'Sala Arcos (grupos y talleres, hasta 25 personas)',
+        price: '700',
+        priceCurrency: 'UYU',
+        description:
+          'Sala de 40 m² con proyector, parlante, kitchenette y baño propio. Se coordina por WhatsApp.',
+      },
+    ],
+    amenityFeature: [
+      { '@type': 'LocationFeatureSpecification', name: 'Wifi', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Aire acondicionado', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Acceso 24/7 con código personal', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Salas de espera', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Estacionamiento no tarifado en la zona', value: true },
+    ],
     sameAs: [SOCIAL.instagram],
   };
 }

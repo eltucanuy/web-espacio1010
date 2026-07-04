@@ -4,4 +4,7 @@ Allow: /
 # No indexar: landings de campañas (las páginas con noindex meta se autoexcluyen).
 Disallow: /campanas/
 
+# Crawlers de IA (GPTBot, ClaudeBot, PerplexityBot, Google-Extended, etc.):
+# bienvenidos. Resumen del sitio para asistentes: https://www.espacio1010.uy/llms.txt
+
 Sitemap: https://www.espacio1010.uy/sitemap-index.xml

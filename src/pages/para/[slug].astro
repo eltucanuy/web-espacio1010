@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Button from '../../components/Button.astro';
 import EspacioCard from '../../components/EspacioCard.astro';
+import ResenasGoogle from '../../components/ResenasGoogle.astro';
 import { NICHOS_CONTENT } from '../../lib/nichos';
 import { ESPACIOS, SITE, CONTACT } from '../../lib/site';
 import { breadcrumbSchema } from '../../lib/schema';
@@ -172,28 +173,8 @@ const schemaBreadcrumb = breadcrumbSchema([
     </Container>
   </section>
 
-  <!-- Testimonial (solo nichos con testimonio real aprobado) -->
-  {
-    nicho.testimonial && (
-      <section class="py-20 bg-ink text-crema">
-        <Container size="narrow">
-          <span class="mb-5 inline-flex w-fit items-center gap-1.5 rounded-full bg-terracota/20 px-3 py-1 text-[11px] font-medium text-terracota-light">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
-            Ya reservó para la apertura
-          </span>
-          <svg class="mb-6 text-terracota-light" width="40" height="40" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M7 7c-2 0-3.5 1.5-3.5 3.5S5 14 7 14c0 2-1.5 3.5-3.5 3.5v2C7 19.5 9 17 9 13V8c0-.5-.5-1-1-1zm9 0c-2 0-3.5 1.5-3.5 3.5s1.5 3.5 3.5 3.5c0 2-1.5 3.5-3.5 3.5v2c3.5 0 5.5-2.5 5.5-6.5V8c0-.5-.5-1-1-1z" />
-          </svg>
-          <blockquote class="font-display text-3xl leading-tight text-crema sm:text-4xl">
-            "{nicho.testimonial.texto}"
-          </blockquote>
-          <footer class="mt-6 text-sm text-crema/70">
-            — {nicho.testimonial.autor}, {nicho.testimonial.rol}
-          </footer>
-        </Container>
-      </section>
-    )
-  }
+  <!-- Reseñas de Google — mismo bloque compartido que la home (un solo lugar a tocar) -->
+  <ResenasGoogle />
 
   <!-- Variantes de búsqueda — long-tail SEO sin diluir URLs -->
   <section class="py-16 bg-[#f8f9fa]">

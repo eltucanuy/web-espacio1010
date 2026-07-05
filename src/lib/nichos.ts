@@ -8,7 +8,8 @@
  *     destraba objeciones)
  *
  * Datos duros (espacios, precios, horarios): docs/VERDAD_APP_2026_06_10.md —
- * la app manda. Testimonios: solo los reales y aprobados de la home.
+ * la app manda. Prueba social: componente compartido ResenasGoogle.astro
+ * (reseñas reales de Google) — se renderiza en todas las landings.
  *
  * Si querés que la landing cargue con un mensaje específico de campaña,
  * la URL admite `?utm_campaign=...` y podés agregar lógica para mostrar
@@ -31,8 +32,6 @@ export interface NichoContent {
   solucion: string;
   /** Espacios que se ajustan al nicho — IDs de ESPACIOS (reales, ver spec-espacios) */
   espaciosRecomendados: EspacioId[];
-  /** Testimonio REAL y aprobado (de la home). Si el nicho no tiene, se omite. */
-  testimonial?: { texto: string; autor: string; rol: string };
   /** Fotos reales del lugar (public/fotos/) — mismas alt/caps que la home */
   fotos: { src: string; alt: string; cap: string }[];
   /** FAQ específica del nicho (sobre la práctica + sobre el espacio) */
@@ -65,12 +64,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'Cada espacio está pensado para la sesión: sillón o butacas cómodas, escritorio en varios, todo amoblado y climatizado. La agenda online te muestra la disponibilidad real y reservás sin pasar por nadie. Y si tu agenda cambia, cancelás gratis hasta 24 h antes — y hasta 1 h antes pagás solo la mitad.',
     espaciosRecomendados: ['espacio-01', 'espacio-12', 'espacio-11', 'espacio-02'],
-    testimonial: {
-      texto:
-        'Es justo la vuelta que estaba buscando. Coordinar agenda con los pacientes siempre fue un ida y vuelta eterno; con esto voy a poder reservar todo desde el celular, cuando quiera, sin depender de nadie. Simple y rápido.',
-      autor: 'Claudia, 36 años',
-      rol: 'Psicóloga',
-    },
     fotos: [
       { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
       { src: '/fotos/lugar-marmol.webp', alt: 'Escalera de mármol original de Espacio 1010 junto a un muro de ladrillo a la vista', cap: 'Escalera de mármol original' },
@@ -121,7 +114,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'El edificio —una casa de principios del siglo XX reciclada a nuevo— está pensado para profesionales de la salud, con consultorios amoblados y climatizados que respaldan una práctica clínica formal. Reservás los días y horarios que se ajustan a tu agenda hospitalaria y mantenés consulta privada sin alquiler mensual: pagás solo las horas que usás, a mes vencido.',
     espaciosRecomendados: ['espacio-11', 'espacio-12', 'espacio-01'],
-    // SIN testimonial (no hay psiquiatra real aprobado — la sección no se renderiza)
     fotos: [
       { src: '/fotos/lugar-marmol.webp', alt: 'Escalera de mármol original de Espacio 1010 junto a un muro de ladrillo a la vista', cap: 'Escalera de mármol original' },
       { src: '/fotos/lugar-fachada.webp', alt: 'Fachada reciclada del edificio de Espacio 1010, iluminada de noche, una casa de principios de siglo XX entre Palermo y Parque Rodó', cap: 'La fachada, de noche' },
@@ -167,7 +159,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'El Espacio 02 tiene un rincón infantil con mobiliario y materiales pensados para niños, además de butacas y escritorio. Y si necesitás trabajar en el piso o con movimiento, los espacios multiuso tienen colchonetas y almohadones. Reservás por hora, las que necesites, y armás cada sesión como te sirva.',
     espaciosRecomendados: ['espacio-02', 'espacio-03', 'espacio-01'],
-    // SIN testimonial
     fotos: [
       { src: '/fotos/lugar-circulacion.webp', alt: 'Circulación de Espacio 1010 con lámparas circulares colgantes y luz natural al fondo', cap: 'Circulación con luz natural' },
       { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
@@ -213,7 +204,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'El Espacio 12 suma escritorio al sillón y la butaca; todos los consultorios tienen butacas cómodas para conversaciones largas. Reservás por hora y la usás como quieras: una consulta larga o varias cortas. Crecés sin contrato ni alquiler fijo, y entre consulta y consulta tenés cocina y sala de estar para profesionales en el piso 1, sin cargo.',
     espaciosRecomendados: ['espacio-12', 'espacio-11', 'espacio-01'],
-    // SIN testimonial
     fotos: [
       { src: '/fotos/lugar-fachada.webp', alt: 'Fachada reciclada del edificio de Espacio 1010, iluminada de noche, una casa de principios de siglo XX entre Palermo y Parque Rodó', cap: 'La fachada, de noche' },
       { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
@@ -255,7 +245,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'El Espacio 02 tiene rincón infantil con mobiliario y materiales pensados para niños, más butacas y escritorio para trabajar con la familia. Para sesiones con adultos, los consultorios amueblados dan la tranquilidad que la sesión necesita. Reservás por hora, solo las que usás, y armás tu semana entre la institución y tu consulta particular como te sirva.',
     espaciosRecomendados: ['espacio-02', 'espacio-01', 'espacio-11'],
-    // SIN testimonial (no hay fonoaudiólogo real aprobado)
     fotos: [
       { src: '/fotos/lugar-circulacion.webp', alt: 'Circulación de Espacio 1010 con lámparas circulares colgantes y luz natural al fondo', cap: 'Circulación con luz natural' },
       { src: '/fotos/lugar-espera.webp', alt: 'Sala de espera de Espacio 1010 con cuatro butacas tapizadas oscuras y mesa auxiliar frente a un muro de ladrillo a la vista', cap: 'Sala de espera · butacas y ladrillo' },
@@ -306,7 +295,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'Dentro de Espacio 1010 hay un espacio pensado para esto: el Espacio 13, con camilla y escritorio — llegás y atendés, sin cargar nada. Y si en lugar de camilla necesitás trabajo corporal en el suelo o con movimiento, también hay dos espacios multiuso, despejados y con colchonetas, almohadones y sillas. El edificio, una casa centenaria reciclada, recibe a quien atendés con la calidez que el trabajo corporal pide. Y reservás por hora, con agenda online y acceso 24/7.',
     espaciosRecomendados: ['espacio-13', 'espacio-03', 'espacio-14'],
-    // SIN testimonial (no hay terapeuta corporal real aprobado)
     fotos: [
       { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
       { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
@@ -358,7 +346,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'El edificio tiene el carácter que tu práctica pide: una casa de principios del siglo XX reciclada con respeto, con ladrillo, piedra y madera originales. Para trabajar sobre camilla está el Espacio 13; para trabajo en el piso, los espacios multiuso con colchonetas y almohadones; y para sesiones de palabra, cualquiera de los consultorios amueblados. Reservás por hora, solo cuando atendés, con acceso 24/7.',
     espaciosRecomendados: ['espacio-13', 'espacio-03', 'espacio-01', 'espacio-14'],
-    // SIN testimonial (no hay terapeuta holístico real aprobado)
     fotos: [
       { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
       { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
@@ -410,7 +397,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'Los consultorios amueblados —butacas cómodas, escritorio en varios, luz natural— dan el marco de privacidad y presencia que una sesión de coaching necesita. Para dinámicas con equipos están los espacios multiuso (hasta 8 personas) y la Sala Arcos (hasta 25, con proyector y parlante). Reservás por hora con agenda online, combinás presencial y virtual como quieras, y pagás solo lo que usás.',
     espaciosRecomendados: ['espacio-01', 'espacio-12', 'espacio-11', 'espacio-14'],
-    // SIN testimonial (Gastón es instructor del Bach Centre, no coach — no forzarlo)
     fotos: [
       { src: '/fotos/lugar-fachada.webp', alt: 'Fachada reciclada del edificio de Espacio 1010, iluminada de noche, una casa de principios de siglo XX entre Palermo y Parque Rodó', cap: 'La fachada, de noche' },
       { src: '/fotos/lugar-marmol.webp', alt: 'Escalera de mármol original de Espacio 1010 junto a un muro de ladrillo a la vista', cap: 'Escalera de mármol original' },
@@ -461,12 +447,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'Los espacios multiuso vienen despejados, con colchonetas, almohadones y sillas, listos para que armes tu práctica: reciben hasta 8 personas sentadas o 6 en movimiento libre. Para grupos más grandes está la Sala Arcos, en el subsuelo, con capacidad para 25 personas. Reservás por hora, desde 1, y probás horarios sin compromiso.',
     espaciosRecomendados: ['espacio-03', 'espacio-14', 'sala-arcos'],
-    testimonial: {
-      texto:
-        'Trabajo con grupos chicos, y acá voy a poder armar el espacio como quiera, con colchonetas y todo, pagando como un individual y no como un salón. Eso para mí es un montón. Y encima el edificio es divino, toda esa madera original tiene una historia.',
-      autor: 'Maite, 39 años',
-      rol: 'Método Feldenkrais',
-    },
     fotos: [
       { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
       { src: '/fotos/lugar-sala-subsuelo.webp', alt: 'Sala amplia del subsuelo de Espacio 1010 con muro de piedra, piso de madera y escalera metálica', cap: 'Sala del subsuelo' },
@@ -513,12 +493,6 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     solucion:
       'La Sala Arcos está pensada justamente para esto: sillas y mesas para armar círculo o filas, proyector y parlante incluidos, kitchenette y baño independiente. Reservás el bloque completo que tu taller necesite y lo coordinamos por WhatsApp según fecha y duración. Ideal para constelaciones, formaciones, presentaciones o grupos terapéuticos. Para grupos chicos también están los espacios multiuso, que pagás como un consultorio.',
     espaciosRecomendados: ['sala-arcos', 'espacio-03', 'espacio-14'],
-    testimonial: {
-      texto:
-        'Para lo que hago necesito de todo: a veces un grupo grande, a veces algo más chico, a veces una consulta sola. Tener todo en un mismo lugar me va a resolver la vida. Y poder trabajar un fin de semana o bien temprano a la mañana, para mí no tiene precio.',
-      autor: 'Patricia, 62 años',
-      rol: 'Consteladora familiar',
-    },
     fotos: [
       { src: '/fotos/lugar-sala-subsuelo.webp', alt: 'Sala amplia del subsuelo de Espacio 1010 con muro de piedra, piso de madera y escalera metálica', cap: 'Sala del subsuelo' },
       { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },

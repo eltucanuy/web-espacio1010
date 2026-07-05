@@ -130,6 +130,30 @@ p {
   animation: fadeIn 0.6s var(--ease-out-soft) both;
 }
 
+/* ─── Carrusel de reseñas (marquee) — mismo patrón que emotiva.com.uy:
+   transform por JS (GPU), drag con pointer events, pausa en hover.
+   El JS vive en src/pages/index.astro. ─── */
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 5%, black 95%, transparent);
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+}
+.marquee:active {
+  cursor: grabbing;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+.marquee-track > * {
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
 /* ─── Respeta preferencias de movimiento del usuario ─── */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

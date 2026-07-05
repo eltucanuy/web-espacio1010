@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es-UY">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Página interna de revisión — no indexar -->
+<meta name="robots" content="noindex, nofollow" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<title>Espacio 1010 · Lo nuevo en el sitio</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --terracota: #9e4e42;
+    --terracota-dark: #7a3a30;
+    --terracota-tint: #f3e6e3;
+    --ink: #1a1518;
+    --ink-soft: #565153;
+    --ink-muted: #8a8487;
+    --hairline: #e5e1dc;
+    --crema-warm: #f8f9fa;
+  }
+  body {
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    color: var(--ink);
+    background: #ffffff;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 48px 20px 80px; }
+  .eyebrow {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--terracota); margin-bottom: 16px;
+  }
+  h1 {
+    font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700;
+    letter-spacing: -0.022em; line-height: 1.12; text-wrap: balance; margin: 0 0 14px;
+  }
+  .intro { font-size: 1.05rem; color: var(--ink-soft); max-width: 62ch; }
+  h2 {
+    font-size: 1.25rem; font-weight: 600; letter-spacing: -0.015em;
+    margin: 44px 0 6px; text-wrap: balance;
+  }
+  h2 .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 26px; height: 26px; border-radius: 999px; margin-right: 10px;
+    background: var(--terracota-tint); color: var(--terracota);
+    font-size: 13px; font-weight: 700; vertical-align: -3px;
+  }
+  .sub { color: var(--ink-soft); font-size: 0.95rem; margin: 0 0 18px; max-width: 62ch; }
+  .cards { display: grid; gap: 10px; }
+  .card {
+    display: block; text-decoration: none; color: inherit;
+    border: 1px solid var(--hairline); border-radius: 14px;
+    background: var(--crema-warm); padding: 16px 18px;
+    transition: border-color .2s, background .2s;
+  }
+  .card:hover, .card:focus-visible { border-color: rgba(158,78,66,.45); background: #fff; }
+  .card:focus-visible { outline: 2px solid var(--terracota); outline-offset: 2px; }
+  .card .t { font-weight: 600; font-size: 1rem; color: var(--ink); }
+  .card .t::after { content: ' ↗'; color: var(--terracota); font-weight: 500; font-size: .85em; }
+  .card .d { font-size: 0.9rem; color: var(--ink-soft); margin-top: 4px; }
+  .pill-list { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 14px 0 0; list-style: none; }
+  .pill-list li a {
+    display: inline-block; border: 1px solid var(--hairline); border-radius: 999px;
+    padding: 6px 14px; font-size: 0.88rem; color: var(--ink-soft); text-decoration: none;
+  }
+  .pill-list li a:hover { border-color: rgba(158,78,66,.45); color: var(--terracota); }
+  .note {
+    border-left: 3px solid var(--terracota); background: var(--terracota-tint);
+    border-radius: 0 12px 12px 0; padding: 14px 18px; margin: 40px 0 0;
+    font-size: 0.95rem; color: var(--ink);
+  }
+  .note strong { font-weight: 600; }
+  .meta { margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--hairline);
+    font-size: 0.85rem; color: var(--ink-muted); }
+  ul.plain { margin: 10px 0 0; padding-left: 20px; color: var(--ink-soft); font-size: .95rem; }
+  ul.plain li { margin-top: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <p class="eyebrow">Espacio 1010 · 3 de julio 2026</p>
+  <h1>Lo nuevo en el sitio, para leer con calma</h1>
+  <p class="intro">
+    Hoy el sitio sumó una sección entera de <strong>guías</strong> (el corazón de la
+    estrategia para aparecer primero en Google y en las respuestas de ChatGPT y
+    similares), dos páginas nuevas por profesión y varios retoques invisibles.
+    Todo ya está publicado en producción. Acá va el mapa de lectura — lo importante
+    es que los textos suenen a Espacio 1010: si algo no les gusta, se cambia fácil.
+  </p>
+
+  <h2><span class="num">1</span>Las seis guías nuevas</h2>
+  <p class="sub">
+    Son artículos largos, con números reales del mercado, escritos para que un
+    profesional que busca consultorio nos encuentre y confíe. Están linkeadas desde
+    el menú («Guías»). Conviene leerlas enteras — son la cara editorial de la marca.
+  </p>
+  <div class="cards">
+    <a class="card" href="https://www.espacio1010.uy/guias/cuanto-cuesta-alquilar-un-consultorio-en-montevideo" target="_blank" rel="noopener">
+      <span class="t">Cuánto cuesta alquilar un consultorio en Montevideo (2026)</span>
+      <span class="d">La más importante: precios reales del mercado y la cuenta de por qué convenimos. Es la pregunta que más se busca.</span>
+    </a>
+    <a class="card" href="https://www.espacio1010.uy/guias/consultorio-por-hora-o-alquiler-mensual" target="_blank" rel="noopener">
+      <span class="t">¿Consultorio por hora o alquiler mensual?</span>
+      <span class="d">Comparación honesta con punto de equilibrio en ~80 horas mensuales. Responde la duda típica antes de registrarse.</span>
+    </a>
+    <a class="card" href="https://www.espacio1010.uy/guias/como-empezar-tu-consulta-particular-en-uruguay" target="_blank" rel="noopener">
+      <span class="t">Cómo empezar tu consulta particular en Uruguay</span>
+      <span class="d">Para recién recibidos: trámites, dónde atender, tarifas. En temas legales deriva a MSP/DGI/BPS sin inventar requisitos — revisar que les cierre ese tono prudente.</span>
+    </a>
+    <a class="card" href="https://www.espacio1010.uy/guias/como-elegir-un-consultorio-por-hora" target="_blank" rel="noopener">
+      <span class="t">Cómo elegir un consultorio por hora: 9 preguntas</span>
+      <span class="d">Checklist con «banderas rojas» del mercado. Nos posiciona como los que juegan limpio.</span>
+    </a>
+    <a class="card" href="https://www.espacio1010.uy/guias/sala-para-talleres-y-grupos-en-montevideo" target="_blank" rel="noopener">
+      <span class="t">Sala para talleres y grupos en Montevideo</span>
+      <span class="d">El territorio donde nadie compite con la Sala Arcos. Con tabla de capacidades y cuenta de ejemplo de un taller.</span>
+    </a>
+    <a class="card" href="https://www.espacio1010.uy/guias/donde-atender-en-montevideo-guia-de-zonas" target="_blank" rel="noopener">
+      <span class="t">Dónde atender en Montevideo: guía de zonas</span>
+      <span class="d">Compara barrios con honestidad (incluye pros de otras zonas) y explica por qué Palermo/Parque Rodó es buena ecuación.</span>
+    </a>
+  </div>
+
+  <h2><span class="num">2</span>Las páginas por profesión (ahora son 10)</h2>
+  <p class="sub">
+    Cuatro son nuevas de esta tanda — la investigación mostró públicos que nadie
+    atiende bien en Google. Las otras seis ya existían pero vale releerlas: ahora
+    todas se linkean entre sí y con las guías.
+  </p>
+  <div class="cards">
+    <a class="card" href="https://www.espacio1010.uy/para/terapias-corporales" target="_blank" rel="noopener">
+      <span class="t">Terapias corporales y masajes — nueva</span>
+      <span class="d">Centrada en el Espacio 13 con camilla: masajes, reflexología, osteopatía, drenaje.</span>
+    </a>
+    <a class="card" href="https://www.espacio1010.uy/para/fonoaudiologos" target="_blank" rel="noopener">
+      <span class="t">Fonoaudiólogos — nueva</span>
+      <span class="d">Hueco total del mercado — ningún competidor tiene página para ellos.</span>
+    </a>
+    <a class="card" href="https://www.espacio1010.uy/para/terapeutas-holisticos" target="_blank" rel="noopener">
+      <span class="t">Terapeutas holísticos — nueva</span>
+      <span class="d">Reiki, terapia floral, biodescodificación. El único competidor que los atiende es Pisama.</span>
+    </a>
+    <a class="card" href="https://www.espacio1010.uy/para/coaches" target="_blank" rel="noopener">
+      <span class="t">Coaches — nueva</span>
+      <span class="d">Sesiones uno a uno y workshops con equipos. Pisama la tenía; nosotros no.</span>
+    </a>
+  </div>
+  <ul class="pill-list">
+    <li><a href="https://www.espacio1010.uy/para/psicologos" target="_blank" rel="noopener">Psicólogos</a></li>
+    <li><a href="https://www.espacio1010.uy/para/psiquiatras" target="_blank" rel="noopener">Psiquiatras</a></li>
+    <li><a href="https://www.espacio1010.uy/para/psicopedagogos" target="_blank" rel="noopener">Psicopedagogos</a></li>
+    <li><a href="https://www.espacio1010.uy/para/nutricionistas" target="_blank" rel="noopener">Nutricionistas</a></li>
+    <li><a href="https://www.espacio1010.uy/para/meditacion-yoga" target="_blank" rel="noopener">Meditación y yoga</a></li>
+    <li><a href="https://www.espacio1010.uy/para/talleres-grupos" target="_blank" rel="noopener">Talleres y grupos</a></li>
+  </ul>
+
+  <h2><span class="num">3</span>Retoques en páginas que ya existían</h2>
+  <p class="sub">
+    Cambios chicos: párrafos con links hacia las guías y ajustes técnicos invisibles.
+    Un vistazo rápido alcanza.
+  </p>
+  <ul class="pill-list">
+    <li><a href="https://www.espacio1010.uy/guias" target="_blank" rel="noopener">Índice de guías</a></li>
+    <li><a href="https://www.espacio1010.uy/precios" target="_blank" rel="noopener">Precios</a></li>
+    <li><a href="https://www.espacio1010.uy/preguntas-frecuentes" target="_blank" rel="noopener">Preguntas frecuentes</a></li>
+    <li><a href="https://www.espacio1010.uy/como-funciona" target="_blank" rel="noopener">Cómo funciona</a></li>
+    <li><a href="https://www.espacio1010.uy/el-lugar" target="_blank" rel="noopener">El lugar</a></li>
+    <li><a href="https://www.espacio1010.uy/alquiler-consultorio-montevideo" target="_blank" rel="noopener">Alquiler de consultorio</a></li>
+  </ul>
+  <ul class="plain">
+    <li>El menú y el pie de página ahora tienen el link <strong>«Guías»</strong>.</li>
+    <li>La <strong>home no cambió en nada visible</strong> — solo el título que ve Google (ahora dice «en Montevideo»).</li>
+    <li>Se publicó <a href="https://www.espacio1010.uy/llms.txt" target="_blank" rel="noopener" style="color:var(--terracota)">espacio1010.uy/llms.txt</a>: una ficha con todos los datos para que ChatGPT, Claude y Gemini nos citen bien cuando alguien pregunta dónde alquilar consultorio en Montevideo.</li>
+  </ul>
+
+  <p class="note">
+    <strong>Qué mirar mientras leen:</strong> que los precios y datos sean correctos,
+    que el tono suene a nosotros, y que no haya ninguna afirmación que no queramos
+    hacer (en especial en la guía de «cómo empezar», que toca temas de trámites).
+    Cualquier frase que no convenza se corrige en minutos — anoten y listo.
+  </p>
+
+  <p class="meta">
+    Contexto: los textos usan solo datos verificados (precios, medidas y políticas
+    reales de la app). La estrategia completa y el análisis de competencia quedaron
+    documentados en el repositorio (docs/PLAN_SEO_2026_07_03.md), junto con el
+    backlog de las próximas guías.
+  </p>
+</div>
+</body>
+</html>

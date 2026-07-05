@@ -1,7 +1,7 @@
 ---
 title: '¿Consultorio por hora o alquiler mensual? La cuenta completa'
 titleSeo: 'Consultorio por hora vs alquiler mensual en Montevideo · Qué conviene'
-description: 'Comparación honesta entre alquilar un consultorio por hora y uno mensual en Montevideo: números, punto de equilibrio, riesgos y qué conviene según el momento de tu práctica.'
+description: 'Comparación con números entre alquilar un consultorio por hora y uno mensual en Montevideo: números, punto de equilibrio, riesgos y qué conviene según el momento de tu práctica.'
 resumen: 'El punto de equilibrio está cerca de las 80 horas mensuales. Antes de eso, la cuenta favorece al por hora — y no solo por plata.'
 pubDate: 2026-07-03
 orden: 2

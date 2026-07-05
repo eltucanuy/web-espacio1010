@@ -4,6 +4,7 @@ titleSeo: 'Sala para talleres por hora en Montevideo · Guía y precios 2026'
 description: 'Guía para alquilar una sala para talleres, formaciones o trabajo grupal en Montevideo: capacidades reales, equipamiento, precios por hora y las preguntas clave antes de reservar.'
 resumen: 'Capacidad real, proyector, kitchenette, horarios de fin de semana y precios: todo lo que define si tu taller sale bien antes de que empiece.'
 pubDate: 2026-07-03
+updatedDate: 2026-07-04
 orden: 5
 faq:
   - q: '¿Cuánto cuesta alquilar una sala para talleres en Montevideo?'
@@ -11,7 +12,7 @@ faq:
   - q: '¿Qué capacidad necesito para mi taller?'
     a: 'Calculá según la dinámica, no según la lista de inscriptos: sentados en sillas entra más gente que en ronda de colchonetas, y el trabajo en movimiento pide el doble de espacio por persona. Una sala de 40 m² recibe cómodas unas 25 personas sentadas, pero muchas menos en movimiento libre.'
   - q: '¿Puedo alquilar una sala solo por unas horas un sábado o domingo?'
-    a: 'En muchos lugares no — los fines de semana tienen horarios acotados o mínimos de jornada. En Espacio 1010 el edificio funciona 24/7 todo el año y la Sala Arcos se reserva por hora (hasta 8 seguidas), también sábados y domingos: se coordina por WhatsApp según fecha y duración.'
+    a: 'En muchos lugares no — los fines de semana tienen horarios acotados o mínimos de jornada. En Espacio 1010 el edificio funciona 24/7 todo el año y la Sala Arcos se reserva por hora —el bloque completo que tu taller necesite—, también sábados y domingos: se coordina por WhatsApp según fecha y duración.'
   - q: '¿Qué incluye normalmente el alquiler de una sala?'
     a: 'Varía muchísimo, y es la primera pregunta que conviene hacer: sillas y mesas, proyector, sonido, kitchenette o café, baños propios o compartidos, y quién arma/desarma. En la Sala Arcos el proyector, el parlante, las sillas, las mesas, las colchonetas, la kitchenette y el baño propio están incluidos en la tarifa.'
 relacionadas:
@@ -42,7 +43,7 @@ Para grupos chicos —hasta 8 personas sentadas o 6 en movimiento— no siempre 
 Lo que define la logística de tu jornada:
 
 - **Proyector y sonido**: ¿incluidos o alquiler aparte? ¿probaste que funcionen con tu compu?
-- **Sillas y mesas suficientes**: ¿quién las arma y desarma — vos o el espacio?
+- **Sillas y mesas suficientes**: confirmá que alcancen para tu grupo — y contá el armado y desarmado dentro de tu tiempo de reserva, porque en la mayoría de los espacios lo hacés vos.
 - **Colchonetas y almohadones**: imprescindibles para trabajo corporal o constelaciones.
 - **Kitchenette o café**: un corte de mate/café a mitad de taller cambia la energía del grupo. ¿Hay dónde prepararlo sin salir de la sala?
 - **Baño propio o compartido**: con 20 personas y un solo baño en otro piso, cada pausa se estira 15 minutos.
@@ -54,7 +55,7 @@ La [Sala Arcos](/los-espacios/sala-arcos) de Espacio 1010 —40 m² en el subsue
 
 Los talleres viven en los bordes de la agenda: sábados a la mañana, domingos, después de hora. Y ahí es donde muchos espacios fallan — cierran temprano, no abren domingos, o cobran mínimos de jornada completa el fin de semana.
 
-Preguntá siempre: ¿puedo entrar antes a armar? ¿hasta qué hora puedo quedarme? ¿el edificio abre domingos? En Espacio 1010 el edificio funciona **24/7 todo el año**, y la Sala Arcos se reserva por bloques de 1 hora, hasta 8 seguidas — el formato exacto de un taller de día completo, sin pagar la jornada del salón de eventos.
+Preguntá siempre: ¿puedo entrar antes a armar? ¿hasta qué hora puedo quedarme? ¿el edificio abre domingos? En Espacio 1010 el edificio funciona **24/7 todo el año**, y la Sala Arcos se reserva por hora, el bloque completo que tu taller necesite — sin pagar la jornada entera del salón de eventos.
 
 ## Cuánto cuesta: los tres formatos del mercado
 

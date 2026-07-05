@@ -22,7 +22,7 @@ relacionadas:
 
 Tenés el título, tenés las ganas y tenés (o querés tener) tus primeros consultantes. Lo que sigue es una zona gris de trámites, decisiones y cuentas que nadie te enseñó en la facultad. Esta guía ordena el camino en seis pasos, pensada para psicólogos, nutricionistas, fonoaudiólogos, terapeutas y en general cualquier profesional que atiende personas en Uruguay.
 
-Una aclaración honesta antes de empezar: **los requisitos formales varían según tu profesión y cambian con el tiempo**. Esta guía te da el mapa; los detalles finos verificalos siempre en la fuente (MSP, DGI, BPS y tu asociación profesional).
+Una aclaración antes de empezar: **los requisitos formales varían según tu profesión y cambian con el tiempo**. Esta guía te da el mapa; los detalles finos verificalos siempre en la fuente (MSP, DGI, BPS y tu asociación profesional).
 
 ## 1. Poné en regla tu situación profesional
 

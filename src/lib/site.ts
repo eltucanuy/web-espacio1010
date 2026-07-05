@@ -143,7 +143,7 @@ export const ESPACIOS: Espacio[] = [
     tipo: 'multiuso',
     grupo: 'grupos',
     resumen:
-      'Flexible y despejado, para movimiento, meditación y grupos chicos. Con almohadones y colchonetas para armarlo como necesites.',
+      'Flexible y despejado, para movimiento, meditación y grupos chicos. Con colchonetas, almohadones y sillas para armarlo como necesites.',
     capacidad: '8 sentados · 6 en movimiento',
     capacidadBreve: 'Hasta 8',
     metros: 19,
@@ -208,7 +208,7 @@ export const ESPACIOS: Espacio[] = [
     tipo: 'multiuso',
     grupo: 'grupos',
     resumen:
-      'Amplio y despejado, para movimiento, meditación y grupos chicos. Con almohadones y colchonetas.',
+      'Amplio y despejado, para movimiento, meditación y grupos chicos. Con colchonetas, almohadones y sillas.',
     capacidad: '8 sentados · 6 en movimiento',
     capacidadBreve: 'Hasta 8',
     metros: 16,
@@ -259,7 +259,7 @@ export const TIPO_LABEL: Record<Espacio['tipo'], string> = {
 /** Explicación corta de cada tipo (leyenda del índice). */
 export const TIPO_DESC: Record<Espacio['tipo'], string> = {
   amueblado: 'sillón, butacas y/o escritorio — llegás y atendés',
-  multiuso: 'despejado, con almohadones y colchonetas — lo armás como necesites',
+  multiuso: 'despejado, con colchonetas, almohadones y sillas — lo armás como necesites',
 };
 
 /** Íconos por grupo de uso — mismos paths que usa la home (index.astro). */

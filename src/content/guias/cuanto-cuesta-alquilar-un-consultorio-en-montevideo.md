@@ -12,9 +12,9 @@ faq:
   - q: '¿Cuánto cuesta alquilar un consultorio mensual en Montevideo?'
     a: 'Un consultorio o apartamento chico para uso profesional en zonas como Cordón, Parque Rodó o Pocitos suele arrancar en el eje de los $18.000–$30.000 por mes según zona y estado, más gastos comunes, servicios (luz, internet), mobiliario y garantía de alquiler. El costo real mensual, con todo, difícilmente baje de $25.000.'
   - q: '¿Qué incluye normalmente el precio por hora?'
-    a: 'Depende del lugar, y conviene preguntarlo siempre antes de reservar. Lo básico suele ser el espacio amueblado y los servicios. Verificá si incluye limpieza, aire acondicionado, wifi, sala de espera para las personas que atendés, y si hay costos de inscripción, matrícula o mínimos mensuales.'
+    a: 'Depende del lugar, y conviene preguntarlo siempre antes de reservar. Lo básico suele ser el espacio amueblado y los servicios. Verificá si incluye limpieza, aire acondicionado, wifi, sala de espera para las personas que atendés, y si hay costos de inscripción o ingreso, o mínimos mensuales.'
   - q: '¿Hay costos escondidos en el alquiler por hora?'
-    a: 'Puede haber. Los más comunes: matrícula o costo de inscripción, mínimos de horas mensuales, penalizaciones por cancelar, y adicionales por usar la sala de espera o reservar en horarios pico. En Espacio 1010 no hay matrícula, ni mínimos, ni adicionales: $350 la hora con todo incluido, y cancelás gratis avisando con más de 24 horas.'
+    a: 'Puede haber. Los más comunes: costo de inscripción o ingreso, mínimos de horas mensuales, penalizaciones por cancelar, y adicionales por usar la sala de espera o reservar en horarios pico. En Espacio 1010 no hay costo de inscripción, ni mínimos, ni adicionales: $350 la hora con todo incluido, y cancelás gratis avisando con más de 24 horas.'
 relacionadas:
   - consultorio-por-hora-o-alquiler-mensual
   - como-elegir-un-consultorio-por-hora
@@ -49,11 +49,11 @@ En julio de 2026, el mercado de consultorios por hora en Montevideo se mueve apr
 
 Tres cosas a mirar además del número:
 
-1. **Qué incluye el precio.** Un precio bajo con adicionales (limpieza, aire, sala de espera, matrícula de ingreso) puede terminar costando más que uno alto con todo incluido.
+1. **Qué incluye el precio.** Un precio bajo con adicionales (limpieza, aire, sala de espera, costo de ingreso) puede terminar costando más que uno alto con todo incluido.
 2. **Cómo funcionan los descuentos.** Algunos lugares exigen comprometerte a un paquete semanal para acceder al descuento; otros lo aplican automáticamente según tus horas del mes, sin atarte.
 3. **La política de cancelación.** Si te cobran la hora cuando tu consultante cancela, tu costo real por hora sube. Buscá lugares donde puedas cancelar sin cargo con aviso razonable.
 
-Para referencia concreta: en [Espacio 1010](/alquiler-consultorio-montevideo), entre Palermo y Parque Rodó, la hora sale **$350 en todos los consultorios y salas** (la [Sala Arcos](/los-espacios/sala-arcos), para grupos de hasta 25 personas, sale $700). Incluye todo —limpieza, aire acondicionado, wifi, dos salas de espera, cocina para profesionales— y los descuentos son automáticos: con 20 horas o más al mes pagás 10% menos ($315/h) y con 40 o más, 20% menos ($280/h). Sin matrícula, sin mínimos y sin contrato. El detalle completo está en la página de [precios](/precios).
+Para referencia concreta: en [Espacio 1010](/alquiler-consultorio-montevideo), entre Palermo y Parque Rodó, la hora sale **$350 en todos los consultorios y salas** (la [Sala Arcos](/los-espacios/sala-arcos), para grupos de hasta 25 personas, sale $700). Incluye todo —limpieza, aire acondicionado, wifi, dos salas de espera, cocina para profesionales— y los descuentos son automáticos: con 20 horas o más al mes pagás 10% menos ($315/h) y con 40 o más, 20% menos ($280/h). Sin costo de inscripción, sin mínimos y sin contrato. El detalle completo está en la página de [precios](/precios).
 
 ## Cuánto cuesta un consultorio mensual
 
@@ -73,7 +73,7 @@ Los rangos varían según zona y estado del inmueble — tomalos como orden de m
 
 ## La cuenta que importa: tus horas reales de atención
 
-La forma más honesta de decidir es multiplicar tus horas reales por el precio por hora, y comparar contra el costo fijo mensual. Con el precio de Espacio 1010 como referencia:
+La forma más simple de decidir es multiplicar tus horas reales por el precio por hora, y comparar contra el costo fijo mensual. Con el precio de Espacio 1010 como referencia:
 
 | Horas de atención al mes | Costo por hora ($350, con descuentos automáticos) | Consultorio mensual (estimado conservador) |
 | --- | --- | --- |
@@ -91,6 +91,15 @@ Dos costos que no se ven en la comparación de números:
 
 - **El riesgo.** El alquiler fijo se paga igual en enero, en las semanas de gripe y cuando se te caen dos consultantes el mismo mes. El por hora acompaña tu curva real de trabajo.
 - **Tu tiempo.** Administrar un consultorio propio (arreglos, limpieza, pagos, servicios) son horas que no facturás. En un espacio por hora, eso lo hace otro.
+
+## En resumen: hacé tus números
+
+No hay una respuesta única — hay **tu** cuenta: tus horas reales de atención, tu tolerancia al riesgo y cuánto vale tu tiempo. Es una decisión personal, y vale la pena tomarla con números y no con sensaciones.
+
+Dicho eso, el alquiler por hora suele ganar en dos momentos muy distintos de una práctica:
+
+- **Si estás empezando**: arrancás sin garantía, sin mobiliario y sin costo fijo — el riesgo queda del otro lado, y tu costo crece solo si tu agenda crece.
+- **Si ya estás establecido**: dejás de ocuparte del alquiler, la limpieza, los arreglos y los servicios. Esas horas de administración vuelven a ser tuyas — para atender, para formarte o para descansar. Tu trabajo vale demasiado como para gastarlo en la gotera del consultorio.
 
 ## Para seguir
 

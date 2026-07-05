@@ -29,7 +29,7 @@ export const GET: APIRoute = async () => {
 - Sin costos fijos: se paga solo por hora usada, a mes vencido, por transferencia o depósito (Abitab/RedPagos). No se pide tarjeta.
 - Horario: ${HOURS.openingHours}. ${HOURS.appBooking}.
 - Cancelación: gratis con más de 24 h de aviso; entre 24 h y 1 h antes se paga el 50%; con menos de 1 h no se puede cancelar.
-- Reservas: bloques de 1 hora (hasta 8 seguidas), hasta 150 días de anticipación, hora suelta o fija semanal. App: ${SITE.agendaUrl}
+- Reservas: bloques de 1 hora, hora suelta o fija semanal (la fija se renueva sola hasta que el profesional la libera). App: ${SITE.agendaUrl}
 - Primera hora gratis al registrarse (promoción vigente).
 - Contacto: WhatsApp ${CONTACT.whatsappLeadsDisplay} (+598 99 001 303) · ${CONTACT.email}
 - Para quiénes: psicólogos, psiquiatras, psicopedagogos, fonoaudiólogos, nutricionistas, terapeutas corporales y masajistas, coaches, instructores de yoga y meditación, talleristas, entre otros profesionales que atienden personas.

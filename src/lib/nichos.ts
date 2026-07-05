@@ -58,9 +58,9 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Consultorios por hora pensados para la práctica clínica, entre Palermo y Parque Rodó. Agenda online, espacios pensados para trabajar con privacidad y la flexibilidad de armar tu semana como vos quieras.',
     painPoints: [
       'Alquilar un consultorio propio cuesta lo que cuesta — y tenés que llenarlo solo',
-      'Compartir mal con colegas termina en conflictos por turnos',
+      'Compartir consultorio con colegas parece la solución — hasta que todos necesitan los mismos horarios',
       'Las salas por hora suelen ser frías, mal equipadas o difíciles de reservar',
-      'Coordinar por WhatsApp con un encargado te hace perder tiempo todas las semanas',
+      'Reservar por WhatsApp con alguien que responde en horario de oficina te hace perder tiempo todas las semanas',
     ],
     solucion:
       'Cada espacio está pensado para la sesión: sillón o butacas cómodas, escritorio en varios, todo amoblado y climatizado. La agenda online te muestra la disponibilidad real y reservás sin pasar por nadie. Y si tu agenda cambia, cancelás gratis hasta 24 h antes — y hasta 1 h antes pagás solo la mitad.',
@@ -90,7 +90,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿Puedo dejar mis libros o materiales entre sesiones?',
-        a: 'Los espacios se comparten entre profesionales, así que cada quien lleva sus materiales. Si tenés una necesidad puntual, escribinos por WhatsApp y lo conversamos.',
+        a: 'Dentro de los espacios no — son compartidos. Pero tus cosas sí pueden quedarse en el edificio: en el comedor del primer piso hay muebles habilitados donde tu material va en una caja rotulada con tu nombre. Son muebles comunes, sin llave, así que lo de más valor llevalo con vos.',
       },
     ],
     meta:
@@ -271,7 +271,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿Puedo dejar mis materiales entre sesiones?',
-        a: 'Los espacios se comparten, así que los materiales viajan con vos. Para cajas de materiales hay muebles habilitados en el comedor del primer piso, rotulados con tu nombre.',
+        a: 'Dentro de los espacios no — son compartidos entre profesionales. Pero tus cosas sí pueden quedarse en el edificio: en el comedor del primer piso hay muebles habilitados donde tu material va en una caja rotulada con tu nombre. Son muebles comunes, sin llave, así que lo de más valor llevalo con vos.',
       },
       {
         q: '¿Puedo atender solo algunas horas por semana?',
@@ -304,7 +304,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Querés que la persona llegue a un lugar cuidado, que acompañe el trabajo corporal',
     ],
     solucion:
-      'El Espacio 13 viene con camilla y escritorio: llegás y atendés, sin cargar nada. Para trabajo corporal en el piso —o sesiones que combinan camilla y movimiento— están los espacios multiuso con colchonetas y almohadones. El edificio, una casa centenaria reciclada a nuevo, recibe a quien atendés con la calidez que el trabajo corporal pide. Y reservás por hora, con agenda online y acceso 24/7.',
+      'Dentro de Espacio 1010 hay un espacio pensado para esto: el Espacio 13, con camilla y escritorio — llegás y atendés, sin cargar nada. Y si en lugar de camilla necesitás trabajo corporal en el suelo o con movimiento, también hay dos espacios multiuso, despejados y con colchonetas, almohadones y sillas. El edificio, una casa centenaria reciclada, recibe a quien atendés con la calidez que el trabajo corporal pide. Y reservás por hora, con agenda online y acceso 24/7.',
     espaciosRecomendados: ['espacio-13', 'espacio-03', 'espacio-14'],
     // SIN testimonial (no hay terapeuta corporal real aprobado)
     fotos: [
@@ -430,7 +430,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿Puedo reservar varias horas seguidas para un proceso intensivo?',
-        a: 'Sí: reservás en bloques de 1 hora, hasta 8 seguidas, y hasta con 150 días de anticipación. Y si armás un horario fijo semanal, queda garantizado hasta que vos lo liberes.',
+        a: 'Sí: reservás en bloques de 1 hora, las horas seguidas que tu proceso necesite. Y si armás un horario fijo semanal, queda garantizado hasta que vos lo liberes.',
       },
     ],
     meta:
@@ -459,7 +459,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Buscás un lugar que respire calma desde que se entra',
     ],
     solucion:
-      'Los espacios multiuso vienen despejados, con colchonetas y almohadones, listos para que armes tu práctica: reciben hasta 8 personas sentadas o 6 en movimiento libre. Para grupos más grandes está la Sala Arcos, en el subsuelo, con capacidad para 25 personas. Reservás por hora —desde 1 y hasta 8 seguidas— y probás horarios sin compromiso.',
+      'Los espacios multiuso vienen despejados, con colchonetas, almohadones y sillas, listos para que armes tu práctica: reciben hasta 8 personas sentadas o 6 en movimiento libre. Para grupos más grandes está la Sala Arcos, en el subsuelo, con capacidad para 25 personas. Reservás por hora, desde 1, y probás horarios sin compromiso.',
     espaciosRecomendados: ['espacio-03', 'espacio-14', 'sala-arcos'],
     testimonial: {
       texto:
@@ -474,7 +474,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     faq: [
       {
         q: '¿Hay colchonetas y materiales disponibles?',
-        a: 'Sí: los espacios multiuso tienen mats, colchonetas y almohadones. Bloques, correas u otros elementos específicos de tu práctica los traés vos.',
+        a: 'Sí: los espacios multiuso tienen mats, colchonetas, almohadones y sillas. Bloques, correas u otros elementos específicos de tu práctica los traés vos.',
       },
       {
         q: '¿Cuántas personas entran?',
@@ -511,7 +511,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Tu taller puede durar 2 horas u 8 — necesitás reservar todo el bloque junto',
     ],
     solucion:
-      'La Sala Arcos está pensada justamente para esto: sillas y mesas para armar círculo o filas, proyector y parlante incluidos, kitchenette y baño independiente. Reservás por hora —hasta 8 seguidas si tu taller lo necesita— y lo coordinamos por WhatsApp según fecha y duración. Ideal para constelaciones, formaciones, presentaciones o grupos terapéuticos. Para grupos chicos también están los espacios multiuso, que pagás como un consultorio.',
+      'La Sala Arcos está pensada justamente para esto: sillas y mesas para armar círculo o filas, proyector y parlante incluidos, kitchenette y baño independiente. Reservás el bloque completo que tu taller necesite y lo coordinamos por WhatsApp según fecha y duración. Ideal para constelaciones, formaciones, presentaciones o grupos terapéuticos. Para grupos chicos también están los espacios multiuso, que pagás como un consultorio.',
     espaciosRecomendados: ['sala-arcos', 'espacio-03', 'espacio-14'],
     testimonial: {
       texto:
@@ -526,7 +526,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     faq: [
       {
         q: '¿Cuánto cuesta la Sala Arcos?',
-        a: '$700 la hora. Reservás en bloques de 1 hora, hasta 8 horas seguidas si tu taller lo necesita. Escribinos por WhatsApp y lo coordinamos según fecha y duración.',
+        a: '$700 la hora. Reservás en bloques de 1 hora, el bloque completo que tu taller necesite. Escribinos por WhatsApp y lo coordinamos según fecha y duración.',
       },
       {
         q: '¿Hay proyector o sonido?',

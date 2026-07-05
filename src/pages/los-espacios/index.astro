@@ -137,7 +137,7 @@ const schemaItemList = {
   )}
 
   <!-- ════════════════════ ATENCIÓN INDIVIDUAL ════════════════════ -->
-  <section class="bg-white py-12 sm:py-16">
+  <section id="individual" class="scroll-mt-20 bg-white py-12 sm:py-16">
     <Container size="wide">
       <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Atención individual</h2>
       <p class="mb-8 text-ink-soft">Para sesiones uno a uno, entrevistas, orientación o consulta clínica.</p>
@@ -151,14 +151,14 @@ const schemaItemList = {
   <section class="bg-[#f8f9fa] py-12 sm:py-16">
     <Container size="wide">
       <div class="grid gap-12 lg:grid-cols-2 lg:gap-8">
-        <div>
+        <div id="infancias" class="scroll-mt-20">
           <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Para infancias</h2>
           <p class="mb-8 text-ink-soft">Con rincón infantil y materiales a disposición, y sector de butacas, para trabajar con niños y familias.</p>
           <div class="grid gap-4">
             {infancias.map((e) => <EspacioCard espacio={e} />)}
           </div>
         </div>
-        <div>
+        <div id="camilla" class="scroll-mt-20">
           <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Con camilla</h2>
           <p class="mb-8 text-ink-soft">Para masajes, reflexología y terapias corporales.</p>
           <div class="grid gap-4">
@@ -170,7 +170,7 @@ const schemaItemList = {
   </section>
 
   <!-- ════════════════════ GRUPOS, MOVIMIENTO Y TALLERES ════════════════════ -->
-  <section class="bg-white py-12 sm:py-16">
+  <section id="grupos" class="scroll-mt-20 bg-white py-12 sm:py-16">
     <Container size="wide">
       <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Grupos, movimiento y talleres</h2>
       <p class="mb-8 text-ink-soft">Despejados y con colchonetas, para grupos chicos, meditación o movimiento.</p>

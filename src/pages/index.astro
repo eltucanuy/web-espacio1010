@@ -138,7 +138,9 @@ const iconPaths: Record<string, string> = {
     <div class="absolute inset-0 -z-10 bg-gradient-to-br from-ink/92 via-ink/85 to-ink/70"></div>
     <div class="absolute -right-32 -top-24 -z-10 h-[420px] w-[420px] rounded-full opacity-40 blur-3xl" style="background: radial-gradient(circle, #9e4e42 0%, transparent 70%);" aria-hidden="true"></div>
 
-    <a href={SITE.loginUrl} class="absolute right-5 top-4 z-10 inline-flex items-center gap-1.5 text-sm font-medium text-white/85 transition-colors hover:text-white sm:right-8 sm:top-6">
+    <!-- "Ya tengo cuenta" siempre visible fuera del menú en mobile (decisión Rafa
+         2026-07-05); en md+ lo muestra la nav, así que acá se oculta para no duplicar. -->
+    <a href={SITE.loginUrl} class="absolute right-5 top-4 z-10 inline-flex items-center gap-1.5 text-sm font-medium text-white/85 transition-colors hover:text-white sm:right-8 sm:top-6 md:hidden">
       Ya tengo cuenta
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </a>

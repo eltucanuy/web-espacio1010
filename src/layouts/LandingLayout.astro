@@ -20,7 +20,8 @@ import Analytics from '../components/Analytics.astro';
 import Enhancements from '../components/Enhancements.astro';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
 import WaTracking from '../components/WaTracking.astro';
-import { SITE, CONTACT, SOCIAL } from '../lib/site';
+import Footer from '../components/Footer.astro';
+import { SITE } from '../lib/site';
 import { localBusinessSchema } from '../lib/schema';
 
 interface Props {
@@ -49,7 +50,6 @@ const imageUrl = resolvedImage.startsWith('http')
   : new URL(resolvedImage, SITE.url).toString();
 const schemaBusiness = localBusinessSchema(imageUrl);
 const gtmId = import.meta.env.PUBLIC_GTM_ID as string | undefined;
-const year = 2026;
 ---
 
 <!doctype html>
@@ -114,29 +114,10 @@ const year = 2026;
       <slot />
     </main>
 
-    <!-- Footer mínimo: sin links internos mientras promocionamos solo con la landing. -->
-    <footer class="border-t border-hairline bg-white">
-      <div class="mx-auto flex w-full max-w-6xl flex-col items-center gap-3 px-5 py-10 text-center sm:flex-row sm:justify-between sm:text-left">
-        <div>
-          <img src="/logo.svg" alt="Espacio 1010" width="150" height="57" class="mx-auto h-9 w-auto sm:mx-0" />
-          <p class="mt-2 text-sm text-ink-muted">Gaboto 1010, entre Palermo y Parque Rodó · Montevideo</p>
-        </div>
-        <div class="flex flex-col items-center gap-1.5 text-sm sm:items-end">
-          <a href={SITE.loginUrl} class="font-medium text-terracota hover:underline">
-            Ya tengo cuenta
-          </a>
-          <a href={CONTACT.whatsappLink()} target="_blank" rel="noopener noreferrer" data-wa="landing_footer" class="font-medium text-terracota hover:underline">
-            WhatsApp {CONTACT.whatsappLeadsDisplay}
-          </a>
-          <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" class="text-ink-soft hover:text-ink hover:underline">
-            Instagram {SOCIAL.instagramHandle}
-          </a>
-          <a href="/privacidad" class="text-ink-muted hover:text-ink hover:underline">Política de privacidad</a>
-          <a href={`mailto:${CONTACT.email}`} class="text-ink-muted hover:text-ink hover:underline">{CONTACT.email}</a>
-          <p class="mt-1 text-xs text-ink-muted">© {year} Espacio 1010 · Excalibur SAS</p>
-        </div>
-      </div>
-    </footer>
+    <!-- Footer completo compartido con las internas (Fase 1 de vinculación de la
+         home, decisión Rafa 2026-07-05): ~17 links internos desde la página con
+         más autoridad del dominio, abajo de todo — no compite con el form. -->
+    <Footer />
 
     <FloatingWhatsApp />
     <Enhancements />

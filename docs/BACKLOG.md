@@ -1,5 +1,15 @@
 # Backlog post-launch — web_espacio1010
 
+> ## 🔄 Actualización 2026-07-05 — tanda SEO/AEO vs Pisama + reseñas de Google en vivo + home vinculada (leer primero)
+> Tres días de trabajo, todo en producción. Ver [`HANDOFF_2026_07_05.md`](./HANDOFF_2026_07_05.md) (resumen ejecutivo + gotchas) y [`PLAN_SEO_2026_07_03.md`](./PLAN_SEO_2026_07_03.md) (investigación de competencia, keywords y backlog vivo de contenido):
+> - **SEO/AEO**: sección `/guias` (6 guías pilar), 10 landings `/para/` (4 nuevas), `/llms.txt`, schema enriquecido. Revisión completa de Belén aplicada (24 ajustes — reglas de copy nuevas: sin "matrícula", sin "honesta", sin "encargado", sin "150 días"/"8 horas").
+> - **Reseñas de Google EN VIVO**: componente único `ResenasGoogle.astro` (home + las 10 /para/) con rating actualizado vía `api/resenas.js` (Places API; key en GCloud proyecto `login-psjoyas` — decisión: se queda ahí). **Los testimonios viejos ya no existen** — la prueba social son las reseñas reales.
+> - **Home vinculada** (cerró el pendiente del 07-01, sin migrar a BaseLayout): footer completo + links contextuales + Nav compartida (mobile: hamburguesa con "Ya tengo cuenta" fuera del menú). **Fase 4 (pills del hero → /para/) DESCARTADA PARA SIEMPRE.**
+> - **Logo real** en nav/footer (el componente era un placeholder tipográfico desde siempre).
+> - **Guardrail**: mirar `lead_preregistro` en GA4 2 semanas post-vinculación; en 60-90 días, Search Console + test de IAs.
+>
+> ---
+
 > ## 🔄 Actualización 2026-07-01 — relanzamiento en marcha: internas niveladas, falta el switch del home (leer primero)
 > Se decidió y ejecutó el plan de **relanzamiento de la web completa**: la landing evolucionará a home con Nav (NO se resucita el home v1; la pauta seguirá apuntando a `/`, sin `/empeza`). Fases 1–3 hechas y en producción **sin tocar la landing**: fotos reales en fichas y cards (32 webp desde el repo de la app), `/los-espacios` con los 10 espacios (04 y 15 como "Próximamente" sin ficha), **form de registro pre-footer en todas las internas** (`RegistroForm.astro`, `origen` = pathname, CTAs anclan a `#registro`), y fix del bug de view transitions (scripts muertos tras navegar — patrón `astro:page-load` obligatorio para scripts nuevos). Ver [`HANDOFF_2026_07_01.md`](./HANDOFF_2026_07_01.md).
 >

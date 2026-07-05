@@ -91,23 +91,38 @@ const accesoPills = [
   'Cámaras',
 ];
 
-// Testimonios reales, aprobados por cada persona (prueba social).
-const testimonios = [
+/**
+ * Reseñas REALES de Google (perfil de Espacio 1010 en Maps, 5,0 con 7 reseñas
+ * al 2026-07-05). Decisión Rafa 2026-07-05: reemplazan a los testimonios.
+ * Textos verbatim (solo tipografía normalizada); se excluye la reseña del
+ * propio Rafael. Si cambian el promedio o la cantidad, actualizar RATING acá
+ * y las reseñas que se muestran. Link: ADDRESS.mapsUrl.
+ */
+const RATING = { promedio: '5,0', cantidad: 7 };
+const resenas = [
   {
-    texto: 'Lo fui a ver y me alegró un montón. Es un lugar generoso —mucha luz, espacios grandes—, de esos donde dan ganas de quedarse a trabajar.',
-    nombre: 'Gastón', rol: 'Instructor del Bach Centre', edad: 63, inicial: 'G',
+    texto: 'Un precioso espacio, que fusiona calidez, practicidad y funcionalidad. Está totalmente renovado y ofrece posibilidades los 7 días de la semana. A mi modo de ver, una excelente elección que ya estoy tomando.',
+    nombre: 'Patricia S',
   },
   {
-    texto: 'Es justo la vuelta que estaba buscando. Coordinar agenda con los pacientes siempre fue un ida y vuelta eterno; con esto reservo todo desde el celular, cuando quiero, sin depender de nadie. Simple y rápido.',
-    nombre: 'Claudia', rol: 'Psicóloga', edad: 36, inicial: 'C',
+    texto: 'Tuve el privilegio de dictar un curso de Flores de Bach de 4 días en el Espacio. Fue una experiencia muy disfrutable ya que el lugar, cálido y luminoso, te hace sentir como en casa: cómodo, suelto y libre. Las alumnas encantadas con el lugar…',
+    nombre: 'Gastón Laffitte',
   },
   {
-    texto: 'Para lo que hago necesito de todo: a veces un grupo grande, a veces algo más chico, a veces una consulta sola. Tener todo en un mismo lugar me resuelve la vida. Y poder trabajar un fin de semana o bien temprano a la mañana, para mí no tiene precio.',
-    nombre: 'Patricia', rol: 'Consteladora familiar', edad: 62, inicial: 'P',
+    texto: 'Un lugar hermoso para trabajar tanto de forma individual como grupal. Un hermoso clima. Muy prolijo todo. Recomiendo.',
+    nombre: 'María Rosa Baztarrica',
   },
   {
-    texto: 'Trabajo con grupos chicos, y acá armo el espacio como quiero, con colchonetas y todo, pagando como un individual y no como un salón. Eso para mí es un montón. Y encima el edificio es divino, toda esa madera original tiene una historia.',
-    nombre: 'Maite', rol: 'Método Feldenkrais', edad: 39, inicial: 'M',
+    texto: 'Espectacular! Un lugar super cómodo para trabajar, fácil de gestionar y organizar tu trabajo! Recomiendo!',
+    nombre: 'Agus Lima Vila',
+  },
+  {
+    texto: 'Hermoso lugar! Re luminoso y súper práctico para alquilar',
+    nombre: 'Vanessa Zunino',
+  },
+  {
+    texto: 'Lindos consultorios y muy práctico!',
+    nombre: 'Martin Cassella',
   },
 ];
 
@@ -427,31 +442,48 @@ const iconPaths: Record<string, string> = {
     </Container>
   </section>
 
-  <!-- ════════════════════ TESTIMONIOS (prueba social) ════════════════════ -->
+  <!-- ════════════════════ RESEÑAS DE GOOGLE (prueba social real) ════════════════════ -->
   <section class="bg-ink py-16 text-white sm:py-24">
     <Container>
       <div class="mx-auto max-w-2xl text-center">
-        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota-light">Nuestros primeros profesionales</p>
-        <h2 class="text-3xl sm:text-4xl">Nos eligieron desde el primer día.</h2>
-        <p class="mt-5 text-lg leading-relaxed text-white/70 text-pretty">Conocieron el espacio, les gustó y aseguraron sus horarios. Que hayan confiado desde el arranque, para nosotros es un honor.</p>
+        <p class="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-terracota-light">Reseñas de Google</p>
+        <h2 class="text-3xl sm:text-4xl">{RATING.promedio} de 5 en Google.</h2>
+        <div class="mt-4 flex items-center justify-center gap-1" aria-label={`Calificación ${RATING.promedio} de 5 estrellas`}>
+          {[1, 2, 3, 4, 5].map(() => (
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="#FBBC04" aria-hidden="true"><path d="M12 2l2.9 6.26 6.6.72-4.9 4.55 1.34 6.47L12 16.77 6.06 20l1.34-6.47L2.5 8.98l6.6-.72L12 2z"/></svg>
+          ))}
+        </div>
+        <p class="mt-4 text-lg leading-relaxed text-white/70 text-pretty">Lo que dicen los profesionales que ya trabajan acá — reseñas reales y públicas en nuestro perfil de Google.</p>
       </div>
       <div class="mx-auto mt-12 grid max-w-4xl gap-4 sm:grid-cols-2">
-        {testimonios.map((t) => (
+        {resenas.map((r) => (
           <figure class="flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.04] p-6 sm:p-7">
-            <span class="mb-4 inline-flex w-fit items-center gap-1.5 rounded-full bg-terracota/20 px-3 py-1 text-[11px] font-medium text-terracota-light">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5" /></svg>
-              Ya reservó para la apertura
-            </span>
-            <blockquote class="flex-1 text-base leading-relaxed text-white/85 text-pretty">{t.texto}</blockquote>
-            <figcaption class="mt-6 flex items-center gap-3">
-              <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-terracota/25 text-sm font-semibold text-terracota-light">{t.inicial}</span>
+            <div class="mb-3 flex gap-0.5" aria-label="5 de 5 estrellas">
+              {[1, 2, 3, 4, 5].map(() => (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="#FBBC04" aria-hidden="true"><path d="M12 2l2.9 6.26 6.6.72-4.9 4.55 1.34 6.47L12 16.77 6.06 20l1.34-6.47L2.5 8.98l6.6-.72L12 2z"/></svg>
+              ))}
+            </div>
+            <blockquote class="flex-1 text-base leading-relaxed text-white/85 text-pretty">{r.texto}</blockquote>
+            <figcaption class="mt-5 flex items-center gap-3">
+              <span class="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-terracota/25 text-sm font-semibold text-terracota-light">{r.nombre.charAt(0)}</span>
               <div>
-                <p class="text-sm font-semibold text-white">{t.nombre}, {t.edad} años</p>
-                <p class="text-xs text-white/55">{t.rol}</p>
+                <p class="text-sm font-semibold text-white">{r.nombre}</p>
+                <p class="text-xs text-white/55">Reseña en Google</p>
               </div>
             </figcaption>
           </figure>
         ))}
+      </div>
+      <div class="mt-8 text-center">
+        <a
+          href={ADDRESS.mapsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-white/20 px-6 text-sm font-semibold text-white/85 transition-all duration-300 hover:border-white/40 hover:text-white"
+        >
+          Ver todas las reseñas en Google
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H9M17 7v8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
       </div>
     </Container>
   </section>

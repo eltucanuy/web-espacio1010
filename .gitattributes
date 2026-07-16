@@ -1,0 +1,5 @@
+*.pdf -text
+*.webp -text
+*.png -text
+*.jpg -text
+*.ico -text

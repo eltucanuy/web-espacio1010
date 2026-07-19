@@ -3,7 +3,7 @@
  * HOME (/) — Landing de conversión de producción.
  *
  * Objetivo único: pre-registro. Flujo: form (nombre/apellido/WhatsApp) → guarda lead
- * en Supabase (pre_registros) + evento GTM 'lead_preregistro' → redirige a la PWA con
+ * en Supabase (RPC crear_lead_landing) + evento GTM 'lead_preregistro' → redirige a la PWA con
  * el cupón BIENVENIDA1010 y los 3 campos precargados.
  *
  * Mobile-first: casi todo el tráfico entra desde el celular (una sola columna vertical).
@@ -668,11 +668,8 @@ const iconPaths: Record<string, string> = {
 </script>
 
 <script>
-  import { createClient } from '@supabase/supabase-js';
+  import { guardarLead } from '../lib/leads';
 
-  const url = import.meta.env.PUBLIC_SUPABASE_URL;
-  const key = import.meta.env.PUBLIC_SUPABASE_ANON_KEY;
-  const supabase = url && key ? createClient(url, key) : null;
   const CUPON_URL = 'https://agenda.espacio1010.uy/c/BIENVENIDA1010';
 
   const form = document.getElementById('preregistro-form') as HTMLFormElement | null;
@@ -734,24 +731,19 @@ const iconPaths: Record<string, string> = {
     if (exito) exito.style.display = 'flex';
     document.body.style.overflow = 'hidden';
 
-    // Guardado del lead + evento de conversión, en paralelo (no bloquean la UX).
-    const lead = {
+    // Guardado del lead (RPC crear_lead_landing) + evento de conversión, en
+    // paralelo (no bloquean la UX).
+    guardarLead({
       nombre, apellido, telefono,
       origen: 'landing',
       utm_source: p.get('utm_source'),
       utm_medium: p.get('utm_medium'),
       utm_campaign: p.get('utm_campaign'),
-    };
-    if (supabase) {
-      supabase.from('pre_registros').insert(lead).then(
-        () => {},
-        (err: unknown) => console.warn('lead insert failed', err)
-      );
-    }
+    });
     // IMPORTANTE (privacidad): este push va SIN payload a propósito — solo { event }.
     // NUNCA agregar nombre/apellido/telefono ni otros datos del form al dataLayer:
     // GTM lo reenviaría a GA4/Meta y mandar PII a Google viola sus TOS (riesgo de
-    // pérdida de la cuenta). La PII viaja únicamente al insert de Supabase de arriba.
+    // pérdida de la cuenta). La PII viaja únicamente a la RPC de Supabase de arriba.
     // Los utm_* no hacen falta acá: GA4 los toma solo de la URL de la página.
     (window as any).dataLayer = (window as any).dataLayer || [];
     (window as any).dataLayer.push({ event: 'lead_preregistro' });

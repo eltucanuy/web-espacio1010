@@ -80,6 +80,9 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID as string | undefined;
     <meta name="theme-color" content="#111111" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" sizes="any" />
+    <!-- PNG 96x96 explícito: Google pide favicon en múltiplo de 48px para resultados
+         de búsqueda/ads — sin esto mostraba el globo genérico (fix 2026-07-22). -->
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaBusiness)} />

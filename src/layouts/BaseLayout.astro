@@ -82,6 +82,9 @@ const schemaBusiness = localBusinessSchema(imageUrl);
 
     <!-- Favicons — set de marca compartido con la app (verificado idéntico 2026-06-11) -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <!-- PNG 96x96 explícito: Google pide favicon en múltiplo de 48px (fix 2026-07-22) -->
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
     <!-- Fuentes — Inter self-host vía @fontsource (importado en el frontmatter).

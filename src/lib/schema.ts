@@ -41,7 +41,8 @@ export function localBusinessSchema(imageUrl: string) {
     telephone: CONTACT.whatsappLeads,
     email: CONTACT.email,
     image: imageUrl,
-    logo: `${SITE.url}/favicon.svg`,
+    // Raster ≥112x112 (guideline de Google para logo en structured data; el SVG no alcanza)
+    logo: `${SITE.url}/apple-touch-icon.png`,
     priceRange: '$$$',
     currenciesAccepted: 'UYU',
     paymentAccepted: 'Cash, Bank Transfer',

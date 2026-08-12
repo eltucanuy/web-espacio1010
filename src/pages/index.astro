@@ -669,6 +669,7 @@ const iconPaths: Record<string, string> = {
 
 <script>
   import { guardarLead } from '../lib/leads';
+  import { obtenerMarcas } from '../lib/marks';
 
   const CUPON_URL = 'https://agenda.espacio1010.uy/c/BIENVENIDA1010';
 
@@ -709,17 +710,15 @@ const iconPaths: Record<string, string> = {
 
     if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Un segundo…'; }
 
-    // Parámetros de la URL actual (UTMs de la campaña, si vino de Ads).
-    const p = new URLSearchParams(location.search);
+    // Marcas de campaña: URL actual + lo persistido en la sesión (src/lib/marks.ts) —
+    // sobreviven la navegación interna. gclid/gbraid = Google Ads (gbraid en iOS),
+    // fbclid = Meta, gad_* = auto-tagging Google.
+    const marcas = obtenerMarcas();
 
-    // Destino: la PWA con cupón + campos precargados + UTMs y click IDs reenviados,
+    // Destino: la PWA con cupón + campos precargados + marcas reenviadas,
     // para que la PWA pueda atribuir la "cuenta creada" a la campaña que trajo el lead.
-    // gclid/gbraid = Google Ads (gbraid en iOS), fbclid = Meta, gad_* = auto-tagging Google.
     const q = new URLSearchParams({ nombre, apellido, telefono });
-    for (const k of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'gbraid', 'fbclid', 'gad_source', 'gad_campaignid']) {
-      const v = p.get(k);
-      if (v) q.set(k, v);
-    }
+    for (const [k, v] of Object.entries(marcas)) q.set(k, v);
     const destino = `${CUPON_URL}?${q.toString()}`;
 
     // Mostramos el éxito YA (pantalla completa), sin esperar al guardado.
@@ -736,9 +735,9 @@ const iconPaths: Record<string, string> = {
     guardarLead({
       nombre, apellido, telefono,
       origen: 'landing',
-      utm_source: p.get('utm_source'),
-      utm_medium: p.get('utm_medium'),
-      utm_campaign: p.get('utm_campaign'),
+      utm_source: marcas.utm_source ?? null,
+      utm_medium: marcas.utm_medium ?? null,
+      utm_campaign: marcas.utm_campaign ?? null,
     });
     // IMPORTANTE (privacidad): este push va SIN payload a propósito — solo { event }.
     // NUNCA agregar nombre/apellido/telefono ni otros datos del form al dataLayer:

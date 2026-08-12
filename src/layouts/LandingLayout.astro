@@ -20,6 +20,7 @@ import Analytics from '../components/Analytics.astro';
 import Enhancements from '../components/Enhancements.astro';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
 import WaTracking from '../components/WaTracking.astro';
+import MarcasForwarding from '../components/MarcasForwarding.astro';
 import Footer from '../components/Footer.astro';
 import Nav from '../components/Nav.astro';
 import { SITE } from '../lib/site';
@@ -132,5 +133,8 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID as string | undefined;
 
     <!-- Medición de clics a WhatsApp (listener delegado, ver componente). -->
     <WaTracking />
+
+    <!-- Reenvío de UTMs/click IDs a la PWA en todo link a agenda (ver componente). -->
+    <MarcasForwarding />
   </body>
 </html>

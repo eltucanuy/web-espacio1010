@@ -1,0 +1,39 @@
+---
+/**
+ * Reenvío de marcas de campaña a la PWA — un solo listener delegado (patrón
+ * WaTracking) capta cualquier <a> hacia agenda.espacio1010.uy y le agrega las
+ * marcas vigentes (utm_* + click IDs) justo antes de navegar. Cubre "Ya tengo
+ * cuenta", CTAs a la agenda y los que se agreguen a futuro, sin tocar cada link.
+ *
+ * También persiste las marcas de la URL de aterrizaje (sessionStorage) para que
+ * sobrevivan la navegación interna — el form del cupón las lee vía obtenerMarcas().
+ * Se incluye en LandingLayout y BaseLayout (los dos layouts de producción).
+ */
+---
+
+<script>
+  import { persistirMarcas, obtenerMarcas } from '../lib/marks';
+
+  if (!(window as any).__marcasBound) {
+    (window as any).__marcasBound = true;
+    persistirMarcas();
+    document.addEventListener('astro:page-load', persistirMarcas);
+
+    document.addEventListener('click', (e) => {
+      const a = (e.target as HTMLElement)?.closest?.(
+        'a[href*="agenda.espacio1010.uy"]'
+      ) as HTMLAnchorElement | null;
+      if (!a) return;
+      const marcas = obtenerMarcas();
+      const keys = Object.keys(marcas);
+      if (!keys.length) return;
+      try {
+        const url = new URL(a.href);
+        for (const k of keys) {
+          if (!url.searchParams.has(k)) url.searchParams.set(k, marcas[k]);
+        }
+        a.href = url.toString();
+      } catch { /* href raro: no tocar */ }
+    }, true);
+  }
+</script>

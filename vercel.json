@@ -29,6 +29,7 @@
     }
   ],
   "redirects": [
+    { "source": "/ig", "destination": "/", "permanent": false },
     { "source": "/home", "destination": "/", "permanent": true },
     { "source": "/espacios", "destination": "/los-espacios", "permanent": true },
     { "source": "/faq", "destination": "/preguntas-frecuentes", "permanent": true },

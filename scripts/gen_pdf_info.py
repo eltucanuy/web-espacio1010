@@ -222,8 +222,8 @@ espacio_card(M + cw2 + gap, row1_top, 'espacios/espacio-02-2.webp',
              'Con rincón infantil: mobiliario y materiales para niños y familias.',
              '$350/hora')
 row2_top = row1_top - ch2 - gap
-espacio_card(M, row2_top, 'espacios/espacio-13-1.webp',
-             'Con camilla', 'Espacio 13 · 11 m²',
+espacio_card(M, row2_top, 'espacios/espacio-04-1.webp',
+             'Con camilla', 'Espacios 04 y 13 · 11 a 12 m²',
              'Para masajes, reflexología y tratamientos corporales.',
              '$350/hora')
 espacio_card(M + cw2 + gap, row2_top, 'espacios/espacio-14-3.webp',

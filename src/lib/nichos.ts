@@ -285,7 +285,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     label: 'Espacios con camilla para terapias corporales y masajes',
     titleSeo: 'Sala con camilla por hora en Montevideo · Masajes y terapias corporales',
     intro:
-      'Espacio con camilla listo para masajes, reflexología, reiki, osteopatía y tratamientos corporales — y salas multiuso con colchonetas para abordajes en el piso. Por hora, entre Palermo y Parque Rodó.',
+      'Dos espacios con camilla listos para masajes, reflexología, reiki, osteopatía y tratamientos corporales — y salas multiuso con colchonetas para abordajes en el piso. Por hora, entre Palermo y Parque Rodó.',
     painPoints: [
       'Atender en tu casa no es profesional, y montar un local propio es carísimo',
       'Las salas por hora casi nunca tienen camilla — y cargar la tuya no es opción todos los días',
@@ -293,8 +293,8 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Querés que la persona llegue a un lugar cuidado, que acompañe el trabajo corporal',
     ],
     solucion:
-      'Dentro de Espacio 1010 hay un espacio pensado para esto: el Espacio 13, con camilla y escritorio — llegás y atendés, sin cargar nada. Y si en lugar de camilla necesitás trabajo corporal en el suelo o con movimiento, también hay dos espacios multiuso, despejados y con colchonetas, almohadones y sillas. El edificio, una casa centenaria reciclada, recibe a quien atendés con la calidez que el trabajo corporal pide. Y reservás por hora, con agenda online y acceso 24/7.',
-    espaciosRecomendados: ['espacio-13', 'espacio-03', 'espacio-14'],
+      'Dentro de Espacio 1010 hay dos espacios pensados para esto: el Espacio 04 y el Espacio 13, ambos con camilla — llegás y atendés, sin cargar nada. Y si en lugar de camilla necesitás trabajo corporal en el suelo o con movimiento, también hay dos espacios multiuso, despejados y con colchonetas, almohadones y sillas. El edificio, una casa centenaria reciclada, recibe a quien atendés con la calidez que el trabajo corporal pide. Y reservás por hora, con agenda online y acceso 24/7.',
+    espaciosRecomendados: ['espacio-04', 'espacio-13', 'espacio-03', 'espacio-14'],
     fotos: [
       { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
       { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
@@ -302,11 +302,11 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     faq: [
       {
         q: '¿La camilla está incluida o llevo la mía?',
-        a: 'El Espacio 13 tiene camilla incluida, además de escritorio. Sábanas, aceites y elementos específicos de tu práctica los traés vos. Si preferís trabajar con tu propia camilla en otro espacio, también podés.',
+        a: 'Los Espacios 04 y 13 tienen camilla incluida (el 13 además tiene escritorio). Sábanas, aceites y elementos específicos de tu práctica los traés vos. Si preferís trabajar con tu propia camilla en otro espacio, también podés.',
       },
       {
         q: '¿Sirve para reiki, reflexología u osteopatía?',
-        a: 'Sí. El Espacio 13 está pensado para cualquier abordaje sobre camilla: masajes, reflexología, reiki, osteopatía, drenaje y tratamientos corporales en general. Para técnicas que trabajan en el piso, los espacios multiuso tienen colchonetas y almohadones.',
+        a: 'Sí. Los Espacios 04 y 13 están pensados para cualquier abordaje sobre camilla: masajes, reflexología, reiki, osteopatía, drenaje y tratamientos corporales en general. Para técnicas que trabajan en el piso, los espacios multiuso tienen colchonetas y almohadones.',
       },
       {
         q: '¿Puedo atender de noche o el fin de semana?',
@@ -344,8 +344,8 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Querés un lugar cuya energía acompañe el trabajo, no un box de oficina',
     ],
     solucion:
-      'El edificio tiene el carácter que tu práctica pide: una casa de principios del siglo XX reciclada con respeto, con ladrillo, piedra y madera originales. Para trabajar sobre camilla está el Espacio 13; para trabajo en el piso, los espacios multiuso con colchonetas y almohadones; y para sesiones de palabra, cualquiera de los consultorios amueblados. Reservás por hora, solo cuando atendés, con acceso 24/7.',
-    espaciosRecomendados: ['espacio-13', 'espacio-03', 'espacio-01', 'espacio-14'],
+      'El edificio tiene el carácter que tu práctica pide: una casa de principios del siglo XX reciclada con respeto, con ladrillo, piedra y madera originales. Para trabajar sobre camilla están los Espacios 04 y 13; para trabajo en el piso, los espacios multiuso con colchonetas y almohadones; y para sesiones de palabra, cualquiera de los consultorios amueblados. Reservás por hora, solo cuando atendés, con acceso 24/7.',
+    espaciosRecomendados: ['espacio-04', 'espacio-13', 'espacio-03', 'espacio-01'],
     fotos: [
       { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
       { src: '/fotos/lugar-pasillo.webp', alt: 'Pasillo de Espacio 1010 con muro de ladrillo original a la vista, lámparas circulares y claraboya', cap: 'Pasillo · ladrillo a la vista' },
@@ -353,7 +353,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     faq: [
       {
         q: '¿Hay camilla disponible?',
-        a: 'Sí: el Espacio 13 tiene camilla incluida, ideal para reiki, terapia floral con testeo, acupuntura y abordajes sobre camilla. Para trabajo en el piso, los espacios multiuso tienen colchonetas y almohadones.',
+        a: 'Sí: los Espacios 04 y 13 tienen camilla incluida, ideales para reiki, terapia floral con testeo, acupuntura y abordajes sobre camilla. Para trabajo en el piso, los espacios multiuso tienen colchonetas y almohadones.',
       },
       {
         q: '¿Puedo usar música en mis sesiones?',

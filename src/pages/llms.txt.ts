@@ -39,7 +39,7 @@ export const GET: APIRoute = async () => {
 ${consultorios
   .map(
     (e) =>
-      `- [${e.nombre}](${SITE.url}/los-espacios/${e.id}): ${e.tipo === 'amueblado' ? 'consultorio amueblado' : 'sala multiuso'}, ${e.piso.toLowerCase()}, ${e.metros} m², ${e.capacidad.toLowerCase()}, $${e.precioHora}/h. ${e.resumen}`
+      `- [${e.nombre}](${SITE.url}/los-espacios/${e.id}): ${{ sillones: 'consultorio amueblado con sillones', camilla: 'consultorio con camilla', multiuso: 'sala multiuso' }[e.tipo]}, ${e.piso.toLowerCase()}, ${e.metros} m², ${e.capacidad.toLowerCase()}, $${e.precioHora}/h. ${e.resumen}`
   )
   .join('\n')}
 ${arcos ? `- [Sala Arcos](${SITE.url}/los-espacios/sala-arcos): sala grande del subsuelo, ${arcos.metros} m², hasta 25 personas sentadas, con proyector, parlante, kitchenette y baño propio. $${arcos.precioHora}/h, se coordina por WhatsApp.` : ''}

@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Button from '../../components/Button.astro';
-import { ESPACIOS, ESPACIOS_PROXIMOS, CONTACT, ADDRESS, TIPO_LABEL, TIPO_DESC, SITE } from '../../lib/site';
+import { ESPACIOS, CONTACT, ADDRESS, TIPO_LABEL, TIPO_DESC, SITE } from '../../lib/site';
 import { breadcrumbSchema } from '../../lib/schema';
 import EspacioCard from '../../components/EspacioCard.astro';
 
@@ -35,7 +35,7 @@ const schemaItemList = {
 
 <BaseLayout
   title="Consultorios y salas por hora en Montevideo"
-  description="Consultorios amueblados, espacio con camilla y salas para grupos, por hora a $350. Sala Arcos hasta 25 personas. Entre Palermo y Parque Rodó, Montevideo."
+  description="Consultorios amueblados, espacios con camilla y salas para grupos, por hora a $350. Sala Arcos hasta 25 personas. Entre Palermo y Parque Rodó, Montevideo."
   ogSlug="los-espacios"
 >
   <Fragment slot="head">
@@ -59,18 +59,22 @@ const schemaItemList = {
         Consultorios y salas, <span class="text-terracota">para cada forma de atender</span>.
       </h1>
       <p class="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft text-pretty">
-        Los espacios del edificio: amueblados
-        para atender uno a uno, con camilla, y salas despejadas para grupos y
+        Los espacios del edificio: con sillones para atender uno a uno, con
+        camilla para el trabajo corporal, y salas despejadas para grupos y
         movimiento — todos a $350 la hora. Y la Sala Arcos, la más grande, a $700,
         para encuentros de mayor escala. Entre Palermo y
         {ADDRESS.neighborhood}, Montevideo.
       </p>
 
-      <!-- Leyenda de tipos (los 2 reales de la app) -->
+      <!-- Leyenda de tipos (los 3 reales de la app desde 2026-08-19) -->
       <div class="mt-10 flex flex-wrap gap-x-8 gap-y-4 border-t border-hairline pt-6 text-sm text-ink-soft">
         <span class="inline-flex items-center gap-2">
           <span class="h-2.5 w-2.5 rounded-full bg-terracota"></span>
-          <strong class="font-semibold text-ink">{TIPO_LABEL.amueblado}</strong> — {TIPO_DESC.amueblado}
+          <strong class="font-semibold text-ink">{TIPO_LABEL.sillones}</strong> — {TIPO_DESC.sillones}
+        </span>
+        <span class="inline-flex items-center gap-2">
+          <span class="h-2.5 w-2.5 rounded-full bg-terracota/50"></span>
+          <strong class="font-semibold text-ink">{TIPO_LABEL.camilla}</strong> — {TIPO_DESC.camilla}
         </span>
         <span class="inline-flex items-center gap-2">
           <span class="h-2.5 w-2.5 rounded-full bg-ink-soft"></span>
@@ -180,36 +184,6 @@ const schemaItemList = {
       <p class="mt-8 text-sm text-ink-soft">
         ¿Necesitás más lugar? La <a href="/los-espacios/sala-arcos" class="font-semibold text-terracota underline-offset-4 hover:underline">Sala Arcos</a> recibe hasta 25 personas.
       </p>
-    </Container>
-  </section>
-
-  <!-- ════════════════════ PRÓXIMAMENTE ════════════════════ -->
-  <section class="bg-[#f8f9fa] py-12 sm:py-16">
-    <Container size="wide">
-      <h2 class="mb-2 text-2xl text-ink sm:text-3xl">Próximamente</h2>
-      <p class="mb-8 max-w-2xl text-ink-soft">
-        Dos espacios más que estamos terminando de preparar. Cuando estén listos,
-        vas a poder reservarlos desde la app como el resto.
-      </p>
-      <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {ESPACIOS_PROXIMOS.map((e) => (
-          <div class="flex flex-col rounded-2xl border border-dashed border-ink/15 bg-white/60 p-6">
-            <div class="flex items-start justify-between">
-              <span class="text-4xl font-bold leading-none text-ink/10">
-                {e.metros}<span class="align-top text-base font-semibold">m²</span>
-              </span>
-              <span class="rounded-full bg-terracota-tint px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-terracota">Próximamente</span>
-            </div>
-            <h3 class="mt-5 text-lg text-ink">{e.nombre}</h3>
-            <p class="mt-1.5 text-sm leading-relaxed text-ink-soft">
-              Lo estamos preparando con el mismo cuidado que el resto del edificio.
-            </p>
-            <div class="mt-auto border-t border-hairline pt-4 text-xs text-ink-muted">
-              {e.piso} · {e.metros} m²
-            </div>
-          </div>
-        ))}
-      </div>
     </Container>
   </section>
 

@@ -67,13 +67,14 @@ export const HOURS = {
  * (tabla `consultorios`, ver docs/VERDAD_APP_2026_06_10.md). Mismos nombres que
  * ve el cliente en la PWA. Slug = URL para /los-espacios/[slug].
  *
- * Espacios 04 (PB) y 15 (P1) existen pero están inactivos en la app (placeholders
- * sin terminar) — sumarlos acá cuando Rafa los termine.
+ * Espacio 15 (P1) existe pero está inactivo en la app (placeholder sin
+ * terminar) — sumarlo acá cuando Rafa lo termine. (El 04 se activó 2026-08-19.)
  */
 export type EspacioId =
   | 'espacio-01'
   | 'espacio-02'
   | 'espacio-03'
+  | 'espacio-04'
   | 'espacio-11'
   | 'espacio-12'
   | 'espacio-13'
@@ -86,7 +87,7 @@ export interface Espacio {
   id: EspacioId;
   nombre: string; // tal cual lo ve el cliente en la app
   piso: 'Planta baja' | 'Piso 1' | 'Subsuelo';
-  tipo: 'amueblado' | 'multiuso';
+  tipo: 'sillones' | 'camilla' | 'multiuso';
   grupo: GrupoEspacio; // misma agrupación por uso que la home
   resumen: string; // fiel a la descripción de la DB
   capacidad: string; // detalle completo (ficha)
@@ -107,7 +108,7 @@ export const ESPACIOS: Espacio[] = [
     id: 'espacio-01',
     nombre: 'Espacio 01',
     piso: 'Planta baja',
-    tipo: 'amueblado',
+    tipo: 'sillones',
     grupo: 'individual',
     resumen:
       'A la calle y cálido. Sillón de tres cuerpos y butaca individual — ideal para sesiones individuales, entrevistas y consultas.',
@@ -124,7 +125,7 @@ export const ESPACIOS: Espacio[] = [
     id: 'espacio-02',
     nombre: 'Espacio 02',
     piso: 'Planta baja',
-    tipo: 'amueblado',
+    tipo: 'sillones',
     grupo: 'infancias',
     resumen:
       'Versátil, con rincón infantil: mobiliario y materiales para trabajar con niños y familias, más dos butacas y escritorio.',
@@ -134,7 +135,10 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Psicopedagogía', 'Psicología infantil', 'Fonoaudiología', 'Psicomotricidad'],
-    fotos: [1, 2, 3, 4, 5, 6].map((n) => `/fotos/espacios/espacio-02-${n}.webp`),
+    fotos: [
+      '/fotos/espacios/espacio-02-7.webp',
+      ...[1, 2, 3, 4, 5, 6].map((n) => `/fotos/espacios/espacio-02-${n}.webp`),
+    ],
   },
   {
     id: 'espacio-03',
@@ -150,13 +154,32 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Meditación', 'Yoga', 'Grupos chicos', 'Movimiento'],
-    fotos: [1, 2, 3].map((n) => `/fotos/espacios/espacio-03-${n}.webp`),
+    fotos: [
+      '/fotos/espacios/espacio-03-4.webp',
+      ...[1, 2, 3].map((n) => `/fotos/espacios/espacio-03-${n}.webp`),
+    ],
+  },
+  {
+    id: 'espacio-04',
+    nombre: 'Espacio 04',
+    piso: 'Planta baja',
+    tipo: 'camilla',
+    grupo: 'camilla',
+    resumen:
+      'Espacio confortable con camilla, pensado para masajes, reflexología, tratamientos corporales o abordajes terapéuticos integrales.',
+    capacidad: '2 personas',
+    capacidadBreve: '2 personas',
+    metros: 12,
+    precioHora: 350,
+    reservaPorApp: true,
+    ideal: ['Masajes', 'Reflexología', 'Osteopatía', 'Terapias corporales'],
+    fotos: [1, 2, 3, 4].map((n) => `/fotos/espacios/espacio-04-${n}.webp`),
   },
   {
     id: 'espacio-11',
     nombre: 'Espacio 11',
     piso: 'Piso 1',
-    tipo: 'amueblado',
+    tipo: 'sillones',
     grupo: 'individual',
     resumen:
       'Compacto y luminoso, a la calle. Dos butacas individuales — perfecto para sesiones uno a uno y entrevistas breves.',
@@ -172,7 +195,7 @@ export const ESPACIOS: Espacio[] = [
     id: 'espacio-12',
     nombre: 'Espacio 12',
     piso: 'Piso 1',
-    tipo: 'amueblado',
+    tipo: 'sillones',
     grupo: 'individual',
     resumen:
       'Luminoso y con balcón a la calle. Sillón de dos cuerpos, butaca individual y escritorio.',
@@ -182,13 +205,16 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Psicología', 'Psiquiatría', 'Coaching', 'Nutrición'],
-    fotos: [1, 2, 3, 4, 5].map((n) => `/fotos/espacios/espacio-12-${n}.webp`),
+    fotos: [
+      '/fotos/espacios/espacio-12-6.webp',
+      ...[1, 2, 3, 4, 5].map((n) => `/fotos/espacios/espacio-12-${n}.webp`),
+    ],
   },
   {
     id: 'espacio-13',
     nombre: 'Espacio 13',
     piso: 'Piso 1',
-    tipo: 'amueblado',
+    tipo: 'camilla',
     grupo: 'camilla',
     resumen:
       'Con camilla: masajes, reflexología, tratamientos corporales y abordajes integrales. También tiene escritorio.',
@@ -198,7 +224,10 @@ export const ESPACIOS: Espacio[] = [
     precioHora: 350,
     reservaPorApp: true,
     ideal: ['Masajes', 'Reflexología', 'Osteopatía', 'Terapias corporales'],
-    fotos: [1, 2, 3, 4].map((n) => `/fotos/espacios/espacio-13-${n}.webp`),
+    fotos: [
+      '/fotos/espacios/espacio-13-5.webp',
+      ...[1, 2, 3, 4].map((n) => `/fotos/espacios/espacio-13-${n}.webp`),
+    ],
     destacado: true,
   },
   {
@@ -239,26 +268,20 @@ export const ESPACIOS: Espacio[] = [
   },
 ];
 
-/**
- * Espacios que existen en el edificio pero todavía no están disponibles para
- * reservar (inactivos en la app: descripción y fotos pendientes). Decisión Rafa
- * 2026-07-01: se muestran en /los-espacios como "Próximamente" — tarjeta simple,
- * sin ficha propia y sin CTA de reserva. Al terminarlos, pasan al array ESPACIOS.
- */
-export const ESPACIOS_PROXIMOS = [
-  { nombre: 'Espacio 04', piso: 'Planta baja', metros: 17 },
-  { nombre: 'Espacio 15', piso: 'Piso 1', metros: 11 },
-] as const;
+// La sección "Próximamente" (ESPACIOS_PROXIMOS) se eliminó el 2026-08-19 por
+// decisión de Rafa: el 04 pasó al array ESPACIOS y el 15 dejó de mostrarse.
 
 /** Labels de tipo — un solo lugar (los usan índice, ficha y EspacioCard). */
 export const TIPO_LABEL: Record<Espacio['tipo'], string> = {
-  amueblado: 'Amueblado',
+  sillones: 'Sillones',
+  camilla: 'Camilla',
   multiuso: 'Multiuso',
 };
 
 /** Explicación corta de cada tipo (leyenda del índice). */
 export const TIPO_DESC: Record<Espacio['tipo'], string> = {
-  amueblado: 'sillón, butacas y/o escritorio — llegás y atendés',
+  sillones: 'butacas, sillón y/o escritorio — llegás y atendés',
+  camilla: 'para masajes y tratamientos corporales — llegás y atendés',
   multiuso: 'despejado, con colchonetas, almohadones y sillas — lo armás como necesites',
 };
 

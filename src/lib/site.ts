@@ -255,8 +255,8 @@ export const ESPACIOS: Espacio[] = [
     grupo: 'grupos',
     resumen:
       'La gran sala del subsuelo, para talleres, encuentros y trabajo grupal. Con proyector, parlante, kitchenette y baño propio.',
-    capacidad: 'Hasta 25 sentados',
-    capacidadBreve: 'Hasta 25',
+    capacidad: 'Hasta 30 personas',
+    capacidadBreve: 'Hasta 30',
     metros: 40,
     precioHora: 700,
     reservaPorApp: false,

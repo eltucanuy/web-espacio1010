@@ -35,7 +35,7 @@ export const GET: APIRoute = async () => {
 ## Datos clave
 
 - Dirección: ${ADDRESS.street}, ${ADDRESS.betweenStreets}, ${ADDRESS.neighborhood}, ${ADDRESS.city}, ${ADDRESS.country} (${ADDRESS.mapsUrl}) — coordenadas ${ADDRESS.lat}, ${ADDRESS.lng}
-- Precio: $350 (pesos uruguayos) la hora en todos los consultorios y salas. Sala Arcos (grupos de hasta 25): $700 la hora.
+- Precio: $350 (pesos uruguayos) la hora en todos los consultorios y salas. Sala Arcos (grupos de hasta 30): $700 la hora.
 - Descuentos automáticos por volumen: 10% desde 20 horas al mes, 20% desde 40 horas.
 - Sin costos fijos: se paga solo por hora usada, a mes vencido, por transferencia o depósito (Abitab/RedPagos). No se pide tarjeta.
 - Horario: ${HOURS.openingHours}. ${HOURS.appBooking}.
@@ -65,7 +65,7 @@ Sin adicionales ni costo de inscripción: espacio amueblado y climatizado, limpi
 - **¿Se puede atender de noche o los fines de semana?** Sí. El edificio funciona 24/7 todos los días del año. Por la app se reserva de 7 a 24; los horarios de madrugada se coordinan por WhatsApp.
 - **¿Qué pasa si hay que cancelar?** Con más de 24 h de aviso, sin cargo. Entre 24 h y 1 h antes, se paga el 50%. Con menos de 1 hora ya no se puede cancelar. Las reservas fijas semanales incluyen un cupo mensual de cancelaciones sin cargo.
 - **¿Hay sala con camilla?** Sí, dos: los Espacios 04 (planta baja) y 13 (piso 1), para masajes, reflexología y tratamientos corporales.
-- **¿Hay sala para grupos o talleres?** Sí: la Sala Arcos (subsuelo, 40 m², hasta 25 personas sentadas, $700/h, se coordina por WhatsApp) y dos salas multiuso para hasta 8 personas a $350/h.
+- **¿Hay sala para grupos o talleres?** Sí: la Sala Arcos (subsuelo, 40 m², hasta 30 personas, $700/h, se coordina por WhatsApp) y dos salas multiuso para hasta 8 personas a $350/h.
 
 ## Los espacios
 
@@ -75,7 +75,7 @@ ${consultorios
       `- [${e.nombre}](${SITE.url}/los-espacios/${e.id}): ${{ sillones: 'consultorio amueblado con sillones', camilla: 'consultorio con camilla', multiuso: 'sala multiuso' }[e.tipo]}, ${e.piso.toLowerCase()}, ${e.metros} m², ${e.capacidad.toLowerCase()}, $${e.precioHora}/h. ${e.resumen}`
   )
   .join('\n')}
-${arcos ? `- [Sala Arcos](${SITE.url}/los-espacios/sala-arcos): sala grande del subsuelo, ${arcos.metros} m², hasta 25 personas sentadas, con proyector, parlante, kitchenette y baño propio. $${arcos.precioHora}/h, se coordina por WhatsApp.` : ''}
+${arcos ? `- [Sala Arcos](${SITE.url}/los-espacios/sala-arcos): sala grande del subsuelo, ${arcos.metros} m², hasta 30 personas, con proyector, parlante, kitchenette y baño propio. $${arcos.precioHora}/h, se coordina por WhatsApp.` : ''}
 
 ## Páginas principales
 

@@ -215,7 +215,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿Puedo dar charlas o talleres de alimentación?',
-        a: 'Sí. Los espacios multiuso reciben hasta 8 personas sentadas, y para grupos más grandes está la Sala Arcos, con capacidad para 25 personas sentadas (se coordina por WhatsApp).',
+        a: 'Sí. Los espacios multiuso reciben hasta 8 personas sentadas, y para grupos más grandes está la Sala Arcos, con capacidad para 30 personas (se coordina por WhatsApp).',
       },
     ],
     meta:
@@ -361,7 +361,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿Puedo hacer círculos o encuentros grupales?',
-        a: 'Sí. Los espacios multiuso reciben hasta 8 personas sentadas, con colchonetas y almohadones para armar ronda. Para encuentros más grandes está la Sala Arcos del subsuelo —piedra y arcos originales, hasta 25 personas—, que se coordina por WhatsApp.',
+        a: 'Sí. Los espacios multiuso reciben hasta 8 personas sentadas, con colchonetas y almohadones para armar ronda. Para encuentros más grandes está la Sala Arcos del subsuelo —piedra y arcos originales, hasta 30 personas—, que se coordina por WhatsApp.',
       },
       {
         q: '¿Y si mi agenda es irregular?',
@@ -395,7 +395,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Tu marca personal merece un espacio que esté a la altura',
     ],
     solucion:
-      'Los consultorios amueblados —butacas cómodas, escritorio en varios, luz natural— dan el marco de privacidad y presencia que una sesión de coaching necesita. Para dinámicas con equipos están los espacios multiuso (hasta 8 personas) y la Sala Arcos (hasta 25, con proyector y parlante). Reservás por hora con agenda online, combinás presencial y virtual como quieras, y pagás solo lo que usás.',
+      'Los consultorios amueblados —butacas cómodas, escritorio en varios, luz natural— dan el marco de privacidad y presencia que una sesión de coaching necesita. Para dinámicas con equipos están los espacios multiuso (hasta 8 personas) y la Sala Arcos (hasta 30, con proyector y parlante). Reservás por hora con agenda online, combinás presencial y virtual como quieras, y pagás solo lo que usás.',
     espaciosRecomendados: ['espacio-01', 'espacio-12', 'espacio-11', 'espacio-14'],
     fotos: [
       { src: '/fotos/lugar-fachada.webp', alt: 'Fachada reciclada del edificio de Espacio 1010, iluminada de noche, una casa de principios de siglo XX entre Palermo y Parque Rodó', cap: 'La fachada, de noche' },
@@ -408,7 +408,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿Puedo facilitar talleres o trabajar con equipos?',
-        a: 'Sí. Los espacios multiuso reciben hasta 8 personas, y la Sala Arcos del subsuelo hasta 25 sentadas, con proyector, parlante y kitchenette — ideal para workshops y jornadas con equipos. La Sala Arcos se coordina por WhatsApp.',
+        a: 'Sí. Los espacios multiuso reciben hasta 8 personas, y la Sala Arcos del subsuelo hasta 30 personas, con proyector, parlante y kitchenette — ideal para workshops y jornadas con equipos. La Sala Arcos se coordina por WhatsApp.',
       },
       {
         q: '¿Me conviene si la mayoría de mis sesiones son online?',
@@ -445,7 +445,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Buscás un lugar que respire calma desde que se entra',
     ],
     solucion:
-      'Los espacios multiuso vienen despejados, con colchonetas, almohadones y sillas, listos para que armes tu práctica: reciben hasta 8 personas sentadas o 6 en movimiento libre. Para grupos más grandes está la Sala Arcos, en el subsuelo, con capacidad para 25 personas. Reservás por hora, desde 1, y probás horarios sin compromiso.',
+      'Los espacios multiuso vienen despejados, con colchonetas, almohadones y sillas, listos para que armes tu práctica: reciben hasta 8 personas sentadas o 6 en movimiento libre. Para grupos más grandes está la Sala Arcos, en el subsuelo, con capacidad para 30 personas. Reservás por hora, desde 1, y probás horarios sin compromiso.',
     espaciosRecomendados: ['espacio-03', 'espacio-14', 'sala-arcos'],
     fotos: [
       { src: '/fotos/lugar-subsuelo.webp', alt: 'Subsuelo de Espacio 1010 con muro de piedra y arco original iluminado, piso de madera', cap: 'Subsuelo · piedra y arco originales' },
@@ -458,7 +458,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿Cuántas personas entran?',
-        a: 'Los espacios multiuso reciben hasta 8 personas sentadas o 6 en movimiento libre. Para grupos más grandes está la Sala Arcos, con capacidad para 25 personas sentadas — se coordina por WhatsApp.',
+        a: 'Los espacios multiuso reciben hasta 8 personas sentadas o 6 en movimiento libre. Para grupos más grandes está la Sala Arcos, con capacidad para 30 personas — se coordina por WhatsApp.',
       },
       {
         q: '¿En qué horarios puedo dar clase?',
@@ -466,7 +466,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
     ],
     meta:
-      'Salas por hora para yoga y meditación entre Palermo y Parque Rodó, Montevideo. Mats y almohadones, y sala para 25 personas. Tu primera hora es gratis.',
+      'Salas por hora para yoga y meditación entre Palermo y Parque Rodó, Montevideo. Mats y almohadones, y sala para 30 personas. Tu primera hora es gratis.',
     whatsappIntro: 'Hola, doy clases de yoga/meditación y quería más info sobre Espacio 1010.',
     variantesBusqueda: [
       'salón yoga alquiler hora',
@@ -483,7 +483,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
     label: 'Sala para talleres y trabajo grupal',
     titleSeo: 'Sala Arcos: talleres y grupos en Montevideo',
     intro:
-      'La Sala Arcos, en el subsuelo, te recibe para grupos de hasta 25 personas: 40 m² con piedra y arcos originales, sillas y mesas, proyector, parlante, kitchenette y baño independiente. Para tu taller, formación o encuentro grupal.',
+      'La Sala Arcos, en el subsuelo, te recibe para grupos de hasta 30 personas: 40 m² con piedra y arcos originales, sillas, mats y tatamis, proyector, parlante, kitchenette y baño independiente. Para tu taller, formación o encuentro grupal.',
     painPoints: [
       'Las salas de eventos son frías y caras, las casas privadas son pequeñas y poco profesionales',
       'Necesitás flexibilidad para configurar el espacio según la dinámica',
@@ -491,7 +491,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       'Tu taller puede durar 2 horas u 8 — necesitás reservar todo el bloque junto',
     ],
     solucion:
-      'La Sala Arcos está pensada justamente para esto: sillas y mesas para armar círculo o filas, proyector y parlante incluidos, kitchenette y baño independiente. Reservás el bloque completo que tu taller necesite y lo coordinamos por WhatsApp según fecha y duración. Ideal para constelaciones, formaciones, presentaciones o grupos terapéuticos. Para grupos chicos también están los espacios multiuso, que pagás como un consultorio.',
+      'La Sala Arcos está pensada justamente para esto: sillas, mats y tatamis para armar círculo o filas, proyector y parlante incluidos, kitchenette y baño independiente. Reservás el bloque completo que tu taller necesite y lo coordinamos por WhatsApp según fecha y duración. Ideal para constelaciones, formaciones, presentaciones o grupos terapéuticos. Para grupos chicos también están los espacios multiuso, que pagás como un consultorio.',
     espaciosRecomendados: ['sala-arcos', 'espacio-03', 'espacio-14'],
     fotos: [
       { src: '/fotos/lugar-sala-subsuelo.webp', alt: 'Sala amplia del subsuelo de Espacio 1010 con muro de piedra, piso de madera y escalera metálica', cap: 'Sala del subsuelo' },
@@ -504,7 +504,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
       {
         q: '¿Hay proyector o sonido?',
-        a: 'Sí: la sala incluye proyector y parlante, además de sillas, mesas, colchonetas y almohadones. También tiene kitchenette y baño independiente.',
+        a: 'Sí: la sala incluye proyector y parlante, además de sillas, mats, tatamis, colchonetas y almohadones. También tiene kitchenette y baño independiente.',
       },
       {
         q: '¿Puede entrar comida?',
@@ -516,7 +516,7 @@ export const NICHOS_CONTENT: Record<string, NichoContent> = {
       },
     ],
     meta:
-      'Sala Arcos: sala para talleres y grupos en Montevideo. 40 m², hasta 25 personas, proyector y kitchenette. Consultá por WhatsApp.',
+      'Sala Arcos: sala para talleres y grupos en Montevideo. 40 m², hasta 30 personas, proyector y kitchenette. Consultá por WhatsApp.',
     whatsappIntro: 'Hola, quería info sobre la Sala Arcos para un taller.',
     variantesBusqueda: [
       'sala talleres Montevideo',

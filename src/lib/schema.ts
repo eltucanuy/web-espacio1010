@@ -92,7 +92,7 @@ export function localBusinessSchema(imageUrl: string) {
       },
       {
         '@type': 'Offer',
-        name: 'Sala Arcos (grupos y talleres, hasta 25 personas)',
+        name: 'Sala Arcos (grupos y talleres, hasta 30 personas)',
         price: '700',
         priceCurrency: 'UYU',
         description:

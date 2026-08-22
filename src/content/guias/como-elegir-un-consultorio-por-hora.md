@@ -78,7 +78,7 @@ Para cualquier práctica clínica o terapéutica es central. En la visita, prest
 
 ## 9. ¿El espacio se adapta a tus distintas modalidades?
 
-Tu práctica de hoy no es la de dentro de un año. Vale preguntar: ¿hay espacios distintos dentro del mismo lugar — para atención individual, con camilla, para trabajar con niños, para grupos? ¿Podés cambiar de espacio reserva a reserva? Tener todo en un mismo edificio (y con una sola cuenta) evita mudanzas cuando tu agenda se diversifica. Mirá como ejemplo la variedad de [espacios de Espacio 1010](/los-espacios): del consultorio individual a la sala para 25 personas.
+Tu práctica de hoy no es la de dentro de un año. Vale preguntar: ¿hay espacios distintos dentro del mismo lugar — para atención individual, con camilla, para trabajar con niños, para grupos? ¿Podés cambiar de espacio reserva a reserva? Tener todo en un mismo edificio (y con una sola cuenta) evita mudanzas cuando tu agenda se diversifica. Mirá como ejemplo la variedad de [espacios de Espacio 1010](/los-espacios): del consultorio individual a la sala para 30 personas.
 
 ## 10. ¿Cómo se paga y cuándo?
 

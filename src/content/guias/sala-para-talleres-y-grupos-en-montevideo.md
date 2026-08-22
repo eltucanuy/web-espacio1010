@@ -8,13 +8,13 @@ updatedDate: 2026-08-22
 orden: 5
 faq:
   - q: '¿Cuánto cuesta alquilar una sala para talleres en Montevideo?'
-    a: 'Depende del formato: los salones de eventos y hoteles suelen cotizar por jornada o medio día, con mínimos que arrancan en varios miles de pesos; los espacios por hora son más accesibles para talleres de 2 a 8 horas. Como referencia, la Sala Arcos de Espacio 1010 (hasta 25 personas, con proyector, parlante y kitchenette) sale $700 la hora, y las salas multiuso para grupos chicos $350 la hora.'
+    a: 'Depende del formato: los salones de eventos y hoteles suelen cotizar por jornada o medio día, con mínimos que arrancan en varios miles de pesos; los espacios por hora son más accesibles para talleres de 2 a 8 horas. Como referencia, la Sala Arcos de Espacio 1010 (hasta 30 personas, con proyector, parlante y kitchenette) sale $700 la hora, y las salas multiuso para grupos chicos $350 la hora.'
   - q: '¿Qué capacidad necesito para mi taller?'
-    a: 'Calculá según la dinámica, no según la lista de inscriptos: sentados en sillas entra más gente que en ronda de colchonetas, y el trabajo en movimiento pide el doble de espacio por persona. Una sala de 40 m² recibe cómodas unas 25 personas sentadas, pero muchas menos en movimiento libre.'
+    a: 'Calculá según la dinámica, no según la lista de inscriptos: sentados en sillas entra más gente que en ronda de colchonetas, y el trabajo en movimiento pide el doble de espacio por persona. Una sala de 40 m² como la Sala Arcos recibe hasta 30 personas según cómo se arme (charla, taller o círculo), pero bastantes menos en movimiento libre.'
   - q: '¿Puedo alquilar una sala solo por unas horas un sábado o domingo?'
     a: 'En muchos lugares no — los fines de semana tienen horarios acotados o mínimos de jornada. En Espacio 1010 el edificio funciona 24/7 todo el año y la Sala Arcos se reserva por hora —el bloque completo que tu taller necesite—, también sábados y domingos: se coordina por WhatsApp según fecha y duración.'
   - q: '¿Qué incluye normalmente el alquiler de una sala?'
-    a: 'Varía muchísimo, y es la primera pregunta que conviene hacer: sillas y mesas, proyector, sonido, kitchenette o café, baños propios o compartidos, y quién arma/desarma. En la Sala Arcos el proyector, el parlante, las sillas, las mesas, las colchonetas, la kitchenette y el baño propio están incluidos en la tarifa.'
+    a: 'Varía muchísimo, y es la primera pregunta que conviene hacer: sillas, mats o colchonetas, proyector, sonido, kitchenette o café, baños propios o compartidos, y quién arma/desarma. En la Sala Arcos el proyector, el parlante, las sillas, los mats, los tatamis, las colchonetas, la kitchenette y el baño propio están incluidos en la tarifa.'
 relacionadas:
   - cuanto-cuesta-alquilar-un-consultorio-en-montevideo
   - como-elegir-un-consultorio-por-hora
@@ -23,7 +23,7 @@ relacionadas:
 
 **Una sala para talleres en Montevideo se alquila de tres formas: por jornada o medio día (salones de eventos y hoteles), por hora (salas en espacios profesionales) o por evento (centros culturales y espacios comunitarios).** Para un taller de 2 a 8 horas, el alquiler por hora es el que mejor se ajusta, porque pagás el bloque exacto que usás en vez de una jornada entera.
 
-Como referencia concreta de precio: en [Espacio 1010](/los-espacios) —Gaboto 1010, entre Palermo y Parque Rodó— una sala multiuso para grupos chicos (hasta 8 personas sentadas) sale **$350 la hora**, y la [Sala Arcos](/los-espacios/sala-arcos) —40 m², hasta 25 personas, con proyector, parlante, sillas, mesas, colchonetas, kitchenette y baño propio— sale **$700 la hora**, sábados y domingos incluidos.
+Como referencia concreta de precio: en [Espacio 1010](/los-espacios) —Gaboto 1010, entre Palermo y Parque Rodó— una sala multiuso para grupos chicos (hasta 8 personas sentadas) sale **$350 la hora**, y la [Sala Arcos](/los-espacios/sala-arcos) —40 m², hasta 30 personas, con proyector, parlante, sillas, mats, tatamis, colchonetas, kitchenette y baño propio— sale **$700 la hora**, sábados y domingos incluidos.
 
 El precio, sin embargo, es lo fácil. Organizar un taller tiene una particularidad cruel: **el espacio se nota solo cuando falla**. La sala perfecta desaparece detrás de tu contenido; la equivocada —fría, chica, sin sonido, con el baño en otro piso— se convierte en el tema de la jornada. Esta guía junta lo que hay que mirar antes de reservar, para formaciones, constelaciones, grupos terapéuticos, presentaciones, prácticas de movimiento o cualquier encuentro grupal en Montevideo.
 
@@ -31,12 +31,12 @@ El precio, sin embargo, es lo fácil. Organizar un taller tiene una particularid
 
 La misma sala recibe cantidades muy distintas de gente según la dinámica:
 
-| Dinámica | Espacio por persona | En una sala de 40 m² |
-| --- | --- | --- |
-| Sentados en sillas (formato charla) | ~1,5 m² | hasta ~25 personas |
-| Ronda de sillas o círculo de trabajo | ~2 m² | ~18–20 personas |
-| Colchonetas / trabajo en el piso | ~2,5–3 m² | ~13–15 personas |
-| Movimiento libre | ~3–4 m² | ~10–12 personas |
+| Dinámica | En una sala de 40 m² |
+| --- | --- |
+| Sentados en sillas (formato charla) | hasta 30 personas |
+| Taller o círculo de trabajo | hasta 30 personas, según cómo se arme |
+| Colchonetas / trabajo en el piso | bastantes menos |
+| Movimiento libre | bastantes menos |
 
 Regla práctica: **preguntá la capacidad para TU dinámica**, no la máxima del anuncio. Y si tu taller alterna formatos (charla + práctica), calculá por el más exigente.
 
@@ -47,13 +47,13 @@ Para grupos chicos —hasta 8 personas sentadas o 6 en movimiento— no siempre 
 Lo que define la logística de tu jornada:
 
 - **Proyector y sonido**: ¿incluidos o alquiler aparte? ¿probaste que funcionen con tu compu?
-- **Sillas y mesas suficientes**: confirmá que alcancen para tu grupo — y contá el armado y desarmado dentro de tu tiempo de reserva, porque en la mayoría de los espacios lo hacés vos.
+- **Sillas suficientes**: confirmá que alcancen para tu grupo — y contá el armado y desarmado dentro de tu tiempo de reserva, porque en la mayoría de los espacios lo hacés vos.
 - **Colchonetas y almohadones**: imprescindibles para trabajo corporal o constelaciones.
 - **Kitchenette o café**: un corte de mate/café a mitad de taller cambia la energía del grupo. ¿Hay dónde prepararlo sin salir de la sala?
 - **Baño propio o compartido**: con 20 personas y un solo baño en otro piso, cada pausa se estira 15 minutos.
 - **Ventilación y clima**: 20 cuerpos calientan una sala rápido. ¿Aire acondicionado real?
 
-La [Sala Arcos](/los-espacios/sala-arcos) de Espacio 1010 —40 m² en el subsuelo de un edificio centenario reciclado, con piedra y arcos originales— incluye todo lo anterior: sillas y mesas, proyector, parlante, colchonetas y almohadones, kitchenette propia y baño independiente. La estética del lugar, dicho sea de paso, no es un detalle menor: un espacio con carácter predispone distinto al grupo que un salón de oficina.
+La [Sala Arcos](/los-espacios/sala-arcos) de Espacio 1010 —40 m² en el subsuelo de un edificio centenario reciclado, con piedra y arcos originales— incluye todo lo anterior: sillas, mats y tatamis, proyector, parlante, colchonetas y almohadones, kitchenette propia y baño independiente. La estética del lugar, dicho sea de paso, no es un detalle menor: un espacio con carácter predispone distinto al grupo que un salón de oficina.
 
 ## Horarios: el detalle que mata talleres
 

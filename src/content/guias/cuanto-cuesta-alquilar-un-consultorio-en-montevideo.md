@@ -55,7 +55,7 @@ Tres cosas a mirar además del número:
 2. **Cómo funcionan los descuentos.** Algunos lugares exigen comprometerte a un paquete semanal para acceder al descuento; otros lo aplican automáticamente según tus horas del mes, sin atarte.
 3. **La política de cancelación.** Si te cobran la hora cuando tu consultante cancela, tu costo real por hora sube. Buscá lugares donde puedas cancelar sin cargo con aviso razonable.
 
-Para referencia concreta: en [Espacio 1010, alquiler de consultorios por hora en Montevideo](/alquiler-consultorio-montevideo), entre Palermo y Parque Rodó, la hora sale **$350 en todos los consultorios y salas** (la [Sala Arcos](/los-espacios/sala-arcos), para grupos de hasta 25 personas, sale $700). Incluye todo —limpieza, aire acondicionado, wifi, dos salas de espera, cocina para profesionales— y los descuentos son automáticos: con 20 horas o más al mes pagás 10% menos ($315/h) y con 40 o más, 20% menos ($280/h). Sin costo de inscripción, sin mínimos y sin contrato. El detalle completo está en la página de [precios](/precios).
+Para referencia concreta: en [Espacio 1010, alquiler de consultorios por hora en Montevideo](/alquiler-consultorio-montevideo), entre Palermo y Parque Rodó, la hora sale **$350 en todos los consultorios y salas** (la [Sala Arcos](/los-espacios/sala-arcos), para grupos de hasta 30 personas, sale $700). Incluye todo —limpieza, aire acondicionado, wifi, dos salas de espera, cocina para profesionales— y los descuentos son automáticos: con 20 horas o más al mes pagás 10% menos ($315/h) y con 40 o más, 20% menos ($280/h). Sin costo de inscripción, sin mínimos y sin contrato. El detalle completo está en la página de [precios](/precios).
 
 ## ¿Cuánto cuesta alquilar un consultorio mensual en Montevideo?
 

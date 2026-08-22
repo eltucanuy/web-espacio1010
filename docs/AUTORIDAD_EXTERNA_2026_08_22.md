@@ -124,3 +124,29 @@ MercadoLibre y Evisos **no** van en `sameAs` (son avisos, vencen).
 Google Maps/google.com bloqueados (todo sobre Bing/DDG); PlanetaUruguay, Gallito
 y cybo con 403; perfil de backlinks de Pisama sin herramienta de pago; antigüedad
 de dominios (`rdap.nic.uy` no responde, Wayback 429).
+
+## 8. Ejecutado el mismo día desde el Chrome de Rafael (tarde)
+
+**Search Console** (propiedad `sc-domain:espacio1010.uy`, cuenta rafael@cernicchiaro.com):
+- **Nunca se había enviado un sitemap** ("Sitemaps enviados: 0"). Enviado `sitemap-index.xml`.
+- Indexación → Páginas confirmó el diagnóstico: **9 indexadas, 11 "Página con
+  redirección"**, 1 soft 404, 1 noindex (última actualización 16/8).
+- Solicitud de indexación hecha para 9 URLs: las 6 guías (3 ya estaban en Google:
+  por-hora-o-mensual, talleres, como-elegir; 3 eran "URL desconocida": cuánto
+  cuesta, zonas, cómo empezar) + fonoaudiólogos, terapias-corporales,
+  terapeutas-holísticos. `/para/coaches` chocó con la cuota diaria (ya indexado).
+
+**Google Business Profile** (verificado, 1.197 vistas/mes, 2.983 en Maps):
+- Estado previo mejor de lo esperado: 24 h, WhatsApp, web, Instagram en redes,
+  atributos de accesibilidad, descripción. Servicios existían pero **sin precio**.
+- Hecho: categorías secundarias **Espacio de trabajo compartido, Centro de salud
+  mental, Centro de conferencias** (pendientes de revisión ~10 min); **link de
+  reservas → agenda.espacio1010.uy**; servicios con precio fijo: consultorio
+  $350/h y Sala Arcos $700/h, ambos con descripción.
+- **Q&A no disponible** en este perfil (Google no muestra la sección ni en Maps
+  ni en el panel). Alternativa: las 6 preguntas van a `/preguntas-frecuentes`
+  (ya están) y a publicaciones del perfil.
+- Pendiente (requiere OK de Rafa): **responder las 13 reseñas** (ninguna tiene
+  respuesta), fotos interiores (Google lo marca como faltante), publicaciones.
+
+**Clasificados** (MercadoLibre/Evisos): Rafa decidió dejarlos para más adelante.

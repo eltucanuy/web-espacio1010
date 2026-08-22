@@ -13,7 +13,7 @@ import Enhancements from '../components/Enhancements.astro';
 import FloatingWhatsApp from '../components/FloatingWhatsApp.astro';
 import WaTracking from '../components/WaTracking.astro';
 import MarcasForwarding from '../components/MarcasForwarding.astro';
-import { SITE } from '../lib/site';
+import { SITE, canonicalFor } from '../lib/site';
 import { localBusinessSchema } from '../lib/schema';
 
 interface Props {
@@ -42,7 +42,7 @@ const {
 const resolvedImage = image ?? (ogSlug ? `/og/${ogSlug}.png` : '/og-default.svg');
 
 const fullTitle = title ? `${title} — ${SITE.name}` : `${SITE.name} — ${SITE.tagline}`;
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
+const canonicalUrl = canonical ?? canonicalFor(Astro.url.pathname);
 const imageUrl = resolvedImage.startsWith('http')
   ? resolvedImage
   : new URL(resolvedImage, SITE.url).toString();

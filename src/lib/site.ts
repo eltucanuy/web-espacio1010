@@ -345,3 +345,15 @@ export const NAV = [
   { href: '/guias', label: 'Guías' },
   { href: '/contacto', label: 'Contacto' },
 ] as const;
+
+/**
+ * Canónico absoluto sin barra final — la forma exacta que sirve Vercel
+ * ("trailingSlash": false en vercel.json). La home queda como https://.../ .
+ *
+ * Se normaliza acá y no en cada layout para que el canónico no vuelva a apuntar
+ * a una URL que redirige 308 si alguna vez cambia el formato de build.
+ */
+export function canonicalFor(pathname: string): string {
+  const clean = pathname.replace(/\/+$/, '');
+  return new URL(clean === '' ? '/' : clean, SITE.url).toString();
+}

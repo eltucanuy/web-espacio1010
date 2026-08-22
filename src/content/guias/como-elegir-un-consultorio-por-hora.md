@@ -4,7 +4,7 @@ titleSeo: 'Cómo elegir un consultorio por hora en Montevideo · Checklist'
 description: 'Checklist para comparar consultorios por hora en Montevideo: qué incluye el precio, política de cancelación, vacaciones, estacionamiento, horarios reales, privacidad y las trampas de la letra chica.'
 resumen: 'No todos los "por hora" incluyen lo mismo. Las 11 preguntas que separan un buen espacio de un dolor de cabeza recurrente.'
 pubDate: 2026-07-03
-updatedDate: 2026-07-04
+updatedDate: 2026-08-22
 orden: 4
 faq:
   - q: '¿Qué es lo más importante al elegir un consultorio por hora?'
@@ -18,6 +18,8 @@ relacionadas:
   - consultorio-por-hora-o-alquiler-mensual
   - donde-atender-en-montevideo-guia-de-zonas
 ---
+
+**Al comparar consultorios por hora hay tres cosas que definen tu día a día más que el precio: la política de cancelación, qué incluye exactamente la tarifa y cómo se reserva** —agenda online con disponibilidad en tiempo real, o coordinar por mensajes con otra persona—. Después vienen los horarios reales de acceso, el estacionamiento de la zona, la sala de espera, la privacidad y qué pasa con tus horas fijas cuando te tomás vacaciones.
 
 El alquiler por hora resolvió el problema grande —atender sin costo fijo—, pero abrió uno nuevo: **las propuestas se parecen mucho en el anuncio y se diferencian en el uso**. Estas son las 11 preguntas que conviene hacer (y hacerse) antes de elegir dónde atender. Funcionan como checklist: llevalas a la visita.
 

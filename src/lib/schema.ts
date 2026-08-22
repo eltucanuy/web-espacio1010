@@ -50,7 +50,7 @@ export function localBusinessSchema(imageUrl: string) {
       '@type': 'PostalAddress',
       streetAddress: ADDRESS.street,
       addressLocality: ADDRESS.city,
-      addressRegion: ADDRESS.neighborhood,
+      addressRegion: 'Montevideo', // departamento (Schema.org), no el barrio — el barrio va en addressLocality/prosa
       postalCode: ADDRESS.postalCode,
       addressCountry: 'UY',
     },

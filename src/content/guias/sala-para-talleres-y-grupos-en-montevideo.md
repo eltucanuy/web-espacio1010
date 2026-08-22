@@ -4,7 +4,7 @@ titleSeo: 'Sala para talleres por hora en Montevideo · Guía y precios 2026'
 description: 'Guía para alquilar una sala para talleres, formaciones o trabajo grupal en Montevideo: capacidades reales, equipamiento, precios por hora y las preguntas clave antes de reservar.'
 resumen: 'Capacidad real, proyector, kitchenette, horarios de fin de semana y precios: todo lo que define si tu taller sale bien antes de que empiece.'
 pubDate: 2026-07-03
-updatedDate: 2026-07-04
+updatedDate: 2026-08-22
 orden: 5
 faq:
   - q: '¿Cuánto cuesta alquilar una sala para talleres en Montevideo?'
@@ -21,7 +21,11 @@ relacionadas:
   - donde-atender-en-montevideo-guia-de-zonas
 ---
 
-Organizar un taller tiene una particularidad cruel: **el espacio se nota solo cuando falla**. La sala perfecta desaparece detrás de tu contenido; la equivocada —fría, chica, sin sonido, con el baño en otro piso— se convierte en el tema de la jornada. Esta guía junta lo que hay que mirar antes de reservar, para formaciones, constelaciones, grupos terapéuticos, presentaciones, prácticas de movimiento o cualquier encuentro grupal en Montevideo.
+**Una sala para talleres en Montevideo se alquila de tres formas: por jornada o medio día (salones de eventos y hoteles), por hora (salas en espacios profesionales) o por evento (centros culturales y espacios comunitarios).** Para un taller de 2 a 8 horas, el alquiler por hora es el que mejor se ajusta, porque pagás el bloque exacto que usás en vez de una jornada entera.
+
+Como referencia concreta de precio: en [Espacio 1010](/los-espacios) —Gaboto 1010, entre Palermo y Parque Rodó— una sala multiuso para grupos chicos (hasta 8 personas sentadas) sale **$350 la hora**, y la [Sala Arcos](/los-espacios/sala-arcos) —40 m², hasta 25 personas, con proyector, parlante, sillas, mesas, colchonetas, kitchenette y baño propio— sale **$700 la hora**, sábados y domingos incluidos.
+
+El precio, sin embargo, es lo fácil. Organizar un taller tiene una particularidad cruel: **el espacio se nota solo cuando falla**. La sala perfecta desaparece detrás de tu contenido; la equivocada —fría, chica, sin sonido, con el baño en otro piso— se convierte en el tema de la jornada. Esta guía junta lo que hay que mirar antes de reservar, para formaciones, constelaciones, grupos terapéuticos, presentaciones, prácticas de movimiento o cualquier encuentro grupal en Montevideo.
 
 ## Primero: la capacidad real (no la del anuncio)
 

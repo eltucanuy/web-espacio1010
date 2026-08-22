@@ -4,6 +4,7 @@ titleSeo: 'Consultorio por hora vs alquiler mensual en Montevideo · Qué convie
 description: 'Comparación con números entre alquilar un consultorio por hora y uno mensual en Montevideo: números, punto de equilibrio, riesgos y qué conviene según el momento de tu práctica.'
 resumen: 'El punto de equilibrio está cerca de las 80 horas mensuales. Antes de eso, la cuenta favorece al por hora — y no solo por plata.'
 pubDate: 2026-07-03
+updatedDate: 2026-08-22
 orden: 2
 faq:
   - q: '¿A partir de cuántas horas conviene un consultorio propio?'
@@ -20,7 +21,9 @@ relacionadas:
   - como-elegir-un-consultorio-por-hora
 ---
 
-Es la decisión económica más importante de una consulta particular: **¿pago un lugar fijo todos los meses o pago por hora solo cuando atiendo?** No hay una respuesta única — hay una cuenta, y algunos factores que no entran en la cuenta. Vamos con las dos cosas.
+**Hasta unas 80 horas de atención al mes —unas 20 por semana— alquilar por hora sale más barato que un consultorio propio en Montevideo.** Con la tarifa de referencia de $350 la hora, 80 horas cuestan $22.400 (ya con descuento por volumen) contra los $25.000 mensuales que difícilmente baje un consultorio propio con gastos comunes, servicios y limpieza — y eso sin contar los $100.000 o más de garantía, depósito y mobiliario que exige el arranque.
+
+Por encima de ese volumen los números se acercan y la decisión deja de ser aritmética: ahí entran el riesgo de los meses flojos y las horas que te lleva administrar un lugar propio. O sea: hay una cuenta, y hay factores que no entran en la cuenta. Vamos con las dos cosas.
 
 ## La cuenta
 

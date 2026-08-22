@@ -10,7 +10,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Container from '../../components/Container.astro';
 import Button from '../../components/Button.astro';
 import { getCollection, render } from 'astro:content';
-import { SITE } from '../../lib/site';
+import { SITE, NICHOS } from '../../lib/site';
 import { breadcrumbSchema } from '../../lib/schema';
 
 export async function getStaticPaths() {
@@ -38,21 +38,34 @@ const fechaLegible = upd.toLocaleDateString('es-UY', {
 
 const url = `${SITE.url}/guias/${guia.id}`;
 
+// OG generada en build por src/pages/og/[slug].ts (key `guia-<id>`). Sin esto
+// las guías caían al fallback /og-default.svg, que ningún social renderiza.
+const ogSlug = `guia-${guia.id}`;
+const ogImage = `${SITE.url}/og/${ogSlug}.png`;
+
 const schemaArticle = {
   '@context': 'https://schema.org',
   '@type': 'Article',
   headline: guia.data.title,
   description: guia.data.description,
+  image: [ogImage],
   datePublished: pub.toISOString(),
   dateModified: upd.toISOString(),
   inLanguage: 'es-UY',
   mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  // Mismo @id que el LocalBusiness del layout: una sola entidad, no dos.
   author: {
+    '@id': `${SITE.url}/#business`,
     '@type': 'Organization',
     name: 'Espacio 1010',
     url: SITE.url,
   },
-  publisher: { '@id': `${SITE.url}/#business` },
+  publisher: {
+    '@id': `${SITE.url}/#business`,
+    '@type': 'Organization',
+    name: 'Espacio 1010',
+    url: SITE.url,
+  },
 };
 
 const schemaFaq =
@@ -75,7 +88,11 @@ const schemaBreadcrumb = breadcrumbSchema([
 ]);
 ---
 
-<BaseLayout title={guia.data.titleSeo ?? guia.data.title} description={guia.data.description}>
+<BaseLayout
+  title={guia.data.titleSeo ?? guia.data.title}
+  description={guia.data.description}
+  ogSlug={ogSlug}
+>
   <Fragment slot="head">
     <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaArticle)} />
     {schemaFaq && <script is:inline type="application/ld+json" set:html={JSON.stringify(schemaFaq)} />}
@@ -165,6 +182,29 @@ const schemaBreadcrumb = breadcrumbSchema([
             </Button>
           </div>
         </div>
+      </Container>
+    </section>
+
+    <!-- Landings por profesión: único link contextual (no footer) hacia las /para/ desde contenido indexable -->
+    <section class="py-14 sm:py-16">
+      <Container>
+        <h2 class="text-2xl text-ink sm:text-3xl">Consultorio por hora según tu profesión</h2>
+        <p class="mt-3 max-w-2xl text-ink-soft">
+          Cada profesión busca cosas distintas en un consultorio. Armamos una página por rubro con los espacios que
+          mejor se adaptan, qué incluye la hora y las preguntas más frecuentes de cada uno.
+        </p>
+        <ul class="mt-6 flex flex-wrap gap-2">
+          {NICHOS.map((n) => (
+            <li>
+              <a
+                href={`/para/${n.slug}`}
+                class="inline-flex rounded-full border border-hairline bg-white px-4 py-2 text-sm text-ink transition-colors hover:border-terracota/40 hover:text-terracota"
+              >
+                Consultorio por hora para {n.label.toLowerCase()}
+              </a>
+            </li>
+          ))}
+        </ul>
       </Container>
     </section>
 

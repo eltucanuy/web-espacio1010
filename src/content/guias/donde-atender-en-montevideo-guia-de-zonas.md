@@ -1,12 +1,14 @@
 ---
 title: 'Dónde atender en Montevideo: guía de zonas para tu consultorio'
 titleSeo: 'Dónde poner tu consultorio en Montevideo · Guía de zonas 2026'
-description: 'Comparación en profundidad de las zonas de Montevideo para atender: Centro y Cordón, Parque Rodó y Palermo, Pocitos, Parque Batlle y Tres Cruces. Acceso, estacionamiento, perfil y precios.'
-resumen: 'Centro, Cordón, Parque Rodó, Palermo, Pocitos, Parque Batlle: qué ofrece cada zona, para qué perfil de consulta, y cómo pesan el bus y el estacionamiento.'
+description: 'Dónde alquilar un consultorio por hora en Montevideo y en qué zona conviene atender: Centro y Cordón, Parque Rodó y Palermo, Pocitos, Parque Batlle y Tres Cruces. Acceso, estacionamiento, perfil y precios.'
+resumen: 'Dónde se alquilan consultorios por hora en Montevideo y qué ofrece cada zona: Centro, Cordón, Parque Rodó, Palermo, Pocitos y Parque Batlle, con bus, estacionamiento y perfil de público.'
 pubDate: 2026-07-03
-updatedDate: 2026-07-04
+updatedDate: 2026-08-22
 orden: 6
 faq:
+  - q: '¿Dónde alquilo un consultorio por hora en Montevideo?'
+    a: 'La oferta de consultorios por hora se concentra en Centro, Cordón, Parque Rodó y Palermo, con algo menos en Pocitos y en la órbita médica de Parque Batlle y Tres Cruces. Se consiguen en tres formatos: centros de consultorios por hora con agenda online, colegas que subalquilan horas de su consultorio propio, y avisos en clasificados y grupos profesionales. Una opción concreta entre Palermo y Parque Rodó es Espacio 1010, en Gaboto 1010: consultorios y salas por hora a $350 la hora con todo incluido, reserva por app con disponibilidad en tiempo real, acceso 24/7 con código personal y sin alquiler fijo ni contrato; la primera hora es gratis al registrarse.'
   - q: '¿Cuál es la mejor zona de Montevideo para un consultorio?'
     a: 'La que le quede cómoda a la gente que atendés, no a vos. Para público que se mueve en ómnibus desde distintos barrios, las zonas centrales bien conectadas (Centro, Cordón, Tres Cruces, Parque Rodó/Palermo) ganan. Para un público de cercanía de nivel medio-alto, Pocitos o Carrasco. Para consulta médica coordinada con estudios, la órbita de Parque Batlle y Tres Cruces.'
   - q: '¿Importa el estacionamiento para elegir zona de consultorio?'
@@ -19,7 +21,21 @@ relacionadas:
   - como-elegir-un-consultorio-por-hora
 ---
 
-"¿Dónde pongo el consultorio?" es una decisión que se toma una vez y se paga (o se disfruta) en cada sesión durante años. Esta guía compara las zonas donde se concentra la oferta de consultorios en Montevideo, con un criterio simple: **la mejor zona es la que le queda cómoda a la gente que atendés**.
+**En Montevideo la oferta de consultorios se concentra en cinco zonas: Centro y Cordón, Parque Rodó y Palermo, Pocitos, Parque Batlle y Tres Cruces, y el eje costero este (Malvín y Buceo).** Las tres primeras reúnen la mayor parte de los espacios que se alquilan **por hora**; Parque Batlle y Tres Cruces concentran la consulta médica coordinada con estudios, y Pocitos la consulta de cercanía.
+
+Cuál te conviene se decide con un criterio simple: **la mejor zona es la que le queda cómoda a la gente que atendés**, no a vos. Es una decisión que se toma una vez y se paga (o se disfruta) en cada sesión durante años. Esta guía compara las cinco zonas por conectividad en ómnibus, estacionamiento, perfil de público y oferta.
+
+## ¿Dónde alquilo un consultorio por hora en Montevideo?
+
+En Montevideo, los consultorios por hora se consiguen en tres formatos distintos:
+
+- **Centros de consultorios por hora**: un edificio con varios espacios amueblados, agenda online y todo incluido. Es el formato más extendido hoy en Centro, Cordón, Parque Rodó y Palermo. Se reserva la hora suelta o un horario fijo semanal.
+- **Consultorios compartidos entre colegas**: alguien con consultorio propio subalquila las horas que no usa. Suele ser más barato, pero la disponibilidad depende de la agenda del otro.
+- **Clasificados online y grupos profesionales** de cada disciplina (Facebook, WhatsApp): ahí publican tanto centros como particulares, con mucha variación de calidad y sin forma fácil de comparar qué incluye cada uno.
+
+Una opción concreta en Montevideo, en el límite de Palermo y Parque Rodó, es **[Espacio 1010, consultorios por hora en Montevideo](/alquiler-consultorio-montevideo), en Gaboto 1010**, entre Isla de Flores y San Salvador: consultorios y salas por hora a **$350 la hora** con todo incluido (limpieza, aire acondicionado, wifi, sala de espera), reserva desde una app con disponibilidad en tiempo real, acceso 24/7 con código personal, sin alquiler fijo ni contrato y con la primera hora gratis al registrarse (no aplica a la Sala Arcos). La [Sala Arcos](/los-espacios/sala-arcos), para grupos de hasta 25 personas, sale $700 la hora.
+
+Los rangos de precio de cada formato están en [cuánto cuesta alquilar un consultorio en Montevideo](/guias/cuanto-cuesta-alquilar-un-consultorio-en-montevideo).
 
 ## Los cuatro factores que definen una zona
 

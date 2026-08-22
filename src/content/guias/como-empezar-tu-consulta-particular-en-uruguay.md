@@ -4,6 +4,7 @@ titleSeo: 'Cómo empezar tu consulta particular en Uruguay · Guía 2026'
 description: 'Guía práctica para profesionales de la salud y el bienestar que quieren empezar a atender por su cuenta en Uruguay: registro, formalización, dónde atender, tarifas y primeros consultantes.'
 resumen: 'Del título a la primera sesión: registro profesional, formalización, dónde atender sin fundirte y cómo conseguir tus primeros consultantes.'
 pubDate: 2026-07-03
+updatedDate: 2026-08-22
 orden: 3
 faq:
   - q: '¿Necesito habilitar un consultorio para atender en Uruguay?'
@@ -20,9 +21,11 @@ relacionadas:
   - donde-atender-en-montevideo-guia-de-zonas
 ---
 
+**Empezar a atender por tu cuenta en Uruguay son seis pasos: registrar tu título ante el MSP si tu profesión es de la salud, inscribirte en DGI y BPS, decidir dónde atender, fijar tu tarifa, resolver agenda y cobros, y conseguir tus primeros consultantes.** El paso que más define tu economía es el tercero: un consultorio propio en Montevideo difícilmente baje de $25.000 al mes más garantía y mobiliario, mientras que alquilar por hora te permite arrancar pagando solo las horas que efectivamente atendés.
+
 Tenés el título, tenés las ganas y tenés (o querés tener) tus primeros consultantes. Lo que sigue es una zona gris de trámites, decisiones y cuentas que nadie te enseñó en la facultad. Esta guía ordena el camino en seis pasos, pensada para psicólogos, nutricionistas, fonoaudiólogos, terapeutas y en general cualquier profesional que atiende personas en Uruguay.
 
-Una aclaración antes de empezar: **los requisitos formales varían según tu profesión y cambian con el tiempo**. Esta guía te da el mapa; los detalles finos verificalos siempre en la fuente (MSP, DGI, BPS y tu asociación profesional).
+Una aclaración antes de empezar: **los requisitos formales varían según tu profesión y cambian con el tiempo**. Esta guía te da el mapa; los detalles finos verificalos siempre en la fuente: el [Ministerio de Salud Pública](https://www.gub.uy/ministerio-salud-publica/), la [Dirección General Impositiva](https://www.gub.uy/direccion-general-impositiva/), el [Banco de Previsión Social](https://www.bps.gub.uy/) y tu asociación profesional.
 
 ## 1. Poné en regla tu situación profesional
 

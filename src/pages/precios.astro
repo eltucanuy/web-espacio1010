@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Container from '../components/Container.astro';
 import Button from '../components/Button.astro';
-import { CONTACT } from '../lib/site';
+import { CONTACT, SITE } from '../lib/site';
 
 // Precios reales — fuente de verdad: docs/VERDAD_APP_2026_06_10.md (la app manda).
 // Consultorios y salas: $350/h. Sala Arcos (subsuelo): $700/h.
@@ -46,7 +46,15 @@ const schemaPrecios = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Alquiler de consultorios y salas por hora',
-  provider: { '@type': 'LocalBusiness', name: 'Espacio 1010' },
+  // Mismo @id que el LocalBusiness del layout (igual que las /para/): sin esto
+  // el schema declara un segundo negocio sin reconciliar con el principal.
+  provider: {
+    '@id': `${SITE.url}/#business`,
+    '@type': 'LocalBusiness',
+    name: 'Espacio 1010',
+    url: SITE.url,
+  },
+  url: `${SITE.url}/precios`,
   areaServed: 'Montevideo, Uruguay',
   offers: [
     {

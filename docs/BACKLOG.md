@@ -36,7 +36,8 @@
 > y /los-espacios presenta los 8 publicados como "los primeros que abren"; horario → **"24/7"**
 > (la app reserva de 7 a 24, madrugada por WhatsApp); **2 salas de espera reales** (una por piso —
 > detalle solo en /el-lugar, en el resto "sala de espera" a secas; al espacio se entra EN HORA);
-> café/té/agua y música ambiente confirmados; sin horario de atención publicado; nombres de
+> café/té/agua confirmados **solo en la cocina de profesionales** (decisión Rafa 2026-08-13: en las
+> salas de espera NO se ofrece té ni café a invitados — solo agua) y música ambiente confirmados; sin horario de atención publicado; nombres de
 > espacios quedan "Espacio 01…"; descuentos publicados con números; cupón BIENVENIDA1010
 > corregido en la DB de la app (1 reserva gratis por usuario).
 >
@@ -266,3 +267,24 @@ Una vez que el sitio esté vivo con tráfico real:
 4. **Cuando haya fotos**: regenerar visuales + foto-narrativa real, descartar placeholders editoriales.
 
 No tocar D #18 (blog) hasta que haya tracción y caso claro de qué postear.
+
+## 🔄 Actualización 2026-08-22 — medición SEO a 50 días + correcciones
+
+Ver `docs/MEDICION_SEO_2026_08_22.md` (medición, diagnóstico, fix trailing slash
+verificado) y `docs/AUTORIDAD_EXTERNA_2026_08_22.md` (plan de presencia externa
+para Rafa: MercadoLibre, Evisos, GBP, YouTube, OSM).
+
+Hecho hoy: trailing slash (sitemap/canónicos sin barra, 308 eliminados),
+respuesta directa al inicio de las 6 guías + H2 "¿Dónde alquilo un consultorio
+por hora en Montevideo?", OG de las guías (caían al fallback), `@id` unificado
+en Article/Service, `addressRegion` → Montevideo, snapshot de reseñas 7→13,
+bloque de links contextuales a las 10 `/para/` desde cada guía, IndexNow
+(`npm run indexnow` después de cada deploy), `llms.txt` ampliado.
+
+Pendiente (del informe de crawlabilidad):
+- **Fichas `/los-espacios/*` casi duplicadas** (solo 6-9% de texto propio, 6 titles iguales salvo el número). Necesitan `descripcionLarga` por espacio + titles diferenciados — contenido de Rafa/Belén.
+- Links contextuales hacia `/para/` desde `/los-espacios` y las fichas (hoy solo desde guías y footer).
+- Apex `espacio1010.uy` redirige 307 en vez de 308 → Vercel › Domains.
+- Cloudflare Email Obfuscation rompe el mailto del footer para crawlers → Scrape Shield OFF.
+- `lastmod` en el sitemap; `priceRange: '$$$'` vs makesOffer $350; titles >60 chars en 28 de 34 páginas.
+- Evidencia: `llms.txt` casi no lo lee nadie (Ahrefs, 137k sitios) y el schema no mueve citas de IA — no invertir más ahí. Lo que pesa: menciones off-site y frescura.

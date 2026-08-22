@@ -27,7 +27,30 @@ npm run build    # build estático a dist/
 npm run preview  # preview del build
 npm run check    # type-check con astro check
 vercel deploy --prod --yes   # deploy a producción (alias www.espacio1010.uy)
+npm run indexnow # avisa a Bing/Yandex que las URLs cambiaron — SIEMPRE post-deploy
 ```
+
+### IndexNow (después de cada deploy)
+
+`npm run indexnow` lee el sitemap de producción y le avisa a los buscadores que
+consumen el protocolo (Bing — y con él DuckDuckGo, Yahoo y Ecosia —, Yandex,
+Seznam, Naver) que las URLs cambiaron. **Google no participa**: para Google
+siguen mandando el sitemap y Search Console.
+
+```bash
+vercel deploy --prod --yes && npm run indexnow
+```
+
+Correrlo **después** de que el deploy esté publicado, nunca antes: IndexNow pide
+que vayan a rastrear la URL en ese momento, y si todavía está la versión vieja
+arriba es lo que van a leer. Opciones: `--dry-run` (muestra sin enviar),
+`--from-dist` (lee `dist/sitemap-0.xml` local), o pasar rutas sueltas
+(`node scripts/indexnow.mjs /precios /guias`).
+
+La key vive en `public/d722ef15ab30e860b999e5186de4ef8d.txt` y se publica en la
+raíz del dominio; es la prueba de que controlamos el sitio. Si se rota hay que
+cambiar el `.txt`, la constante `KEY` del script, **y deployar antes de enviar**
+o la API responde 403.
 
 ## Flujo de conversión (home)
 

@@ -150,3 +150,12 @@ de dominios (`rdap.nic.uy` no responde, Wayback 429).
   respuesta), fotos interiores (Google lo marca como faltante), publicaciones.
 
 **Clasificados** (MercadoLibre/Evisos): Rafa decidió dejarlos para más adelante.
+
+**Reseñas (misma tarde):** respondidas las 12 reseñas de terceros (la de Rafael
+no se responde) con textos cortos y distintos en rioplatense; quedan en
+"pendiente de revisión" ~10 min. **Fotos:** Rafael subió 13 (portada de cada
+espacio + fachada, espera, mármol y herrería), convertidas a JPG desde
+`public/fotos` (GBP no acepta WebP); estado PENDIENTE. Con esto el perfil pasa
+de 3 a 16 fotos propias. Nota para futuras sesiones: el botón "Agregar fotos"
+de GBP abre el selector nativo de Windows y congela la pestaña para la
+extensión — la subida la tiene que hacer Rafael a mano.

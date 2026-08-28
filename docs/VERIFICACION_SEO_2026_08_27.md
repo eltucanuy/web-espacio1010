@@ -84,8 +84,8 @@ barra indexada (verificado una por una con Inspección de URLs).
 `/para/meditacion-yoga` · `/para/talleres-grupos` · `/los-espacios/espacio-01` ·
 `/los-espacios/espacio-02` · `/los-espacios/espacio-03`
 
-**Pendientes de pedir — 7.** La cuota diaria de "Solicitar indexación" se agotó en
-la nº 11. Pedir estas mañana, con la URL **sin barra final**:
+**Indexación solicitada el 28/08 — las 7 que faltaban.** La cuota diaria se había
+agotado en la nº 11 del día anterior; al renovarse se pidieron las restantes:
 
 ```
 https://www.espacio1010.uy/los-espacios/espacio-11
@@ -100,9 +100,16 @@ https://www.espacio1010.uy/contacto
 Motivo de no indexación en todas: "Descubierta: actualmente sin indexar" o "Google
 no reconoce esta URL". Ninguna tiene un problema técnico — es cola de rastreo.
 
+Detalle que confirma que el reenvío del sitemap sirvió: `espacio-11` pasó de "Google
+no reconoce esta URL" (27/08) a "Descubierta: actualmente sin indexar" con
+`sitemap-index.xml` como fuente de detección (28/08).
+
+**Con esto las 34 URLs quedan cubiertas: 16 indexadas + 18 con indexación
+solicitada. No queda nada pendiente de hacer en Search Console.**
+
 ## 4. Qué mirar en 2 a 4 semanas
 
-- **Indexación → Páginas**: las 11 solicitadas deberían pasar a "Indexada", y las 6
+- **Indexación → Páginas**: las 18 solicitadas deberían pasar a "Indexada", y las 6
   del trailing slash deberían quedarse en "Página con redirección" para siempre
   (correcto, no es un error a corregir).
 - **Bing/DuckDuckGo**: repetir el conteo del 22/08 (eran 9 de 34) para medir el
